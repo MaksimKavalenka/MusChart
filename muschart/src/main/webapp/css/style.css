@@ -1,0 +1,187 @@
+div.head {
+	position: relative;
+	margin: 0.5em 0 0.5em 0;
+	color: #FFFFFF;
+	background: #3F3F3F;
+	font-size: 12px;
+	line-height: 40px;
+	font-weight: normal;
+	text-transform: uppercase;
+	font-family: 'Rockwell';
+	text-align: center;
+	letter-spacing: 1px;
+}
+
+div.rating {
+	position: absolute;
+	right: 15px;
+	top: 0px;
+	color: #FFFFFF;
+	font-size: 13px;
+}
+
+div.footer {
+	position: fixed;
+	bottom: 30px;
+	width: 100%;
+	color: #FFFFFF;
+	opacity: 0.3;
+}
+
+div.footer:hover {
+	opacity: 1;
+}
+
+div.scroll {
+	width: 80%;
+	margin: 0 auto; 
+}
+
+table.form {
+	background: #FFFFFF;
+	color: #000000;
+	border-spacing: 5px;
+	padding: 5px;
+}
+
+table.main {
+	height: 100%;
+	width: 100%;
+}
+
+table.body {
+	width: 100%;
+	vertical-align: top;
+	border: 1px solid #6699CC;
+	border-collapse: separate;
+	empty-cells: hide;
+}
+
+td.name {
+	text-align: right;
+	vertical-align: top;
+}
+
+td.window {
+	height: 20%;
+	width: 20%;
+	vertical-align: top;
+	border: 2px solid #6699CC;
+}
+
+tr.title {
+	height: 10%;
+	text-align: center;
+}
+
+tr.body {
+	height: 80%;
+	text-align: center;
+}
+
+b.error {
+	color: red;
+}
+
+p.login {
+	font-size: 20px;
+	font-family: "Estrangelo Edessa";
+	color: #008000;
+}
+
+input.agree {
+	font-size: 15px;
+	color: #008000;
+	height: 30px;
+	width: 100px;
+}
+
+input.clear {
+	font-size: 15px;
+	color: #FF0000;
+	height: 30px;
+	width: 100px;
+}
+
+input.cancel {
+	font-size: 15px;
+	color: #0000FF;
+	height: 30px;
+	width: 100px;
+}
+
+a.title {
+	color: white;
+}
+
+a.title:hover {
+	opacity: 0.8;
+}
+
+.trackIcon {
+	background-color: #000000;
+	cursor: pointer;
+}
+
+.trackIcon:hover{
+	opacity: 0.8;
+}
+
+#button-like{
+	margin: 10px;
+}
+
+#button-like span.likebutton{
+	position: absolute;
+	left: 15px;
+	top: 7px;
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+#button-like span.likebutton:hover{
+	opacity: 0.8;
+}
+
+button, input.button {
+	display: inline-block;
+	margin: 0 10px 0 0;
+	padding: 10px 25px;
+	font-size: 18px;
+	font-family: "Berlin Sans FB";
+	line-height: 1.8;
+	appearance: none;
+	box-shadow: none;
+	border-radius: 0;
+}
+
+button:focus,
+input:focus {
+	outline: none;
+}
+
+section.border button,
+section.border input {
+	color: #6496C8;
+	background: rgba(0,0,0,0);
+	border: solid 3px #6496C8;
+}
+
+section.border button:hover, 
+section.border button.hover,
+section.border input:hover, 
+section.border input.hover {
+	border-color: #346392;
+	color: #346392;
+}
+
+section.border button:active,
+section.border button.active,
+section.border input:active,
+section.border input.active {
+	border-color: #27496D;
+	color: #27496D;
+}
