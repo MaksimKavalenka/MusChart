@@ -15,7 +15,7 @@
 					<input type="hidden" name="action" value="add_track">
 					<fieldset>
 						<legend>New track</legend>
-						<b class="error">${error}</b>
+						<p class="text-danger"><strong>${error}</strong>
 						<div class="form-group">
 							<label for="name" class="col-lg-2 control-label">Name</label>
 							<div class="col-lg-10">

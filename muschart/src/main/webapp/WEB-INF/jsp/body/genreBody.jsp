@@ -63,7 +63,7 @@
 									<c:if test="${not empty user}">
 										<div id="button-like">
 											<span class="likebutton" data-id="${counter.count}" data-tag="${tag.name}">
-												<img src="/muschart/image/other/add.png" style="background-color:#FFFFFF" width="100%">
+												<img src="/muschart/image/add.png" style="background-color:#FFFFFF" width="100%">
 											</span>
 										</div>
 									</c:if>

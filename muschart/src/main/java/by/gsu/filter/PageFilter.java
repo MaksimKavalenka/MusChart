@@ -72,6 +72,7 @@ public class PageFilter implements Filter {
         User user = (User) ((HttpServletRequest) request).getSession()
                 .getAttribute(Tables.USER.toString());
         if ((user == null) || (user.getRole() != Role.ADMIN)) {
+            request.setAttribute(PropertyConstants.ACTION, ACTION_DEFAULT);
             request.setAttribute(PropertyConstants.ERROR, PERMISSION_ERROR);
         }
     }

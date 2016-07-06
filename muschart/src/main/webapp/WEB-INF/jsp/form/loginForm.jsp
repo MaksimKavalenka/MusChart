@@ -16,7 +16,7 @@
 					<input type="hidden" name="action" value="login">
 					<fieldset>
 						<legend>Login</legend>
-						<b class="error">${error}</b>
+						<p class="text-danger"><strong>${error}</strong>
 						<div class="form-group">
 							<label for="login" class="col-lg-2 control-label">Login</label>
 							<div class="col-lg-10">

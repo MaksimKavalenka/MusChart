@@ -28,64 +28,53 @@
 	</head>
 
 	<body>
-		<form method="GET" action="/muschart/tracks">
+		<p class="text-danger"><strong>${error}</strong>
+		<form method="GET" id="form" action="/muschart/tracks">
 			<input type="hidden" name="info" value="${info}">
-			Page: <input type="number" name="page" size="2" maxlength="2">
+			<div align="center">
+				<c:import url="../other/pagination.jsp"/>
+			</div>
 		</form>
 
-		<div class="head">
-			${data}
+		<table>
+			<tr>
+				<td></td><td></td><td></td><td></td><td></td>
+			</tr>
+			<c:forEach var="track" items="${track}" varStatus="counter">
+				<td class="window">
+					<div class="head">
+						<c:if test="${not empty user}">
+							<div id="button-like">
+								<span class="likebutton" data-id="${counter.count}" data-track="${track.name}">
+									<img id="add" src="/muschart/image/add.png" style="background-color:#FFFFFF" width="100%">
+								</span>
+							</div>
+						</c:if>
+
+						<div id="scroll${counter.count}" class="scroll">
+							${track.name}
+						</div>
+						<iframe onLoad="setScroll(${counter.count})" style="display: none"></iframe>
+
+						<div id="rating${counter.count}" class="rating">
+							${track.rating}
+						</div>
+					</div>
+
+					<div id="track${counter.count}Icon" class="trackIcon" onclick="GetPlayer(${counter.count},'${track.name}','${track.song}')">
+						<img src="${track.cover}" width="100%">
+					</div>
+				</td>
+
+				<c:if test="${counter.count % 5 == 0}">
+					<tr>
+				</c:if>
+			</c:forEach>
+		</table>
+
+		<div id="track" class="footer">
+			<div id="trackPlayer"></div>
 		</div>
 
-		<c:choose>
-			<c:when test="${empty track}">
-				<b class="error">
-					Unfortunately, data are not found :(
-				</b>
-			</c:when>
-
-			<c:otherwise>
-				<table class="body">
-					<tr>
-						<td></td><td></td><td></td><td></td><td></td>
-					</tr>
-
-					<c:forEach var="track" items="${track}" varStatus="counter">
-						<td class="window">
-							<div class="head">
-								<c:if test="${not empty user}">
-									<div id="button-like">
-										<span class="likebutton" data-id="${counter.count}" data-track="${track.name}">
-											<img id="add" src="/muschart/image/other/add.png" style="background-color:#FFFFFF" width="100%">
-										</span>
-									</div>
-								</c:if>
-
-								<div id="scroll${counter.count}" class="scroll">
-									${track.name}
-								</div>
-								<iframe onLoad="setScroll(${counter.count})" style="display: none"></iframe>
-
-								<div id="rating${counter.count}" class="rating">
-									${track.rating}
-								</div>
-							</div>
-
-							<div id="track${counter.count}Icon" class="trackIcon" onclick="GetPlayer(${counter.count},'${track.name}','${track.song}')">
-    							<img src="${track.cover}" width="100%">
-							</div>
-						</td>
-
-						<c:if test="${counter.count % 5 == 0}">
-							<tr>
-						</c:if>
-     				</c:forEach>
-				</table>
-
-				<div id="track" class="footer">
-					<div id="trackPlayer"></div>
-				</div>
-			</c:otherwise>
-		</c:choose>
 	</body>
 </html>

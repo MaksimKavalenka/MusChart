@@ -1,0 +1,124 @@
+html, body {
+	margin: 0;
+}
+.to-right {
+	float: right;
+	margin: 0;
+}
+.btn {
+	border-width: 0;
+	padding: 1em 2em;
+}
+.form-search {
+	margin: 0 1em;
+}
+.form-search > * {
+	display: inline;
+}
+.form-search > input {
+	padding: 0.7em;
+}
+.navbar {
+	display: block;
+}
+.navbar * {
+	color: #ffffff;
+	font-size: 1em;
+	font-family: sans-serif;
+}
+.navbar > * {
+	display: inline;
+}
+.navigation {
+	padding: 0;
+}
+.pagination {
+	display: block;
+	margin: auto;
+}
+.navigation > li,
+.pagination > li {
+	display: inline;
+}
+.navigation > li > a,
+.pagination > li > a {
+	display: inline-block;
+	text-decoration: none;
+	white-space: nowrap;
+}
+.navigation > li > a {
+	padding: 1em;
+}
+.pagination > li > a {
+	background-color: #ffffff;
+	border: 1px solid #dddddd;
+	float: left;
+	margin-left: -1px;
+	padding: 1em 1.5em;
+}
+.pagination > li > a:hover,
+.pagination > li > a:focus {
+	background-color: #e6e6e6;
+	color: #165ba8;
+}
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus {
+	background-color: #f5f5f5;
+	color: #999999;
+}
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+	background-color: #ffffff;
+	color: #999999;
+	cursor: not-allowed;
+}
+.navbar-default,
+.btn-default {
+	background: #222222;
+}
+.navbar-default > .navigation > li > a:hover,
+.btn-default:hover {
+	background: #575757;
+}
+.navbar-default > .navigation > li > a:active,
+.btn-default:active {
+	background: #000000;
+}
+.navbar-primary,
+.btn-primary {
+	background: #2780e3;
+}
+.navbar-primary > .navigation > li > a:hover,
+.btn-primary:hover {
+	background: #0fa3ff;
+}
+.navbar-primary > .navigation > li > a:active,
+.btn-primary:active {
+	background: #1967be;
+}
+.navbar-success,
+.btn-success {
+	background: #3fb618;
+}
+.navbar-success > .navigation > li > a:hover,
+.btn-success:hover {
+	background: #5bda3b;
+}
+.navbar-success > .navigation > li > a:active,
+.btn-success:active {
+	background: #2f8912;
+}
+.navbar-danger,
+.btn-danger {
+	background: #cc002e;
+}
+.navbar-danger > .navigation > li > a:hover,
+.btn-danger:hover {
+	background: #f50029;
+}
+.navbar-danger > .navigation > li > a:active,
+.btn-danger:active {
+	background: #80001c;
+}

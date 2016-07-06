@@ -20,9 +20,7 @@ public abstract class LoadDataAction {
 
     public static void load(final HttpServletRequest request)
             throws ValidationException, IllegalDataException {
-        DataAction.checkError(request);
         ActionConstants action = (ActionConstants) request.getAttribute(PropertyConstants.ACTION);
-
         switch (action) {
             case TRACKS:
                 loadTracks(request);
@@ -36,6 +34,7 @@ public abstract class LoadDataAction {
             default:
                 break;
         }
+        DataAction.checkError(request);
     }
 
     private static void loadTracks(final HttpServletRequest request) throws ValidationException {

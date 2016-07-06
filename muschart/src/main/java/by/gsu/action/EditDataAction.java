@@ -23,7 +23,6 @@ public abstract class EditDataAction {
             throws ValidationException, IllegalDataException {
         DataAction.checkError(request);
         ActionConstants action = (ActionConstants) request.getAttribute(PropertyConstants.ACTION);
-
         switch (action) {
             case ADD_TRACK:
                 TrackEditDataAction.addTrack(request);
