@@ -34,6 +34,7 @@
 								<input type="file" class="form-control" id="cover" name="cover" placeholder="Choose the cover" maxlength="255">
 							</div>
 						</div>
+						<input type="date" name="date">
 						<c:import url="../other/buttonSubmit.jsp"/>
 					</fieldset>
 				</form>

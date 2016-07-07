@@ -1,0 +1,43 @@
+@font-face {
+	font-family: "Flaticon";
+	font-style: normal;
+	font-weight: normal;
+	src: url("./Flaticon.eot");
+	src: url("./Flaticon.eot?#iefix") format("embedded-opentype"), url("./Flaticon.woff") format("woff"), url("./Flaticon.ttf") format("truetype"), url("./Flaticon.svg#Flaticon") format("svg");
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	@font-face {
+		font-family: "Flaticon";
+		src: url("./Flaticon.svg#Flaticon") format("svg");
+	}
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+	font-family: Flaticon;
+	font-size: 20px;
+	font-style: normal;
+	margin-left: 20px;
+}
+.flaticon-download:before {
+	content: "\f100";
+}
+.flaticon-like:before {
+	content: "\f101";
+}
+.flaticon-repeat:before {
+	content: "\f102";
+}
+.flaticon-sound:before {
+	content: "\f103";
+}
+.flaticon-video:before {
+	content: "\f104";
+}
+.flaticon-download:hover,
+.flaticon-like:hover,
+.flaticon-repeat:hover,
+.flaticon-sound:hover,
+.flaticon-video:hover {
+	color: #ff0000;
+}

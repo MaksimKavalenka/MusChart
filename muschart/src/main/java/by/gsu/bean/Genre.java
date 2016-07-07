@@ -23,7 +23,7 @@ public class Genre extends Model {
 
     @Column(name = "rating", nullable = false, length = 5)
     @DefaultValue(value = "0")
-    private int               rating;
+    private long              rating;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.PERSIST}, targetEntity = Track.class)
@@ -58,11 +58,11 @@ public class Genre extends Model {
         this.name = name;
     }
 
-    public int getRating() {
+    public long getRating() {
         return rating;
     }
 
-    public void setRating(final int rating) {
+    public void setRating(final long rating) {
         this.rating = rating;
     }
 

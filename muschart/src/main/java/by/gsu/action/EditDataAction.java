@@ -2,6 +2,8 @@ package by.gsu.action;
 
 import static by.gsu.constants.UploadPathConstants.*;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import by.gsu.bean.User;
@@ -51,7 +53,8 @@ public abstract class EditDataAction {
                         AUDIO_UPLOAD_PATH);
                 String cover = UploadDataAction.uploadFile(request, TrackColumns.COVER.toString(),
                         TRACK_IMAGE_UPLOAD_PATH);
-                trackDAO.addTrack(name, song, cover);
+                Date date = (Date) request.getAttribute(TrackColumns.DATE.toString());
+                trackDAO.addTrack(name, song, cover, date);
             }
         }
 

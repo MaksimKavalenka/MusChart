@@ -4,8 +4,8 @@
 		<link rel="stylesheet" type="text/css" href="/muschart/css/styles.css">
 		<script type="text/javascript">
 			function setPage(page) {
-				document.getElementById('page').value = page;
-				document.getElementById('form').submit();
+				document.getElementById("page").value = page;
+				document.getElementById("form").submit();
 			}
 		</script>
 	</head>

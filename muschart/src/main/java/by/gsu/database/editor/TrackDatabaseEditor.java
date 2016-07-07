@@ -2,6 +2,7 @@ package by.gsu.database.editor;
 
 import static by.gsu.constants.ExceptionConstants.COMMIT_TRANSACTION_ERROR;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -20,12 +21,13 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
     }
 
     @Override
-    public void addTrack(final String name, final String song, final String cover)
+    public void addTrack(final String name, final String song, final String cover, final Date date)
             throws ValidationException {
         Track track = new Track();
         track.setName(name);
         track.setSong(song);
         track.setCover(cover);
+        track.setDate(date);
         save(track);
     }
 

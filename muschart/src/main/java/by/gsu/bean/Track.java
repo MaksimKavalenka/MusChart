@@ -1,5 +1,6 @@
 package by.gsu.bean;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.ws.rs.DefaultValue;
 
 @Entity
@@ -27,9 +30,13 @@ public class Track extends Model {
     @Column(name = "cover", nullable = false, length = 255)
     private String            cover;
 
+    @Column(name = "date", nullable = false, length = 4)
+    @Temporal(TemporalType.DATE)
+    private Date              date;
+
     @Column(name = "rating", nullable = false, length = 5)
     @DefaultValue(value = "0")
-    private int               rating;
+    private long              rating;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.PERSIST}, targetEntity = Artist.class)
@@ -51,11 +58,12 @@ public class Track extends Model {
     }
 
     public Track(final int id, final String name, final String song, final String cover,
-            final int rating) {
+            final Date date, final int rating) {
         super(id);
         this.name = name;
         this.song = song;
         this.cover = cover;
+        this.date = date;
         this.rating = rating;
     }
 
@@ -83,11 +91,19 @@ public class Track extends Model {
         this.cover = cover;
     }
 
-    public int getRating() {
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(final Date date) {
+        this.date = date;
+    }
+
+    public long getRating() {
         return rating;
     }
 
-    public void setRating(final int rating) {
+    public void setRating(final long rating) {
         this.rating = rating;
     }
 

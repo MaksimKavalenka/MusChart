@@ -1,5 +1,6 @@
 package by.gsu.database.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import by.gsu.bean.Track;
@@ -7,7 +8,7 @@ import by.gsu.exception.ValidationException;
 
 public interface ITrackDAO extends IDAO {
 
-    void addTrack(String name, String song, String cover) throws ValidationException;
+    void addTrack(String name, String song, String cover, Date date) throws ValidationException;
 
     Track getTrack(int id) throws ValidationException;
 
