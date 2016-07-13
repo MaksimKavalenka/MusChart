@@ -11,7 +11,6 @@
 		src: url("./Flaticon.svg#Flaticon") format("svg");
 	}
 }
-
 [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
 [class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
 	font-family: Flaticon;
@@ -22,19 +21,23 @@
 .flaticon-download:before {
 	content: "\f100";
 }
-.flaticon-like:before {
+.flaticon-edit:before {
 	content: "\f101";
 }
-.flaticon-repeat:before {
+.flaticon-like:before {
 	content: "\f102";
 }
-.flaticon-sound:before {
+.flaticon-repeat:before {
 	content: "\f103";
 }
-.flaticon-video:before {
+.flaticon-sound:before {
 	content: "\f104";
 }
+.flaticon-video:before {
+	content: "\f105";
+}
 .flaticon-download:hover,
+.flaticon-edit:hover,
 .flaticon-like:hover,
 .flaticon-repeat:hover,
 .flaticon-sound:hover,

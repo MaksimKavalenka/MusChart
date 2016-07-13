@@ -17,9 +17,9 @@
     <property name="hibernate.c3p0.idle_test_period">1000</property>
     <property name="hibernate.c3p0.validate">true</property>
 
-    <mapping class="by.gsu.bean.Track"/>
-    <mapping class="by.gsu.bean.Artist"/>
-    <mapping class="by.gsu.bean.Genre"/>
-    <mapping class="by.gsu.bean.User"/>
+    <mapping class="by.gsu.model.Track"/>
+    <mapping class="by.gsu.model.Artist"/>
+    <mapping class="by.gsu.model.Genre"/>
+    <mapping class="by.gsu.model.User"/>
   </session-factory>
 </hibernate-configuration>

@@ -1,25 +1,24 @@
 package by.gsu.database.dao;
 
-import java.util.Date;
 import java.util.List;
 
-import by.gsu.bean.Track;
 import by.gsu.exception.ValidationException;
+import by.gsu.model.Track;
 
 public interface ITrackDAO extends IDAO {
 
-    void addTrack(String name, String song, String cover, Date date) throws ValidationException;
+    void addTrack(Track track) throws ValidationException;
 
-    Track getTrack(int id) throws ValidationException;
+    Track getTrackById(long id) throws ValidationException;
 
-    List<Track> getTracks(int idFrom, int idTo) throws ValidationException;
+    List<Track> getTracksByIds(long idFrom, long idTo) throws ValidationException;
 
     List<Track> getAllTracks() throws ValidationException;
 
-    void deleteTrack(int id) throws ValidationException;
+    void deleteTrackById(long id) throws ValidationException;
 
-    void incRating(int id) throws ValidationException;
+    void incRating(long id) throws ValidationException;
 
-    void decRating(int id) throws ValidationException;
+    void decRating(long id) throws ValidationException;
 
 }

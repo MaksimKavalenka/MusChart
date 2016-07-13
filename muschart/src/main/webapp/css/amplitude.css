@@ -1,0 +1,66 @@
+div#player-container{
+	margin: auto;
+	margin: 20px auto;
+	width: 350px;
+}
+
+div#player{
+	padding: 20px;
+	height: 50px;
+	width: 220px;
+	background-color: white;
+	float: left;
+	color: #555555;
+}
+#song-information{
+	width: 50%;
+	float: left;
+	text-align: left;
+}
+#controls{
+	width: 50%;
+	float: left;
+	text-align: right;
+}
+div#amplitude-album-art{
+	height: 90px;
+	width: 90px;
+	background-color: black;
+	float: left;
+}
+div#amplitude-album-art img{
+	height: 90px;
+	width: 90px;
+}
+#amplitude-play-pause{
+    width: 15px;
+    height: 17px;
+    cursor: pointer;
+    float: right;
+}
+.amplitude-paused{
+    background-image: url('../image/amplitude/play.png');
+    background-repeat: no-repeat;
+}
+.amplitude-playing{
+    background-image: url('../image/amplitude/pause.png');
+    background-repeat: no-repeat;
+}
+#amplitude-volume-slider{
+	width: 100%;
+}
+#amplitude-now-playing-name{
+	font-family: 'PT Sans', sans-serif;
+	font-weight: 700;
+	font-size: 12px;
+}
+#amplitude-now-playing-album{
+	font-family: 'PT Sans', sans-serif;
+	font-weight: 400;
+	font-size: 12px;
+}
+#amplitude-current-time{
+	font-family: 'PT Sans', sans-serif;
+	font-size: 10px;
+	font-weight: 400;
+}

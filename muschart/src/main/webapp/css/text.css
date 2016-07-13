@@ -1,0 +1,16 @@
+.text-default {
+	color: #222222;
+}
+.text-primary {
+	color: #2780e3;
+}
+.text-success {
+	color: #3fb618;
+}
+.text-danger {
+	color: #cc002e;
+}
+.text-warning {
+	text-align: center;
+	font-weight: 600;
+}

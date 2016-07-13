@@ -2,17 +2,15 @@ package by.gsu.database.editor;
 
 import static by.gsu.constants.ExceptionConstants.COMMIT_TRANSACTION_ERROR;
 
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
-import by.gsu.bean.Track;
+import by.gsu.constants.StructureConstants;
 import by.gsu.database.dao.ITrackDAO;
-import by.gsu.database.queries.TrackDatabaseQueries;
-import by.gsu.database.structure.columns.TrackColumns;
 import by.gsu.exception.ValidationException;
+import by.gsu.model.Track;
 
 public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
 
@@ -21,26 +19,20 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
     }
 
     @Override
-    public void addTrack(final String name, final String song, final String cover, final Date date)
-            throws ValidationException {
-        Track track = new Track();
-        track.setName(name);
-        track.setSong(song);
-        track.setCover(cover);
-        track.setDate(date);
+    public void addTrack(final Track track) throws ValidationException {
         save(track);
     }
 
     @Override
-    public Track getTrack(final int id) {
+    public Track getTrackById(final long id) {
         return (Track) session.get(Track.class, id);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Track> getTracks(final int idFrom, final int idTo) {
+    public List<Track> getTracksByIds(final long idFrom, final long idTo) {
         return session.createCriteria(Track.class)
-                .add(Restrictions.between(TrackColumns.ID.toString(), idFrom, idTo)).list();
+                .add(Restrictions.between(StructureConstants.TrackColumns.ID, idFrom, idTo)).list();
     }
 
     @SuppressWarnings("unchecked")
@@ -50,15 +42,15 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
     }
 
     @Override
-    public void deleteTrack(final int id) throws ValidationException {
-        delete(getTrack(id));
+    public void deleteTrackById(final long id) throws ValidationException {
+        delete(getTrackById(id));
     }
 
     @Override
-    public void incRating(final int id) throws ValidationException {
+    public void incRating(final long id) throws ValidationException {
         try {
             session.beginTransaction();
-            TrackDatabaseQueries.incRating(session, id).executeUpdate();
+            // TrackDatabaseQueries.incRating(session, id).executeUpdate();
             session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
@@ -67,10 +59,10 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
     }
 
     @Override
-    public void decRating(final int id) throws ValidationException {
+    public void decRating(final long id) throws ValidationException {
         try {
             session.beginTransaction();
-            TrackDatabaseQueries.decRating(session, id).executeUpdate();
+            // TrackDatabaseQueries.decRating(session, id).executeUpdate();
             session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();

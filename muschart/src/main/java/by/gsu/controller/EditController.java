@@ -1,35 +1,59 @@
 package by.gsu.controller;
 
-import java.io.IOException;
+import static by.gsu.constants.StructureConstants.*;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import by.gsu.action.DataAction;
-import by.gsu.action.EditDataAction;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import by.gsu.constants.PageConstants;
 import by.gsu.constants.PropertyConstants;
-import by.gsu.exception.IllegalDataException;
+import by.gsu.database.dao.IUserDAO;
 import by.gsu.exception.ValidationException;
+import by.gsu.factory.UserFactory;
+import by.gsu.model.User;
 
-@WebServlet(name = "edit", urlPatterns = {"/edit"})
-@MultipartConfig
-public class EditController extends HttpServlet {
+@Controller
+public class EditController {
 
-    private static final long serialVersionUID = -4678459063410838758L;
-
-    @Override
-    public void doPost(final HttpServletRequest request, final HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            EditDataAction.edit(request);
-            response.sendRedirect(DataAction.getLocation(request));
-        } catch (IllegalDataException | ValidationException e) {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(final HttpServletRequest request,
+            @RequestParam(UserColumns.LOGIN) final String login,
+            @RequestParam(UserColumns.PASSWORD) final String password) {
+        try (IUserDAO userDAO = UserFactory.getEditor()) {
+            User user = userDAO.getUser(login, password);
+            request.getSession().setAttribute(Tables.USER, user);
+            return "redirect:" + PageConstants.MAIN;
+        } catch (ValidationException e) {
             request.setAttribute(PropertyConstants.ERROR, e.getMessage());
-            request.getRequestDispatcher(DataAction.getPath(request)).forward(request, response);
+            return PageConstants.LOGIN;
+        }
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public String logout(final HttpServletRequest request) {
+        request.getSession().invalidate();
+        return "redirect:" + PageConstants.MAIN;
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public String registration(final HttpServletRequest request,
+            @RequestParam(UserColumns.LOGIN) final String login,
+            @RequestParam(UserColumns.PASSWORD) final String password,
+            @RequestParam(PropertyConstants.CHECK_PASSWORD) final String checkPassword) {
+        try (IUserDAO userDAO = UserFactory.getEditor()) {
+            User user = new User();
+            user.setLogin(login);
+            user.setPassword(password);
+            userDAO.addUser(user);
+            login(request, login, password);
+            return "redirect:" + PageConstants.MAIN;
+        } catch (ValidationException e) {
+            request.setAttribute(PropertyConstants.ERROR, e.getMessage());
+            return PageConstants.REGIGTRATION;
         }
     }
 

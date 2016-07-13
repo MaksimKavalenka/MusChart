@@ -9,11 +9,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-import by.gsu.bean.Role;
-import by.gsu.bean.User;
+import by.gsu.constants.StructureConstants;
 import by.gsu.database.dao.IUserDAO;
-import by.gsu.database.structure.columns.UserColumns;
 import by.gsu.exception.ValidationException;
+import by.gsu.model.Role;
+import by.gsu.model.User;
 
 public class UserDatabaseEditor extends DatabaseEditor implements IUserDAO {
 
@@ -22,16 +22,14 @@ public class UserDatabaseEditor extends DatabaseEditor implements IUserDAO {
     }
 
     @Override
-    public void addUser(final String login, final String password) throws ValidationException {
+    public void addUser(final User user) throws ValidationException {
         User checkUser;
-        User user = new User();
-        user.setLogin(login);
-        user.setPassword(password);
         user.setRole(Role.USER);
 
         try {
             session.beginTransaction();
-            checkUser = getUserByCriteria(Restrictions.eq(UserColumns.LOGIN.toString(), login));
+            checkUser = getUserByCriteria(
+                    Restrictions.eq(StructureConstants.UserColumns.LOGIN, user.getLogin()));
             session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
@@ -48,8 +46,8 @@ public class UserDatabaseEditor extends DatabaseEditor implements IUserDAO {
     @Override
     public User getUser(final String login, final String password) throws ValidationException {
         session.beginTransaction();
-        User user = getUserByCriteria(Restrictions.eq(UserColumns.LOGIN.toString(), login),
-                Restrictions.eq(UserColumns.PASSWORD.toString(), password));
+        User user = getUserByCriteria(Restrictions.eq(StructureConstants.UserColumns.LOGIN, login),
+                Restrictions.eq(StructureConstants.UserColumns.PASSWORD, password));
 
         if (user != null) {
             return user;
@@ -59,7 +57,7 @@ public class UserDatabaseEditor extends DatabaseEditor implements IUserDAO {
     }
 
     @Override
-    public User getUser(final int id) {
+    public User getUser(final long id) {
         return (User) session.get(User.class, id);
     }
 

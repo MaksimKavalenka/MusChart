@@ -1,0 +1,39 @@
+.content {
+	border: 1px solid #6699cc;
+	margin: 1em;
+	padding: 0;
+}
+.content li {
+	border: 2px solid #6699cc;
+	display: inline-block;
+	margin: 0.3em;
+	max-width: 400px;
+}
+.content li > .title {
+	background: #3f3f3f;
+	color: #ffffff;
+	margin: 0.5em 0 0;
+	padding: 0.8em;
+}
+.content li > .title > * {
+	display: inline;
+	white-space: nowrap;
+}
+.content li > .body {
+	margin: 0.2em;
+}
+.content li > .body > * {
+	width: 100%;
+}
+.content li > .body:hover,
+.content li > .body:active {
+	opacity: 0.7;
+}
+.content li > .actions {
+	background: #ffffff;
+	color: #000000;
+	padding: 0.3em;
+}
+.content li > .actions > * {
+	display: inline;
+}

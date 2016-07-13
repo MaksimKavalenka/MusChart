@@ -2,23 +2,23 @@ package by.gsu.database.dao;
 
 import java.util.List;
 
-import by.gsu.bean.Genre;
 import by.gsu.exception.ValidationException;
+import by.gsu.model.Genre;
 
 public interface IGenreDAO extends IDAO {
 
-    void addGenre(String name) throws ValidationException;
+    void addGenre(Genre genre) throws ValidationException;
 
-    Genre getGenre(int id) throws ValidationException;
+    Genre getGenreById(long id) throws ValidationException;
 
-    List<Genre> getGenres(int idFrom, int idTo) throws ValidationException;
+    List<Genre> getGenresByIds(long idFrom, long idTo) throws ValidationException;
 
     List<Genre> getAllGenres() throws ValidationException;
 
-    void deleteGenre(int id) throws ValidationException;
+    void deleteGenreById(long id) throws ValidationException;
 
-    void incRating(int id) throws ValidationException;
+    void incRating(long id) throws ValidationException;
 
-    void decRating(int id) throws ValidationException;
+    void decRating(long id) throws ValidationException;
 
 }

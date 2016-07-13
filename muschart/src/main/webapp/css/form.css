@@ -1,0 +1,9 @@
+.form-search {
+	margin: 0 1em;
+}
+.form-search > * {
+	display: inline;
+}
+.form-search > input {
+	padding: 0.7em;
+}

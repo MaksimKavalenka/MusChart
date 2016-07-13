@@ -7,11 +7,10 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
-import by.gsu.bean.Genre;
+import by.gsu.constants.StructureConstants;
 import by.gsu.database.dao.IGenreDAO;
-import by.gsu.database.queries.GenreDatabaseQueries;
-import by.gsu.database.structure.columns.GenreColumns;
 import by.gsu.exception.ValidationException;
+import by.gsu.model.Genre;
 
 public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
 
@@ -20,22 +19,20 @@ public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
     }
 
     @Override
-    public void addGenre(final String name) throws ValidationException {
-        Genre tag = new Genre();
-        tag.setName(name);
-        save(tag);
+    public void addGenre(final Genre genre) throws ValidationException {
+        save(genre);
     }
 
     @Override
-    public Genre getGenre(final int id) {
+    public Genre getGenreById(final long id) {
         return (Genre) session.get(Genre.class, id);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Genre> getGenres(final int idFrom, final int idTo) {
+    public List<Genre> getGenresByIds(final long idFrom, final long idTo) {
         return session.createCriteria(Genre.class)
-                .add(Restrictions.between(GenreColumns.ID.toString(), idFrom, idTo)).list();
+                .add(Restrictions.between(StructureConstants.GenreColumns.ID, idFrom, idTo)).list();
     }
 
     @SuppressWarnings("unchecked")
@@ -45,15 +42,15 @@ public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
     }
 
     @Override
-    public void deleteGenre(final int id) throws ValidationException {
-        delete(getGenre(id));
+    public void deleteGenreById(final long id) throws ValidationException {
+        delete(getGenreById(id));
     }
 
     @Override
-    public void incRating(final int id) throws ValidationException {
+    public void incRating(final long id) throws ValidationException {
         try {
             session.beginTransaction();
-            GenreDatabaseQueries.incRating(session, id).executeUpdate();
+            // GenreDatabaseQueries.incRating(session, id).executeUpdate();
             session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
@@ -62,10 +59,10 @@ public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
     }
 
     @Override
-    public void decRating(final int id) throws ValidationException {
+    public void decRating(final long id) throws ValidationException {
         try {
             session.beginTransaction();
-            GenreDatabaseQueries.decRating(session, id).executeUpdate();
+            // GenreDatabaseQueries.decRating(session, id).executeUpdate();
             session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();

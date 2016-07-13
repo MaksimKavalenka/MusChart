@@ -7,11 +7,10 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
-import by.gsu.bean.Artist;
+import by.gsu.constants.StructureConstants;
 import by.gsu.database.dao.IArtistDAO;
-import by.gsu.database.queries.ArtistDatabaseQueries;
-import by.gsu.database.structure.columns.ArtistColumns;
 import by.gsu.exception.ValidationException;
+import by.gsu.model.Artist;
 
 public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
 
@@ -20,23 +19,21 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
     }
 
     @Override
-    public void addArtist(final String name, final String photo) throws ValidationException {
-        Artist artist = new Artist();
-        artist.setName(name);
-        artist.setPhoto(photo);
+    public void addArtist(final Artist artist) throws ValidationException {
         save(artist);
     }
 
     @Override
-    public Artist getArtist(final int id) {
+    public Artist getArtistById(final long id) {
         return (Artist) session.get(Artist.class, id);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Artist> getArtists(final int idFrom, final int idTo) {
+    public List<Artist> getArtistsByIds(final long idFrom, final long idTo) {
         return session.createCriteria(Artist.class)
-                .add(Restrictions.between(ArtistColumns.ID.toString(), idFrom, idTo)).list();
+                .add(Restrictions.between(StructureConstants.ArtistColumns.ID, idFrom, idTo))
+                .list();
     }
 
     @SuppressWarnings("unchecked")
@@ -46,15 +43,15 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
     }
 
     @Override
-    public void deleteArtist(final int id) throws ValidationException {
-        delete(getArtist(id));
+    public void deleteArtistById(final long id) throws ValidationException {
+        delete(getArtistById(id));
     }
 
     @Override
-    public void incRating(final int id) throws ValidationException {
+    public void incRating(final long id) throws ValidationException {
         try {
             session.beginTransaction();
-            ArtistDatabaseQueries.incRating(session, id).executeUpdate();
+            // ArtistDatabaseQueries.incRating(session, id).executeUpdate();
             session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
@@ -63,10 +60,10 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
     }
 
     @Override
-    public void decRating(final int id) throws ValidationException {
+    public void decRating(final long id) throws ValidationException {
         try {
             session.beginTransaction();
-            ArtistDatabaseQueries.decRating(session, id).executeUpdate();
+            // ArtistDatabaseQueries.decRating(session, id).executeUpdate();
             session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
