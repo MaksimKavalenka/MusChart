@@ -7,7 +7,7 @@ import by.gsu.model.Genre;
 
 public interface IGenreDAO extends IDAO {
 
-    void addGenre(Genre genre) throws ValidationException;
+    void createGenre(String name) throws ValidationException;
 
     Genre getGenreById(long id) throws ValidationException;
 

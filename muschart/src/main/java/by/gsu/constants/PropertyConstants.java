@@ -3,7 +3,7 @@ package by.gsu.constants;
 public abstract class PropertyConstants {
 
     public static final String ACTION         = "action";
-    public static final String CHECK_PASSWORD = "checkPassword";
+    public static final String CHECK_PASSWORD = "check_password";
     public static final String ERROR          = "error";
 
     public static final String DEVELOPER      = "developer";

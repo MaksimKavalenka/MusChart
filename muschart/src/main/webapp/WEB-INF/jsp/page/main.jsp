@@ -1,21 +1,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 	<head>
-		<link rel="SHORTCUT ICON" href="/muschart/image/icon.png" type="image/x-icon">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/amplitude.css"/>
-		<link rel="stylesheet" type="text/css" href="/muschart/css/content.css"/>
-		<link rel="stylesheet" type="text/css" href="/muschart/css/flaticon.css"/>
-		<link rel="stylesheet" type="text/css" href="/muschart/css/styles.css"/>
-		<script type="text/javascript" src="/muschart/js/other/amplitude.js"></script>
-		<script type="text/javascript" src="/muschart/js/other/angular.js"></script>
-		<script type="text/javascript" src="/muschart/js/other/scroll.js"></script>
-		<script type="text/javascript" src="/muschart/js/app.js"></script>
-		<script type="text/javascript" src="/muschart/js/controller/track_controller.js"></script>
-		<script type="text/javascript" src="/muschart/js/service/track_service.js"></script>
+		<title>MusChart</title>
+		<link rel="shortcut icon" href="/muschart/image/icon.png" type="image/x-icon">
 	</head>
-
-	<body ng-app="MusChart">
-		<c:import url="title/header.jsp"/>
+	<body>
+		<c:import url="../title/header.jsp"/>
 		<form method="GET" name="form">
 
 		</form>

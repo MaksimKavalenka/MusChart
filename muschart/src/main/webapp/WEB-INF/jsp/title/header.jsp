@@ -1,10 +1,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="/muschart/css/button.css">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/form.css">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/navbar.css">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/styles.css"/>
+		<c:import url="../other/module.jsp"/>
 	</head>
 	<body>
 		<div class="navbar navbar-default">

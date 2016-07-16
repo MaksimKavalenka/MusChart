@@ -7,7 +7,7 @@ import by.gsu.model.Artist;
 
 public interface IArtistDAO extends IDAO {
 
-    void addArtist(Artist artist) throws ValidationException;
+    void createArtist(String name, String photo) throws ValidationException;
 
     Artist getArtistById(long id) throws ValidationException;
 

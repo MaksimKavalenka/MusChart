@@ -2,16 +2,13 @@ package by.gsu.controller.rest;
 
 import java.util.List;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import by.gsu.database.dao.IArtistDAO;
 import by.gsu.exception.ValidationException;
@@ -20,20 +17,6 @@ import by.gsu.model.Artist;
 
 @RestController
 public class ArtistRestController {
-
-    @RequestMapping(value = "/artist/", method = RequestMethod.POST)
-    public ResponseEntity<Void> addArtist(@RequestBody final Artist artist,
-            final UriComponentsBuilder ucBuilder) {
-        try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
-            artistDAO.addArtist(artist);
-            HttpHeaders headers = new HttpHeaders();
-            headers.setLocation(
-                    ucBuilder.path("/artist/{id}").buildAndExpand(artist.getId()).toUri());
-            return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
-        } catch (ValidationException e) {
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }
-    }
 
     @RequestMapping(value = "/artist/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Artist> getArtistById(@PathVariable("id") final long id) {

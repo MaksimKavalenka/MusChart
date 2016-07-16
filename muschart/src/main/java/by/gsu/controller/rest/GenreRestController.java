@@ -2,16 +2,13 @@ package by.gsu.controller.rest;
 
 import java.util.List;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import by.gsu.database.dao.IGenreDAO;
 import by.gsu.exception.ValidationException;
@@ -20,20 +17,6 @@ import by.gsu.model.Genre;
 
 @RestController
 public class GenreRestController {
-
-    @RequestMapping(value = "/genre/", method = RequestMethod.POST)
-    public ResponseEntity<Void> addGenre(@RequestBody final Genre genre,
-            final UriComponentsBuilder ucBuilder) {
-        try (IGenreDAO genreDAO = GenreFactory.getEditor()) {
-            genreDAO.addGenre(genre);
-            HttpHeaders headers = new HttpHeaders();
-            headers.setLocation(
-                    ucBuilder.path("/genre/{id}").buildAndExpand(genre.getId()).toUri());
-            return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
-        } catch (ValidationException e) {
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }
-    }
 
     @RequestMapping(value = "/genre/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Genre> getGenreById(@PathVariable("id") final long id) {

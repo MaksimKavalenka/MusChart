@@ -5,10 +5,12 @@ import by.gsu.model.User;
 
 public interface IUserDAO extends IDAO {
 
-    public void addUser(User user) throws ValidationException;
+    void createUser(String login, String password) throws ValidationException;
 
-    public User getUser(String login, String password) throws ValidationException;
+    User getUser(String login, String password) throws ValidationException;
 
-    public User getUser(long id) throws ValidationException;
+    User getUserById(long id) throws ValidationException;
+
+    boolean ifExists(String login) throws ValidationException;
 
 }

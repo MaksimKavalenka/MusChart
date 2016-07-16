@@ -55,7 +55,7 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
     public void updateUserTracks(final long idUser, final List<Track> tracks)
             throws ValidationException {
         try (IUserDAO userDAO = UserFactory.getEditor()) {
-            User user = userDAO.getUser(idUser);
+            User user = userDAO.getUserById(idUser);
             user.setTracks(tracks);
             save(user);
         }
@@ -65,7 +65,7 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
     public void updateUserArtists(final long idUser, final List<Artist> artists)
             throws ValidationException {
         try (IUserDAO userDAO = UserFactory.getEditor()) {
-            User user = userDAO.getUser(idUser);
+            User user = userDAO.getUserById(idUser);
             user.setArtists(artists);
             save(user);
         }
@@ -75,7 +75,7 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
     public void updateUserGenres(final long idUser, final List<Genre> genres)
             throws ValidationException {
         try (IUserDAO userDAO = UserFactory.getEditor()) {
-            User user = userDAO.getUser(idUser);
+            User user = userDAO.getUserById(idUser);
             user.setGenres(genres);
             save(user);
         }

@@ -11,22 +11,22 @@ public class PageController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
-        return "redirect:" + PageConstants.MAIN;
+        return PageConstants.UriConstants.MAIN_URI;
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String track() {
-        return PageConstants.MAIN;
+        return PageConstants.PathConstants.MAIN_PATH;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
-        return PageConstants.LOGIN;
+        return PageConstants.PathConstants.LOGIN_PATH;
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration() {
-        return PageConstants.REGIGTRATION;
+        return PageConstants.PathConstants.REGIGTRATION_PATH;
     }
 
 }

@@ -1,12 +1,12 @@
 'use strict';
-app.controller('TrackController', ['$scope', 'TrackService', function($scope, TrackService) {
+app.controller('TrackController', ['$scope', 'TrackFactory', function($scope, TrackFactory) {
 	var self = this;
 	self.track = {id:null, name:'', song:'', cover:'', date:null, rating:null};
 	self.tracks = [];
 	var count = 15;
 
 	self.addTrack = function(track) {
-		TrackService.addTrack(track).then(
+		TrackFactory.addTrack(track).then(
 			self.getAllTracks,
 			function(errResponse) {
 				console.error('Error while adding track');
@@ -15,9 +15,9 @@ app.controller('TrackController', ['$scope', 'TrackService', function($scope, Tr
 	};
 
 	self.getTracksByIds = function(idFrom, idTo) {
-		TrackService.getTracksByIds(idFrom, idTo).then(
-			function(d) {
-				self.tracks = d;
+		TrackFactory.getTracksByIds(idFrom, idTo).then(
+			function(response) {
+				self.tracks = response;
 			},
 			function(errResponse) {
 				console.error('Error while getting tracks');
@@ -26,9 +26,9 @@ app.controller('TrackController', ['$scope', 'TrackService', function($scope, Tr
 	};
 
 	self.getAllTracks = function() {
-		TrackService.getAllTracks().then(
-			function(d) {
-				self.tracks = d;
+		TrackFactory.getAllTracks().then(
+			function(response) {
+				self.tracks = response;
 			},
 			function(errResponse) {
 				console.error('Error while getting tracks');
@@ -37,7 +37,7 @@ app.controller('TrackController', ['$scope', 'TrackService', function($scope, Tr
 	};
 
 	self.deleteTrack = function(id) {
-		TrackService.deleteTrack(id).then(
+		TrackFactory.deleteTrack(id).then(
 			self.getAllTracks,
 			function(errResponse) {
 				console.error('Error while deleting track');

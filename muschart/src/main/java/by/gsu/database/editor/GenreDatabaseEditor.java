@@ -1,13 +1,13 @@
 package by.gsu.database.editor;
 
 import static by.gsu.constants.ExceptionConstants.COMMIT_TRANSACTION_ERROR;
+import static by.gsu.constants.StructureConstants.GenreColumns;
 
 import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
-import by.gsu.constants.StructureConstants;
 import by.gsu.database.dao.IGenreDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.model.Genre;
@@ -19,7 +19,9 @@ public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
     }
 
     @Override
-    public void addGenre(final Genre genre) throws ValidationException {
+    public void createGenre(final String name) throws ValidationException {
+        Genre genre = new Genre();
+        genre.setName(name);
         save(genre);
     }
 
@@ -32,7 +34,7 @@ public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
     @Override
     public List<Genre> getGenresByIds(final long idFrom, final long idTo) {
         return session.createCriteria(Genre.class)
-                .add(Restrictions.between(StructureConstants.GenreColumns.ID, idFrom, idTo)).list();
+                .add(Restrictions.between(GenreColumns.ID, idFrom, idTo)).list();
     }
 
     @SuppressWarnings("unchecked")

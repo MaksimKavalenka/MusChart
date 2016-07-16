@@ -7,3 +7,48 @@
 .form-search > input {
 	padding: 0.7em;
 }
+.form-submit {
+	text-align: center;
+}
+.form-submit fieldset {
+	border-width: 0px;
+	display: inline-block;
+	padding: 2em;
+}
+.form-submit fieldset legend {
+	font-size: 2em;
+}
+.form-submit .field {
+	margin: 1em 0;
+	text-align: right;
+}
+.field > * {
+	display: inline;
+	vertical-align: middle;
+}
+.form-submit .field  label {
+	font-size: 1.2em;
+}
+.form-submit .field input {
+	margin: 0 0.5em;
+	padding: 0.5em;
+}
+.form-submit .field span {
+	color: #ff0000;
+	display: block;
+	font-size: 0.9em;
+	text-align: left;
+}
+.form-validation label.required:after {
+	color: #ff0000;
+	content: "*";
+}
+.form-validation input.ng-invalid.ng-touched {
+	border-color: #ff0000;
+}
+.form-validation input.ng-invalid.ng-touched:focus {
+	outline: #ffff00;
+}
+.form-validation input.ng-valid {
+	border-color: none;
+}

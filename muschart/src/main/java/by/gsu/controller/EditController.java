@@ -26,17 +26,17 @@ public class EditController {
         try (IUserDAO userDAO = UserFactory.getEditor()) {
             User user = userDAO.getUser(login, password);
             request.getSession().setAttribute(Tables.USER, user);
-            return "redirect:" + PageConstants.MAIN;
+            return PageConstants.UriConstants.MAIN_URI;
         } catch (ValidationException e) {
             request.setAttribute(PropertyConstants.ERROR, e.getMessage());
-            return PageConstants.LOGIN;
+            return PageConstants.PathConstants.LOGIN_PATH;
         }
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public String logout(final HttpServletRequest request) {
         request.getSession().invalidate();
-        return "redirect:" + PageConstants.MAIN;
+        return PageConstants.UriConstants.MAIN_URI;
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
@@ -45,15 +45,12 @@ public class EditController {
             @RequestParam(UserColumns.PASSWORD) final String password,
             @RequestParam(PropertyConstants.CHECK_PASSWORD) final String checkPassword) {
         try (IUserDAO userDAO = UserFactory.getEditor()) {
-            User user = new User();
-            user.setLogin(login);
-            user.setPassword(password);
-            userDAO.addUser(user);
+            userDAO.createUser(login, password);
             login(request, login, password);
-            return "redirect:" + PageConstants.MAIN;
+            return PageConstants.UriConstants.MAIN_URI;
         } catch (ValidationException e) {
             request.setAttribute(PropertyConstants.ERROR, e.getMessage());
-            return PageConstants.REGIGTRATION;
+            return PageConstants.PathConstants.REGIGTRATION_PATH;
         }
     }
 

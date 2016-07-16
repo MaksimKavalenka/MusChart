@@ -1,10 +1,10 @@
 'use strict';
-app.factory('TrackService', ['$http', '$q', function($http, $q) {
-	var url = "http://localhost:8080/muschart";
+app.factory('TrackFactory', ['$http', '$q', function($http, $q) {
+	var track_url = url + '/track/';
 	return {
 
 		addTrack: function(track) {
-			return $http.post(url + '/track/', track).then(
+			return $http.post(track_url, track).then(
 				function(response) {
 					return response.data;
 				},
@@ -16,7 +16,7 @@ app.factory('TrackService', ['$http', '$q', function($http, $q) {
 		},
 
 		getTracksByIds: function(idFrom, idTo) {
-			return $http.get(url + '/track/' + idFrom + '/' + idTo).then(
+			return $http.get(track_url + idFrom + '/' + idTo).then(
 				function(response) {
 					return response.data;
 				},
@@ -28,7 +28,7 @@ app.factory('TrackService', ['$http', '$q', function($http, $q) {
 		},
 
 		getAllTracks: function() {
-			return $http.get(url + '/track/').then(
+			return $http.get(track_url).then(
 				function(response) {
 					return response.data;
 				},
@@ -40,7 +40,7 @@ app.factory('TrackService', ['$http', '$q', function($http, $q) {
 		},
 
 		deleteTrack: function(id) {
-			return $http.delete(url + '/track/' + id).then(
+			return $http.delete(track_url + id).then(
 				function(response) {
 					return response.data;
 				},

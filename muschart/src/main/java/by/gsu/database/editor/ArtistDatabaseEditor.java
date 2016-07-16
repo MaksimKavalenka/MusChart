@@ -1,13 +1,13 @@
 package by.gsu.database.editor;
 
 import static by.gsu.constants.ExceptionConstants.COMMIT_TRANSACTION_ERROR;
+import static by.gsu.constants.StructureConstants.ArtistColumns;
 
 import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
-import by.gsu.constants.StructureConstants;
 import by.gsu.database.dao.IArtistDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.model.Artist;
@@ -19,7 +19,10 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
     }
 
     @Override
-    public void addArtist(final Artist artist) throws ValidationException {
+    public void createArtist(final String name, final String photo) throws ValidationException {
+        Artist artist = new Artist();
+        artist.setName(name);
+        artist.setPhoto(photo);
         save(artist);
     }
 
@@ -32,8 +35,7 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
     @Override
     public List<Artist> getArtistsByIds(final long idFrom, final long idTo) {
         return session.createCriteria(Artist.class)
-                .add(Restrictions.between(StructureConstants.ArtistColumns.ID, idFrom, idTo))
-                .list();
+                .add(Restrictions.between(ArtistColumns.ID, idFrom, idTo)).list();
     }
 
     @SuppressWarnings("unchecked")

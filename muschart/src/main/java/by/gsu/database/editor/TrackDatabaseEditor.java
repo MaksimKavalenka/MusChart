@@ -1,13 +1,14 @@
 package by.gsu.database.editor;
 
 import static by.gsu.constants.ExceptionConstants.COMMIT_TRANSACTION_ERROR;
+import static by.gsu.constants.StructureConstants.TrackColumns;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
-import by.gsu.constants.StructureConstants;
 import by.gsu.database.dao.ITrackDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.model.Track;
@@ -19,7 +20,13 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
     }
 
     @Override
-    public void addTrack(final Track track) throws ValidationException {
+    public void createTrack(final String name, final String song, final String cover,
+            final Date date) throws ValidationException {
+        Track track = new Track();
+        track.setName(name);
+        track.setSong(song);
+        track.setCover(cover);
+        track.setDate(date);
         save(track);
     }
 
@@ -32,7 +39,7 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
     @Override
     public List<Track> getTracksByIds(final long idFrom, final long idTo) {
         return session.createCriteria(Track.class)
-                .add(Restrictions.between(StructureConstants.TrackColumns.ID, idFrom, idTo)).list();
+                .add(Restrictions.between(TrackColumns.ID, idFrom, idTo)).list();
     }
 
     @SuppressWarnings("unchecked")
