@@ -1,7 +1,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 	<head>
-		<c:import url="../other/module.jsp"/>
+		<c:import url="../other/modules.jsp"/>
 	</head>
 	<body>
 		<div class="navbar navbar-default">

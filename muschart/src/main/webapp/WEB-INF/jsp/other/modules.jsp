@@ -14,7 +14,7 @@
 		<script type="text/javascript" src="/muschart/js/other/pagination.js"></script>
 		<script type="text/javascript" src="/muschart/js/app.js"></script>
 		<script type="text/javascript" src="/muschart/js/controller/track_controller.js"></script>
-		<script type="text/javascript" src="/muschart/js/directive/user_directive.js"></script>
+		<script type="text/javascript" src="/muschart/js/directive/directive.js"></script>
 		<script type="text/javascript" src="/muschart/js/factory/track_factory.js"></script>
 		<script type="text/javascript" src="/muschart/js/factory/user_factory.js"></script>
 	</head>

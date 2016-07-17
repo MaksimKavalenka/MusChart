@@ -1,7 +1,7 @@
 'use strict';
 app.controller('TrackController', ['$scope', 'TrackFactory', function($scope, TrackFactory) {
 	var self = this;
-	self.track = {id:null, name:'', song:'', cover:'', date:null, rating:null};
+	self.track = {id: null, name: '', song: '', cover: '', date: null, rating: null};
 	self.tracks = [];
 	var count = 15;
 

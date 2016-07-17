@@ -42,8 +42,7 @@ public class EditController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(final HttpServletRequest request,
             @RequestParam(UserColumns.LOGIN) final String login,
-            @RequestParam(UserColumns.PASSWORD) final String password,
-            @RequestParam(PropertyConstants.CHECK_PASSWORD) final String checkPassword) {
+            @RequestParam(UserColumns.PASSWORD) final String password) {
         try (IUserDAO userDAO = UserFactory.getEditor()) {
             userDAO.createUser(login, password);
             login(request, login, password);

@@ -5,7 +5,7 @@
   <groupId>by.gsu</groupId>
   <artifactId>muschart</artifactId>
   <packaging>war</packaging>
-  <version>0.5</version>
+  <version>0.6</version>
 
   <name>Muschart Maven Webapp</name>
   <url>http://maven.apache.org</url>
