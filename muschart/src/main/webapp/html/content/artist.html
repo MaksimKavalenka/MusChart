@@ -1,0 +1,19 @@
+<p class="text-danger text-bold">{{error}}
+<div ng-controller="ArtistController as artist_ctrl">
+	<ul class="content">
+		<li ng-repeat="artist in artist_ctrl.artists">
+			<div class="title">
+				<div id="scroll{{artist.id}}" class="scroll">{{artist.name}}</div>
+			</div>
+			<div class="body">
+				<img src="{{artist.photo}}">
+			</div>
+			<div class="actions">
+				<div class="flaticon-sound"></div>
+				<div class="flaticon-repeat"></div>
+				<div class="flaticon-download"></div>
+				<div class="flaticon-video"></div>
+				<div class="flaticon-like" id="rating{{artist.id}}" data-id="{{artist.id}}">{{artist.rating}}</div>
+			</div>
+	</ul>
+</div>

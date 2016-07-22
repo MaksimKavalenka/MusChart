@@ -1,5 +1,6 @@
 package by.gsu.controller;
 
+import static by.gsu.constants.PageConstants.*;
 import static by.gsu.constants.StructureConstants.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import by.gsu.constants.PageConstants;
 import by.gsu.constants.PropertyConstants;
 import by.gsu.database.dao.IUserDAO;
 import by.gsu.exception.ValidationException;
@@ -26,17 +26,17 @@ public class EditController {
         try (IUserDAO userDAO = UserFactory.getEditor()) {
             User user = userDAO.getUser(login, password);
             request.getSession().setAttribute(Tables.USER, user);
-            return PageConstants.UriConstants.MAIN_URI;
+            return REDIRECT + TRACKS_URI;
         } catch (ValidationException e) {
             request.setAttribute(PropertyConstants.ERROR, e.getMessage());
-            return PageConstants.PathConstants.LOGIN_PATH;
+            return INDEX_PATH;
         }
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public String logout(final HttpServletRequest request) {
         request.getSession().invalidate();
-        return PageConstants.UriConstants.MAIN_URI;
+        return REDIRECT + TRACKS_URI;
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
@@ -46,10 +46,10 @@ public class EditController {
         try (IUserDAO userDAO = UserFactory.getEditor()) {
             userDAO.createUser(login, password);
             login(request, login, password);
-            return PageConstants.UriConstants.MAIN_URI;
+            return REDIRECT + TRACKS_URI;
         } catch (ValidationException e) {
             request.setAttribute(PropertyConstants.ERROR, e.getMessage());
-            return PageConstants.PathConstants.REGIGTRATION_PATH;
+            return INDEX_PATH;
         }
     }
 
