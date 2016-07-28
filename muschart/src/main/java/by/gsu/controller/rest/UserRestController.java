@@ -11,17 +11,46 @@ import org.springframework.web.bind.annotation.RestController;
 import by.gsu.database.dao.IUserDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.factory.UserFactory;
+import by.gsu.model.User;
 
 @RestController
 public class UserRestController {
 
-    @RequestMapping(value = "/user/{login}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> getUserById(@PathVariable("login") final String login) {
+    @RequestMapping(value = "/user/create/{login}/{password}", method = RequestMethod.POST)
+    public ResponseEntity<Void> createUser(@PathVariable("login") final String login,
+            @PathVariable("password") final String password) {
         try (IUserDAO userDAO = UserFactory.getEditor()) {
-            boolean exist = userDAO.ifExists(login);
-            return new ResponseEntity<Boolean>(exist, HttpStatus.OK);
+            userDAO.createUser(login, password);
+            return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (ValidationException e) {
-            return new ResponseEntity<Boolean>(HttpStatus.CONFLICT);
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
+    }
+
+    @RequestMapping(value = "/user/{login}/{password}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> getUser(@PathVariable("login") final String login,
+            @PathVariable("password") final String password) {
+        try (IUserDAO userDAO = UserFactory.getEditor()) {
+            User user = userDAO.getUser(login, password);
+            if (user == null) {
+                return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<User>(user, HttpStatus.OK);
+        } catch (ValidationException e) {
+            return new ResponseEntity<User>(HttpStatus.CONFLICT);
+        }
+    }
+
+    @RequestMapping(value = "/user/{login}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> getUserByLogin(@PathVariable("login") final String login) {
+        try (IUserDAO userDAO = UserFactory.getEditor()) {
+            User user = userDAO.getUserByLogin(login);
+            if (user == null) {
+                return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<User>(user, HttpStatus.OK);
+        } catch (ValidationException e) {
+            return new ResponseEntity<User>(HttpStatus.CONFLICT);
         }
     }
 

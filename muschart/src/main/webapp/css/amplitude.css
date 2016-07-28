@@ -32,18 +32,18 @@ div#amplitude-album-art img{
 	height: 90px;
 	width: 90px;
 }
-#amplitude-play-pause{
+.amplitude-play-pause{
     width: 15px;
     height: 17px;
     cursor: pointer;
     float: right;
 }
 .amplitude-paused{
-    background-image: url('../image/amplitude/play.png');
+    background-image: url('../img/amplitude/play.png');
     background-repeat: no-repeat;
 }
-.amplitude-playing{
-    background-image: url('../image/amplitude/pause.png');
+.amplitude-play{
+    background-image: url('../img/amplitude/pause.png');
     background-repeat: no-repeat;
 }
 #amplitude-volume-slider{

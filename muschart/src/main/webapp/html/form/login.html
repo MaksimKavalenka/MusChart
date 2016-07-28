@@ -1,17 +1,20 @@
-<form method="POST" class="form-submit form-validation" name="form" action="/muschart/login">
-	<fieldset>
-		<legend>Login</legend>
-		<p class="text-danger text-bold">${error}
-		<div class="field">
-			<label class="required" for="login">Login</label>
-			<input type="text" id="login" name="login" placeholder="Your login" maxlength="255" ng-model="user.login" required/>
-		</div>
-		<div class="field">
-			<label class="required" for="password">Password</label>
-			<div>
-				<input type="password" id="password" name="password" placeholder="Enter the password" maxlength="255" ng-model="user.password" ng-minlength="3" required/>
+<div ng-controller="UserController as ctrl">
+	<form method="POST" class="form-submit form-validation" name="form" ng-submit="ctrl.login()">
+		<fieldset>
+			<legend>Login</legend>
+			<div class="field">
+				<label class="required" for="login">Login</label>
+				<input type="text" id="login" name="login" maxlength="255" ng-model="ctrl.user.login" required/>
+			</div>
+			<div class="field">
+				<label class="required" for="password">Password</label>
+				<input type="password" id="password" name="password" maxlength="255" ng-model="ctrl.user.password" ng-minlength="3" required/>
 				<span ng-show="form.password.$error.required || form.password.$error.minlength">Minimal count of symbols is 3</span>
 			</div>
-		</div>
-	</fieldset>
-</form>
+			<div>
+				<button type="submit" class="btn btn-primary" ng-disabled="form.$invalid || ctrl.dataLoading">Login</button>
+				<img ng-if="ctrl.dataLoading" src="/muschart/img/load.gif"/>
+			</div>
+		</fieldset>
+	</form>
+</div>

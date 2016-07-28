@@ -2,7 +2,7 @@ package by.gsu.database.editor;
 
 import static by.gsu.constants.ExceptionConstants.AUTHORIZATION_ERROR;
 import static by.gsu.constants.ExceptionConstants.COMMIT_TRANSACTION_ERROR;
-import static by.gsu.constants.ExceptionConstants.DOUBLE_LOGIN_ERROR;
+import static by.gsu.constants.ExceptionConstants.TAKEN_LOGIN_ERROR;
 import static by.gsu.constants.StructureConstants.UserColumns;
 
 import org.hibernate.Criteria;
@@ -41,7 +41,7 @@ public class UserDatabaseEditor extends DatabaseEditor implements IUserDAO {
         if (checkUser == null) {
             save(user);
         } else {
-            throw new ValidationException(DOUBLE_LOGIN_ERROR);
+            throw new ValidationException(TAKEN_LOGIN_ERROR);
         }
     }
 
@@ -64,15 +64,9 @@ public class UserDatabaseEditor extends DatabaseEditor implements IUserDAO {
     }
 
     @Override
-    public boolean ifExists(final String login) {
+    public User getUserByLogin(final String login) {
         session.beginTransaction();
-        User user = getUserByCriteria(Restrictions.eq(UserColumns.LOGIN, login));
-
-        if (user != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return getUserByCriteria(Restrictions.eq(UserColumns.LOGIN, login));
     }
 
     @Override

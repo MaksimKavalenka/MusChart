@@ -11,6 +11,6 @@ public interface IUserDAO extends IDAO {
 
     User getUserById(long id) throws ValidationException;
 
-    boolean ifExists(String login) throws ValidationException;
+    User getUserByLogin(String login) throws ValidationException;
 
 }

@@ -10,38 +10,41 @@
 .form-submit {
 	text-align: center;
 }
+.form-submit * {
+	text-align: left;
+}
 .form-submit fieldset {
 	border-width: 0px;
 	display: inline-block;
-	padding: 2em;
+	font-family: sans-serif;
 }
 .form-submit fieldset legend {
 	font-size: 2em;
 }
 .form-submit .field {
-	margin: 1em 0;
-	text-align: right;
+	margin: 1.5em 0;
 }
-.field > * {
-	display: inline;
-	vertical-align: middle;
+.form-submit .field > * {
+	display: block;
 }
 .form-submit .field  label {
-	font-size: 1.2em;
+	font-size: 0.9em;
+	font-weight: 600;
+	margin: 0.5em 0;
 }
 .form-submit .field input {
-	margin: 0 0.5em;
+	border: 0.1em solid #aaaaaa;
+	border-radius: 0.4em;
 	padding: 0.5em;
+	width: 20em;
 }
 .form-submit .field span {
 	color: #ff0000;
-	display: block;
 	font-size: 0.9em;
-	text-align: left;
 }
 .form-validation label.required:after {
 	color: #ff0000;
-	content: "*";
+	content: " *";
 }
 .form-validation input.ng-invalid.ng-touched {
 	border-color: #ff0000;

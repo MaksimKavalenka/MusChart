@@ -1,12 +1,9 @@
-<p class="text-danger text-bold">{{error}}
-<div ng-controller="TrackController as track_ctrl">
+<div ng-controller="TrackController as ctrl">
 	<ul class="content">
-		<li ng-repeat="track in track_ctrl.tracks">
-			<div class="title">
-				<div id="scroll{{track.id}}" class="scroll">{{track.name}}</div>
-			</div>
-			<div class="body" id="track{{track.id}}Icon" ng-click="GetPlayer({{track.id}},'{{track.name}}','{{track.song}}')">
-				<img src="{{track.cover}}">
+		<li ng-repeat="track in ctrl.tracks">
+			<div class="title">{{track.name}}</div>
+			<div class="body" ng-click="">
+				<img ng-src="{{track.cover}}">
 			</div>
 			<div class="actions">
 				<div class="flaticon-sound"></div>

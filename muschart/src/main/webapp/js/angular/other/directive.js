@@ -12,19 +12,13 @@ app.directive(ngExist, ['$q', '$timeout', 'UserFactory', function($q, $timeout, 
 				var def = $q.defer();
 				$timeout.cancel(timer);
 				timer = $timeout(function() {
-					UserFactory.ifExists(modelValue).then(
-						function(response) {
-							if (!response) {
-								def.resolve();
-							} else {
-								def.reject();
-							}
-						},
-						function(errResponse) {
-							console.error('Error while checking login');
+					UserFactory.getUserByLogin(modelValue, function(response) {
+						if (!response.success) {
+							def.resolve();
+						} else {
 							def.reject();
 						}
-					);
+					});
 				}, 1000);
 				return def.promise;
 			};

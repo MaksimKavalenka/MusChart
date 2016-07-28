@@ -1,3 +1,2 @@
 'use strict';
-var app = angular.module('muschart', ['ui.router']);
-var url = 'http://localhost:8080/muschart';
+var app = angular.module('app.muschart', ['ui.router', 'ngCookies']);

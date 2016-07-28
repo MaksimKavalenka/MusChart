@@ -23,7 +23,7 @@ public class TrackRestController {
         try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
             Track track = trackDAO.getTrackById(id);
             if (track == null) {
-                return new ResponseEntity<Track>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<Track>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<Track>(track, HttpStatus.OK);
         } catch (ValidationException e) {
@@ -31,13 +31,13 @@ public class TrackRestController {
         }
     }
 
-    @RequestMapping(value = "/track/{idFrom}/{idTo}", method = RequestMethod.GET)
+    @RequestMapping(value = "/track/{idFrom}/{idTo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Track>> getTracksByIds(@PathVariable("idFrom") final long idFrom,
             @PathVariable("idTo") final long idTo) {
         try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
             List<Track> tracks = trackDAO.getTracksByIds(idFrom, idTo);
             if (tracks == null) {
-                return new ResponseEntity<List<Track>>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<List<Track>>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<List<Track>>(tracks, HttpStatus.OK);
         } catch (ValidationException e) {
@@ -45,12 +45,12 @@ public class TrackRestController {
         }
     }
 
-    @RequestMapping(value = "/track/", method = RequestMethod.GET)
+    @RequestMapping(value = "/track/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Track>> getAllTracks() {
         try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
             List<Track> tracks = trackDAO.getAllTracks();
             if (tracks == null) {
-                return new ResponseEntity<List<Track>>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<List<Track>>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<List<Track>>(tracks, HttpStatus.OK);
         } catch (ValidationException e) {

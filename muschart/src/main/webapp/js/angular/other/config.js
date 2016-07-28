@@ -1,92 +1,75 @@
 'use strict';
-app.config(function($locationProvider) {
+app.config(['$locationProvider', function($locationProvider) {
 	$locationProvider.html5Mode(true);
-});
-app.config(function($httpProvider, $stateProvider, $urlRouterProvider) {
+}]);
+app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', function($stateProvider, $urlRouterProvider, DEFAULT, PATH, URL) {
 	var main_header = {
-		templateUrl: 'muschart/html/title/main_header.html',
-		controller: function($scope) {}
+		templateUrl: PATH.MAIN_HEADER
 	}
-	var authorization_header = {
-		templateUrl: 'muschart/html/title/authorization_header.html',
-		controller: function($scope) {}
+	var authentication_header = {
+		templateUrl: PATH.AUTHENTICATION_HEADER
 	}
 	var edit_header = {
-		templateUrl: 'muschart/html/title/edit_header.html',
-		controller: function($scope) {}
+		templateUrl: PATH.EDIT_HEADER
 	}
 	$stateProvider
 	.state('main', {
-		templateUrl: 'muschart/html/page/main.html',
 		abstract: true,
+		templateUrl: PATH.MAIN_PAGE
 	})
-	.state('authorization', {
-		templateUrl: 'muschart/html/page/authorization.html',
+	.state('authentication', {
 		abstract: true,
-	})
-	.state('edit', {
-		templateUrl: 'muschart/html/page/edit.html',
-		abstract: true,
+		templateUrl: PATH.AUTHENTICATION_PAGE
 	})
 	.state('tracks', {
-		url: '/muschart/tracks',
 		parent: 'main',
+		url: URL.TRACKS + URL.PAGE,
 		views: {
 			header: main_header,
 			content: {
-				templateUrl: 'muschart/html/content/track.html',
-				controller: function($scope) {}
-			},
+				templateUrl: PATH.TRACK_CONTENT
+			}
 		}
-		//controller: 'TrackController'
 	})
 	.state('artists', {
-		url: '/muschart/artists',
 		parent: 'main',
+		url: URL.ARTISTS + URL.PAGE,
 		views: {
 			header: main_header,
 			content: {
-				templateUrl: 'muschart/html/content/artist.html',
-				controller: function($scope) {}
-			},
+				templateUrl: PATH.ARTIST_CONTENT
+			}
 		}
-		//controller: 'ArtistController'
 	})
 	.state('genres', {
-		url: '/muschart/genres',
 		parent: 'main',
+		url: URL.GENRES + URL.PAGE,
 		views: {
 			header: main_header,
 			content: {
-				templateUrl: 'muschart/html/content/genre.html',
-				controller: function($scope) {}
-			},
+				templateUrl: PATH.GENRE_CONTENT
+			}
 		}
-		//controller: 'GenreController'
 	})
 	.state('login', {
-		url: '/muschart/login',
-		parent: 'authorization',
+		parent: 'authentication',
+		url: URL.LOGIN,
 		views: {
-			header: authorization_header,
+			header: authentication_header,
 			content: {
-				templateUrl: 'muschart/html/form/login.html',
-				controller: function($scope) {}
-			},
+				templateUrl: PATH.LOGIN_FORM
+			}
 		}
-		//controller: 'LoginController'
 	})
-	.state('registration', {
-		url: '/muschart/registration',
-		parent: 'authorization',
+	.state('register', {
+		parent: 'authentication',
+		url: URL.REGISTER,
 		views: {
-			header: authorization_header,
+			header: authentication_header,
 			content: {
-				templateUrl: 'muschart/html/form/registration.html',
-				controller: function($scope) {}
-			},
+				templateUrl: PATH.REGISTER_FORM
+			}
 		}
-		//controller: 'RegistrationController'
 	});
-	$urlRouterProvider.otherwise('/muschart/tracks');
-});
+	$urlRouterProvider.otherwise(URL.TRACKS + '/' + DEFAULT.PAGE);
+}]);

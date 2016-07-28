@@ -1,9 +1,8 @@
 'use strict';
-app.controller('TrackController', ['$scope', 'TrackFactory', function($scope, TrackFactory) {
+app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TrackFactory', function($scope, $stateParams, DEFAULT, TrackFactory) {
 	var self = this;
-	self.track = {id: null, name: '', song: '', cover: '', date: null, rating: null};
+	self.track = {id: null, name: '', song: '', cover: '', date: '', rating: null};
 	self.tracks = [];
-	var count = 15;
 
 	self.addTrack = function(track) {
 		TrackFactory.addTrack(track).then(
@@ -46,14 +45,14 @@ app.controller('TrackController', ['$scope', 'TrackFactory', function($scope, Tr
 	};
 
 	self.getTracksByPage = function(page) {
-		self.getTracksByIds(count * (page - 1) + 1, count * page);
+		self.getTracksByIds(DEFAULT.COUNT * (page - 1) + 1, DEFAULT.COUNT * page);
 	};
 
 	self.reset = function() {
-		self.track = {id:null, name:'', song:'', cover:'', date:null, rating:null};
+		self.track = {id: null, name: '', song: '', cover: '', date: '', rating: null};
 		$scope.form.$setPristine();
 	};
 
-	self.getTracksByPage(1);
+	self.getTracksByPage($stateParams.page);
 
 }]);

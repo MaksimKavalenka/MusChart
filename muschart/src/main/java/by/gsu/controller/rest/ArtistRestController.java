@@ -23,7 +23,7 @@ public class ArtistRestController {
         try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
             Artist artist = artistDAO.getArtistById(id);
             if (artist == null) {
-                return new ResponseEntity<Artist>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<Artist>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<Artist>(artist, HttpStatus.OK);
         } catch (ValidationException e) {
@@ -31,13 +31,13 @@ public class ArtistRestController {
         }
     }
 
-    @RequestMapping(value = "/artist/{idFrom}_{idTo}", method = RequestMethod.GET)
+    @RequestMapping(value = "/artist/{idFrom}_{idTo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Artist>> getArtistsByIds(@PathVariable("idFrom") final long idFrom,
             @PathVariable("idTo") final long idTo) {
         try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
             List<Artist> artists = artistDAO.getArtistsByIds(idFrom, idTo);
             if (artists == null) {
-                return new ResponseEntity<List<Artist>>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<List<Artist>>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<List<Artist>>(artists, HttpStatus.OK);
         } catch (ValidationException e) {
@@ -45,12 +45,12 @@ public class ArtistRestController {
         }
     }
 
-    @RequestMapping(value = "/artist/", method = RequestMethod.GET)
+    @RequestMapping(value = "/artist/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Artist>> getAllArtists() {
         try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
             List<Artist> artists = artistDAO.getAllArtists();
             if (artists == null) {
-                return new ResponseEntity<List<Artist>>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<List<Artist>>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<List<Artist>>(artists, HttpStatus.OK);
         } catch (ValidationException e) {

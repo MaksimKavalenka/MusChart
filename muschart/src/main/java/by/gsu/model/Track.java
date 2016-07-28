@@ -136,10 +136,4 @@ public class Track extends Model {
         this.users = users;
     }
 
-    @Override
-    public String toString() {
-        return "Track [id=" + super.getId() + ", name=" + name + ", cover=" + cover + ", date="
-                + date + ", rating=" + rating + "]";
-    }
-
 }

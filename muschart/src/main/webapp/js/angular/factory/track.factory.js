@@ -1,6 +1,6 @@
 'use strict';
-app.factory('TrackFactory', ['$http', '$q', function($http, $q) {
-	var track_url = url + '/track/';
+app.factory('TrackFactory', ['$http', '$q', 'DEFAULT', function($http, $q, DEFAULT) {
+	var track_url = DEFAULT.URL + '/track/';
 	return {
 
 		addTrack: function(track) {

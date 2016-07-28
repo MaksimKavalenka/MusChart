@@ -1,22 +1,7 @@
 <div ui-view="header"></div>
 <div ui-view="content"></div>
-<div id="player-container">
-	<div id="amplitude-album-art">
-		<img src="images/wtmj620.png"/>
-	</div>
-	<div id="player">
-		<div id="song-information">
-			<span id="amplitude-now-playing-name">WTMJ 620 AM</span><br>
-			<span id="amplitude-now-playing-album">Milwaukee, WI</span>
-		</div>
-		<div id="controls">
-			<div id="amplitude-play-pause" class="amplitude-paused"></div><br>
-			<span id="amplitude-current-time">0:00</span>
-		</div>
-		<input class="bar" type="range" id="amplitude-volume-slider" value="0"/>
-	</div>
-</div>
-<script type="text/javascript">
+<div class="amplitude-play">
+	<script type="text/javascript">
     Amplitude.init({
         "songs": [
             {
@@ -24,10 +9,9 @@
                 "artist": "Artist Name",
                 "album": "Album Name",
                 "url": "/muschart/audio/Lil%20Jon%20feat.%20the%20East%20Side%20Boyz%20song%20-%20Get%20Low.mp3",
-                "cover_art_url": "/muschart/image/track/Lil Jon & the East Side Boyz song - Get Low.jpg"
+                "cover_art_url": "/muschart/img/track/Lil Jon & the East Side Boyz song - Get Low.jpg"
             }
         ],
     });
 </script>
-	</body>
-</html>
+</div>
