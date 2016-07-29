@@ -4,6 +4,8 @@ app.config(['$locationProvider', function($locationProvider) {
 }]);
 app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', function($stateProvider, $urlRouterProvider, DEFAULT, PATH, URL) {
 	var main_header = {
+		controller: 'UserController',
+		controllerAs: 'ctrl',
 		templateUrl: PATH.MAIN_HEADER
 	}
 	var authentication_header = {
@@ -13,46 +15,40 @@ app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', fu
 		templateUrl: PATH.EDIT_HEADER
 	}
 	$stateProvider
-	.state('main', {
-		abstract: true,
-		templateUrl: PATH.MAIN_PAGE
-	})
-	.state('authentication', {
-		abstract: true,
-		templateUrl: PATH.AUTHENTICATION_PAGE
-	})
 	.state('tracks', {
-		parent: 'main',
 		url: URL.TRACKS + URL.PAGE,
 		views: {
 			header: main_header,
 			content: {
+				controller: 'TrackController',
+				controllerAs: 'ctrl',
 				templateUrl: PATH.TRACK_CONTENT
 			}
 		}
 	})
 	.state('artists', {
-		parent: 'main',
 		url: URL.ARTISTS + URL.PAGE,
 		views: {
 			header: main_header,
 			content: {
+				controller: 'ArtistController',
+				controllerAs: 'ctrl',
 				templateUrl: PATH.ARTIST_CONTENT
 			}
 		}
 	})
 	.state('genres', {
-		parent: 'main',
 		url: URL.GENRES + URL.PAGE,
 		views: {
 			header: main_header,
 			content: {
+				controller: 'GenreController',
+				controllerAs: 'ctrl',
 				templateUrl: PATH.GENRE_CONTENT
 			}
 		}
 	})
 	.state('login', {
-		parent: 'authentication',
 		url: URL.LOGIN,
 		views: {
 			header: authentication_header,
@@ -62,7 +58,6 @@ app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', fu
 		}
 	})
 	.state('register', {
-		parent: 'authentication',
 		url: URL.REGISTER,
 		views: {
 			header: authentication_header,

@@ -1,7 +1,7 @@
 <html ng-app="app.muschart">
 	<head>
 		<title>MusChart</title>
-		<link rel="shortcut icon" href="/muschart/img/icon.png" type="image/x-icon">
+		<link rel="shortcut icon" type="image/x-icon" href="/muschart/img/icon.png">
 		<link rel="stylesheet" type="text/css" href="/muschart/css/amplitude.css">
 		<link rel="stylesheet" type="text/css" href="/muschart/css/button.css">
 		<link rel="stylesheet" type="text/css" href="/muschart/css/common.css"/>
@@ -18,6 +18,7 @@
 		<script type="text/javascript" src="/muschart/js/amplitude.js"></script>
 		<script type="text/javascript" src="/muschart/js/pagination.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/app.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/controller/amplitude.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/track.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/user.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/factory/credentials.factory.js"></script>
@@ -28,9 +29,28 @@
 		<script type="text/javascript" src="/muschart/js/angular/other/constants.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/other/directive.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/other/run.js"></script>
+			<script type="text/javascript">
+    Amplitude.init({
+        "songs": [
+            {
+                "name": "Song Name 1",
+                "artist": "Artist Name",
+                "album": "Album Name",
+                "url": "http://localhost:8080/muschart/audio/Lil%20Jon%20feat.%20the%20East%20Side%20Boyz%20song%20-%20Get%20Low.mp3",
+                "cover_art_url": "/muschart/img/track/Lil Jon & the East Side Boyz song - Get Low.jpg"
+            }
+        ],
+        "volume": .50
+    });
+</script>
 		<base href="/">
 	</head>
 	<body>
-		<div class="container" ui-view=""></div>
+		<div ui-view="header"></div>
+		<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+		<div ui-view="content"></div>
+		<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" ng-controller="AmplitudeController" ng-show="show()">
+			<div class="amplitude-play-pause amplitude-paused"></div>
+		</div>
 	</body>
 </html>

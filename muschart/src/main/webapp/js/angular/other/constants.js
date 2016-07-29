@@ -14,8 +14,6 @@ app.constant('PATH', {
 	'TRACK_CONTENT': 'muschart/html/content/track.html',
 	'LOGIN_FORM': 'muschart/html/form/login.html',
 	'REGISTER_FORM': 'muschart/html/form/register.html',
-	'AUTHENTICATION_PAGE': 'muschart/html/page/authentication.html',
-	'MAIN_PAGE': 'muschart/html/page/main.html',
 	'AUTHENTICATION_HEADER': 'muschart/html/title/authentication.header.html',
 	'EDIT_HEADER': 'muschart/html/title/edit.header.html',
 	'MAIN_HEADER': 'muschart/html/title/main.header.html'
