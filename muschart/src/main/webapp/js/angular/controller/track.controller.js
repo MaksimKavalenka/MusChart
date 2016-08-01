@@ -24,6 +24,17 @@ app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TrackFa
 		);
 	};
 
+	self.getAmplitudeTracksByIds = function(idFrom, idTo) {
+		TrackFactory.getAmplitudeTracksByIds(idFrom, idTo).then(
+			function(response) {
+				Amplitude.init(response);
+			},
+			function(errResponse) {
+				console.error('Error while getting tracks');
+			}
+		);
+	};
+
 	self.getAllTracks = function() {
 		TrackFactory.getAllTracks().then(
 			function(response) {
@@ -46,6 +57,7 @@ app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TrackFa
 
 	self.getTracksByPage = function(page) {
 		self.getTracksByIds(DEFAULT.COUNT * (page - 1) + 1, DEFAULT.COUNT * page);
+		self.getAmplitudeTracksByIds(DEFAULT.COUNT * (page - 1) + 1, DEFAULT.COUNT * page);
 	};
 
 	self.reset = function() {

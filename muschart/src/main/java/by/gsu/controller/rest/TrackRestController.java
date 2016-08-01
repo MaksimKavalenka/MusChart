@@ -14,6 +14,7 @@ import by.gsu.database.dao.ITrackDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.factory.TrackFactory;
 import by.gsu.model.Track;
+import by.gsu.parser.AmplitudeJsonParser;
 
 @RestController
 public class TrackRestController {
@@ -42,6 +43,21 @@ public class TrackRestController {
             return new ResponseEntity<List<Track>>(tracks, HttpStatus.OK);
         } catch (ValidationException e) {
             return new ResponseEntity<List<Track>>(HttpStatus.CONFLICT);
+        }
+    }
+
+    @RequestMapping(value = "/track/amplitude/{idFrom}/{idTo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getAmplitudeTracksByIds(@PathVariable("idFrom") final long idFrom,
+            @PathVariable("idTo") final long idTo) {
+        try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
+            List<Track> tracks = trackDAO.getTracksByIds(idFrom, idTo);
+            if (tracks == null) {
+                return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<String>(AmplitudeJsonParser.getAmplitudeJson(tracks),
+                    HttpStatus.OK);
+        } catch (ValidationException e) {
+            return new ResponseEntity<String>(HttpStatus.CONFLICT);
         }
     }
 

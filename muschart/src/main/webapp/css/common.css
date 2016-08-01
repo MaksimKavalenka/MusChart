@@ -1,12 +1,4 @@
 body {
-	background: #e9bb7f; /* Old browsers */
-	background: -moz-linear-gradient(-45deg,  #e9bb7f 0%, #957055 50%, #59403f 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#e9bb7f), color-stop(50%,#957055), color-stop(100%,#59403f)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(-45deg,  #e9bb7f 0%,#957055 50%,#59403f 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(-45deg,  #e9bb7f 0%,#957055 50%,#59403f 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(-45deg,  #e9bb7f 0%,#957055 50%,#59403f 100%); /* IE10+ */
-	background: linear-gradient(135deg,  #e9bb7f 0%,#957055 50%,#59403f 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9bb7f', endColorstr='#59403f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 	height: 100%;
 	margin: 0;
 	width: 100%;
@@ -18,21 +10,6 @@ body {
 .container {
 	height: 100%;
 	margin: auto;
-}
-@media screen and (min-width: 1536px) {
-	.container {
-		width: 1536px;
-	}
-}
-@media screen and (min-width: 1600px) {
-	.container {
-		width: 1600px;
-	}
-}
-@media screen and (min-width: 1680px) {
-	.container {
-		width: 1680px;
-	}
 }
 @media screen and (min-width: 1920px) {
 	.container {

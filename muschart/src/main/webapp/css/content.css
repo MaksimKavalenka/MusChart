@@ -5,27 +5,7 @@
 	border: 2px solid #6699cc;
 	display: inline-block;
 	margin: 0.3em;
-	max-width: 384px;
-}
-@media screen and (min-width: 1536px) {
-	.content li {
-		max-width: 307px;
-	}
-}
-@media screen and (min-width: 1600px) {
-	.content li {
-		max-width: 320px;
-	}
-}
-@media screen and (min-width: 1680px) {
-	.content li {
-		max-width: 336px;
-	}
-}
-@media screen and (min-width: 1920px) {
-	.content li {
-		max-width: 384px;
-	}
+	max-width: 320px;
 }
 .content li > .title {
 	background: #3f3f3f;

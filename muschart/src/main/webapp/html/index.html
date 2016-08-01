@@ -29,28 +29,33 @@
 		<script type="text/javascript" src="/muschart/js/angular/other/constants.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/other/directive.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/other/run.js"></script>
-			<script type="text/javascript">
-    Amplitude.init({
-        "songs": [
-            {
-                "name": "Song Name 1",
-                "artist": "Artist Name",
-                "album": "Album Name",
-                "url": "http://localhost:8080/muschart/audio/Lil%20Jon%20feat.%20the%20East%20Side%20Boyz%20song%20-%20Get%20Low.mp3",
-                "cover_art_url": "/muschart/img/track/Lil Jon & the East Side Boyz song - Get Low.jpg"
-            }
-        ],
-        "volume": .50
-    });
-</script>
 		<base href="/">
 	</head>
 	<body>
 		<div ui-view="header"></div>
-		<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+		<div ng-class="{'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}" ng-if="flash" ng-bind="flash.message"></div>
 		<div ui-view="content"></div>
-		<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" ng-controller="AmplitudeController" ng-show="show()">
-			<div class="amplitude-play-pause amplitude-paused"></div>
+		<div class="amplitude" ng-controller="AmplitudeController" ng-show="show()">
+			<div class="progress">
+				<div class="amplitude-song-time-visualization" amplitude-single-song-time-visualization="true"></div>
+				<div class="time justify">
+					<div><span class="amplitude-current-minutes" amplitude-single-current-minutes="true">0</span>:<span class="amplitude-current-seconds" amplitude-single-current-seconds="true">00</span></div>
+					<div><span class="amplitude-duration-minutes" amplitude-single-duration-minutes="true">0</span>:<span class="amplitude-duration-minutes" amplitude-single-duration-seconds="true">00</span></div>
+				</div>
+				<input type="range" class="amplitude-song-slider" amplitude-singular-song-slider="true" value="0"/>
+			</div>
+			<div class="player">
+				<div class="player-button">
+					<div class="amplitude-play-pause amplitude-paused player-main-button"></div>
+				</div>
+				<div class="player-info">
+					<img class="player-cover" amplitude-song-info="cover"/>
+					<div class="player-artist-name">
+						<span amplitude-song-info="artist"></span>
+						<span amplitude-song-info="name"></span>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

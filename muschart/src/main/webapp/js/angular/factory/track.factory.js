@@ -27,6 +27,18 @@ app.factory('TrackFactory', ['$http', '$q', 'DEFAULT', function($http, $q, DEFAU
 			);
 		},
 
+		getAmplitudeTracksByIds: function(idFrom, idTo) {
+			return $http.get(track_url + "amplitude/" + idFrom + '/' + idTo).then(
+				function(response) {
+					return response.data;
+				},
+				function(errResponse) {
+					console.error('Error while getting tracks');
+					return $q.reject(errResponse);
+				}
+			);
+		},
+
 		getAllTracks: function() {
 			return $http.get(track_url).then(
 				function(response) {
