@@ -1,0 +1,25 @@
+<form method="POST" class="form-submit form-validation" name="form" ng-submit="ctrl.createTrack()">
+	<fieldset>
+		<legend>Track</legend>
+		<div class="field">
+			<label class="required" for="name">Name</label>
+			<input type="text" id="name" name="name" maxlength="255" ng-model="ctrl.track.name" required/>
+		</div>
+		<div class="field">
+			<label class="required" for="song">Song</label>
+			<input type="file" id="song" name="song" ng-model="ctrl.track.song" file-model="songFile" required file-required/>
+		</div>
+		<div class="field">
+			<label class="required" for="cover">Cover</label>
+			<input type="file" id="cover" name="cover" ng-model="ctrl.track.cover" file-model="coverFile" required file-required/>
+		</div>
+		<div class="field">
+			<label class="required" for="date">Date</label>
+			<input type="date" id="date" name="date" ng-model="ctrl.track.date" required/>
+		</div>
+		<div>
+			<button type="submit" class="btn btn-success" ng-disabled="form.$invalid || ctrl.dataLoading">Submit</button>
+			<img ng-if="ctrl.dataLoading" src="/muschart/img/load.gif"/>
+		</div>
+	</fieldset>
+</form>

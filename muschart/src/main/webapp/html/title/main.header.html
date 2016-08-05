@@ -19,7 +19,7 @@
 		<li><a href="/muschart/user_genres">My genres</a>
 	</ul>
 	<ul class="navigation">
-		<li ng-show="globals.user.role == 'ADMIN'"><a href="/muschart/track/add">Edit</a>
+		<li ng-show="globals.user.role == 'ADMIN'"><a ui-sref="tracks/add">Edit</a>
 		<li><a ng-href="#" ng-click="ctrl.logout()">Logout</a>
 	</ul>
 </div>

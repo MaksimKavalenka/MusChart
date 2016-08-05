@@ -1,0 +1,17 @@
+<form method="POST" class="form-submit form-validation" name="form" enctype="multipart/form-data" ng-submit="ctrl.createArtist()">
+	<fieldset>
+		<legend>Artist</legend>
+		<div class="field">
+			<label class="required" for="name">Name</label>
+			<input type="text" id="name" name="name" maxlength="255" ng-model="ctrl.artist.name" required/>
+		</div>
+		<div class="field">
+			<label class="required" for="photo">Photo</label>
+			<input type="file" id="song" name="song" ng-model="ctrl.artist.photo" required file-required/>
+		</div>
+		<div>
+			<button type="submit" class="btn btn-success" ng-disabled="form.$invalid || ctrl.dataLoading">Submit</button>
+			<img ng-if="ctrl.dataLoading" src="/muschart/img/load.gif"/>
+		</div>
+	</fieldset>
+</form>

@@ -6,7 +6,6 @@ app.factory('FlashFactory', ['$rootScope', function($rootScope) {
 			$rootScope.$on('$locationChangeStart', function () {
 				clearFlashMessage();
 			});
-
 			function clearFlashMessage() {
 				var flash = $rootScope.flash;
 				if (flash) {

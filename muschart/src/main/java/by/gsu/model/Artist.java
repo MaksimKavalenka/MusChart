@@ -23,10 +23,10 @@ public class Artist extends Model {
     @Column(name = "name", nullable = false, length = 255)
     private String            name;
 
-    @Column(name = "photo", nullable = false, length = 255)
+    @Column(name = "photo", nullable = false, columnDefinition = "TEXT")
     private String            photo;
 
-    @Column(name = "rating", nullable = false, length = 5)
+    @Column(name = "rating", nullable = false)
     @DefaultValue(value = "0")
     private long              rating;
 

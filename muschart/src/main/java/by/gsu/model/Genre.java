@@ -23,7 +23,7 @@ public class Genre extends Model {
     @Column(name = "name", nullable = false, length = 255)
     private String            name;
 
-    @Column(name = "rating", nullable = false, length = 5)
+    @Column(name = "rating", nullable = false)
     @DefaultValue(value = "0")
     private long              rating;
 

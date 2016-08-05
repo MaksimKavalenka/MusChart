@@ -27,6 +27,7 @@ app.factory('CredentialsFactory', ['$http', '$cookieStore', '$rootScope', functi
 
 var Base64 = {
 	keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
+
 	encode: function(input) {
 		var output = "";
 		var chr1, chr2, chr3 = "";
@@ -61,7 +62,7 @@ var Base64 = {
 		return output;
 	},
 
-	decode: function (input) {
+	decode: function(input) {
 		var output = "";
 		var chr1, chr2, chr3 = "";
 		var enc1, enc2, enc3, enc4 = "";

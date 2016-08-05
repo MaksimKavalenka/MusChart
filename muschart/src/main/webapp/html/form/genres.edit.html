@@ -1,0 +1,13 @@
+<form method="POST" class="form-submit form-validation" name="form" ng-submit="ctrl.createGenre()">
+	<fieldset>
+		<legend>Genre</legend>
+		<div class="field">
+			<label class="required" for="name">Name</label>
+			<input type="text" id="name" name="name" maxlength="255" ng-model="ctrl.genre.name" required/>
+		</div>
+		<div>
+			<button type="submit" class="btn btn-success" ng-disabled="form.$invalid || ctrl.dataLoading">Submit</button>
+			<img ng-if="ctrl.dataLoading" src="/muschart/img/load.gif"/>
+		</div>
+	</fieldset>
+</form>

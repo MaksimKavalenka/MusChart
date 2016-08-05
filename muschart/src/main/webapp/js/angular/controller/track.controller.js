@@ -1,16 +1,35 @@
 'use strict';
-app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TrackFactory', function($scope, $stateParams, DEFAULT, TrackFactory) {
+app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TYPE', 'FlashFactory', 'FileService', 'TrackFactory', function($scope, $stateParams, DEFAULT, TYPE, FlashFactory, FileService, TrackFactory) {
 	var self = this;
 	self.track = {id: null, name: '', song: '', cover: '', date: '', rating: null};
 	self.tracks = [];
 
-	self.addTrack = function(track) {
-		TrackFactory.addTrack(track).then(
-			self.getAllTracks,
-			function(errResponse) {
-				console.error('Error while adding track');
+	self.createTrack = function() {
+		self.dataLoading = true;
+		var songFlag = true;
+		var coverFlag = true;
+		FileService.uploadFile($scope.songFile, TYPE.SONG, function(response) {
+			if (!response.success) {
+				songFlag = false;
+				FlashFactory.error(response.message);
 			}
-		);
+		});
+		FileService.uploadFile($scope.coverFile, TYPE.COVER, function(response) {
+			if (!response.success) {
+				coverFlag = false;
+				FlashFactory.error(response.message);
+			}
+		});
+		if (songFlag && coverFlag) {
+			TrackFactory.createTrack(self.track.name, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), self.track.date, function(response) {
+				if (response.success) {
+					FlashFactory.success(response.message);
+				} else {
+					FlashFactory.error(response.message);
+				}
+			});
+		}
+		self.dataLoading = false;
 	};
 
 	self.getTracksByIds = function(idFrom, idTo) {
@@ -35,20 +54,8 @@ app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TrackFa
 		);
 	};
 
-	self.getAllTracks = function() {
-		TrackFactory.getAllTracks().then(
-			function(response) {
-				self.tracks = response;
-			},
-			function(errResponse) {
-				console.error('Error while getting tracks');
-			}
-		);
-	};
-
 	self.deleteTrack = function(id) {
 		TrackFactory.deleteTrack(id).then(
-			self.getAllTracks,
 			function(errResponse) {
 				console.error('Error while deleting track');
 			}

@@ -15,7 +15,7 @@ public class Model implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", unique = true, nullable = false, length = 5)
+    @Column(name = "id", unique = true, nullable = false)
     private long              id;
 
     public Model() {

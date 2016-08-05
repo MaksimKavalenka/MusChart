@@ -18,6 +18,17 @@ import by.gsu.model.Artist;
 @RestController
 public class ArtistRestController {
 
+    @RequestMapping(value = "/artist/create/{name}/{photo}", method = RequestMethod.POST)
+    public ResponseEntity<Void> createArtist(@PathVariable("name") final String name,
+            @PathVariable("photo") final String photo) {
+        try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
+            artistDAO.createArtist(name, photo);
+            return new ResponseEntity<Void>(HttpStatus.CREATED);
+        } catch (ValidationException e) {
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
+    }
+
     @RequestMapping(value = "/artist/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Artist> getArtistById(@PathVariable("id") final long id) {
         try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
@@ -31,7 +42,7 @@ public class ArtistRestController {
         }
     }
 
-    @RequestMapping(value = "/artist/{idFrom}_{idTo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/artist/{idFrom}/{idTo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Artist>> getArtistsByIds(@PathVariable("idFrom") final long idFrom,
             @PathVariable("idTo") final long idTo) {
         try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {

@@ -18,6 +18,16 @@ import by.gsu.model.Genre;
 @RestController
 public class GenreRestController {
 
+    @RequestMapping(value = "/genre/create/{name}", method = RequestMethod.POST)
+    public ResponseEntity<Void> createArtist(@PathVariable("name") final String name) {
+        try (IGenreDAO genreDAO = GenreFactory.getEditor()) {
+            genreDAO.createGenre(name);
+            return new ResponseEntity<Void>(HttpStatus.CREATED);
+        } catch (ValidationException e) {
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
+    }
+
     @RequestMapping(value = "/genre/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Genre> getGenreById(@PathVariable("id") final long id) {
         try (IGenreDAO genreDAO = GenreFactory.getEditor()) {
@@ -31,7 +41,7 @@ public class GenreRestController {
         }
     }
 
-    @RequestMapping(value = "/genre/{idFrom}_{idTo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/genre/{idFrom}/{idTo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Genre>> getGenresByIds(@PathVariable("idFrom") final long idFrom,
             @PathVariable("idTo") final long idTo) {
         try (IGenreDAO genreDAO = GenreFactory.getEditor()) {

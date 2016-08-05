@@ -1,6 +1,12 @@
 package by.gsu.controller.rest;
 
+import static by.gsu.constants.UploadConstants.Path.AUDIO_UPLOAD_PATH;
+import static by.gsu.constants.UploadConstants.Path.TRACK_COVER_UPLOAD_PATH;
+
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,6 +24,21 @@ import by.gsu.parser.AmplitudeJsonParser;
 
 @RestController
 public class TrackRestController {
+
+    @RequestMapping(value = "/track/create/{name}/{song}/{cover}/{date}", method = RequestMethod.POST)
+    public ResponseEntity<Void> createTrack(final HttpServletRequest request,
+            @PathVariable("name") final String name, @PathVariable("song") final String song,
+            @PathVariable("cover") final String cover, @PathVariable("date") final Date date) {
+        try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
+            System.out.println(song);
+            System.out.println(cover);
+            trackDAO.createTrack(name, AUDIO_UPLOAD_PATH + "/" + song,
+                    TRACK_COVER_UPLOAD_PATH + "/" + cover, date);
+            return new ResponseEntity<Void>(HttpStatus.CREATED);
+        } catch (ValidationException e) {
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
+    }
 
     @RequestMapping(value = "/track/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Track> getTrackById(@PathVariable("id") final long id) {

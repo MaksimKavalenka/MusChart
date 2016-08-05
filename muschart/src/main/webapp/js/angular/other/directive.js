@@ -1,4 +1,6 @@
 'use strict';
+var fileRequired = 'fileRequired';
+var fileModel = 'fileModel';
 var ngExist = 'ngExist';
 var ngMatch = 'ngMatch';
 var ngModel = 'ngModel';
@@ -42,3 +44,32 @@ app.directive(ngMatch, function() {
 		}
 	};
 });
+
+app.directive(fileRequired, function() {
+	return {
+		require: ngModel,
+		link: function(scope, element, attributes, controller) {
+			element.bind('change', function() {
+				scope.$apply(function() {
+					controller.$setViewValue(element.val());
+					controller.$render();
+				});
+			});
+		}
+	}
+});
+
+app.directive(fileModel, ['$parse', function($parse) {
+	return {
+		restrict: 'A',
+		link: function(scope, element, attributes) {
+			var model = $parse(attributes.fileModel);
+			var modelSetter = model.assign;
+			element.bind('change', function() {
+				scope.$apply(function() {
+					modelSetter(scope, element[0].files[0]);
+				});
+			});
+		}
+	};
+}]);

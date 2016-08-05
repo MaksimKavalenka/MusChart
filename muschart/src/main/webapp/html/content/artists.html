@@ -1,0 +1,14 @@
+<ul class="content">
+	<li ng-repeat="artist in ctrl.artists">
+		<div class="title">{{artist.name}}</div>
+		<div class="body" ng-click="">
+			<img ng-src="{{artist.photo}}">
+		</div>
+		<div class="actions">
+			<div class="flaticon-sound"></div>
+			<div class="flaticon-repeat"></div>
+			<div class="flaticon-download"></div>
+			<div class="flaticon-video"></div>
+			<div class="flaticon-like" id="rating{{artist.id}}" data-id="{{artist.id}}">{{artist.rating}}</div>
+		</div>
+</ul>

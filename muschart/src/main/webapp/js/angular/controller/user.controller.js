@@ -11,8 +11,8 @@ app.controller('UserController', ['$location', '$state', 'CredentialsFactory', '
 				$location.path('tracks({page:1})');
 			} else {
 				FlashFactory.error(response.message);
-				self.dataLoading = false;
 			}
+			self.dataLoading = false;
 		});
 	};
 
@@ -29,8 +29,8 @@ app.controller('UserController', ['$location', '$state', 'CredentialsFactory', '
 				$location.path('tracks({page:1})');
 			} else {
 				FlashFactory.error(response.message);
-				self.dataLoading = false;
 			}
+			self.dataLoading = false;
 		});
 	};
 
