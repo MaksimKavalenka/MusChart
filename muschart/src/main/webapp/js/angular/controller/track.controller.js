@@ -1,8 +1,9 @@
 'use strict';
-app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TYPE', 'FlashFactory', 'FileService', 'TrackFactory', function($scope, $stateParams, DEFAULT, TYPE, FlashFactory, FileService, TrackFactory) {
+app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TYPE', 'FlashFactory', 'FileService', 'PaginationService', 'TrackFactory', function($scope, $stateParams, DEFAULT, TYPE, FlashFactory, FileService, PaginationService, TrackFactory) {
 	var self = this;
 	self.track = {id: null, name: '', song: '', cover: '', date: '', rating: null};
 	self.tracks = [];
+	self.pages = [];
 
 	self.createTrack = function() {
 		self.dataLoading = true;
@@ -32,39 +33,62 @@ app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TYPE', 
 		self.dataLoading = false;
 	};
 
-	self.getTracksByIds = function(idFrom, idTo) {
-		TrackFactory.getTracksByIds(idFrom, idTo).then(
-			function(response) {
-				self.tracks = response;
-			},
-			function(errResponse) {
-				console.error('Error while getting tracks');
+	self.getTracksByIdsAsc = function(idFrom, idTo) {
+		TrackFactory.getTracksByIdsAsc(idFrom, idTo, function(response) {
+			if (response.success) {
+				self.tracks = response.data;
+			} else {
+				FlashFactory.error(response.message);
 			}
-		);
+		});
 	};
 
-	self.getAmplitudeTracksByIds = function(idFrom, idTo) {
-		TrackFactory.getAmplitudeTracksByIds(idFrom, idTo).then(
-			function(response) {
-				Amplitude.init(response);
-			},
-			function(errResponse) {
-				console.error('Error while getting tracks');
+	self.getTracksByIdsDesc = function(idFrom, idTo) {
+		TrackFactory.getTracksByIdsDesc(idFrom, idTo, function(response) {
+			if (response.success) {
+				self.tracks = response.data;
+			} else {
+				FlashFactory.error(response.message);
 			}
-		);
+		});
+	};
+
+	self.getAmplitudeTracksByIdsAsc = function(idFrom, idTo) {
+		TrackFactory.getAmplitudeTracksByIdsAsc(idFrom, idTo, function(response) {
+			if (response.success) {
+				Amplitude.init(response.data);
+			} else {
+				FlashFactory.error(response.message);
+			}
+		});
+	};
+
+	self.getAmplitudeTracksByIdsDesc = function(idFrom, idTo) {
+		TrackFactory.getAmplitudeTracksByIdsDesc(idFrom, idTo, function(response) {
+			if (response.success) {
+				Amplitude.init(response.data);
+			} else {
+				FlashFactory.error(response.message);
+			}
+		});
 	};
 
 	self.deleteTrack = function(id) {
-		TrackFactory.deleteTrack(id).then(
-			function(errResponse) {
-				console.error('Error while deleting track');
+		TrackFactory.deleteTrack(id, function(response) {
+			if (response.success) {
+				FlashFactory.success(response.message);
+			} else {
+				FlashFactory.error(response.message);
 			}
-		);
+		});
 	};
 
 	self.getTracksByPage = function(page) {
-		self.getTracksByIds(DEFAULT.COUNT * (page - 1) + 1, DEFAULT.COUNT * page);
-		self.getAmplitudeTracksByIds(DEFAULT.COUNT * (page - 1) + 1, DEFAULT.COUNT * page);
+		self.getTracksByIdsDesc(DEFAULT.COUNT * (page - 1) + 1, DEFAULT.COUNT * page);
+		self.getAmplitudeTracksByIdsDesc(DEFAULT.COUNT * (page - 1) + 1, DEFAULT.COUNT * page);
+		PaginationService.getPages(page, 'tracks', function(response) {
+			self.pages = response;
+		});
 	};
 
 	self.reset = function() {

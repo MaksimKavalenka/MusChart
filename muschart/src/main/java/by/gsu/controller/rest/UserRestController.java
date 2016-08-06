@@ -1,5 +1,8 @@
 package by.gsu.controller.rest;
 
+import static by.gsu.constants.RestConstants.JSON_EXT;
+import static by.gsu.constants.RestConstants.USER_PATH;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +19,8 @@ import by.gsu.model.User;
 @RestController
 public class UserRestController {
 
-    @RequestMapping(value = "/user/create/{login}/{password}", method = RequestMethod.POST)
+    @RequestMapping(value = USER_PATH + "/create/{login}/{password}"
+            + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@PathVariable("login") final String login,
             @PathVariable("password") final String password) {
         try (IUserDAO userDAO = UserFactory.getEditor()) {
@@ -27,7 +31,8 @@ public class UserRestController {
         }
     }
 
-    @RequestMapping(value = "/user/{login}/{password}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = USER_PATH + "/{login}/{password}"
+            + JSON_EXT, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUser(@PathVariable("login") final String login,
             @PathVariable("password") final String password) {
         try (IUserDAO userDAO = UserFactory.getEditor()) {
@@ -41,7 +46,8 @@ public class UserRestController {
         }
     }
 
-    @RequestMapping(value = "/user/{login}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = USER_PATH + "/{login}"
+            + JSON_EXT, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUserByLogin(@PathVariable("login") final String login) {
         try (IUserDAO userDAO = UserFactory.getEditor()) {
             User user = userDAO.getUserByLogin(login);

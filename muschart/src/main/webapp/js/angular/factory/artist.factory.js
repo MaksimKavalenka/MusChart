@@ -1,10 +1,10 @@
 'use strict';
-app.factory('ArtistFactory', ['$http', '$q', 'DEFAULT', function($http, $q, DEFAULT) {
-	var artistUrl = DEFAULT.URL + '/artist/';
+app.factory('ArtistFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
+	var artistsUrl = DEFAULT.URL + '/artists';
 	return {
 
 		createArtist: function(name, photo, callback) {
-			$http.post(artistUrl + 'create/' + name + '/' + photo)
+			$http.post(artistsUrl + '/create/' + name + '/' + photo + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				response = {success: true, message: 'Artist has been added successfully'};
 				callback(response);
@@ -15,40 +15,28 @@ app.factory('ArtistFactory', ['$http', '$q', 'DEFAULT', function($http, $q, DEFA
 			});
 		},
 
-		getArtistsByIds: function(idFrom, idTo) {
-			return $http.get(artistUrl + idFrom + '/' + idTo).then(
-				function(response) {
-					return response.data;
-				},
-				function(errResponse) {
-					console.error('Error while getting artists');
-					return $q.reject(errResponse);
-				}
-			);
+		getArtistsByIds: function(idFrom, idTo, callback) {
+			return $http.get(artistsUrl + '/' + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
+			.success(function(response) {
+				var data = {success: true, data: response};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: 'Error while getting artists'};
+				callback(response);
+			});
 		},
 
-		getAllArtists: function() {
-			return $http.get(artistUrl).then(
-				function(response) {
-					return response.data;
-				},
-				function(errResponse) {
-					console.error('Error while getting artists');
-					return $q.reject(errResponse);
-				}
-			);
-		},
-
-		deleteArtist: function(id) {
-			return $http.delete(artistUrl + id).then(
-				function(response) {
-					return response.data;
-				},
-				function(errResponse) {
-					console.error('Error while deleting artist');
-					return $q.reject(errResponse);
-				}
-			);
+		deleteArtist: function(id, callback) {
+			return $http.delete(artistsUrl + '/delete/' + id + DEFAULT.JSON_EXT)
+			.success(function(response) {
+				response = {success: true, message: 'Artist has been deleted successfully'};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: 'Error while deleting artist'};
+				callback(response);
+			});
 		}
 
 	};

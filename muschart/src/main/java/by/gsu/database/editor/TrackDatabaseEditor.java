@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.criterion.Restrictions;
 
 import by.gsu.database.dao.ITrackDAO;
 import by.gsu.exception.ValidationException;
@@ -35,11 +34,14 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
         return (Track) session.get(Track.class, id);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public List<Track> getTracksByIds(final long idFrom, final long idTo) {
-        return session.createCriteria(Track.class)
-                .add(Restrictions.between(TrackColumns.ID, idFrom, idTo)).list();
+    public List<Track> getTracksByIdsAsc(final long idFrom, final long idTo) {
+        return super.getElementsByAsc(idFrom, idTo, Track.class, TrackColumns.ID);
+    }
+
+    @Override
+    public List<Track> getTracksByIdsDesc(final long idFrom, final long idTo) {
+        return super.getElementsByDesc(idFrom, idTo, Track.class, TrackColumns.ID);
     }
 
     @SuppressWarnings("unchecked")

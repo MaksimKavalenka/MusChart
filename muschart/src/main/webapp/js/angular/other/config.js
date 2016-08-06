@@ -41,10 +41,15 @@ app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', fu
 		url: URL.ARTISTS + URL.PAGE,
 		views: {
 			header: mainHeader,
+			tool: {
+				controller: 'ArtistController',
+				controllerAs: 'ctrl',
+				templateUrl: PATH.PAGINATION_TOOL
+			},
 			content: {
 				controller: 'ArtistController',
 				controllerAs: 'ctrl',
-				templateUrl: PATH.ARTISTS_CONTENT
+				templateUrl: PATH.ARTIST_CONTENT
 			}
 		}
 	})
@@ -52,10 +57,15 @@ app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', fu
 		url: URL.GENRES + URL.PAGE,
 		views: {
 			header: mainHeader,
+			tool: {
+				controller: 'GenreController',
+				controllerAs: 'ctrl',
+				templateUrl: PATH.PAGINATION_TOOL
+			},
 			content: {
 				controller: 'GenreController',
 				controllerAs: 'ctrl',
-				templateUrl: PATH.GENRES_CONTENT
+				templateUrl: PATH.GENRE_CONTENT
 			}
 		}
 	})
@@ -63,10 +73,15 @@ app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', fu
 		url: URL.TRACKS + URL.PAGE,
 		views: {
 			header: mainHeader,
+			tool: {
+				controller: 'TrackController',
+				controllerAs: 'ctrl',
+				templateUrl: PATH.PAGINATION_TOOL
+			},
 			content: {
 				controller: 'TrackController',
 				controllerAs: 'ctrl',
-				templateUrl: PATH.TRACKS_CONTENT
+				templateUrl: PATH.TRACK_CONTENT
 			}
 		}
 	})
@@ -77,7 +92,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', fu
 			content: {
 				controller: 'ArtistController',
 				controllerAs: 'ctrl',
-				templateUrl: PATH.ARTISTS_EDIT_FORM
+				templateUrl: PATH.ARTIST_EDIT_FORM
 			}
 		}
 	})
@@ -88,7 +103,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', fu
 			content: {
 				controller: 'GenreController',
 				controllerAs: 'ctrl',
-				templateUrl: PATH.GENRES_EDIT_FORM
+				templateUrl: PATH.GENRE_EDIT_FORM
 			}
 		}
 	})
@@ -99,7 +114,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', fu
 			content: {
 				controller: 'TrackController',
 				controllerAs: 'ctrl',
-				templateUrl: PATH.TRACKS_EDIT_FORM
+				templateUrl: PATH.TRACK_EDIT_FORM
 			}
 		}
 	});

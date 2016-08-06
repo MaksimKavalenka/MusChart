@@ -1,10 +1,10 @@
 'use strict';
-app.factory('TrackFactory', ['$http', '$q', 'DEFAULT', function($http, $q, DEFAULT, UPLOAD_URL) {
-	var trackUrl = DEFAULT.URL + '/track/';
+app.factory('TrackFactory', ['$http', 'DEFAULT', function($http, DEFAULT, UPLOAD_URL) {
+	var tracksUrl = DEFAULT.URL + '/tracks';
 	return {
 
 		createTrack: function(name, song, cover, date, callback) {
-			$http.post(trackUrl + 'create/' + name + '/' + song + '/' + cover + '/' + date)
+			$http.post(tracksUrl + '/create/' + name + '/' + song + '/' + cover + '/' + date + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				response = {success: true, message: 'Track has been added successfully'};
 				callback(response);
@@ -15,40 +15,64 @@ app.factory('TrackFactory', ['$http', '$q', 'DEFAULT', function($http, $q, DEFAU
 			});
 		},
 
-		getTracksByIds: function(idFrom, idTo) {
-			return $http.get(trackUrl + idFrom + '/' + idTo).then(
-				function(response) {
-					return response.data;
-				},
-				function(errResponse) {
-					console.error('Error while getting tracks');
-					return $q.reject(errResponse);
-				}
-			);
+		getTracksByIdsAsc: function(idFrom, idTo, callback) {
+			return $http.get(tracksUrl + '/id/asc/' + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
+			.success(function(response) {
+				var data = {success: true, data: response};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: 'Error while getting tracks'};
+				callback(response);
+			});
 		},
 
-		getAmplitudeTracksByIds: function(idFrom, idTo) {
-			return $http.get(trackUrl + "amplitude/" + idFrom + '/' + idTo).then(
-				function(response) {
-					return response.data;
-				},
-				function(errResponse) {
-					console.error('Error while getting tracks');
-					return $q.reject(errResponse);
-				}
-			);
+		getTracksByIdsDesc: function(idFrom, idTo, callback) {
+			return $http.get(tracksUrl + '/id/desc/' + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
+			.success(function(response) {
+				var data = {success: true, data: response};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: 'Error while getting tracks'};
+				callback(response);
+			});
 		},
 
-		deleteTrack: function(id) {
-			return $http.delete(trackUrl + id).then(
-				function(response) {
-					return response.data;
-				},
-				function(errResponse) {
-					console.error('Error while deleting track');
-					return $q.reject(errResponse);
-				}
-			);
+		getAmplitudeTracksByIdsAsc: function(idFrom, idTo, callback) {
+			return $http.get(tracksUrl + "/id/asc/amplitude/" + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
+			.success(function(response) {
+				var data = {success: true, data: response};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: 'Error while getting tracks'};
+				callback(response);
+			});
+		},
+
+		getAmplitudeTracksByIdsDesc: function(idFrom, idTo, callback) {
+			return $http.get(tracksUrl + "/id/desc/amplitude/" + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
+			.success(function(response) {
+				var data = {success: true, data: response};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: 'Error while getting tracks'};
+				callback(response);
+			});
+		},
+
+		deleteTrack: function(id, callback) {
+			return $http.delete(tracksUrl + '/delete/' + id + DEFAULT.JSON_EXT)
+			.success(function(response) {
+				response = {success: true, message: 'Track has been deleted successfully'};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: 'Error while deleting track'};
+				callback(response);
+			});
 		}
 
 	};

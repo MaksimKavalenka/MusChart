@@ -16,7 +16,6 @@
 		<script type="text/javascript" src="/muschart/webjars/angular-ui-router/0.3.1/release/angular-ui-router.js"></script>
 		<script type="text/javascript" src="/muschart/webjars/jquery/3.0.0/jquery.js"></script>
 		<script type="text/javascript" src="/muschart/js/amplitude.js"></script>
-		<script type="text/javascript" src="/muschart/js/pagination.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/app.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/amplitude.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/artist.controller.js"></script>
@@ -34,11 +33,13 @@
 		<script type="text/javascript" src="/muschart/js/angular/other/directive.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/other/run.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/service/file.service.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/service/pagination.service.js"></script>
 		<base href="/">
 	</head>
 	<body>
 		<div ui-view="header"></div>
 		<div ng-class="{'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}" ng-if="flash" ng-bind="flash.message"></div>
+		<div ui-view="tool"></div>
 		<div ui-view="content"></div>
 		<div class="amplitude" ng-controller="AmplitudeController" ng-show="show()">
 			<div class="progress">
@@ -50,9 +51,9 @@
 				<input type="range" class="amplitude-song-slider" amplitude-singular-song-slider="true" value="0"/>
 			</div>
 			<div class="player">
-				<div class="player-button">
-					<div class="amplitude-play-pause amplitude-paused player-main-button"></div>
-				</div>
+				<div class="amplitude-prev player-button player-playlist-button"></div>
+				<div class="amplitude-play-pause amplitude-paused player-button player-main-button"></div>
+				<div class="amplitude-next player-button player-playlist-button"></div>
 				<div class="player-info">
 					<img class="player-cover" amplitude-song-info="cover"/>
 					<div class="player-artist-name">

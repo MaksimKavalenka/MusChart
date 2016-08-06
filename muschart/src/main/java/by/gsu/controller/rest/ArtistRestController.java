@@ -1,5 +1,8 @@
 package by.gsu.controller.rest;
 
+import static by.gsu.constants.RestConstants.JSON_EXT;
+import static by.gsu.constants.RestConstants.ARTISTS_PATH;
+
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -18,7 +21,8 @@ import by.gsu.model.Artist;
 @RestController
 public class ArtistRestController {
 
-    @RequestMapping(value = "/artist/create/{name}/{photo}", method = RequestMethod.POST)
+    @RequestMapping(value = ARTISTS_PATH + "/create/{name}/{photo}"
+            + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<Void> createArtist(@PathVariable("name") final String name,
             @PathVariable("photo") final String photo) {
         try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
@@ -29,20 +33,8 @@ public class ArtistRestController {
         }
     }
 
-    @RequestMapping(value = "/artist/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Artist> getArtistById(@PathVariable("id") final long id) {
-        try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
-            Artist artist = artistDAO.getArtistById(id);
-            if (artist == null) {
-                return new ResponseEntity<Artist>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<Artist>(artist, HttpStatus.OK);
-        } catch (ValidationException e) {
-            return new ResponseEntity<Artist>(HttpStatus.CONFLICT);
-        }
-    }
-
-    @RequestMapping(value = "/artist/{idFrom}/{idTo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = ARTISTS_PATH + "/{idFrom}/{idTo}"
+            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Artist>> getArtistsByIds(@PathVariable("idFrom") final long idFrom,
             @PathVariable("idTo") final long idTo) {
         try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
@@ -56,20 +48,7 @@ public class ArtistRestController {
         }
     }
 
-    @RequestMapping(value = "/artist/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Artist>> getAllArtists() {
-        try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
-            List<Artist> artists = artistDAO.getAllArtists();
-            if (artists == null) {
-                return new ResponseEntity<List<Artist>>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<List<Artist>>(artists, HttpStatus.OK);
-        } catch (ValidationException e) {
-            return new ResponseEntity<List<Artist>>(HttpStatus.CONFLICT);
-        }
-    }
-
-    @RequestMapping(value = "/artist/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = ARTISTS_PATH + "/delete/{id}" + JSON_EXT, method = RequestMethod.DELETE)
     public ResponseEntity<Artist> deleteArtistById(@PathVariable("id") final long id) {
         try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
             artistDAO.deleteArtistById(id);

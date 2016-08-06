@@ -1,10 +1,10 @@
 'use strict';
-app.factory('GenreFactory', ['$http', '$q', 'DEFAULT', function($http, $q, DEFAULT) {
-	var genreUrl = DEFAULT.URL + '/genre/';
+app.factory('GenreFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
+	var genresUrl = DEFAULT.URL + '/genres';
 	return {
 
 		createGenre: function(name, callback) {
-			$http.post(genreUrl + 'create/' + name)
+			$http.post(genresUrl + '/create/' + name + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				response = {success: true, message: 'Genre has been added successfully'};
 				callback(response);
@@ -15,40 +15,28 @@ app.factory('GenreFactory', ['$http', '$q', 'DEFAULT', function($http, $q, DEFAU
 			});
 		},
 
-		getGenresByIds: function(idFrom, idTo) {
-			return $http.get(genreUrl + idFrom + '/' + idTo).then(
-				function(response) {
-					return response.data;
-				},
-				function(errResponse) {
-					console.error('Error while getting genres');
-					return $q.reject(errResponse);
-				}
-			);
+		getGenresByIds: function(idFrom, idTo, callback) {
+			return $http.get(genresUrl + '/' + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
+			.success(function(response) {
+				var data = {success: true, data: response};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: 'Error while getting genres'};
+				callback(response);
+			});
 		},
 
-		getAllGenres: function() {
-			return $http.get(genreUrl).then(
-				function(response) {
-					return response.data;
-				},
-				function(errResponse) {
-					console.error('Error while getting genres');
-					return $q.reject(errResponse);
-				}
-			);
-		},
-
-		deleteGenre: function(id) {
-			return $http.delete(genreUrl + id).then(
-				function(response) {
-					return response.data;
-				},
-				function(errResponse) {
-					console.error('Error while deleting genre');
-					return $q.reject(errResponse);
-				}
-			);
+		deleteGenre: function(id, callback) {
+			return $http.delete(genresUrl + '/delete/' + id + DEFAULT.JSON_EXT)
+			.success(function(response) {
+				response = {success: true, message: 'Genre has been deleted successfully'};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: 'Error while deleting genre'};
+				callback(response);
+			});
 		}
 
 	};

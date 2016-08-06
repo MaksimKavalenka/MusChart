@@ -1,6 +1,7 @@
 'use strict';
 app.constant('DEFAULT', {
 	'COUNT': '15',
+	'JSON_EXT': '.json',
 	'PAGE': '1',
 	'URL': 'http://localhost:8080/muschart'
 });
@@ -16,15 +17,16 @@ app.constant('TYPE', {
 app.constant('PATH', {
 	'LOGIN_FORM': 'muschart/html/form/login.html',
 	'REGISTER_FORM': 'muschart/html/form/register.html',
-	'ARTISTS_CONTENT': 'muschart/html/content/artists.html',
-	'GENRES_CONTENT': 'muschart/html/content/genres.html',
-	'TRACKS_CONTENT': 'muschart/html/content/tracks.html',
-	'ARTISTS_EDIT_FORM': 'muschart/html/form/artists.edit.html',
-	'GENRES_EDIT_FORM': 'muschart/html/form/genres.edit.html',
-	'TRACKS_EDIT_FORM': 'muschart/html/form/tracks.edit.html',
+	'ARTIST_CONTENT': 'muschart/html/content/artist.html',
+	'GENRE_CONTENT': 'muschart/html/content/genre.html',
+	'TRACK_CONTENT': 'muschart/html/content/track.html',
+	'ARTIST_EDIT_FORM': 'muschart/html/form/artist.edit.html',
+	'GENRE_EDIT_FORM': 'muschart/html/form/genre.edit.html',
+	'TRACK_EDIT_FORM': 'muschart/html/form/track.edit.html',
 	'AUTHENTICATION_HEADER': 'muschart/html/title/authentication.header.html',
 	'EDIT_HEADER': 'muschart/html/title/edit.header.html',
-	'MAIN_HEADER': 'muschart/html/title/main.header.html'
+	'MAIN_HEADER': 'muschart/html/title/main.header.html',
+	'PAGINATION_TOOL': 'muschart/html/tool/pagination.html'
 });
 app.constant('URL', {
 	'PAGE': '/{page:[0-9]{1,}}',

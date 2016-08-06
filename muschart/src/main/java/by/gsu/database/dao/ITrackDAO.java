@@ -12,7 +12,9 @@ public interface ITrackDAO extends IDAO {
 
     Track getTrackById(long id) throws ValidationException;
 
-    List<Track> getTracksByIds(long idFrom, long idTo) throws ValidationException;
+    List<Track> getTracksByIdsAsc(long idFrom, long idTo) throws ValidationException;
+
+    List<Track> getTracksByIdsDesc(long idFrom, long idTo) throws ValidationException;
 
     List<Track> getAllTracks() throws ValidationException;
 

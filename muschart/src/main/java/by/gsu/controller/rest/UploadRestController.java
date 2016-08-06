@@ -1,6 +1,8 @@
 package by.gsu.controller.rest;
 
 import static by.gsu.constants.ExceptionConstants.UPLOAD_FILE_ERROR;
+import static by.gsu.constants.RestConstants.JSON_EXT;
+import static by.gsu.constants.RestConstants.UPLOAD_PATH;
 import static by.gsu.constants.UploadConstants.Path.*;
 import static by.gsu.constants.UploadConstants.Type.*;
 
@@ -29,7 +31,7 @@ import by.gsu.exception.ValidationException;
 @MultipartConfig
 public class UploadRestController {
 
-    @RequestMapping(value = "/upload/{type}", method = RequestMethod.POST)
+    @RequestMapping(value = UPLOAD_PATH + "/{type}" + JSON_EXT, method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Void> uploadFile(@PathVariable("type") final String type,
             @RequestParam(value = "file") final MultipartFile file) {
         try {
