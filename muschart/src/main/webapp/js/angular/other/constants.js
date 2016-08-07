@@ -2,7 +2,6 @@
 app.constant('DEFAULT', {
 	'COUNT': '15',
 	'JSON_EXT': '.json',
-	'PAGE': '1',
 	'URL': 'http://localhost:8080/muschart'
 });
 app.constant('ERROR', {
@@ -14,28 +13,46 @@ app.constant('TYPE', {
 	'PHOTO': 'photo',
 	'SONG': 'song'
 });
-app.constant('PATH', {
-	'LOGIN_FORM': 'muschart/html/form/login.html',
-	'REGISTER_FORM': 'muschart/html/form/register.html',
-	'ARTIST_CONTENT': 'muschart/html/content/artist.html',
-	'GENRE_CONTENT': 'muschart/html/content/genre.html',
-	'TRACK_CONTENT': 'muschart/html/content/track.html',
-	'ARTIST_EDIT_FORM': 'muschart/html/form/artist.edit.html',
-	'GENRE_EDIT_FORM': 'muschart/html/form/genre.edit.html',
-	'TRACK_EDIT_FORM': 'muschart/html/form/track.edit.html',
-	'AUTHENTICATION_HEADER': 'muschart/html/title/authentication.header.html',
-	'EDIT_HEADER': 'muschart/html/title/edit.header.html',
-	'MAIN_HEADER': 'muschart/html/title/main.header.html',
-	'PAGINATION_TOOL': 'muschart/html/tool/pagination.html'
-});
-app.constant('URL', {
-	'PAGE': '/{page:[0-9]{1,}}',
-	'LOGIN': '/muschart/login',
-	'REGISTER': '/muschart/register',
-	'ARTISTS': '/muschart/artists',
-	'GENRES': '/muschart/genres',
-	'TRACKS': '/muschart/tracks',
-	'ARTISTS_ADD': '/muschart/artists/add',
-	'GENRES_ADD': '/muschart/genres/add',
-	'TRACKS_ADD': '/muschart/tracks/add'
-});
+app.constant('PATH', (function() {
+	var path = 'muschart/html';
+	var contentPath = path + '/content';
+	var formPath = path + '/form';
+	var titlePath = path + '/title';
+	var toolPath = path + '/tool';
+	var htmlExt = '.html';
+	return {
+		ARTIST_CONTENT: contentPath + '/artist' + htmlExt,
+		GENRE_CONTENT: contentPath + '/genre' + htmlExt,
+		TRACK_CONTENT: contentPath + '/track' + htmlExt,
+		LOGIN_FORM: formPath + '/login' + htmlExt,
+		REGISTER_FORM: formPath + '/register' + htmlExt,
+		ARTIST_EDIT_FORM: formPath + '/artist.edit' + htmlExt,
+		GENRE_EDIT_FORM: formPath + '/genre.edit' + htmlExt,
+		TRACK_EDIT_FORM: formPath + '/track.edit' + htmlExt,
+		AUTHENTICATION_HEADER: titlePath + '/authentication.header' + htmlExt,
+		EDIT_HEADER: titlePath + '/edit.header' + htmlExt,
+		MAIN_HEADER: titlePath + '/main.header' + htmlExt,
+		PAGINATION_TOOL: toolPath + '/pagination' + htmlExt
+	}
+})());
+app.constant('URL', (function() {
+	var url = '/muschart';
+	var artistsUrl = url + '/artists';
+	var genresUrl = url + '/genres';
+	var tracksUrl = url + '/tracks';
+	var addOperation = '/add';
+	var pageOperation = '/page';
+	return {
+		HOME_PAGE: tracksUrl + pageOperation + '/1',
+		LOGIN: url + '/login',
+		REGISTER: url + '/register',
+		ARTISTS: artistsUrl,
+		GENRES: genresUrl,
+		TRACKS: tracksUrl,
+		ARTISTS_ADD: artistsUrl + addOperation,
+		GENRES_ADD: genresUrl + addOperation,
+		TRACKS_ADD: tracksUrl + addOperation,
+		PAGE_OPERATION: pageOperation,
+		PATTERN_PAGE: pageOperation + '/{page:[0-9]{1,}}'
+	}
+})());

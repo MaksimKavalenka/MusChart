@@ -1,21 +1,25 @@
 'use strict';
-app.service('PaginationService', function() {
+app.service('PaginationService', ['$rootScope', function($rootScope) {
 	return {
 
-		getPages: function(page, path, callback) {
-			var pages = [];
+		getPages: function(page, path) {
+			$rootScope.pages = [];
 			var from = page - 2;
 			if (page <= 3) {
 				from = 1;
 			}
 			for (var i = from; i < from + 5; i++) {
-				pages.push({
+				var type = 'default';
+				if (page == i) {
+					type = 'active';
+				}
+				$rootScope.pages.push({
 					number: i,
-					link: path + '({page:' + i + '})'
+					link: path + '({page:' + i + '})',
+					type: type
 				});
 			}
-			callback(pages);
 		}
 
 	};
-});
+}]);

@@ -1,9 +1,8 @@
 'use strict';
-app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TYPE', 'FlashFactory', 'FileService', 'PaginationService', 'TrackFactory', function($scope, $stateParams, DEFAULT, TYPE, FlashFactory, FileService, PaginationService, TrackFactory) {
+app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TYPE', 'TrackFactory', 'FileService', 'FlashService', 'PaginationService', function($scope, $stateParams, DEFAULT, TYPE, TrackFactory, FileService, FlashService, PaginationService) {
 	var self = this;
-	self.track = {id: null, name: '', song: '', cover: '', date: '', rating: null};
+	self.track = {id: null, artistName: '', songName: '', song: '', cover: '', date: '', rating: null};
 	self.tracks = [];
-	self.pages = [];
 
 	self.createTrack = function() {
 		self.dataLoading = true;
@@ -12,21 +11,21 @@ app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TYPE', 
 		FileService.uploadFile($scope.songFile, TYPE.SONG, function(response) {
 			if (!response.success) {
 				songFlag = false;
-				FlashFactory.error(response.message);
+				FlashService.error(response.message);
 			}
 		});
 		FileService.uploadFile($scope.coverFile, TYPE.COVER, function(response) {
 			if (!response.success) {
 				coverFlag = false;
-				FlashFactory.error(response.message);
+				FlashService.error(response.message);
 			}
 		});
 		if (songFlag && coverFlag) {
-			TrackFactory.createTrack(self.track.name, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), self.track.date, function(response) {
+			TrackFactory.createTrack(self.track.artistName, self.track.songName, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), self.track.date, function(response) {
 				if (response.success) {
-					FlashFactory.success(response.message);
+					FlashService.success(response.message);
 				} else {
-					FlashFactory.error(response.message);
+					FlashService.error(response.message);
 				}
 			});
 		}
@@ -38,7 +37,7 @@ app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TYPE', 
 			if (response.success) {
 				self.tracks = response.data;
 			} else {
-				FlashFactory.error(response.message);
+				FlashService.error(response.message);
 			}
 		});
 	};
@@ -48,7 +47,7 @@ app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TYPE', 
 			if (response.success) {
 				self.tracks = response.data;
 			} else {
-				FlashFactory.error(response.message);
+				FlashService.error(response.message);
 			}
 		});
 	};
@@ -58,7 +57,7 @@ app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TYPE', 
 			if (response.success) {
 				Amplitude.init(response.data);
 			} else {
-				FlashFactory.error(response.message);
+				FlashService.error(response.message);
 			}
 		});
 	};
@@ -68,7 +67,7 @@ app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TYPE', 
 			if (response.success) {
 				Amplitude.init(response.data);
 			} else {
-				FlashFactory.error(response.message);
+				FlashService.error(response.message);
 			}
 		});
 	};
@@ -76,9 +75,9 @@ app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TYPE', 
 	self.deleteTrack = function(id) {
 		TrackFactory.deleteTrack(id, function(response) {
 			if (response.success) {
-				FlashFactory.success(response.message);
+				FlashService.success(response.message);
 			} else {
-				FlashFactory.error(response.message);
+				FlashService.error(response.message);
 			}
 		});
 	};
@@ -86,9 +85,7 @@ app.controller('TrackController', ['$scope', '$stateParams', 'DEFAULT', 'TYPE', 
 	self.getTracksByPage = function(page) {
 		self.getTracksByIdsDesc(DEFAULT.COUNT * (page - 1) + 1, DEFAULT.COUNT * page);
 		self.getAmplitudeTracksByIdsDesc(DEFAULT.COUNT * (page - 1) + 1, DEFAULT.COUNT * page);
-		PaginationService.getPages(page, 'tracks', function(response) {
-			self.pages = response;
-		});
+		PaginationService.getPages(page, 'tracks');
 	};
 
 	self.reset = function() {

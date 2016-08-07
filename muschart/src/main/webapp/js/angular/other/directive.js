@@ -5,7 +5,7 @@ var ngExist = 'ngExist';
 var ngMatch = 'ngMatch';
 var ngModel = 'ngModel';
 
-app.directive(ngExist, ['$q', '$timeout', 'UserFactory', function($q, $timeout, UserFactory) {
+app.directive(ngExist, ['$timeout', '$q', 'UserFactory', function($timeout, $q, UserFactory) {
 	var timer;
 	return {
 		require: ngModel,

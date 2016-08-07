@@ -23,8 +23,11 @@ public class Track extends Model {
 
     private static final long serialVersionUID = 1952582684617860747L;
 
-    @Column(name = "name", nullable = false, length = 255)
-    private String            name;
+    @Column(name = "artist_name", nullable = false, length = 255)
+    private String            artistName;
+
+    @Column(name = "song_name", nullable = false, length = 255)
+    private String            songName;
 
     @Column(name = "song", nullable = false, columnDefinition = "TEXT")
     private String            song;
@@ -62,22 +65,31 @@ public class Track extends Model {
         super();
     }
 
-    public Track(final long id, final String name, final String song, final String cover,
-            final Date date, final long rating) {
+    public Track(final long id, final String artistName, final String songName, final String song,
+            final String cover, final Date date, final long rating) {
         super(id);
-        this.name = name;
+        this.artistName = artistName;
+        this.songName = songName;
         this.song = song;
         this.cover = cover;
         this.date = date;
         this.rating = rating;
     }
 
-    public String getName() {
-        return name;
+    public String getArtistName() {
+        return artistName;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    public void setArtistName(final String artistName) {
+        this.artistName = artistName;
+    }
+
+    public String getSongName() {
+        return songName;
+    }
+
+    public void setSongName(final String songName) {
+        this.songName = songName;
     }
 
     public String getSong() {

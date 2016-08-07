@@ -1,5 +1,3 @@
 <ul class="pagination">
-	<li class="disabled"><a href="#">&laquo;</a>
-	<li class="active" ng-repeat="page in ctrl.pages"><a ui-sref="{{page.link}}">{{page.number}}</a>
-	<li><a ui-sref="ctrl.getTracksByPage(stateParams.page + 1)">&raquo;</a>
+	<li ng-class="{'page-default': page.type === 'default', 'page-active': page.type === 'active'}" ng-repeat="page in pages"><a ui-sref="{{page.link}}">{{page.number}}</a>
 </ul>

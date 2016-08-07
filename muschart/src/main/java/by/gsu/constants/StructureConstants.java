@@ -19,12 +19,13 @@ public abstract class StructureConstants {
 
     public abstract static class TrackColumns {
 
-        public static final String ID     = "id";
-        public static final String NAME   = "name";
-        public static final String SONG   = "song";
-        public static final String COVER  = "cover";
-        public static final String DATE   = "date";
-        public static final String RATING = "rating";
+        public static final String ID          = "id";
+        public static final String ARTIST_NAME = "artist_name";
+        public static final String SONG_NAME   = "song_name";
+        public static final String SONG        = "song";
+        public static final String COVER       = "cover";
+        public static final String DATE        = "date";
+        public static final String RATING      = "rating";
 
     }
 

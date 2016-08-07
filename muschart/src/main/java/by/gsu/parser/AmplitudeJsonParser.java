@@ -26,8 +26,8 @@ public abstract class AmplitudeJsonParser {
 
     private static JSONObject getAmplitudeSong(final Track track) {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put(NAME_SONG_KEY, "Get Low");
-        jsonObject.put(ARTIST_SONG_KEY, "Lil Jon feat. the East Side Boyz song");
+        jsonObject.put(NAME_SONG_KEY, track.getSongName());
+        jsonObject.put(ARTIST_SONG_KEY, track.getArtistName());
         jsonObject.put(ALBUM_SONG_KEY, "");
         jsonObject.put(URL_SONG_KEY, track.getSong());
         jsonObject.put(COVER_ART_URL_SONG_KEY, track.getCover());

@@ -1,8 +1,10 @@
 .btn {
-	border-radius: 0.4em;
 	border-width: 0;
 	color: #ffffff;
-	padding: 0.8em 1.7em;
+	padding: 11px 23px;
+}
+.btn-search {
+	margin-left: -5px;
 }
 .btn-default {
 	background: #222222;

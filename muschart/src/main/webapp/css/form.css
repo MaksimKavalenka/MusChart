@@ -1,11 +1,11 @@
 .form-search {
-	margin: 0 1em;
+	margin: 0 16px;
 }
 .form-search > * {
 	display: inline;
 }
 .form-search > input {
-	padding: 0.7em;
+	padding: 9px;
 }
 .form-submit {
 	text-align: center;
@@ -22,7 +22,7 @@
 	font-size: 2em;
 }
 .form-submit .field {
-	margin: 1.5em 0;
+	margin: 24px 0;
 }
 .form-submit .field > * {
 	display: block;
@@ -30,13 +30,12 @@
 .form-submit .field  label {
 	font-size: 0.9em;
 	font-weight: 600;
-	margin: 0.5em 0;
+	margin: 7px 0;
 }
 .form-submit .field input {
-	border: 0.1em solid #aaaaaa;
-	border-radius: 0.4em;
-	padding: 0.5em;
-	width: 20em;
+	border: 1px solid #aaaaaa;
+	padding: 7px;
+	width: 800px;
 }
 .form-submit .field span {
 	color: #ff0000;

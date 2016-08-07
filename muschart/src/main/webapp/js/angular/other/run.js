@@ -1,5 +1,5 @@
 'use strict';
-app.run(['$rootScope', '$location', '$cookieStore', '$http', function($rootScope, $location, $cookieStore, $http) {
+app.run(['$cookieStore', '$http', '$location', '$rootScope', function($cookieStore, $http, $location, $rootScope) {
 	$rootScope.globals = $cookieStore.get('globals') || {};
 	if ($rootScope.globals.user) {
 		$http.defaults.headers.common['Credentials'] = 'Basic ' + $rootScope.globals.user.authdata;

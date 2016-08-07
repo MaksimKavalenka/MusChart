@@ -3,6 +3,9 @@ body {
 	margin: 0;
 	width: 100%;
 }
+.indent {
+	margin: 15px;
+}
 .justify {
 	display: flex;
 	justify-content: space-between;

@@ -2,7 +2,7 @@
 app.config(['$locationProvider', function($locationProvider) {
 	$locationProvider.html5Mode(true);
 }]);
-app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', function($stateProvider, $urlRouterProvider, DEFAULT, PATH, URL) {
+app.config(['$stateProvider', '$urlRouterProvider', 'PATH', 'URL', function($stateProvider, $urlRouterProvider, PATH, URL) {
 	var mainHeader = {
 		controller: 'UserController',
 		controllerAs: 'ctrl',
@@ -38,7 +38,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', fu
 		}
 	})
 	.state('artists', {
-		url: URL.ARTISTS + URL.PAGE,
+		url: URL.ARTISTS + URL.PATTERN_PAGE,
 		views: {
 			header: mainHeader,
 			tool: {
@@ -54,7 +54,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', fu
 		}
 	})
 	.state('genres', {
-		url: URL.GENRES + URL.PAGE,
+		url: URL.GENRES + URL.PATTERN_PAGE,
 		views: {
 			header: mainHeader,
 			tool: {
@@ -70,7 +70,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', fu
 		}
 	})
 	.state('tracks', {
-		url: URL.TRACKS + URL.PAGE,
+		url: URL.TRACKS + URL.PATTERN_PAGE,
 		views: {
 			header: mainHeader,
 			tool: {
@@ -118,5 +118,5 @@ app.config(['$stateProvider', '$urlRouterProvider', 'DEFAULT', 'PATH', 'URL', fu
 			}
 		}
 	});
-	$urlRouterProvider.otherwise(URL.TRACKS + '/' + DEFAULT.PAGE);
+	$urlRouterProvider.otherwise(URL.HOME_PAGE);
 }]);

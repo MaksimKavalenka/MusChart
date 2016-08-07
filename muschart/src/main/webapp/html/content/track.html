@@ -1,14 +1,9 @@
 <ul class="content">
 	<li ng-repeat="track in ctrl.tracks">
-		<div class="title">{{track.name}}</div>
+		<div class="title">
+			{{track.artistName}}<br>{{track.songName}}
+		</div>
 		<div class="body" ng-click="">
 			<img ng-src="{{track.cover}}">
-		</div>
-		<div class="actions">
-			<div class="flaticon-sound"></div>
-			<div class="flaticon-repeat"></div>
-			<div class="flaticon-download"></div>
-			<div class="flaticon-video"></div>
-			<div class="flaticon-like" id="rating{{track.id}}" data-id="{{track.id}}">{{track.rating}}</div>
 		</div>
 </ul>

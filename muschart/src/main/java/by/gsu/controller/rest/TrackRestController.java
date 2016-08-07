@@ -27,15 +27,17 @@ import by.gsu.parser.AmplitudeJsonParser;
 @RestController
 public class TrackRestController {
 
-    @RequestMapping(value = TRACKS_PATH + "/create/{name}/{song}/{cover}/{date}"
+    @RequestMapping(value = TRACKS_PATH + "/create/{artistName}/{songName}/{song}/{cover}/{date}"
             + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<Void> createTrack(final HttpServletRequest request,
-            @PathVariable("name") final String name, @PathVariable("song") final String song,
-            @PathVariable("cover") final String cover, @PathVariable("date") final Date date) {
+            @PathVariable("artistName") final String artistName,
+            @PathVariable("songName") final String songName,
+            @PathVariable("song") final String song, @PathVariable("cover") final String cover,
+            @PathVariable("date") final Date date) {
         try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
             System.out.println(song);
             System.out.println(cover);
-            trackDAO.createTrack(name, AUDIO_UPLOAD_PATH + "/" + song,
+            trackDAO.createTrack(artistName, songName, AUDIO_UPLOAD_PATH + "/" + song,
                     TRACK_COVER_UPLOAD_PATH + "/" + cover, date);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (ValidationException e) {

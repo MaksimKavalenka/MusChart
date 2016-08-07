@@ -1,5 +1,5 @@
 'use strict';
-app.factory('FlashFactory', ['$rootScope', function($rootScope) {
+app.service('FlashService', ['$rootScope', function($rootScope) {
 	return {
 
 		initService: function() {
@@ -22,7 +22,7 @@ app.factory('FlashFactory', ['$rootScope', function($rootScope) {
 			$rootScope.flash = {
 				message: message,
 				type: 'success', 
-				keepAfterLocationChange: keepAfterLocationChange
+				keepAfterLocationChange: false
 			};
 		},
 
@@ -30,9 +30,9 @@ app.factory('FlashFactory', ['$rootScope', function($rootScope) {
 			$rootScope.flash = {
 				message: message,
 				type: 'error',
-				keepAfterLocationChange: keepAfterLocationChange
+				keepAfterLocationChange: false
 			};
 		}
-		
+
 	};
 }]);

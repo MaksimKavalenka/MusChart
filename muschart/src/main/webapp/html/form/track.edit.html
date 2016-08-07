@@ -2,8 +2,12 @@
 	<fieldset>
 		<legend>Track</legend>
 		<div class="field">
-			<label class="required" for="name">Name</label>
-			<input type="text" id="name" name="name" maxlength="255" ng-model="ctrl.track.name" required/>
+			<label class="required" for="artistName">Artist name</label>
+			<input type="text" id="artistName" name="artistName" maxlength="255" ng-model="ctrl.track.artistName" required/>
+		</div>
+		<div class="field">
+			<label class="required" for="songName">Song name</label>
+			<input type="text" id="songName" name="songName" maxlength="255" ng-model="ctrl.track.songName" required/>
 		</div>
 		<div class="field">
 			<label class="required" for="song">Song</label>

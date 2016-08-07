@@ -7,24 +7,24 @@
 		<link rel="stylesheet" type="text/css" href="/muschart/css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="/muschart/css/content.css">
 		<link rel="stylesheet" type="text/css" href="/muschart/css/flash.css">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/flaticon.css">
 		<link rel="stylesheet" type="text/css" href="/muschart/css/form.css">
 		<link rel="stylesheet" type="text/css" href="/muschart/css/navbar.css">
 		<link rel="stylesheet" type="text/css" href="/muschart/css/pagination.css">
 		<script type="text/javascript" src="/muschart/webjars/angularjs/1.5.7/angular.js"></script>
 		<script type="text/javascript" src="/muschart/webjars/angularjs/1.5.7/angular-cookies.js"></script>
+		<script type="text/javascript" src="/muschart/webjars/angularjs/1.5.7/angular-sanitize.js"></script>
 		<script type="text/javascript" src="/muschart/webjars/angular-ui-router/0.3.1/release/angular-ui-router.js"></script>
 		<script type="text/javascript" src="/muschart/webjars/jquery/3.0.0/jquery.js"></script>
 		<script type="text/javascript" src="/muschart/js/amplitude.js"></script>
+		<script type="text/javascript" src="/muschart/js/autocomplete.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/app.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/amplitude.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/artist.controller.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/controller/autocomplete.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/genre.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/track.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/user.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/factory/artist.factory.js"></script>
-		<script type="text/javascript" src="/muschart/js/angular/factory/credentials.factory.js"></script>
-		<script type="text/javascript" src="/muschart/js/angular/factory/flash.factory.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/factory/genre.factory.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/factory/track.factory.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/factory/user.factory.js"></script>
@@ -32,15 +32,17 @@
 		<script type="text/javascript" src="/muschart/js/angular/other/constants.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/other/directive.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/other/run.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/service/credentials.service.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/service/file.service.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/service/flash.service.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/service/pagination.service.js"></script>
 		<base href="/">
 	</head>
 	<body>
-		<div ui-view="header"></div>
-		<div ng-class="{'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}" ng-if="flash" ng-bind="flash.message"></div>
-		<div ui-view="tool"></div>
-		<div ui-view="content"></div>
+		<div class="indent" ui-view="header"></div>
+		<div class="indent" ng-class="{'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}" ng-if="flash" ng-bind="flash.message"></div>
+		<div class="indent" ui-view="tool"></div>
+		<div class="indent" ui-view="content"></div>
 		<div class="amplitude" ng-controller="AmplitudeController" ng-show="show()">
 			<div class="progress">
 				<div class="amplitude-song-time-visualization" amplitude-single-song-time-visualization="true"></div>

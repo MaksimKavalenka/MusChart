@@ -8,7 +8,8 @@ import by.gsu.model.Track;
 
 public interface ITrackDAO extends IDAO {
 
-    void createTrack(String name, String song, String cover, Date date) throws ValidationException;
+    void createTrack(String artistName, String songName, String song, String cover, Date date)
+            throws ValidationException;
 
     Track getTrackById(long id) throws ValidationException;
 

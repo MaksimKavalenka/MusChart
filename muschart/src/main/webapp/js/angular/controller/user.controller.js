@@ -1,5 +1,5 @@
 'use strict';
-app.controller('UserController', ['$location', '$state', 'CredentialsFactory', 'FlashFactory', 'UserFactory', 'URL', function($location, $state, CredentialsFactory, FlashFactory, UserFactory, URL) {
+app.controller('UserController', ['$location', '$state', 'URL', 'UserFactory', 'CredentialsService', 'FlashService', function($location, $state, URL, UserFactory, CredentialsService, FlashService) {
 	var self = this;
 	self.user = {id: null, login: '', role: null};
 
@@ -7,17 +7,17 @@ app.controller('UserController', ['$location', '$state', 'CredentialsFactory', '
 		self.dataLoading = true;
 		UserFactory.getUser(self.user.login, self.user.password, function(response) {
 			if (response.success) {
-				CredentialsFactory.setCredentials(response.data);
-				$location.path('tracks({page:1})');
+				CredentialsService.setCredentials(response.data);
+				$location.path(URL.HOME_PAGE);
 			} else {
-				FlashFactory.error(response.message);
+				FlashService.error(response.message);
 			}
 			self.dataLoading = false;
 		});
 	};
 
 	self.logout = function() {
-		CredentialsFactory.clearCredentials();
+		CredentialsService.clearCredentials();
 		$state.reload();
 	};
 
@@ -25,10 +25,10 @@ app.controller('UserController', ['$location', '$state', 'CredentialsFactory', '
 		self.dataLoading = true;
 		UserFactory.createUser(self.user.login, self.user.password, function(response) {
 			if (response.success) {
-				CredentialsFactory.setCredentials(response);
-				$location.path('tracks({page:1})');
+				CredentialsService.setCredentials(response);
+				$location.path(URL.HOME_PAGE);
 			} else {
-				FlashFactory.error(response.message);
+				FlashService.error(response.message);
 			}
 			self.dataLoading = false;
 		});

@@ -1,5 +1,5 @@
 'use strict';
-app.factory('CredentialsFactory', ['$http', '$cookieStore', '$rootScope', function($http, $cookieStore, $rootScope) {
+app.service('CredentialsService', ['$cookieStore', '$http', '$rootScope', function($cookieStore, $http, $rootScope) {
 	return {
 
 		setCredentials: function(user) {

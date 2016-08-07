@@ -1,10 +1,10 @@
 'use strict';
-app.factory('TrackFactory', ['$http', 'DEFAULT', function($http, DEFAULT, UPLOAD_URL) {
+app.factory('TrackFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
 	var tracksUrl = DEFAULT.URL + '/tracks';
 	return {
 
-		createTrack: function(name, song, cover, date, callback) {
-			$http.post(tracksUrl + '/create/' + name + '/' + song + '/' + cover + '/' + date + DEFAULT.JSON_EXT)
+		createTrack: function(artistName, songName, song, cover, date, callback) {
+			$http.post(tracksUrl + '/create/' + artistName + '/' + songName + '/' + song + '/' + cover + '/' + date + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				response = {success: true, message: 'Track has been added successfully'};
 				callback(response);
