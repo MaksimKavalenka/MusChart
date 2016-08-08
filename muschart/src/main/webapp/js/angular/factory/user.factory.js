@@ -1,10 +1,9 @@
 'use strict';
-app.factory('UserFactory', ['$http', 'DEFAULT', 'ERROR', function($http, DEFAULT, ERROR) {
-	var userUrl = DEFAULT.URL + '/user';
+app.factory('UserFactory', ['$http', 'DEFAULT', 'ERROR', 'URL', function($http, DEFAULT, ERROR, URL) {
 	return {
 
 		createUser: function(login, password, callback) {
-			$http.post(userUrl + '/create/' + login + '/' + password + DEFAULT.JSON_EXT)
+			$http.post(URL.USER + '/create/' + login + '/' + password + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				response = {success: true};
 				callback(response);
@@ -16,7 +15,7 @@ app.factory('UserFactory', ['$http', 'DEFAULT', 'ERROR', function($http, DEFAULT
 		},
 
 		getUser: function(login, password, callback) {
-			$http.post(userUrl + '/' + login + '/' + password + DEFAULT.JSON_EXT)
+			$http.post(URL.USER + '/' + login + '/' + password + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				var data = {success: true, data: response};
 				callback(data);
@@ -28,7 +27,7 @@ app.factory('UserFactory', ['$http', 'DEFAULT', 'ERROR', function($http, DEFAULT
 		},
 
 		getUserByLogin: function(login, callback) {
-			$http.post(userUrl + '/' + login + DEFAULT.JSON_EXT)
+			$http.post(URL.USER + '/' + login + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				if (response != '') {
 					response = {success: true};

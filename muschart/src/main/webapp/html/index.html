@@ -19,11 +19,14 @@
 		<script type="text/javascript" src="/muschart/js/autocomplete.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/app.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/amplitude.controller.js"></script>
-		<script type="text/javascript" src="/muschart/js/angular/controller/artist.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/autocomplete.controller.js"></script>
-		<script type="text/javascript" src="/muschart/js/angular/controller/genre.controller.js"></script>
-		<script type="text/javascript" src="/muschart/js/angular/controller/track.controller.js"></script>
-		<script type="text/javascript" src="/muschart/js/angular/controller/user.controller.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/controller/user.edit.controller.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/controller/artist/artist.controller.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/controller/artist/artist.edit.controller.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/controller/genre/genre.controller.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/controller/genre/genre.edit.controller.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/controller/track/track.controller.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/controller/track/track.edit.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/factory/artist.factory.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/factory/genre.factory.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/factory/track.factory.js"></script>
@@ -32,6 +35,7 @@
 		<script type="text/javascript" src="/muschart/js/angular/other/constants.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/other/directive.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/other/run.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/service/choice.service.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/service/credentials.service.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/service/file.service.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/service/flash.service.js"></script>
@@ -42,7 +46,8 @@
 		<div class="indent" ui-view="header"></div>
 		<div class="indent" ng-class="{'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}" ng-if="flash" ng-bind="flash.message"></div>
 		<div class="indent" ui-view="tool"></div>
-		<div class="indent" ui-view="content"></div>
+		<div class="indent flex" ui-view="content"></div>
+		<div class="indent" ui-view="footer"></div>
 		<div class="amplitude" ng-controller="AmplitudeController" ng-show="show()">
 			<div class="progress">
 				<div class="amplitude-song-time-visualization" amplitude-single-song-time-visualization="true"></div>

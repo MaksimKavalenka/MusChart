@@ -3,6 +3,9 @@
 	color: #ffffff;
 	padding: 11px 23px;
 }
+.btn-input {
+	padding: 9px 16px;
+}
 .btn-search {
 	margin-left: -5px;
 }

@@ -1,10 +1,9 @@
 'use strict';
-app.factory('GenreFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
-	var genresUrl = DEFAULT.URL + '/genres';
+app.factory('GenreFactory', ['$http', 'DEFAULT', 'URL', function($http, DEFAULT, URL) {
 	return {
 
 		createGenre: function(name, callback) {
-			$http.post(genresUrl + '/create/' + name + DEFAULT.JSON_EXT)
+			$http.post(URL.GENRES + '/create/' + name + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				response = {success: true, message: 'Genre has been added successfully'};
 				callback(response);
@@ -16,7 +15,7 @@ app.factory('GenreFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
 		},
 
 		getGenresByIds: function(idFrom, idTo, callback) {
-			return $http.get(genresUrl + '/' + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
+			return $http.get(URL.GENRES + '/' + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				var data = {success: true, data: response};
 				callback(data);
@@ -28,7 +27,7 @@ app.factory('GenreFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
 		},
 
 		deleteGenre: function(id, callback) {
-			return $http.delete(genresUrl + '/delete/' + id + DEFAULT.JSON_EXT)
+			return $http.delete(URL.GENRES + '/delete/' + id + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				response = {success: true, message: 'Genre has been deleted successfully'};
 				callback(data);

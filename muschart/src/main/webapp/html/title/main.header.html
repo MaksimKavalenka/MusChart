@@ -5,8 +5,12 @@
 		<li><a ui-sref="genres({page:1})">Genres</a>
 	</ul>
 	<form class="form-search" role="search">
-		<input type="text" placeholder="Search"/>
-		<button type="submit" class="btn btn-search btn-default">Submit</button>
+		<div ng-controller="mainCtrl">
+			<div mass-autocomplete>
+				<input type="text" class="input-search form-control ng-isolate-scope ng-valid ng-dirty" placeholder="Search" ng-model="dirty.state_simple" placeholder="Select a state" mass-autocomplete-item="autocomplete_options" autocomplete="off">
+			</div>
+		</div>
+		<button type="submit" class="btn btn-default btn-search">Submit</button>
 	</form>
 	<ul class="navigation">
 		<li ng-show="globals.user.role == 'ADMIN'"><a ui-sref="tracks/add">Edit</a>

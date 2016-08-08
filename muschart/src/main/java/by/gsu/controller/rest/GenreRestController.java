@@ -46,6 +46,20 @@ public class GenreRestController {
         }
     }
 
+    @RequestMapping(value = GENRES_PATH
+            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Genre>> getAllGenres() {
+        try (IGenreDAO genreDAO = GenreFactory.getEditor()) {
+            List<Genre> genres = genreDAO.getAllGenres();
+            if (genres == null) {
+                return new ResponseEntity<List<Genre>>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<List<Genre>>(genres, HttpStatus.OK);
+        } catch (ValidationException e) {
+            return new ResponseEntity<List<Genre>>(HttpStatus.CONFLICT);
+        }
+    }
+
     @RequestMapping(value = GENRES_PATH + "/delete/{id}" + JSON_EXT, method = RequestMethod.DELETE)
     public ResponseEntity<Genre> deleteGenreById(@PathVariable("id") final long id) {
         try (IGenreDAO genreDAO = GenreFactory.getEditor()) {

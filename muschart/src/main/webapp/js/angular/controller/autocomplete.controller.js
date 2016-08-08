@@ -1,22 +1,24 @@
 'use strict';
-app.controller('AutocompleteController', ['$scope', function($scope) {
-	$scope.dirty = {};
-	var states = [];
+app.controller('mainCtrl', function ($scope, $sce, $q) {
+	  $scope.dirty = {};
 
-	autocomplete = function(term) {
-		var ix = term.lastIndexOf(','),
-		lhs = term.substring(0, ix + 1),
-		rhs = term.substring(ix + 1),
-		suggestions = states(rhs);
+	  var states = ['Alabama', 'Alaska', 'California'];
 
-		suggestions.forEach(function(s) {
-			s.value = lhs + s.value;
-		});
+	  function suggest_state(term) {
+	    var q = term.toLowerCase().trim();
+	    var results = [];
 
-		return suggestions;
-	};
+	    // Find first 10 states that start with `term`.
+	    for (var i = 0; i < states.length && results.length < 10; i++) {
+	      var state = states[i];
+	      if (state.toLowerCase().indexOf(q) === 0)
+	        results.push({ label: state, value: state });
+	    }
 
-	$scope.ac_option_delimited = {
-		suggest: suggest_state_delimited
-	};
-}]);
+	    return results;
+	  }
+
+	  $scope.autocomplete_options = {
+	    suggest: suggest_state
+	  };
+	});

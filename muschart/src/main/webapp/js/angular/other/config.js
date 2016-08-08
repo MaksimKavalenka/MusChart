@@ -2,10 +2,10 @@
 app.config(['$locationProvider', function($locationProvider) {
 	$locationProvider.html5Mode(true);
 }]);
-app.config(['$stateProvider', '$urlRouterProvider', 'PATH', 'URL', function($stateProvider, $urlRouterProvider, PATH, URL) {
+app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'DEFAULT', 'PATH', 'STATE', 'URL', function($stateProvider, $urlRouterProvider, CONTROLLER, DEFAULT, PATH, STATE, URL) {
 	var mainHeader = {
-		controller: 'UserController',
-		controllerAs: 'ctrl',
+		controller: CONTROLLER.USER_EDIT_CONTROLLER,
+		controllerAs: DEFAULT.CONTROLLER_NAME,
 		templateUrl: PATH.MAIN_HEADER
 	}
 	var authenticationHeader = {
@@ -14,106 +14,112 @@ app.config(['$stateProvider', '$urlRouterProvider', 'PATH', 'URL', function($sta
 	var editHeader = {
 		templateUrl: PATH.EDIT_HEADER
 	}
+	var footer = {
+			templateUrl: PATH.FOOTER
+		}
 	$stateProvider
-	.state('login', {
+	.state(STATE.LOGIN, {
 		url: URL.LOGIN,
 		views: {
 			header: authenticationHeader,
 			content: {
-				controller: 'UserController',
-				controllerAs: 'ctrl',
+				controller: CONTROLLER.USER_EDIT_CONTROLLER,
+				controllerAs: DEFAULT.CONTROLLER_NAME,
 				templateUrl: PATH.LOGIN_FORM
 			}
 		}
 	})
-	.state('register', {
+	.state(STATE.REGISTER, {
 		url: URL.REGISTER,
 		views: {
 			header: authenticationHeader,
 			content: {
-				controller: 'UserController',
-				controllerAs: 'ctrl',
+				controller: CONTROLLER.USER_EDIT_CONTROLLER,
+				controllerAs: DEFAULT.CONTROLLER_NAME,
 				templateUrl: PATH.REGISTER_FORM
 			}
 		}
 	})
-	.state('artists', {
+	.state(STATE.ARTISTS, {
 		url: URL.ARTISTS + URL.PATTERN_PAGE,
 		views: {
 			header: mainHeader,
 			tool: {
-				controller: 'ArtistController',
-				controllerAs: 'ctrl',
+				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controllerAs: DEFAULT.CONTROLLER_NAME,
 				templateUrl: PATH.PAGINATION_TOOL
 			},
 			content: {
-				controller: 'ArtistController',
-				controllerAs: 'ctrl',
+				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controllerAs: DEFAULT.CONTROLLER_NAME,
 				templateUrl: PATH.ARTIST_CONTENT
-			}
+			},
+			footer: footer
 		}
 	})
-	.state('genres', {
+	.state(STATE.GENRES, {
 		url: URL.GENRES + URL.PATTERN_PAGE,
 		views: {
 			header: mainHeader,
 			tool: {
-				controller: 'GenreController',
-				controllerAs: 'ctrl',
+				controller: CONTROLLER.GENRE_CONTROLLER,
+				controllerAs: DEFAULT.CONTROLLER_NAME,
 				templateUrl: PATH.PAGINATION_TOOL
 			},
 			content: {
-				controller: 'GenreController',
-				controllerAs: 'ctrl',
+				controller: CONTROLLER.GENRE_CONTROLLER,
+				controllerAs: DEFAULT.CONTROLLER_NAME,
 				templateUrl: PATH.GENRE_CONTENT
-			}
+			},
+			footer: footer
 		}
 	})
-	.state('tracks', {
+	.state(STATE.TRACKS, {
 		url: URL.TRACKS + URL.PATTERN_PAGE,
 		views: {
 			header: mainHeader,
 			tool: {
-				controller: 'TrackController',
-				controllerAs: 'ctrl',
+				controller: CONTROLLER.TRACK_CONTROLLER,
+				controllerAs: DEFAULT.CONTROLLER_NAME,
 				templateUrl: PATH.PAGINATION_TOOL
 			},
 			content: {
-				controller: 'TrackController',
-				controllerAs: 'ctrl',
+				controller: CONTROLLER.TRACK_CONTROLLER,
+				controllerAs: DEFAULT.CONTROLLER_NAME,
 				templateUrl: PATH.TRACK_CONTENT
-			}
+			},
+			footer: footer
 		}
 	})
-	.state('artists/add', {
+	.state(STATE.ARTISTS_ADD, {
 		url: URL.ARTISTS_ADD,
 		views: {
 			header: editHeader,
 			content: {
-				controller: 'ArtistController',
-				controllerAs: 'ctrl',
+				controller: CONTROLLER.ARTIST_EDIT_CONTROLLER,
+				controllerAs: DEFAULT.CONTROLLER_NAME,
 				templateUrl: PATH.ARTIST_EDIT_FORM
 			}
 		}
 	})
-	.state('genres/add', {
+	.state(STATE.GENRES_ADD, {
 		url: URL.GENRES_ADD,
 		views: {
 			header: editHeader,
 			content: {
-				controller: 'GenreController',
-				controllerAs: 'ctrl',
+				controller: CONTROLLER.GENRE_EDIT_CONTROLLER,
+				controllerAs: DEFAULT.CONTROLLER_NAME,
 				templateUrl: PATH.GENRE_EDIT_FORM
 			}
 		}
 	})
-	.state('tracks/add', {
+	.state(STATE.TRACKS_ADD, {
 		url: URL.TRACKS_ADD,
 		views: {
 			header: editHeader,
 			content: {
-				controller: 'TrackController',
-				controllerAs: 'ctrl',
+				controller: CONTROLLER.TRACK_EDIT_CONTROLLER,
+				controllerAs: DEFAULT.CONTROLLER_NAME,
 				templateUrl: PATH.TRACK_EDIT_FORM
 			}
 		}

@@ -1,5 +1,5 @@
 'use strict';
-app.controller('UserController', ['$location', '$state', 'URL', 'UserFactory', 'CredentialsService', 'FlashService', function($location, $state, URL, UserFactory, CredentialsService, FlashService) {
+app.controller('UserEditController', ['$location', '$state', 'URL', 'UserFactory', 'CredentialsService', 'FlashService', function($location, $state, URL, UserFactory, CredentialsService, FlashService) {
 	var self = this;
 	self.user = {id: null, login: '', role: null};
 

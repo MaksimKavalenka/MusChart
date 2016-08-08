@@ -1,4 +1,6 @@
 body {
+	display: flex;
+	flex-flow: column;
 	height: 100%;
 	margin: 0;
 	width: 100%;
@@ -9,6 +11,16 @@ body {
 .justify {
 	display: flex;
 	justify-content: space-between;
+}
+.flex {
+	flex: 1;
+}
+.footer {
+	margin-bottom: 80px;
+	text-align: center;
+}
+.footer > hr {
+	color: #3e3e3e;
 }
 .container {
 	height: 100%;

@@ -1,10 +1,9 @@
 'use strict';
-app.factory('ArtistFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
-	var artistsUrl = DEFAULT.URL + '/artists';
+app.factory('ArtistFactory', ['$http', 'DEFAULT', 'URL', function($http, DEFAULT, URL) {
 	return {
 
 		createArtist: function(name, photo, callback) {
-			$http.post(artistsUrl + '/create/' + name + '/' + photo + DEFAULT.JSON_EXT)
+			$http.post(URL.ARTISTS + '/create/' + name + '/' + photo + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				response = {success: true, message: 'Artist has been added successfully'};
 				callback(response);
@@ -16,7 +15,7 @@ app.factory('ArtistFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
 		},
 
 		getArtistsByIds: function(idFrom, idTo, callback) {
-			return $http.get(artistsUrl + '/' + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
+			return $http.get(URL.ARTISTS + '/' + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				var data = {success: true, data: response};
 				callback(data);
@@ -28,7 +27,7 @@ app.factory('ArtistFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
 		},
 
 		deleteArtist: function(id, callback) {
-			return $http.delete(artistsUrl + '/delete/' + id + DEFAULT.JSON_EXT)
+			return $http.delete(URL.ARTISTS + '/delete/' + id + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				response = {success: true, message: 'Artist has been deleted successfully'};
 				callback(data);

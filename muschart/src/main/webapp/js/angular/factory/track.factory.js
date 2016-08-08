@@ -1,10 +1,9 @@
 'use strict';
-app.factory('TrackFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
-	var tracksUrl = DEFAULT.URL + '/tracks';
+app.factory('TrackFactory', ['$http', 'DEFAULT', 'URL', function($http, DEFAULT, URL) {
 	return {
 
 		createTrack: function(artistName, songName, song, cover, date, callback) {
-			$http.post(tracksUrl + '/create/' + artistName + '/' + songName + '/' + song + '/' + cover + '/' + date + DEFAULT.JSON_EXT)
+			$http.post(URL.TRACKS + '/create/' + artistName + '/' + songName + '/' + song + '/' + cover + '/' + date + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				response = {success: true, message: 'Track has been added successfully'};
 				callback(response);
@@ -16,7 +15,7 @@ app.factory('TrackFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
 		},
 
 		getTracksByIdsAsc: function(idFrom, idTo, callback) {
-			return $http.get(tracksUrl + '/id/asc/' + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
+			return $http.get(URL.TRACKS + '/id/asc/' + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				var data = {success: true, data: response};
 				callback(data);
@@ -28,7 +27,7 @@ app.factory('TrackFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
 		},
 
 		getTracksByIdsDesc: function(idFrom, idTo, callback) {
-			return $http.get(tracksUrl + '/id/desc/' + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
+			return $http.get(URL.TRACKS + '/id/desc/' + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				var data = {success: true, data: response};
 				callback(data);
@@ -40,7 +39,7 @@ app.factory('TrackFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
 		},
 
 		getAmplitudeTracksByIdsAsc: function(idFrom, idTo, callback) {
-			return $http.get(tracksUrl + "/id/asc/amplitude/" + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
+			return $http.get(URL.TRACKS + "/id/asc/amplitude/" + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				var data = {success: true, data: response};
 				callback(data);
@@ -52,7 +51,7 @@ app.factory('TrackFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
 		},
 
 		getAmplitudeTracksByIdsDesc: function(idFrom, idTo, callback) {
-			return $http.get(tracksUrl + "/id/desc/amplitude/" + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
+			return $http.get(URL.TRACKS + "/id/desc/amplitude/" + idFrom + '/' + idTo + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				var data = {success: true, data: response};
 				callback(data);
@@ -64,7 +63,7 @@ app.factory('TrackFactory', ['$http', 'DEFAULT', function($http, DEFAULT) {
 		},
 
 		deleteTrack: function(id, callback) {
-			return $http.delete(tracksUrl + '/delete/' + id + DEFAULT.JSON_EXT)
+			return $http.delete(URL.TRACKS + '/delete/' + id + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				response = {success: true, message: 'Track has been deleted successfully'};
 				callback(data);

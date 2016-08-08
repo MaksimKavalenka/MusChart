@@ -1,17 +1,21 @@
 'use strict';
+app.constant('CONTROLLER', {
+	'ARTIST_CONTROLLER': 'ArtistController',
+	'ARTIST_EDIT_CONTROLLER': 'ArtistEditController',
+	'GENRE_CONTROLLER': 'GenreController',
+	'GENRE_EDIT_CONTROLLER': 'GenreEditController',
+	'TRACK_CONTROLLER': 'TrackController',
+	'TRACK_EDIT_CONTROLLER': 'TrackEditController',
+	'USER_EDIT_CONTROLLER': 'UserEditController'
+});
 app.constant('DEFAULT', {
+	'CONTROLLER_NAME': 'ctrl',
 	'COUNT': '15',
-	'JSON_EXT': '.json',
-	'URL': 'http://localhost:8080/muschart'
+	'JSON_EXT': '.json'
 });
 app.constant('ERROR', {
 	'AUTHENTICATION': 'Login or password is wrong',
 	'TAKEN_LOGIN': 'This login is already taken'
-});
-app.constant('TYPE', {
-	'COVER': 'cover',
-	'PHOTO': 'photo',
-	'SONG': 'song'
 });
 app.constant('PATH', (function() {
 	var path = 'muschart/html';
@@ -32,9 +36,31 @@ app.constant('PATH', (function() {
 		AUTHENTICATION_HEADER: titlePath + '/authentication.header' + htmlExt,
 		EDIT_HEADER: titlePath + '/edit.header' + htmlExt,
 		MAIN_HEADER: titlePath + '/main.header' + htmlExt,
+		FOOTER: titlePath + '/footer' + htmlExt,
 		PAGINATION_TOOL: toolPath + '/pagination' + htmlExt
 	}
 })());
+app.constant('STATE', (function() {
+	var artists = 'artists';
+	var genres = 'genres';
+	var tracks = 'tracks';
+	var addOperation = '/add';
+	return {
+		LOGIN: 'login',
+		REGISTER: 'register',
+		ARTISTS: artists,
+		GENRES: genres,
+		TRACKS: tracks,
+		ARTISTS_ADD: artists + addOperation,
+		GENRES_ADD: genres + addOperation,
+		TRACKS_ADD: tracks + addOperation
+	}
+})());
+app.constant('TYPE', {
+	'COVER': 'cover',
+	'PHOTO': 'photo',
+	'SONG': 'song'
+});
 app.constant('URL', (function() {
 	var url = '/muschart';
 	var artistsUrl = url + '/artists';
@@ -46,6 +72,7 @@ app.constant('URL', (function() {
 		HOME_PAGE: tracksUrl + pageOperation + '/1',
 		LOGIN: url + '/login',
 		REGISTER: url + '/register',
+		USER: url + '/user',
 		ARTISTS: artistsUrl,
 		GENRES: genresUrl,
 		TRACKS: tracksUrl,

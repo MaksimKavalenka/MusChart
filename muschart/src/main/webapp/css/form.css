@@ -1,10 +1,10 @@
 .form-search {
 	margin: 0 16px;
 }
-.form-search > * {
+.form-search * {
 	display: inline;
 }
-.form-search > input {
+.form-search .input-search {
 	padding: 9px;
 }
 .form-submit {
@@ -32,10 +32,12 @@
 	font-weight: 600;
 	margin: 7px 0;
 }
-.form-submit .field input {
+.form-submit .field input,
+.form-submit .field select {
 	border: 1px solid #aaaaaa;
+	margin: 5px 0;
 	padding: 7px;
-	width: 800px;
+	width: 400px;
 }
 .form-submit .field span {
 	color: #ff0000;

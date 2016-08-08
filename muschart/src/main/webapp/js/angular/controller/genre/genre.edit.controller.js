@@ -1,5 +1,5 @@
 'use strict';
-app.controller('GenreController', ['$scope', '$stateParams', 'DEFAULT', 'GenreFactory', 'FlashService', 'PaginationService', function($scope, $stateParams, DEFAULT, GenreFactory, FlashService, PaginationService) {
+app.controller('GenreEditController', ['$scope', 'GenreFactory', 'FlashService', function($scope, GenreFactory, FlashService) {
 	var self = this;
 	self.genre = {id: null, name: '', rating: null};
 	self.genres = [];
@@ -16,8 +16,8 @@ app.controller('GenreController', ['$scope', '$stateParams', 'DEFAULT', 'GenreFa
 		});
 	};
 
-	self.getGenresByIds = function(idFrom, idTo) {
-		GenreFactory.getGenresByIds(idFrom, idTo, function(response) {
+	self.getAllGenres = function() {
+		GenreFactory.getAllGenres(function(response) {
 			if (response.success) {
 				self.genres = response.data;
 			} else {
@@ -36,16 +36,9 @@ app.controller('GenreController', ['$scope', '$stateParams', 'DEFAULT', 'GenreFa
 		});
 	};
 
-	self.getGenresByPage = function(page) {
-		self.getGenresByIds(DEFAULT.COUNT * (page - 1) + 1, DEFAULT.COUNT * page);
-		PaginationService.getPages(page, 'genres');
-	};
-
 	self.reset = function() {
 		self.genre = {id: null, name: '', rating: null};
 		$scope.form.$setPristine();
 	};
-
-	self.getGenresByPage($stateParams.page);
 
 }]);
