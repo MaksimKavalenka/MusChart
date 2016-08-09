@@ -73,6 +73,7 @@ app.constant('URL', (function() {
 		LOGIN: url + '/login',
 		REGISTER: url + '/register',
 		USER: url + '/user',
+		UPLOAD: url + '/upload',
 		ARTISTS: artistsUrl,
 		GENRES: genresUrl,
 		TRACKS: tracksUrl,

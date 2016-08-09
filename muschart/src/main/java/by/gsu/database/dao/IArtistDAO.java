@@ -4,10 +4,11 @@ import java.util.List;
 
 import by.gsu.exception.ValidationException;
 import by.gsu.model.Artist;
+import by.gsu.model.Genre;
 
 public interface IArtistDAO extends IDAO {
 
-    void createArtist(String name, String photo) throws ValidationException;
+    void createArtist(String name, String photo, List<Genre> genres) throws ValidationException;
 
     Artist getArtistById(long id) throws ValidationException;
 

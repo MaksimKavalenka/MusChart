@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import by.gsu.exception.ValidationException;
+import by.gsu.model.Artist;
+import by.gsu.model.Genre;
 import by.gsu.model.Track;
 
 public interface ITrackDAO extends IDAO {
 
-    void createTrack(String artistName, String songName, String song, String cover, Date date)
-            throws ValidationException;
+    void createTrack(String songName, String song, String cover, String castName,
+            List<Artist> artists, List<Genre> genres, Date date) throws ValidationException;
 
     Track getTrackById(long id) throws ValidationException;
 

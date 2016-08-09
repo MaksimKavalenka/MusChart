@@ -16,16 +16,6 @@ app.controller('GenreEditController', ['$scope', 'GenreFactory', 'FlashService',
 		});
 	};
 
-	self.getAllGenres = function() {
-		GenreFactory.getAllGenres(function(response) {
-			if (response.success) {
-				self.genres = response.data;
-			} else {
-				FlashService.error(response.message);
-			}
-		});
-	};
-
 	self.deleteGenre = function(id) {
 		GenreFactory.deleteGenre(id, function(response) {
 			if (response.success) {

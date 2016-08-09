@@ -8,8 +8,6 @@ import static by.gsu.constants.UploadConstants.Path.TRACK_COVER_UPLOAD_PATH;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,22 +21,22 @@ import by.gsu.exception.ValidationException;
 import by.gsu.factory.TrackFactory;
 import by.gsu.model.Track;
 import by.gsu.parser.AmplitudeJsonParser;
+import by.gsu.parser.ModelJsonParser;
 
 @RestController
 public class TrackRestController {
 
-    @RequestMapping(value = TRACKS_PATH + "/create/{artistName}/{songName}/{song}/{cover}/{date}"
+    @RequestMapping(value = TRACKS_PATH
+            + "/create/{songName}/{song}/{cover}/{artists}/{genres}/{date}"
             + JSON_EXT, method = RequestMethod.POST)
-    public ResponseEntity<Void> createTrack(final HttpServletRequest request,
-            @PathVariable("artistName") final String artistName,
-            @PathVariable("songName") final String songName,
+    public ResponseEntity<Void> createTrack(@PathVariable("songName") final String songName,
             @PathVariable("song") final String song, @PathVariable("cover") final String cover,
-            @PathVariable("date") final Date date) {
+            @PathVariable("artists") final String artists,
+            @PathVariable("genres") final String genres, @PathVariable("date") final Date date) {
         try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
-            System.out.println(song);
-            System.out.println(cover);
-            trackDAO.createTrack(artistName, songName, AUDIO_UPLOAD_PATH + "/" + song,
-                    TRACK_COVER_UPLOAD_PATH + "/" + cover, date);
+            trackDAO.createTrack(songName, AUDIO_UPLOAD_PATH + "/" + song,
+                    TRACK_COVER_UPLOAD_PATH + "/" + cover, ModelJsonParser.getCastName(artists),
+                    ModelJsonParser.getArtists(artists), ModelJsonParser.getGenres(genres), date);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (ValidationException e) {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);

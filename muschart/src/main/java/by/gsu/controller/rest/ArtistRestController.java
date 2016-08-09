@@ -2,6 +2,7 @@ package by.gsu.controller.rest;
 
 import static by.gsu.constants.RestConstants.JSON_EXT;
 import static by.gsu.constants.RestConstants.ARTISTS_PATH;
+import static by.gsu.constants.UploadConstants.Path.ARTIST_PHOTO_UPLOAD_PATH;
 
 import java.util.List;
 
@@ -17,19 +18,36 @@ import by.gsu.database.dao.IArtistDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.factory.ArtistFactory;
 import by.gsu.model.Artist;
+import by.gsu.parser.ModelJsonParser;
 
 @RestController
 public class ArtistRestController {
 
-    @RequestMapping(value = ARTISTS_PATH + "/create/{name}/{photo}"
+    @RequestMapping(value = ARTISTS_PATH + "/create/{name}/{photo}/{genres}"
             + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<Void> createArtist(@PathVariable("name") final String name,
-            @PathVariable("photo") final String photo) {
+            @PathVariable("photo") final String photo,
+            @PathVariable("genres") final String genres) {
         try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
-            artistDAO.createArtist(name, photo);
+            artistDAO.createArtist(name, ARTIST_PHOTO_UPLOAD_PATH + "/" + photo,
+                    ModelJsonParser.getGenres(genres));
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (ValidationException e) {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
+    }
+
+    @RequestMapping(value = ARTISTS_PATH
+            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Artist>> getAllArtists() {
+        try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
+            List<Artist> artists = artistDAO.getAllArtists();
+            if (artists == null) {
+                return new ResponseEntity<List<Artist>>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<List<Artist>>(artists, HttpStatus.OK);
+        } catch (ValidationException e) {
+            return new ResponseEntity<List<Artist>>(HttpStatus.CONFLICT);
         }
     }
 

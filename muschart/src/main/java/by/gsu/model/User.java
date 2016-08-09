@@ -32,32 +32,26 @@ public class User extends Model {
     @Enumerated(EnumType.ORDINAL)
     private Role              role;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.PERSIST}, targetEntity = Track.class)
     @JoinTable(name = "user_track", joinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false))
-    @JsonIgnore
     private List<Track>       tracks;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.PERSIST}, targetEntity = Artist.class)
     @JoinTable(name = "user_artist", joinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false))
-    @JsonIgnore
     private List<Artist>      artists;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.PERSIST}, targetEntity = Genre.class)
     @JoinTable(name = "user_genre", joinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false))
-    @JsonIgnore
     private List<Genre>       genres;
 
     public User() {
         super();
-    }
-
-    public User(final long id, final String login, final Role role) {
-        super(id);
-        this.login = login;
-        this.role = role;
     }
 
     public String getLogin() {

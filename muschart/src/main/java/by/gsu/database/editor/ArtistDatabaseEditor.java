@@ -5,12 +5,16 @@ import static by.gsu.constants.StructureConstants.ArtistColumns;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import by.gsu.constants.StructureConstants;
 import by.gsu.database.dao.IArtistDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.model.Artist;
+import by.gsu.model.Genre;
 
 public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
 
@@ -19,10 +23,12 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
     }
 
     @Override
-    public void createArtist(final String name, final String photo) throws ValidationException {
+    public void createArtist(final String name, final String photo, final List<Genre> genres)
+            throws ValidationException {
         Artist artist = new Artist();
         artist.setName(name);
         artist.setPhoto(photo);
+        artist.setGenres(genres);
         save(artist);
     }
 
@@ -41,7 +47,9 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
     @SuppressWarnings("unchecked")
     @Override
     public List<Artist> getAllArtists() {
-        return session.createCriteria(Artist.class).list();
+        Criteria criteria = session.createCriteria(Artist.class);
+        criteria.addOrder(Order.asc(StructureConstants.ArtistColumns.NAME));
+        return criteria.list();
     }
 
     @Override

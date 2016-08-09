@@ -5,9 +5,12 @@ import static by.gsu.constants.StructureConstants.GenreColumns;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import by.gsu.constants.StructureConstants;
 import by.gsu.database.dao.IGenreDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.model.Genre;
@@ -40,7 +43,9 @@ public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
     @SuppressWarnings("unchecked")
     @Override
     public List<Genre> getAllGenres() {
-        return session.createCriteria(Genre.class).list();
+        Criteria criteria = session.createCriteria(Genre.class);
+        criteria.addOrder(Order.asc(StructureConstants.GenreColumns.NAME));
+        return criteria.list();
     }
 
     @Override

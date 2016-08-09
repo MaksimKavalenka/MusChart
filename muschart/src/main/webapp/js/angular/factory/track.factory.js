@@ -2,8 +2,8 @@
 app.factory('TrackFactory', ['$http', 'DEFAULT', 'URL', function($http, DEFAULT, URL) {
 	return {
 
-		createTrack: function(artistName, songName, song, cover, date, callback) {
-			$http.post(URL.TRACKS + '/create/' + artistName + '/' + songName + '/' + song + '/' + cover + '/' + date + DEFAULT.JSON_EXT)
+		createTrack: function(songName, song, cover, artists, genres, date, callback) {
+			$http.post(URL.TRACKS + '/create/' + songName + '/' + song + '/' + cover + '/' + artists + '/' + genres + '/' + date + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				response = {success: true, message: 'Track has been added successfully'};
 				callback(response);

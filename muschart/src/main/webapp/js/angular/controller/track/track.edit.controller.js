@@ -1,7 +1,21 @@
 'use strict';
-app.controller('TrackEditController', ['$scope', 'TYPE', 'TrackFactory', 'FileService', 'FlashService', function($scope, TYPE, TrackFactory, FileService, FlashService) {
+app.controller('TrackEditController', ['$scope', 'TYPE', 'TrackFactory', 'ChoiceService', 'FileService', 'FlashService', function($scope, TYPE, TrackFactory, ChoiceService, FileService, FlashService) {
 	var self = this;
 	self.track = {id: null, artistName: '', songName: '', song: '', cover: '', date: '', rating: null};
+
+	self.init = function() {
+		ChoiceService.reset();
+		ChoiceService.getAllArtists(function(response) {
+			if (!response.success) {
+				FlashService.error(response.message);
+			}
+		});
+		ChoiceService.getAllGenres(function(response) {
+			if (!response.success) {
+				FlashService.error(response.message);
+			}
+		});
+	};
 
 	self.createTrack = function() {
 		self.dataLoading = true;
@@ -20,7 +34,7 @@ app.controller('TrackEditController', ['$scope', 'TYPE', 'TrackFactory', 'FileSe
 			}
 		});
 		if (songFlag && coverFlag) {
-			TrackFactory.createTrack(self.track.artistName, self.track.songName, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), self.track.date, function(response) {
+			TrackFactory.createTrack(self.track.songName, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), $scope.artistsChoice, $scope.genresChoice, self.track.date, function(response) {
 				if (response.success) {
 					FlashService.success(response.message);
 				} else {
@@ -45,5 +59,7 @@ app.controller('TrackEditController', ['$scope', 'TYPE', 'TrackFactory', 'FileSe
 		self.track = {id: null, name: '', song: '', cover: '', date: '', rating: null};
 		$scope.form.$setPristine();
 	};
+
+	self.init();
 
 }]);

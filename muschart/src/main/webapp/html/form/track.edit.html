@@ -1,9 +1,16 @@
-<form method="POST" class="form-submit form-validation" name="form" ng-submit="ctrl.createTrack()">
+<form method="POST" class="form-submit form-validation" name="form">
 	<fieldset>
 		<legend>Track</legend>
 		<div class="field">
-			<label class="required" for="artistName">Artist name</label>
-			<input type="text" id="artistName" name="artistName" maxlength="255" ng-model="ctrl.track.artistName" required/>
+			<label class="required">Artist</label>
+			<div ng-repeat="artistChoice in artistsChoice">
+				<input type="text" placeholder="Union" maxlength="255" ng-model="artistChoice.cast_name" ng-hide="$first" required/>
+				<select ng-model="artistChoice.id" required>
+					<option ng-repeat="artist in artists" value="{{artist.id}}">{{artist.name}}</option>
+				</select>
+				<button class="btn btn-danger btn-input" ng-click="removeArtistChoice(artistChoice.index)">Remove artist</button>
+			</div>
+			<button class="btn btn-default btn-input" ng-click="addArtistChoice()">Add artist</button>
 		</div>
 		<div class="field">
 			<label class="required" for="songName">Song name</label>
@@ -18,12 +25,25 @@
 			<input type="file" id="cover" name="cover" ng-model="ctrl.track.cover" file-model="coverFile" required file-required/>
 		</div>
 		<div class="field">
+			<label class="required">Genre</label>
+			<div ng-repeat="genreChoice in genresChoice">
+				<select ng-model="genreChoice.id" required>
+					<option ng-repeat="genre in genres" value="{{genre.id}}">{{genre.name}}</option>
+				</select>
+				<button class="btn btn-danger btn-input" ng-click="removeGenreChoice(genreChoice.index)">Remove genre</button>
+			</div>
+			<button class="btn btn-default btn-input" ng-click="addGenreChoice()">Add genre</button>
+		</div>
+		<div class="field">
 			<label class="required" for="date">Date</label>
 			<input type="date" id="date" name="date" ng-model="ctrl.track.date" required/>
 		</div>
 		<div>
-			<button type="submit" class="btn btn-success" ng-disabled="form.$invalid || ctrl.dataLoading">Submit</button>
+			<button type="submit" class="btn btn-success" ng-click="ctrl.createTrack()" ng-disabled="form.$invalid || ctrl.dataLoading">Submit</button>
 			<img ng-if="ctrl.dataLoading" src="/muschart/img/load.gif"/>
 		</div>
 	</fieldset>
+	      <div>
+      {{ artistsChoice }}
+   </div>
 </form>

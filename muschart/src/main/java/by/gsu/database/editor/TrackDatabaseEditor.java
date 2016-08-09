@@ -10,6 +10,8 @@ import org.hibernate.HibernateException;
 
 import by.gsu.database.dao.ITrackDAO;
 import by.gsu.exception.ValidationException;
+import by.gsu.model.Artist;
+import by.gsu.model.Genre;
 import by.gsu.model.Track;
 
 public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
@@ -19,13 +21,16 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
     }
 
     @Override
-    public void createTrack(final String artistName, final String songName, final String song,
-            final String cover, final Date date) throws ValidationException {
+    public void createTrack(final String songName, final String song, final String cover,
+            final String castName, final List<Artist> artists, final List<Genre> genres,
+            final Date date) throws ValidationException {
         Track track = new Track();
-        track.setArtistName(artistName);
         track.setSongName(songName);
         track.setSong(song);
         track.setCover(cover);
+        track.setCastName(castName);
+        track.setArtists(artists);
+        track.setGenres(genres);
         track.setDate(date);
         save(track);
     }
