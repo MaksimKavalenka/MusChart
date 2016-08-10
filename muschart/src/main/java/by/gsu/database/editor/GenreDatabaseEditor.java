@@ -33,15 +33,15 @@ public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
         return (Genre) session.get(Genre.class, id);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
+    @SuppressWarnings("unchecked")
     public List<Genre> getGenresByIds(final long idFrom, final long idTo) {
         return session.createCriteria(Genre.class)
                 .add(Restrictions.between(GenreColumns.ID, idFrom, idTo)).list();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
+    @SuppressWarnings("unchecked")
     public List<Genre> getAllGenres() {
         Criteria criteria = session.createCriteria(Genre.class);
         criteria.addOrder(Order.asc(StructureConstants.GenreColumns.NAME));
@@ -75,11 +75,6 @@ public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
             session.getTransaction().rollback();
             throw new ValidationException(COMMIT_TRANSACTION_ERROR);
         }
-    }
-
-    @Override
-    public void close() throws ValidationException {
-        super.close();
     }
 
 }

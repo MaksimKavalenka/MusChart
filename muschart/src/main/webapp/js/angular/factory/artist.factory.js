@@ -3,7 +3,7 @@ app.factory('ArtistFactory', ['$http', 'DEFAULT', 'URL', function($http, DEFAULT
 	return {
 
 		createArtist: function(name, photo, genres, callback) {
-			$http.post(URL.ARTISTS + '/create/' + name + '/' + photo + '/' + angular.toJson(genres) + DEFAULT.JSON_EXT)
+			$http.post(URL.ARTISTS + '/create/' + name + '/' + photo + '/' + genres + DEFAULT.JSON_EXT)
 			.success(function(response) {
 				response = {success: true, message: 'Artist has been added successfully'};
 				callback(response);

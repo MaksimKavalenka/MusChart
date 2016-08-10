@@ -4,8 +4,11 @@
 		<div class="field">
 			<label class="required">Artist</label>
 			<div ng-repeat="artistChoice in artistsChoice">
-				<input type="text" placeholder="Union" maxlength="255" ng-model="artistChoice.cast_name" ng-hide="$first" required/>
-				<select ng-model="artistChoice.id" required>
+				<select ng-model="artistChoice.id_unit" ng-if="$first" ng-show="false"></select>
+				<select ng-model="artistChoice.id_unit" ng-if="!$first" required>
+					<option ng-repeat="unit in units" value="{{unit.id}}">{{unit.name}}</option>
+				</select>
+				<select ng-model="artistChoice.id_artist" required>
 					<option ng-repeat="artist in artists" value="{{artist.id}}">{{artist.name}}</option>
 				</select>
 				<button class="btn btn-danger btn-input" ng-click="removeArtistChoice(artistChoice.index)">Remove artist</button>
@@ -27,7 +30,7 @@
 		<div class="field">
 			<label class="required">Genre</label>
 			<div ng-repeat="genreChoice in genresChoice">
-				<select ng-model="genreChoice.id" required>
+				<select ng-model="genreChoice.id_genre" required>
 					<option ng-repeat="genre in genres" value="{{genre.id}}">{{genre.name}}</option>
 				</select>
 				<button class="btn btn-danger btn-input" ng-click="removeGenreChoice(genreChoice.index)">Remove genre</button>
@@ -43,7 +46,4 @@
 			<img ng-if="ctrl.dataLoading" src="/muschart/img/load.gif"/>
 		</div>
 	</fieldset>
-	      <div>
-      {{ artistsChoice }}
-   </div>
 </form>

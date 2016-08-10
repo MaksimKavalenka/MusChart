@@ -22,7 +22,7 @@ app.controller('ArtistEditController', ['$scope', 'TYPE', 'ArtistFactory', 'Choi
 			}
 		});
 		if (photoFlag) {
-			ArtistFactory.createArtist(self.artist.name, self.artist.photo.replace(/^C:\\fakepath\\/i, ''), $scope.genresChoice, function(response) {
+			ArtistFactory.createArtist(self.artist.name, self.artist.photo.replace(/^C:\\fakepath\\/i, ''), angular.toJson($scope.genresChoice), function(response) {
 				if (response.success) {
 					FlashService.success(response.message);
 				} else {

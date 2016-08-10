@@ -1,6 +1,10 @@
 <ul class="content">
 	<li ng-repeat="track in ctrl.tracks">
 		<div class="title">
+			<div ng-repeat="artist in track.artists">
+				<a ui-sref="#">{{artist.name}}</a>
+				{{track.units[$index].name}}
+			</div>
 			{{track.artistName}}<br>{{track.songName}}
 		</div>
 		<div class="body" ng-click="">

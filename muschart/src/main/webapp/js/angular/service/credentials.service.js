@@ -8,7 +8,7 @@ app.service('CredentialsService', ['$cookieStore', '$http', '$rootScope', functi
 				user: {
 					id: user.id,
 					login: user.login,
-					role: user.role,
+					role: user.role.name,
 					authdata: authdata
 				}
 			};

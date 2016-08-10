@@ -5,6 +5,11 @@ app.controller('TrackEditController', ['$scope', 'TYPE', 'TrackFactory', 'Choice
 
 	self.init = function() {
 		ChoiceService.reset();
+		ChoiceService.getAllUnits(function(response) {
+			if (!response.success) {
+				FlashService.error(response.message);
+			}
+		});
 		ChoiceService.getAllArtists(function(response) {
 			if (!response.success) {
 				FlashService.error(response.message);
@@ -34,7 +39,7 @@ app.controller('TrackEditController', ['$scope', 'TYPE', 'TrackFactory', 'Choice
 			}
 		});
 		if (songFlag && coverFlag) {
-			TrackFactory.createTrack(self.track.songName, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), $scope.artistsChoice, $scope.genresChoice, self.track.date, function(response) {
+			TrackFactory.createTrack(self.track.songName, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), angular.toJson($scope.artistsChoice), angular.toJson($scope.genresChoice), self.track.date, function(response) {
 				if (response.success) {
 					FlashService.success(response.message);
 				} else {

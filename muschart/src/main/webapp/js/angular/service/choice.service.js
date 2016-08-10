@@ -27,6 +27,20 @@ app.service('ChoiceService', ['$http', '$rootScope', 'DEFAULT', 'URL', function(
 
 	return {
 
+		getAllUnits: function(callback) {
+			$rootScope.units = [];
+			return $http.get(URL.UNITS + DEFAULT.JSON_EXT)
+			.success(function(response) {
+				$rootScope.units = response;
+				response = {success: true};
+				callback(response);
+			})
+			.error(function(response) {
+				response = {success: false, message: 'Error while getting units'};
+				callback(response);
+			});
+		},
+
 		getAllArtists: function(callback) {
 			$rootScope.artists = [];
 			return $http.get(URL.ARTISTS + DEFAULT.JSON_EXT)

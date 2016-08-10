@@ -13,6 +13,7 @@ import by.gsu.exception.ValidationException;
 import by.gsu.model.Artist;
 import by.gsu.model.Genre;
 import by.gsu.model.Track;
+import by.gsu.model.Unit;
 
 public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
 
@@ -22,13 +23,13 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
 
     @Override
     public void createTrack(final String songName, final String song, final String cover,
-            final String castName, final List<Artist> artists, final List<Genre> genres,
+            final List<Unit> units, final List<Artist> artists, final List<Genre> genres,
             final Date date) throws ValidationException {
         Track track = new Track();
         track.setSongName(songName);
         track.setSong(song);
         track.setCover(cover);
-        track.setCastName(castName);
+        track.setUnits(units);
         track.setArtists(artists);
         track.setGenres(genres);
         track.setDate(date);
@@ -50,8 +51,8 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
         return super.getElementsByDesc(idFrom, idTo, Track.class, TrackColumns.ID);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
+    @SuppressWarnings("unchecked")
     public List<Track> getAllTracks() {
         return session.createCriteria(Track.class).list();
     }
@@ -83,11 +84,6 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
             session.getTransaction().rollback();
             throw new ValidationException(COMMIT_TRANSACTION_ERROR);
         }
-    }
-
-    @Override
-    public void close() throws ValidationException {
-        super.close();
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import by.gsu.exception.ValidationException;
 import by.gsu.model.Track;
 
 public abstract class AmplitudeJsonParser {
@@ -16,7 +17,7 @@ public abstract class AmplitudeJsonParser {
     private static final String NAME_SONG_KEY          = "name";
     private static final String URL_SONG_KEY           = "url";
 
-    public static String getAmplitudeJson(final List<Track> tracks) {
+    public static String getAmplitudeJson(final List<Track> tracks) throws ValidationException {
         JSONArray jsonArray = new JSONArray();
         for (Track track : tracks) {
             jsonArray.put(getAmplitudeSong(track));
@@ -24,10 +25,10 @@ public abstract class AmplitudeJsonParser {
         return new JSONObject().put(SONGS_PARAMETER, jsonArray).toString();
     }
 
-    private static JSONObject getAmplitudeSong(final Track track) {
+    private static JSONObject getAmplitudeSong(final Track track) throws ValidationException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put(NAME_SONG_KEY, track.getSongName());
-        jsonObject.put(ARTIST_SONG_KEY, track.getArtistName());
+        jsonObject.put(ARTIST_SONG_KEY, ModelJsonParser.getArtistsName(track));
         jsonObject.put(ALBUM_SONG_KEY, "");
         jsonObject.put(URL_SONG_KEY, track.getSong());
         jsonObject.put(COVER_ART_URL_SONG_KEY, track.getCover());

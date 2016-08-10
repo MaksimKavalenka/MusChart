@@ -22,12 +22,13 @@ public class UserDatabaseEditor extends DatabaseEditor implements IUserDAO {
     }
 
     @Override
-    public void createUser(final String login, final String password) throws ValidationException {
+    public void createUser(final String login, final String password, final Role role)
+            throws ValidationException {
         User checkUser;
         User user = new User();
         user.setLogin(login);
         user.setPassword(password);
-        user.setRole(Role.USER);
+        user.setRole(role);
 
         try {
             session.beginTransaction();

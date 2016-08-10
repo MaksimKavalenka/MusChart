@@ -35,7 +35,7 @@ public class TrackRestController {
             @PathVariable("genres") final String genres, @PathVariable("date") final Date date) {
         try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
             trackDAO.createTrack(songName, AUDIO_UPLOAD_PATH + "/" + song,
-                    TRACK_COVER_UPLOAD_PATH + "/" + cover, ModelJsonParser.getCastName(artists),
+                    TRACK_COVER_UPLOAD_PATH + "/" + cover, ModelJsonParser.getUnits(artists),
                     ModelJsonParser.getArtists(artists), ModelJsonParser.getGenres(genres), date);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (ValidationException e) {

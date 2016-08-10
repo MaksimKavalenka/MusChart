@@ -15,6 +15,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.ws.rs.DefaultValue;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -32,9 +35,6 @@ public class Track extends Model {
     @Column(name = "cover", nullable = false, columnDefinition = "TEXT")
     private String            cover;
 
-    @Column(name = "artist_name", nullable = false, length = 255)
-    private String            castName;
-
     @Column(name = "date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date              date;
@@ -43,7 +43,13 @@ public class Track extends Model {
     @DefaultValue(value = "0")
     private long              rating;
 
-    @JsonIgnore
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.REFRESH, CascadeType.PERSIST}, targetEntity = Unit.class)
+    @JoinTable(name = "track_unit", joinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_unit", nullable = false, updatable = false))
+    private List<Unit>        units;
+
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.PERSIST}, targetEntity = Artist.class)
     @JoinTable(name = "track_artist", joinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false))
@@ -89,14 +95,6 @@ public class Track extends Model {
         this.cover = cover;
     }
 
-    public String getCastName() {
-        return castName;
-    }
-
-    public void setCastName(final String castName) {
-        this.castName = castName;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -111,6 +109,14 @@ public class Track extends Model {
 
     public void setRating(final long rating) {
         this.rating = rating;
+    }
+
+    public List<Unit> getUnits() {
+        return units;
+    }
+
+    public void setUnits(final List<Unit> units) {
+        this.units = units;
     }
 
     public List<Artist> getArtists() {

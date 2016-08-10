@@ -37,15 +37,15 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
         return (Artist) session.get(Artist.class, id);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
+    @SuppressWarnings("unchecked")
     public List<Artist> getArtistsByIds(final long idFrom, final long idTo) {
         return session.createCriteria(Artist.class)
                 .add(Restrictions.between(ArtistColumns.ID, idFrom, idTo)).list();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
+    @SuppressWarnings("unchecked")
     public List<Artist> getAllArtists() {
         Criteria criteria = session.createCriteria(Artist.class);
         criteria.addOrder(Order.asc(StructureConstants.ArtistColumns.NAME));
@@ -79,11 +79,6 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
             session.getTransaction().rollback();
             throw new ValidationException(COMMIT_TRANSACTION_ERROR);
         }
-    }
-
-    @Override
-    public void close() throws ValidationException {
-        super.close();
     }
 
 }
