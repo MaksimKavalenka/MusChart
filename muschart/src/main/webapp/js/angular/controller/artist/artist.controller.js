@@ -1,10 +1,15 @@
 'use strict';
-app.controller('ArtistController', ['$stateParams', 'DEFAULT', 'ArtistFactory', 'FlashService', 'PaginationService', function($stateParams, DEFAULT, ArtistFactory, FlashService, PaginationService) {
+app.controller('ArtistController', ['$scope', '$stateParams', 'ArtistFactory', 'FlashService', 'PaginationService', function($scope, $stateParams, ArtistFactory, FlashService, PaginationService) {
 	var self = this;
 	self.artists = [];
 
-	self.getArtistsByIds = function(idFrom, idTo) {
-		ArtistFactory.getArtistsByIds(idFrom, idTo, function(response) {
+	self.init = function(sort, order, page) {
+		self.getArtistsByCriteria(sort, order, page);
+		PaginationService.getPages(page, 'artists');
+	};
+
+	self.getArtistsByCriteria = function(sort, order, page) {
+		ArtistFactory.getArtistsByCriteria(sort, order, page, function(response) {
 			if (response.success) {
 				self.artists = response.data;
 			} else {
@@ -13,11 +18,6 @@ app.controller('ArtistController', ['$stateParams', 'DEFAULT', 'ArtistFactory', 
 		});
 	};
 
-	self.getArtistsByPage = function(page) {
-		self.getArtistsByIds(DEFAULT.COUNT * (page - 1) + 1, DEFAULT.COUNT * page);
-		PaginationService.getPages(page, 'artists');
-	};
-
-	self.getArtistsByPage($stateParams.page);
+	self.init($scope.sort.artists, $scope.order.artists, $stateParams.page);
 
 }]);

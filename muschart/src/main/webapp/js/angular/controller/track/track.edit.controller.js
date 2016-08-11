@@ -1,7 +1,7 @@
 'use strict';
 app.controller('TrackEditController', ['$scope', 'TYPE', 'TrackFactory', 'ChoiceService', 'FileService', 'FlashService', function($scope, TYPE, TrackFactory, ChoiceService, FileService, FlashService) {
 	var self = this;
-	self.track = {id: null, artistName: '', songName: '', song: '', cover: '', date: '', rating: null};
+	self.track = {id: null, artistName: '', songName: '', song: '', cover: '', release: '', rating: null};
 
 	self.init = function() {
 		ChoiceService.reset();
@@ -39,7 +39,7 @@ app.controller('TrackEditController', ['$scope', 'TYPE', 'TrackFactory', 'Choice
 			}
 		});
 		if (songFlag && coverFlag) {
-			TrackFactory.createTrack(self.track.songName, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), angular.toJson($scope.artistsChoice), angular.toJson($scope.genresChoice), self.track.date, function(response) {
+			TrackFactory.createTrack(self.track.songName, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), angular.toJson($scope.artistsChoice), angular.toJson($scope.genresChoice), self.track.release, function(response) {
 				if (response.success) {
 					FlashService.success(response.message);
 				} else {
@@ -61,7 +61,7 @@ app.controller('TrackEditController', ['$scope', 'TYPE', 'TrackFactory', 'Choice
 	};
 
 	self.reset = function() {
-		self.track = {id: null, name: '', song: '', cover: '', date: '', rating: null};
+		self.track = {id: null, name: '', song: '', cover: '', release: '', rating: null};
 		$scope.form.$setPristine();
 	};
 

@@ -34,10 +34,23 @@ public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public List<Genre> getGenresByIds(final long idFrom, final long idTo) {
-        return session.createCriteria(Genre.class)
-                .add(Restrictions.between(GenreColumns.ID, idFrom, idTo)).list();
+    public Genre getGenreByName(final String name) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(Genre.class);
+        criteria.add(Restrictions.eq(GenreColumns.NAME, name));
+        return (Genre) criteria.uniqueResult();
+    }
+
+    @Override
+    public List<Genre> getGenresByCriteria(final int sort, final boolean order, final int page) {
+        switch (sort) {
+            case 0:
+                return super.getElements(Genre.class, GenreColumns.ID, order, page);
+            case 1:
+                return super.getElements(Genre.class, GenreColumns.RATING, order, page);
+            default:
+                return null;
+        }
     }
 
     @Override

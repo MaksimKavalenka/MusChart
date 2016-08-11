@@ -1,0 +1,68 @@
+.settings {
+	display: table;
+	margin: auto;
+}
+.settings > .title {
+	font-size: 40px;
+	font-weight: 600;
+	margin: 15px;
+}
+.settings > ul {
+	margin: 0;
+	margin-bottom: -2px;
+	padding: 0;
+}
+.settings > ul > li {
+	border-style: solid;
+	border-width: 2px;
+	display: inline-block;
+	height: 30px;
+	margin-left: -2px;
+	text-align: center;
+	vertical-align: middle;
+	width: 100px;
+}
+.settings > ul > li > * {
+	vertical-align: middle;
+}
+.settings > ul > li.not-available {
+	font-family: fantasy;
+}
+.settings > ul > li.title {
+	font-weight: 600;
+}
+.settings > ul > li.title-default {
+	background: #222222;
+	border-color: #222222;
+	color: #ffffff;
+}
+.settings > ul > li.cell-default {
+	border-color: #222222;
+	color: #222222;
+}
+.settings > ul > li.cell-primary {
+	border-color: #2780e3;
+	color: #2780e3;
+}
+.settings > ul > li.cell-option {
+	border-color: #9e842f;
+	color: #9e842f;
+}
+.settings > ul > li.radio-default:hover {
+	background: #575757;
+}
+.settings > ul > li.radio-default:active {
+	background: #000000;
+}
+.settings > ul > li.radio-primary:hover {
+	background: #0fa3ff;
+}
+.settings > ul > li.radio-primary:active {
+	background: #1967be;
+}
+.settings > ul > li.radio-option:hover {
+	background: #9e842f;
+}
+.settings > ul > li.radio-option:active {
+	background: #755d26;
+}

@@ -12,13 +12,11 @@ import by.gsu.model.Unit;
 public interface ITrackDAO extends IDAO {
 
     void createTrack(String songName, String song, String cover, List<Unit> units,
-            List<Artist> artists, List<Genre> genres, Date date) throws ValidationException;
+            List<Artist> artists, List<Genre> genres, Date release) throws ValidationException;
 
     Track getTrackById(long id) throws ValidationException;
 
-    List<Track> getTracksByIdsAsc(long idFrom, long idTo) throws ValidationException;
-
-    List<Track> getTracksByIdsDesc(long idFrom, long idTo) throws ValidationException;
+    List<Track> getTracksByCriteria(int sort, boolean order, int page) throws ValidationException;
 
     List<Track> getAllTracks() throws ValidationException;
 

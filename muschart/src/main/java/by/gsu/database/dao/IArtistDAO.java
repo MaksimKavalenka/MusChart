@@ -12,7 +12,7 @@ public interface IArtistDAO extends IDAO {
 
     Artist getArtistById(long id) throws ValidationException;
 
-    List<Artist> getArtistsByIds(long idFrom, long idTo) throws ValidationException;
+    List<Artist> getArtistsByCriteria(int sort, boolean order, int page) throws ValidationException;
 
     List<Artist> getAllArtists() throws ValidationException;
 

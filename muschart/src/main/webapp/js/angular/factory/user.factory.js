@@ -1,5 +1,5 @@
 'use strict';
-app.factory('UserFactory', ['$http', 'DEFAULT', 'ERROR', 'URL', function($http, DEFAULT, ERROR, URL) {
+app.factory('UserFactory', ['$http', 'DEFAULT', 'MESSAGE', 'URL', function($http, DEFAULT, MESSAGE, URL) {
 	return {
 
 		createUser: function(login, password, callback) {
@@ -9,7 +9,7 @@ app.factory('UserFactory', ['$http', 'DEFAULT', 'ERROR', 'URL', function($http, 
 				callback(response);
 			})
 			.error(function(response) {
-				response = {success: false, message: 'Error while adding user'};
+				response = {success: false, message: MESSAGE.ADDING_USER_ERROR};
 				callback(response);
 			});
 		},
@@ -21,7 +21,7 @@ app.factory('UserFactory', ['$http', 'DEFAULT', 'ERROR', 'URL', function($http, 
 				callback(data);
 			})
 			.error(function(response) {
-				response = {success: false, message: ERROR.AUTHENTICATION};
+				response = {success: false, message: MESSAGE.AUTHENTICATION_ERROR};
 				callback(response);
 			});
 		},
@@ -32,12 +32,12 @@ app.factory('UserFactory', ['$http', 'DEFAULT', 'ERROR', 'URL', function($http, 
 				if (response != '') {
 					response = {success: true};
 				} else {
-					response = {success: false, message: ERROR.TAKEN_LOGIN};
+					response = {success: false, message: MESSAGE.TAKEN_LOGIN_ERROR};
 				}
 				callback(response);
 			})
 			.error(function(response) {
-				response = {success: false, message: ERROR.TAKEN_LOGIN};
+				response = {success: false, message: MESSAGE.GETTING_USER_ERROR};
 				callback(response);
 			});
 		}

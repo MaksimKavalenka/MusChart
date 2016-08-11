@@ -10,7 +10,6 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 
 import by.gsu.database.dao.IDAO;
 import by.gsu.exception.ValidationException;
@@ -19,7 +18,9 @@ import by.gsu.model.Model;
 
 public abstract class DatabaseEditor implements IDAO {
 
-    protected Session session;
+    private static final int ELEMENT_COUNT = 15;
+
+    protected Session        session;
 
     public DatabaseEditor() throws ValidationException {
         try {
@@ -38,7 +39,7 @@ public abstract class DatabaseEditor implements IDAO {
         }
     }
 
-    public void save(final Object object) throws ValidationException {
+    protected void save(final Object object) throws ValidationException {
         try {
             session.beginTransaction();
             session.save(object);
@@ -49,7 +50,7 @@ public abstract class DatabaseEditor implements IDAO {
         }
     }
 
-    public void delete(final Object object) throws ValidationException {
+    protected void delete(final Object object) throws ValidationException {
         try {
             session.beginTransaction();
             session.delete(object);
@@ -60,23 +61,25 @@ public abstract class DatabaseEditor implements IDAO {
         }
     }
 
-    public <T extends Model> List<T> getElementsByAsc(final long idFrom, final long idTo,
-            final Class<T> clazz, final String property) {
-        return getElementsByOrder(idFrom, idTo, clazz, property, Order.asc(property));
-    }
-
-    public <T extends Model> List<T> getElementsByDesc(final long idFrom, final long idTo,
-            final Class<T> clazz, final String property) {
-        return getElementsByOrder(idFrom, idTo, clazz, property, Order.desc(property));
-    }
-
     @SuppressWarnings("unchecked")
-    private <T extends Model> List<T> getElementsByOrder(final long idFrom, final long idTo,
-            final Class<T> clazz, final String property, final Order order) {
+    protected <T extends Model> List<T> getElements(final Class<T> clazz, final String property,
+            final boolean order, final int page) {
+        int fromIndex = ELEMENT_COUNT * page - ELEMENT_COUNT;
+        int toIndex = ELEMENT_COUNT * page;
         Criteria criteria = session.createCriteria(clazz);
-        criteria.add(Restrictions.between(property, idFrom, idTo));
-        criteria.addOrder(order);
-        return criteria.list();
+        if (order) {
+            criteria.addOrder(Order.asc(property));
+        } else {
+            criteria.addOrder(Order.desc(property));
+        }
+        if (criteria.list().size() >= toIndex) {
+            return criteria.list().subList(fromIndex, toIndex);
+        }
+        if (criteria.list().size() > fromIndex) {
+            return criteria.list().subList(fromIndex, criteria.list().size());
+        }
+        return null;
+
     }
 
 }

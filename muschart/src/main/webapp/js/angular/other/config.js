@@ -15,9 +15,18 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'DEFAULT', 'PA
 		templateUrl: PATH.EDIT_HEADER
 	}
 	var footer = {
-			templateUrl: PATH.FOOTER
-		}
+		templateUrl: PATH.FOOTER
+	}
 	$stateProvider
+	.state(STATE.SETTINGS, {
+		url: URL.SETTINGS,
+		views: {
+			header: mainHeader,
+			tool: {
+				templateUrl: PATH.SETTINGS_TOOL
+			}
+		}
+	})
 	.state(STATE.LOGIN, {
 		url: URL.LOGIN,
 		views: {

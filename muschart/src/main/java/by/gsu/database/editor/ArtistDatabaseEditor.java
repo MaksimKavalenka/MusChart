@@ -8,7 +8,6 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 
 import by.gsu.constants.StructureConstants;
 import by.gsu.database.dao.IArtistDAO;
@@ -38,10 +37,15 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public List<Artist> getArtistsByIds(final long idFrom, final long idTo) {
-        return session.createCriteria(Artist.class)
-                .add(Restrictions.between(ArtistColumns.ID, idFrom, idTo)).list();
+    public List<Artist> getArtistsByCriteria(final int sort, final boolean order, final int page) {
+        switch (sort) {
+            case 0:
+                return super.getElements(Artist.class, ArtistColumns.ID, order, page);
+            case 1:
+                return super.getElements(Artist.class, ArtistColumns.RATING, order, page);
+            default:
+                return null;
+        }
     }
 
     @Override

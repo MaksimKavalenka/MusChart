@@ -24,8 +24,8 @@ public class PageController {
         return REDIRECT + TRACKS_DEFAULT_URI;
     }
 
-    @RequestMapping(value = {LOGIN_URI, REGISTRATION_URI, ARTISTS_FULL_URI, GENRES_FULL_URI,
-            TRACKS_FULL_URI, ARTISTS_ADD_URI, GENRES_ADD_URI,
+    @RequestMapping(value = {SETTINGS_URI, LOGIN_URI, REGISTRATION_URI, ARTISTS_FULL_URI,
+            GENRES_FULL_URI, TRACKS_FULL_URI, ARTISTS_ADD_URI, GENRES_ADD_URI,
             TRACKS_ADD_URI}, method = RequestMethod.GET)
     public String page() {
         return INDEX_PATH;

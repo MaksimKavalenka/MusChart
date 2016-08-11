@@ -11,7 +11,9 @@ public interface IGenreDAO extends IDAO {
 
     Genre getGenreById(long id) throws ValidationException;
 
-    List<Genre> getGenresByIds(long idFrom, long idTo) throws ValidationException;
+    Genre getGenreByName(String name) throws ValidationException;
+
+    List<Genre> getGenresByCriteria(int sort, boolean order, int page) throws ValidationException;
 
     List<Genre> getAllGenres() throws ValidationException;
 

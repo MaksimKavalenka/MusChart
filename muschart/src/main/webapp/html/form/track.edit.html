@@ -38,8 +38,8 @@
 			<button class="btn btn-default btn-input" ng-click="addGenreChoice()">Add genre</button>
 		</div>
 		<div class="field">
-			<label class="required" for="date">Date</label>
-			<input type="date" id="date" name="date" ng-model="ctrl.track.date" required/>
+			<label class="required" for="release">Released</label>
+			<input type="date" id="release" name="release" ng-model="ctrl.track.release" required/>
 		</div>
 		<div>
 			<button type="submit" class="btn btn-success" ng-click="ctrl.createTrack()" ng-disabled="form.$invalid || ctrl.dataLoading">Submit</button>

@@ -24,7 +24,7 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
     @Override
     public void createTrack(final String songName, final String song, final String cover,
             final List<Unit> units, final List<Artist> artists, final List<Genre> genres,
-            final Date date) throws ValidationException {
+            final Date release) throws ValidationException {
         Track track = new Track();
         track.setSongName(songName);
         track.setSong(song);
@@ -32,7 +32,7 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
         track.setUnits(units);
         track.setArtists(artists);
         track.setGenres(genres);
-        track.setDate(date);
+        track.setRelease(release);
         save(track);
     }
 
@@ -42,13 +42,17 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
     }
 
     @Override
-    public List<Track> getTracksByIdsAsc(final long idFrom, final long idTo) {
-        return super.getElementsByAsc(idFrom, idTo, Track.class, TrackColumns.ID);
-    }
-
-    @Override
-    public List<Track> getTracksByIdsDesc(final long idFrom, final long idTo) {
-        return super.getElementsByDesc(idFrom, idTo, Track.class, TrackColumns.ID);
+    public List<Track> getTracksByCriteria(final int sort, final boolean order, final int page) {
+        switch (sort) {
+            case 0:
+                return super.getElements(Track.class, TrackColumns.ID, order, page);
+            case 1:
+                return super.getElements(Track.class, TrackColumns.RATING, order, page);
+            case 2:
+                return super.getElements(Track.class, TrackColumns.RELEASE, order, page);
+            default:
+                return null;
+        }
     }
 
     @Override

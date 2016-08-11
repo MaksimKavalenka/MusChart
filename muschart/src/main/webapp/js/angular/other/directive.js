@@ -1,16 +1,40 @@
 'use strict';
 var fileRequired = 'fileRequired';
 var fileModel = 'fileModel';
-var ngExist = 'ngExist';
 var ngMatch = 'ngMatch';
 var ngModel = 'ngModel';
+var ngGenreExist = 'ngGenreExist';
+var ngUserExist = 'ngUserExist';
 
-app.directive(ngExist, ['$timeout', '$q', 'UserFactory', function($timeout, $q, UserFactory) {
+app.directive(ngGenreExist, ['$timeout', '$q', 'GenreFactory', function($timeout, $q, GenreFactory) {
 	var timer;
 	return {
 		require: ngModel,
 		link: function(scope, element, attributes, controller) {
-			controller.$asyncValidators.ngExist = function(modelValue, viewValue) {
+			controller.$asyncValidators.ngGenreExist = function(modelValue, viewValue) {
+				var def = $q.defer();
+				$timeout.cancel(timer);
+				timer = $timeout(function() {
+					GenreFactory.getGenreByName(modelValue, function(response) {
+						if (!response.success) {
+							def.resolve();
+						} else {
+							def.reject();
+						}
+					});
+				}, 1000);
+				return def.promise;
+			};
+		}
+	};
+}]);
+
+app.directive(ngUserExist, ['$timeout', '$q', 'UserFactory', function($timeout, $q, UserFactory) {
+	var timer;
+	return {
+		require: ngModel,
+		link: function(scope, element, attributes, controller) {
+			controller.$asyncValidators.ngUserExist = function(modelValue, viewValue) {
 				var def = $q.defer();
 				$timeout.cancel(timer);
 				timer = $timeout(function() {

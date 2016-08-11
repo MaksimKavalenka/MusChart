@@ -37,11 +37,12 @@ public class ArtistRestController {
         }
     }
 
-    @RequestMapping(value = ARTISTS_PATH
+    @RequestMapping(value = ARTISTS_PATH + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Artist>> getAllArtists() {
+    public ResponseEntity<List<Artist>> getArtistsByCriteria(@PathVariable("sort") final int sort,
+            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
-            List<Artist> artists = artistDAO.getAllArtists();
+            List<Artist> artists = artistDAO.getArtistsByCriteria(sort, order, page);
             if (artists == null) {
                 return new ResponseEntity<List<Artist>>(HttpStatus.NO_CONTENT);
             }
@@ -51,12 +52,11 @@ public class ArtistRestController {
         }
     }
 
-    @RequestMapping(value = ARTISTS_PATH + "/{idFrom}/{idTo}"
+    @RequestMapping(value = ARTISTS_PATH
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Artist>> getArtistsByIds(@PathVariable("idFrom") final long idFrom,
-            @PathVariable("idTo") final long idTo) {
+    public ResponseEntity<List<Artist>> getAllArtists() {
         try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
-            List<Artist> artists = artistDAO.getArtistsByIds(idFrom, idTo);
+            List<Artist> artists = artistDAO.getAllArtists();
             if (artists == null) {
                 return new ResponseEntity<List<Artist>>(HttpStatus.NO_CONTENT);
             }

@@ -27,28 +27,30 @@ import by.gsu.parser.ModelJsonParser;
 public class TrackRestController {
 
     @RequestMapping(value = TRACKS_PATH
-            + "/create/{songName}/{song}/{cover}/{artists}/{genres}/{date}"
+            + "/create/{songName}/{song}/{cover}/{artists}/{genres}/{release}"
             + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<Void> createTrack(@PathVariable("songName") final String songName,
             @PathVariable("song") final String song, @PathVariable("cover") final String cover,
             @PathVariable("artists") final String artists,
-            @PathVariable("genres") final String genres, @PathVariable("date") final Date date) {
+            @PathVariable("genres") final String genres,
+            @PathVariable("release") final Date release) {
         try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
             trackDAO.createTrack(songName, AUDIO_UPLOAD_PATH + "/" + song,
                     TRACK_COVER_UPLOAD_PATH + "/" + cover, ModelJsonParser.getUnits(artists),
-                    ModelJsonParser.getArtists(artists), ModelJsonParser.getGenres(genres), date);
+                    ModelJsonParser.getArtists(artists), ModelJsonParser.getGenres(genres),
+                    release);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (ValidationException e) {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
     }
 
-    @RequestMapping(value = TRACKS_PATH + "/id/asc/{idFrom}/{idTo}"
+    @RequestMapping(value = TRACKS_PATH + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Track>> getTracksByIdsAsc(@PathVariable("idFrom") final long idFrom,
-            @PathVariable("idTo") final long idTo) {
+    public ResponseEntity<List<Track>> getTracksByCriteria(@PathVariable("sort") final int sort,
+            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
-            List<Track> tracks = trackDAO.getTracksByIdsAsc(idFrom, idTo);
+            List<Track> tracks = trackDAO.getTracksByCriteria(sort, order, page);
             if (tracks == null) {
                 return new ResponseEntity<List<Track>>(HttpStatus.NO_CONTENT);
             }
@@ -58,43 +60,12 @@ public class TrackRestController {
         }
     }
 
-    @RequestMapping(value = TRACKS_PATH + "/id/desc/{idFrom}/{idTo}"
+    @RequestMapping(value = TRACKS_PATH + "/amplitude/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Track>> getTracksByIdsDesc(@PathVariable("idFrom") final long idFrom,
-            @PathVariable("idTo") final long idTo) {
+    public ResponseEntity<String> getAmplitudeTracksByCriteria(@PathVariable("sort") final int sort,
+            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
-            List<Track> tracks = trackDAO.getTracksByIdsDesc(idFrom, idTo);
-            if (tracks == null) {
-                return new ResponseEntity<List<Track>>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<List<Track>>(tracks, HttpStatus.OK);
-        } catch (ValidationException e) {
-            return new ResponseEntity<List<Track>>(HttpStatus.CONFLICT);
-        }
-    }
-
-    @RequestMapping(value = TRACKS_PATH + "/id/asc/amplitude/{idFrom}/{idTo}"
-            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> getAmplitudeTracksByIdsAsc(
-            @PathVariable("idFrom") final long idFrom, @PathVariable("idTo") final long idTo) {
-        try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
-            List<Track> tracks = trackDAO.getTracksByIdsAsc(idFrom, idTo);
-            if (tracks == null) {
-                return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<String>(AmplitudeJsonParser.getAmplitudeJson(tracks),
-                    HttpStatus.OK);
-        } catch (ValidationException e) {
-            return new ResponseEntity<String>(HttpStatus.CONFLICT);
-        }
-    }
-
-    @RequestMapping(value = TRACKS_PATH + "/id/desc/amplitude/{idFrom}/{idTo}"
-            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> getAmplitudeTracksByIdsDesc(
-            @PathVariable("idFrom") final long idFrom, @PathVariable("idTo") final long idTo) {
-        try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
-            List<Track> tracks = trackDAO.getTracksByIdsDesc(idFrom, idTo);
+            List<Track> tracks = trackDAO.getTracksByCriteria(sort, order, page);
             if (tracks == null) {
                 return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
             }

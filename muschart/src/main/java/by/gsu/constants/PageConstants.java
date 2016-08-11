@@ -11,6 +11,7 @@ public abstract class PageConstants {
     private static final String DEFAULT_PAGE        = PAGE_OPERATION + "/1";
     private static final String PATTERN_PAGE        = PAGE_OPERATION + "/{page:[0-9]{1,}}";
 
+    public static final String  SETTINGS_URI        = "/settings";
     public static final String  LOGIN_URI           = "/login";
     public static final String  REGISTRATION_URI    = "/register";
     public static final String  ARTISTS_URI         = "/artists";

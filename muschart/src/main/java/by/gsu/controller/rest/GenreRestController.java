@@ -31,12 +31,26 @@ public class GenreRestController {
         }
     }
 
-    @RequestMapping(value = GENRES_PATH + "/{idFrom}/{idTo}"
-            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Genre>> getGenresByIds(@PathVariable("idFrom") final long idFrom,
-            @PathVariable("idTo") final long idTo) {
+    @RequestMapping(value = GENRES_PATH + "/{name}"
+            + JSON_EXT, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Genre> getGenreByName(@PathVariable("name") final String name) {
         try (IGenreDAO genreDAO = GenreFactory.getEditor()) {
-            List<Genre> genres = genreDAO.getGenresByIds(idFrom, idTo);
+            Genre genre = genreDAO.getGenreByName(name);
+            if (genre == null) {
+                return new ResponseEntity<Genre>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<Genre>(genre, HttpStatus.OK);
+        } catch (ValidationException e) {
+            return new ResponseEntity<Genre>(HttpStatus.CONFLICT);
+        }
+    }
+
+    @RequestMapping(value = GENRES_PATH + "/{sort}/{order}/{page}"
+            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Genre>> getGenresByCriteria(@PathVariable("sort") final int sort,
+            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
+        try (IGenreDAO genreDAO = GenreFactory.getEditor()) {
+            List<Genre> genres = genreDAO.getGenresByCriteria(sort, order, page);
             if (genres == null) {
                 return new ResponseEntity<List<Genre>>(HttpStatus.NO_CONTENT);
             }

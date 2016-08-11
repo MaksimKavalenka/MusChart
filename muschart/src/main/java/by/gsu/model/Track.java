@@ -35,9 +35,9 @@ public class Track extends Model {
     @Column(name = "cover", nullable = false, columnDefinition = "TEXT")
     private String            cover;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "release", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date              date;
+    private Date              release;
 
     @Column(name = "rating", nullable = false)
     @DefaultValue(value = "0")
@@ -95,12 +95,12 @@ public class Track extends Model {
         this.cover = cover;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getRelease() {
+        return release;
     }
 
-    public void setDate(final Date date) {
-        this.date = date;
+    public void setRelease(final Date release) {
+        this.release = release;
     }
 
     public long getRating() {

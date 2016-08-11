@@ -1,10 +1,15 @@
 'use strict';
-app.controller('GenreController', ['$stateParams', 'DEFAULT', 'GenreFactory', 'FlashService', 'PaginationService', function($stateParams, DEFAULT, GenreFactory, FlashService, PaginationService) {
+app.controller('GenreController', ['$scope', '$stateParams', 'GenreFactory', 'FlashService', 'PaginationService', function($scope, $stateParams, GenreFactory, FlashService, PaginationService) {
 	var self = this;
 	self.genres = [];
 
-	self.getGenresByIds = function(idFrom, idTo) {
-		GenreFactory.getGenresByIds(idFrom, idTo, function(response) {
+	self.init = function(sort, order, page) {
+		self.getGenresByCriteria(sort, order, page);
+		PaginationService.getPages(page, 'genres');
+	};
+
+	self.getGenresByCriteria = function(sort, order, page, idTo) {
+		GenreFactory.getGenresByCriteria(sort, order, page, function(response) {
 			if (response.success) {
 				self.genres = response.data;
 			} else {
@@ -13,11 +18,6 @@ app.controller('GenreController', ['$stateParams', 'DEFAULT', 'GenreFactory', 'F
 		});
 	};
 
-	self.getGenresByPage = function(page) {
-		self.getGenresByIds(DEFAULT.COUNT * (page - 1) + 1, DEFAULT.COUNT * page);
-		PaginationService.getPages(page, 'genres');
-	};
-
-	self.getGenresByPage($stateParams.page);
+	self.init($scope.sort.genres, $scope.order.genres, $stateParams.page);
 
 }]);

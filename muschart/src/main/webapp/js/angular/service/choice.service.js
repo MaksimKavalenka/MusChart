@@ -1,5 +1,5 @@
 'use strict';
-app.service('ChoiceService', ['$http', '$rootScope', 'DEFAULT', 'URL', function($http, $rootScope, DEFAULT, URL) {
+app.service('ChoiceService', ['$http', '$rootScope', 'DEFAULT', 'MESSAGE', 'URL', function($http, $rootScope, DEFAULT, MESSAGE, URL) {
 	$rootScope.artistsChoice = [{index: 0}];
 	$rootScope.genresChoice = [{index: 0}];
 
@@ -36,7 +36,7 @@ app.service('ChoiceService', ['$http', '$rootScope', 'DEFAULT', 'URL', function(
 				callback(response);
 			})
 			.error(function(response) {
-				response = {success: false, message: 'Error while getting units'};
+				response = {success: false, message: MESSAGE.GETTING_UNIT_ERROR};
 				callback(response);
 			});
 		},
@@ -50,7 +50,7 @@ app.service('ChoiceService', ['$http', '$rootScope', 'DEFAULT', 'URL', function(
 				callback(response);
 			})
 			.error(function(response) {
-				response = {success: false, message: 'Error while getting artists'};
+				response = {success: false, message: MESSAGE.GETTING_ARTIST_ERROR};
 				callback(response);
 			});
 		},
@@ -64,7 +64,7 @@ app.service('ChoiceService', ['$http', '$rootScope', 'DEFAULT', 'URL', function(
 				callback(response);
 			})
 			.error(function(response) {
-				response = {success: false, message: 'Error while getting genres'};
+				response = {success: false, message: MESSAGE.GETTING_GENRE_ERROR};
 				callback(response);
 			});
 		},
