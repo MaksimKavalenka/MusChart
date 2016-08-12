@@ -1,5 +1,6 @@
 'use strict';
 app.constant('CONTROLLER', {
+	'CTRL': 'ctrl',
 	'ARTIST_CONTROLLER': 'ArtistController',
 	'ARTIST_EDIT_CONTROLLER': 'ArtistEditController',
 	'GENRE_CONTROLLER': 'GenreController',
@@ -7,11 +8,6 @@ app.constant('CONTROLLER', {
 	'TRACK_CONTROLLER': 'TrackController',
 	'TRACK_EDIT_CONTROLLER': 'TrackEditController',
 	'USER_EDIT_CONTROLLER': 'UserEditController'
-});
-app.constant('DEFAULT', {
-	'CONTROLLER_NAME': 'ctrl',
-	'COUNT': '15',
-	'JSON_EXT': '.json'
 });
 app.constant('MESSAGE', (function() {
 	var addingError = 'Error while adding ';
@@ -67,10 +63,25 @@ app.constant('PATH', (function() {
 		SETTINGS_TOOL: toolPath + '/settings' + htmlExt
 	}
 })());
+app.constant('REST', (function() {
+	var url = '/muschart';
+	return {
+		JSON_EXT: '.json',
+		ARTISTS: url + '/artists',
+		GENRES: url + '/genres',
+		TRACKS: url + '/tracks',
+		UNITS: url + '/units',
+		UPLOAD: url + '/upload',
+		USERS: url + '/users'
+	}
+})());
 app.constant('STATE', (function() {
 	var artists = 'artists';
 	var genres = 'genres';
 	var tracks = 'tracks';
+	var artistOperation = '/artist';
+	var genreOperation = '/genre';
+	var trackOperation = '/track';
 	var addOperation = '/add';
 	return {
 		SETTINGS: 'settings',
@@ -79,6 +90,12 @@ app.constant('STATE', (function() {
 		ARTISTS: artists,
 		GENRES: genres,
 		TRACKS: tracks,
+		TRACK_ARTISTS: artists + trackOperation,
+		GENRE_ARTISTS: artists + genreOperation,
+		TRACK_GENRES: genres + trackOperation,
+		ARTIST_GENRES: genres + artistOperation,
+		ARTIST_TRACKS: tracks + artistOperation,
+		GENRE_TRACKS: tracks + genreOperation,
 		ARTISTS_ADD: artists + addOperation,
 		GENRES_ADD: genres + addOperation,
 		TRACKS_ADD: tracks + addOperation
@@ -95,22 +112,28 @@ app.constant('URL', (function() {
 	var genresUrl = url + '/genres';
 	var tracksUrl = url + '/tracks';
 	var addOperation = '/add';
+	var artistOperation = '/artist';
+	var genreOperation = '/genre';
 	var pageOperation = '/page';
+	var trackOperation = '/track';
+	var idPattern = '/{id:[0-9]{1,}}';
+	var pagePattern = '/{page:[0-9]{1,}}';
 	return {
 		HOME_PAGE: tracksUrl + pageOperation + '/1',
 		SETTINGS: url + '/settings',
 		LOGIN: url + '/login',
 		REGISTER: url + '/register',
-		USERS: url + '/users',
-		UNITS: url + '/units',
-		UPLOAD: url + '/upload',
-		ARTISTS: artistsUrl,
-		GENRES: genresUrl,
-		TRACKS: tracksUrl,
+		ARTISTS: artistsUrl + pageOperation + pagePattern,
+		GENRES: genresUrl + pageOperation + pagePattern,
+		TRACKS: tracksUrl + pageOperation + pagePattern,
+		TRACK_ARTISTS: artistsUrl + trackOperation + idPattern + pageOperation + pagePattern,
+		GENRE_ARTISTS: artistsUrl + genreOperation + idPattern + pageOperation + pagePattern,
+		TRACK_GENRES: genresUrl + trackOperation + idPattern + pageOperation + pagePattern,
+		ARTIST_GENRES: genresUrl + artistOperation + idPattern + pageOperation + pagePattern,
+		ARTIST_TRACKS: tracksUrl + artistOperation + idPattern + pageOperation + pagePattern,
+		GENRE_TRACKS: tracksUrl + genreOperation + idPattern + pageOperation + pagePattern,
 		ARTISTS_ADD: artistsUrl + addOperation,
 		GENRES_ADD: genresUrl + addOperation,
-		TRACKS_ADD: tracksUrl + addOperation,
-		PAGE_OPERATION: pageOperation,
-		PATTERN_PAGE: pageOperation + '/{page:[0-9]{1,}}'
+		TRACKS_ADD: tracksUrl + addOperation
 	}
 })());

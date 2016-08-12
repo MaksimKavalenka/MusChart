@@ -1,11 +1,21 @@
 'use strict';
-app.controller('ArtistController', ['$scope', '$stateParams', 'ArtistFactory', 'FlashService', 'PaginationService', function($scope, $stateParams, ArtistFactory, FlashService, PaginationService) {
+app.controller('ArtistController', ['$scope', '$state', 'STATE', 'ArtistFactory', 'FlashService', 'PaginationService', function($scope, $state, STATE, ArtistFactory, FlashService, PaginationService) {
 	var self = this;
 	self.artists = [];
 
-	self.init = function(sort, order, page) {
-		self.getArtistsByCriteria(sort, order, page);
-		PaginationService.getPages(page, 'artists');
+	self.init = function(state, sort, order, page) {
+		switch (state) {
+			case STATE.ARTISTS:
+				self.getArtistsByCriteria(sort, order, page);
+				break;
+			case STATE.TRACK_ARTISTS:
+				self.getArtistsByCriteriaExt('track', $state.params.id, sort, order, page);
+				break;
+			case STATE.GENRE_ARTISTS:
+				self.getArtistsByCriteriaExt('genre', $state.params.id, sort, order, page);
+				break;
+		}
+		PaginationService.getPages(page, state);
 	};
 
 	self.getArtistsByCriteria = function(sort, order, page) {
@@ -18,6 +28,16 @@ app.controller('ArtistController', ['$scope', '$stateParams', 'ArtistFactory', '
 		});
 	};
 
-	self.init($scope.sort.artists, $scope.order.artists, $stateParams.page);
+	self.getArtistsByCriteriaExt = function(relation, id, sort, order, page) {
+		ArtistFactory.getArtistsByCriteriaExt(relation, id, sort, order, page, function(response) {
+			if (response.success) {
+				self.artists = response.data;
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+	};
+
+	self.init($state.current.name, $scope.sort.artists, $scope.order.artists, $state.params.page);
 
 }]);

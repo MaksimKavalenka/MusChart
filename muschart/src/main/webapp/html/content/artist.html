@@ -1,6 +1,8 @@
 <ul class="content">
 	<li ng-repeat="artist in ctrl.artists">
-		<div class="title"><a>{{artist.name}}</a></div>
+		<div class="title">
+			<a ui-sref="tracks/artist({id:artist.id,page:1})">{{artist.name}}</a>
+		</div>
 		<div class="body" ng-click="">
 			<img ng-src="{{artist.photo}}">
 		</div>

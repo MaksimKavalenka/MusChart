@@ -1,7 +1,7 @@
 package by.gsu.database.editor;
 
 import static by.gsu.constants.ExceptionConstants.COMMIT_TRANSACTION_ERROR;
-import static by.gsu.constants.StructureConstants.TrackColumns;
+import static by.gsu.constants.ModelStructureConstants.TrackFields;
 
 import java.util.Date;
 import java.util.List;
@@ -45,11 +45,11 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
     public List<Track> getTracksByCriteria(final int sort, final boolean order, final int page) {
         switch (sort) {
             case 0:
-                return super.getElements(Track.class, TrackColumns.ID, order, page);
+                return super.getElementsByCriteria(Track.class, TrackFields.ID, order, page);
             case 1:
-                return super.getElements(Track.class, TrackColumns.RATING, order, page);
+                return super.getElementsByCriteria(Track.class, TrackFields.RATING, order, page);
             case 2:
-                return super.getElements(Track.class, TrackColumns.RELEASE, order, page);
+                return super.getElementsByCriteria(Track.class, TrackFields.RELEASE, order, page);
             default:
                 return null;
         }

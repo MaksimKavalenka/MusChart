@@ -3,7 +3,7 @@ package by.gsu.database.editor;
 import static by.gsu.constants.ExceptionConstants.AUTHORIZATION_ERROR;
 import static by.gsu.constants.ExceptionConstants.COMMIT_TRANSACTION_ERROR;
 import static by.gsu.constants.ExceptionConstants.TAKEN_LOGIN_ERROR;
-import static by.gsu.constants.StructureConstants.UserColumns;
+import static by.gsu.constants.ModelStructureConstants.UserFields;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -32,7 +32,7 @@ public class UserDatabaseEditor extends DatabaseEditor implements IUserDAO {
 
         try {
             session.beginTransaction();
-            checkUser = getUserByCriteria(Restrictions.eq(UserColumns.LOGIN, user.getLogin()));
+            checkUser = getUserByCriteria(Restrictions.eq(UserFields.LOGIN, user.getLogin()));
             session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
@@ -49,8 +49,8 @@ public class UserDatabaseEditor extends DatabaseEditor implements IUserDAO {
     @Override
     public User getUser(final String login, final String password) throws ValidationException {
         session.beginTransaction();
-        User user = getUserByCriteria(Restrictions.eq(UserColumns.LOGIN, login),
-                Restrictions.eq(UserColumns.PASSWORD, password));
+        User user = getUserByCriteria(Restrictions.eq(UserFields.LOGIN, login),
+                Restrictions.eq(UserFields.PASSWORD, password));
 
         if (user != null) {
             return user;
@@ -67,7 +67,7 @@ public class UserDatabaseEditor extends DatabaseEditor implements IUserDAO {
     @Override
     public User getUserByLogin(final String login) {
         session.beginTransaction();
-        return getUserByCriteria(Restrictions.eq(UserColumns.LOGIN, login));
+        return getUserByCriteria(Restrictions.eq(UserFields.LOGIN, login));
     }
 
     @Override

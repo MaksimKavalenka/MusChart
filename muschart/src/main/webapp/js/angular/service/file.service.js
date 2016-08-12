@@ -1,11 +1,11 @@
 'use strict';
-app.service('FileService', ['$http', 'DEFAULT', 'URL', function($http, DEFAULT, URL) {
+app.service('FileService', ['$http', 'REST', function($http, REST) {
 	return {
 
 		uploadFile: function(file, type, callback) {
 			var formData = new FormData();
 			formData.append('file', file);
-			$http.post(URL.UPLOAD + '/' + type + DEFAULT.JSON_EXT, formData, {
+			$http.post(REST.UPLOAD + '/' + type + REST.JSON_EXT, formData, {
 				transformRequest: angular.identity,
 				headers: {'Content-Type': undefined}
 			})

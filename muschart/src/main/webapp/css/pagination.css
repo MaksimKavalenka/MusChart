@@ -16,13 +16,13 @@
 	background: #ffffff;
 }
 .pagination > .page-default > a {
-	color: #4e4e4e;
+	color: #575757;
 }
 .pagination > .page-default:hover {
-	background: #4e4e4e;
+	background: #575757;
 }
 .pagination > .page-default:active {
-	background: #aec41a;
+	background: #000000;
 }
 .pagination > .page-active {
 	background: #ebbd81;

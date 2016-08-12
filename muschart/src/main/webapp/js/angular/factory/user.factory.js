@@ -1,9 +1,9 @@
 'use strict';
-app.factory('UserFactory', ['$http', 'DEFAULT', 'MESSAGE', 'URL', function($http, DEFAULT, MESSAGE, URL) {
+app.factory('UserFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE, REST) {
 	return {
 
 		createUser: function(login, password, callback) {
-			$http.post(URL.USERS + '/create/' + login + '/' + password + DEFAULT.JSON_EXT)
+			$http.post(REST.USERS + '/create/' + login + '/' + password + REST.JSON_EXT)
 			.success(function(response) {
 				response = {success: true};
 				callback(response);
@@ -15,7 +15,7 @@ app.factory('UserFactory', ['$http', 'DEFAULT', 'MESSAGE', 'URL', function($http
 		},
 
 		getUser: function(login, password, callback) {
-			$http.post(URL.USERS + '/' + login + '/' + password + DEFAULT.JSON_EXT)
+			$http.post(REST.USERS + '/' + login + '/' + password + REST.JSON_EXT)
 			.success(function(response) {
 				var data = {success: true, data: response};
 				callback(data);
@@ -27,7 +27,7 @@ app.factory('UserFactory', ['$http', 'DEFAULT', 'MESSAGE', 'URL', function($http
 		},
 
 		getUserByLogin: function(login, callback) {
-			$http.post(URL.USERS + '/' + login + DEFAULT.JSON_EXT)
+			$http.post(REST.USERS + '/' + login + REST.JSON_EXT)
 			.success(function(response) {
 				if (response != '') {
 					response = {success: true};

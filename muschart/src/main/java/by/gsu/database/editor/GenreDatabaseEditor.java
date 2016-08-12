@@ -1,7 +1,7 @@
 package by.gsu.database.editor;
 
 import static by.gsu.constants.ExceptionConstants.COMMIT_TRANSACTION_ERROR;
-import static by.gsu.constants.StructureConstants.GenreColumns;
+import static by.gsu.constants.ModelStructureConstants.GenreFields;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import by.gsu.constants.StructureConstants;
+import by.gsu.constants.ModelStructureConstants;
 import by.gsu.database.dao.IGenreDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.model.Genre;
@@ -37,7 +37,7 @@ public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
     public Genre getGenreByName(final String name) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(Genre.class);
-        criteria.add(Restrictions.eq(GenreColumns.NAME, name));
+        criteria.add(Restrictions.eq(GenreFields.NAME, name));
         return (Genre) criteria.uniqueResult();
     }
 
@@ -45,9 +45,9 @@ public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
     public List<Genre> getGenresByCriteria(final int sort, final boolean order, final int page) {
         switch (sort) {
             case 0:
-                return super.getElements(Genre.class, GenreColumns.ID, order, page);
+                return super.getElementsByCriteria(Genre.class, GenreFields.ID, order, page);
             case 1:
-                return super.getElements(Genre.class, GenreColumns.RATING, order, page);
+                return super.getElementsByCriteria(Genre.class, GenreFields.RATING, order, page);
             default:
                 return null;
         }
@@ -57,7 +57,7 @@ public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
     @SuppressWarnings("unchecked")
     public List<Genre> getAllGenres() {
         Criteria criteria = session.createCriteria(Genre.class);
-        criteria.addOrder(Order.asc(StructureConstants.GenreColumns.NAME));
+        criteria.addOrder(Order.asc(ModelStructureConstants.GenreFields.NAME));
         return criteria.list();
     }
 

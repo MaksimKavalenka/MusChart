@@ -2,7 +2,7 @@
 	<li ng-repeat="track in ctrl.tracks">
 		<div class="title">
 			<div ng-repeat="artist in track.artists">
-				<a ui-sref="#">{{artist.name}}</a>
+				<a ui-sref="tracks/artist({id:artist.id,page:1})">{{artist.name}}</a>
 				{{track.units[$index].name}}
 			</div>
 			{{track.artistName}}<br>{{track.songName}}

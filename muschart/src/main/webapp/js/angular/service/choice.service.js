@@ -1,5 +1,5 @@
 'use strict';
-app.service('ChoiceService', ['$http', '$rootScope', 'DEFAULT', 'MESSAGE', 'URL', function($http, $rootScope, DEFAULT, MESSAGE, URL) {
+app.service('ChoiceService', ['$http', '$rootScope', 'MESSAGE', 'REST', function($http, $rootScope, MESSAGE, REST) {
 	$rootScope.artistsChoice = [{index: 0}];
 	$rootScope.genresChoice = [{index: 0}];
 
@@ -29,7 +29,7 @@ app.service('ChoiceService', ['$http', '$rootScope', 'DEFAULT', 'MESSAGE', 'URL'
 
 		getAllUnits: function(callback) {
 			$rootScope.units = [];
-			return $http.get(URL.UNITS + DEFAULT.JSON_EXT)
+			return $http.get(REST.UNITS + REST.JSON_EXT)
 			.success(function(response) {
 				$rootScope.units = response;
 				response = {success: true};
@@ -43,7 +43,7 @@ app.service('ChoiceService', ['$http', '$rootScope', 'DEFAULT', 'MESSAGE', 'URL'
 
 		getAllArtists: function(callback) {
 			$rootScope.artists = [];
-			return $http.get(URL.ARTISTS + DEFAULT.JSON_EXT)
+			return $http.get(REST.ARTISTS + REST.JSON_EXT)
 			.success(function(response) {
 				$rootScope.artists = response;
 				response = {success: true};
@@ -57,7 +57,7 @@ app.service('ChoiceService', ['$http', '$rootScope', 'DEFAULT', 'MESSAGE', 'URL'
 
 		getAllGenres: function(callback) {
 			$rootScope.genres = [];
-			return $http.get(URL.GENRES + DEFAULT.JSON_EXT)
+			return $http.get(REST.GENRES + REST.JSON_EXT)
 			.success(function(response) {
 				$rootScope.genres = response;
 				response = {success: true};

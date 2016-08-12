@@ -1,11 +1,12 @@
 package by.gsu.database.editor;
 
+import static by.gsu.constants.ModelStructureConstants.UnitFields;
+
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 
-import by.gsu.constants.StructureConstants;
 import by.gsu.database.dao.IUnitDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.model.Unit;
@@ -25,7 +26,7 @@ public class UnitDatabaseEditor extends DatabaseEditor implements IUnitDAO {
     @SuppressWarnings("unchecked")
     public List<Unit> getAllUnits() throws ValidationException {
         Criteria criteria = session.createCriteria(Unit.class);
-        criteria.addOrder(Order.asc(StructureConstants.UnitColumns.ID));
+        criteria.addOrder(Order.asc(UnitFields.ID));
         return criteria.list();
     }
 

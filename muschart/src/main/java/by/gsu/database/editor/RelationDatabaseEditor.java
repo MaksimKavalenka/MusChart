@@ -1,5 +1,10 @@
 package by.gsu.database.editor;
 
+import static by.gsu.constants.ModelStructureConstants.ArtistFields;
+import static by.gsu.constants.ModelStructureConstants.GenreFields;
+import static by.gsu.constants.ModelStructureConstants.RelationFields;
+import static by.gsu.constants.ModelStructureConstants.TrackFields;
+
 import java.util.List;
 
 import by.gsu.database.dao.IArtistDAO;
@@ -19,6 +24,102 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
 
     public RelationDatabaseEditor() throws ValidationException {
         super();
+    }
+
+    @Override
+    public List<Artist> getTrackArtistsByCriteria(final long idTrack, final int sort,
+            final boolean order, final int page) throws ValidationException {
+        switch (sort) {
+            case 0:
+                return super.getElementsByCriteria(Artist.class, RelationFields.TRACKS,
+                        ArtistFields.ID, idTrack, order, page);
+            case 1:
+                return super.getElementsByCriteria(Artist.class, RelationFields.TRACKS,
+                        ArtistFields.RATING, idTrack, order, page);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public List<Artist> getGenreArtistsByCriteria(final long idGenre, final int sort,
+            final boolean order, final int page) throws ValidationException {
+        switch (sort) {
+            case 0:
+                return super.getElementsByCriteria(Artist.class, RelationFields.GENRES,
+                        ArtistFields.ID, idGenre, order, page);
+            case 1:
+                return super.getElementsByCriteria(Artist.class, RelationFields.GENRES,
+                        ArtistFields.RATING, idGenre, order, page);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public List<Genre> getTrackGenresByCriteria(final long idTrack, final int sort,
+            final boolean order, final int page) throws ValidationException {
+        switch (sort) {
+            case 0:
+                return super.getElementsByCriteria(Genre.class, RelationFields.TRACKS,
+                        GenreFields.ID, idTrack, order, page);
+            case 1:
+                return super.getElementsByCriteria(Genre.class, RelationFields.TRACKS,
+                        GenreFields.RATING, idTrack, order, page);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public List<Genre> getArtistGenresByCriteria(final long idArtist, final int sort,
+            final boolean order, final int page) throws ValidationException {
+        switch (sort) {
+            case 0:
+                return super.getElementsByCriteria(Genre.class, RelationFields.ARTISTS,
+                        GenreFields.ID, idArtist, order, page);
+            case 1:
+                return super.getElementsByCriteria(Genre.class, RelationFields.ARTISTS,
+                        GenreFields.RATING, idArtist, order, page);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public List<Track> getArtistTracksByCriteria(final long idArtist, final int sort,
+            final boolean order, final int page) {
+        switch (sort) {
+            case 0:
+                return super.getElementsByCriteria(Track.class, RelationFields.ARTISTS,
+                        TrackFields.ID, idArtist, order, page);
+            case 1:
+                return super.getElementsByCriteria(Track.class, RelationFields.ARTISTS,
+                        TrackFields.RATING, idArtist, order, page);
+            case 2:
+                return super.getElementsByCriteria(Track.class, RelationFields.ARTISTS,
+                        TrackFields.RELEASE, idArtist, order, page);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public List<Track> getGenreTracksByCriteria(final long idGenre, final int sort,
+            final boolean order, final int page) throws ValidationException {
+        switch (sort) {
+            case 0:
+                return super.getElementsByCriteria(Track.class, RelationFields.GENRES,
+                        TrackFields.ID, idGenre, order, page);
+            case 1:
+                return super.getElementsByCriteria(Track.class, RelationFields.GENRES,
+                        TrackFields.RATING, idGenre, order, page);
+            case 2:
+                return super.getElementsByCriteria(Track.class, RelationFields.GENRES,
+                        TrackFields.RELEASE, idGenre, order, page);
+            default:
+                return null;
+        }
     }
 
     @Override

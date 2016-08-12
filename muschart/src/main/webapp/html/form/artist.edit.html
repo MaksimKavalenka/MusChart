@@ -12,8 +12,8 @@
 		<div class="field">
 			<label class="required">Genre</label>
 			<div ng-repeat="genreChoice in genresChoice">
-				<select ng-model="genreChoice.id_genre" required>
-					<option ng-repeat="genre in genres" value="{{genre.id}}">{{genre.name}}</option>
+				<select ng-model="genreChoice.genre" required>
+					<option ng-repeat="gen in genres" value="{{gen.id}}">{{gen.name}}</option>
 				</select>
 				<button class="btn btn-danger btn-input" ng-click="removeGenreChoice(genreChoice.index)">Remove genre</button>
 			</div>

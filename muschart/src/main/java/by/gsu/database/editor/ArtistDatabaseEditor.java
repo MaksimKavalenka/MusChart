@@ -1,7 +1,7 @@
 package by.gsu.database.editor;
 
 import static by.gsu.constants.ExceptionConstants.COMMIT_TRANSACTION_ERROR;
-import static by.gsu.constants.StructureConstants.ArtistColumns;
+import static by.gsu.constants.ModelStructureConstants.ArtistFields;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Order;
 
-import by.gsu.constants.StructureConstants;
+import by.gsu.constants.ModelStructureConstants;
 import by.gsu.database.dao.IArtistDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.model.Artist;
@@ -40,9 +40,9 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
     public List<Artist> getArtistsByCriteria(final int sort, final boolean order, final int page) {
         switch (sort) {
             case 0:
-                return super.getElements(Artist.class, ArtistColumns.ID, order, page);
+                return super.getElementsByCriteria(Artist.class, ArtistFields.ID, order, page);
             case 1:
-                return super.getElements(Artist.class, ArtistColumns.RATING, order, page);
+                return super.getElementsByCriteria(Artist.class, ArtistFields.RATING, order, page);
             default:
                 return null;
         }
@@ -52,7 +52,7 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
     @SuppressWarnings("unchecked")
     public List<Artist> getAllArtists() {
         Criteria criteria = session.createCriteria(Artist.class);
-        criteria.addOrder(Order.asc(StructureConstants.ArtistColumns.NAME));
+        criteria.addOrder(Order.asc(ModelStructureConstants.ArtistFields.NAME));
         return criteria.list();
     }
 

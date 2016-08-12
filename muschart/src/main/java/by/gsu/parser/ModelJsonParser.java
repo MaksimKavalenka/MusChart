@@ -1,12 +1,13 @@
 package by.gsu.parser;
 
+import static by.gsu.constants.ModelStructureConstants.Models;
+
 import java.util.LinkedList;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import by.gsu.constants.StructureConstants;
 import by.gsu.database.dao.IArtistDAO;
 import by.gsu.database.dao.IGenreDAO;
 import by.gsu.database.dao.IUnitDAO;
@@ -35,7 +36,7 @@ public abstract class ModelJsonParser {
         JSONArray jsonArray = new JSONArray(json);
         for (int i = 1; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            long id = jsonObject.getLong(StructureConstants.RelationColumns.ID_UNIT);
+            long id = jsonObject.getLong(Models.UNIT);
             unions.add(getUnitById(id));
         }
         return unions;
@@ -46,7 +47,7 @@ public abstract class ModelJsonParser {
         JSONArray jsonArray = new JSONArray(json);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            long id = jsonObject.getLong(StructureConstants.RelationColumns.ID_ARTIST);
+            long id = jsonObject.getLong(Models.ARTIST);
             artists.add(getArtistById(id));
         }
         return artists;
@@ -57,7 +58,7 @@ public abstract class ModelJsonParser {
         JSONArray jsonArray = new JSONArray(json);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            long id = jsonObject.getLong(StructureConstants.RelationColumns.ID_GENRE);
+            long id = jsonObject.getLong(Models.GENRE);
             genres.add(getGenreById(id));
         }
         return genres;

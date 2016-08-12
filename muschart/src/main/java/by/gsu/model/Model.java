@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class Model implements Serializable {
+public abstract class Model implements Serializable {
 
     private static final long serialVersionUID = 702208025730502671L;
 

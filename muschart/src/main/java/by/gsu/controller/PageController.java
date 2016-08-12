@@ -24,8 +24,40 @@ public class PageController {
         return REDIRECT + TRACKS_DEFAULT_URI;
     }
 
+    @RequestMapping(value = {TRACK_ARTISTS_URI}, method = RequestMethod.GET)
+    public String trackArtistsPage() {
+        return REDIRECT + TRACK_ARTISTS_DEFAULT_URI;
+    }
+
+    @RequestMapping(value = {GENRE_ARTISTS_URI}, method = RequestMethod.GET)
+    public String genreArtistsPage() {
+        return REDIRECT + GENRE_ARTISTS_DEFAULT_URI;
+    }
+
+    @RequestMapping(value = {TRACK_GENRES_URI}, method = RequestMethod.GET)
+    public String trackGenresPage() {
+        return REDIRECT + TRACK_GENRES_DEFAULT_URI;
+    }
+
+    @RequestMapping(value = {ARTIST_GENRES_URI}, method = RequestMethod.GET)
+    public String artistGenresPage() {
+        return REDIRECT + ARTIST_GENRES_DEFAULT_URI;
+    }
+
+    @RequestMapping(value = {ARTIST_TRACKS_URI}, method = RequestMethod.GET)
+    public String artistTracksPage() {
+        return REDIRECT + ARTIST_TRACKS_DEFAULT_URI;
+    }
+
+    @RequestMapping(value = {GENRE_TRACKS_URI}, method = RequestMethod.GET)
+    public String genreTracksPage() {
+        return REDIRECT + GENRE_TRACKS_DEFAULT_URI;
+    }
+
     @RequestMapping(value = {SETTINGS_URI, LOGIN_URI, REGISTRATION_URI, ARTISTS_FULL_URI,
-            GENRES_FULL_URI, TRACKS_FULL_URI, ARTISTS_ADD_URI, GENRES_ADD_URI,
+            GENRES_FULL_URI, TRACKS_FULL_URI, TRACK_ARTISTS_FULL_URI, GENRE_ARTISTS_FULL_URI,
+            TRACK_GENRES_FULL_URI, ARTIST_GENRES_FULL_URI, ARTIST_TRACKS_FULL_URI,
+            GENRE_TRACKS_FULL_URI, ARTISTS_ADD_URI, GENRES_ADD_URI,
             TRACKS_ADD_URI}, method = RequestMethod.GET)
     public String page() {
         return INDEX_PATH;
