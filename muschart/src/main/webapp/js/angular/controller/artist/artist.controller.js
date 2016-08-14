@@ -8,11 +8,14 @@ app.controller('ArtistController', ['$scope', '$state', 'STATE', 'ArtistFactory'
 			case STATE.ARTISTS:
 				self.getArtistsByCriteria(sort, order, page);
 				break;
+			case STATE.GENRE_ARTISTS:
+				self.getArtistsByCriteriaExt('genre', $state.params.id, sort, order, page);
+				break;
 			case STATE.TRACK_ARTISTS:
 				self.getArtistsByCriteriaExt('track', $state.params.id, sort, order, page);
 				break;
-			case STATE.GENRE_ARTISTS:
-				self.getArtistsByCriteriaExt('genre', $state.params.id, sort, order, page);
+			case STATE.USER_ARTISTS:
+				self.getArtistsByCriteriaExt('user', $scope.globals.user.id, sort, order, page);
 				break;
 		}
 		PaginationService.getPages(page, state);

@@ -1,5 +1,5 @@
 'use strict';
-app.controller('UserEditController', ['$location', '$state', 'URL', 'UserFactory', 'CredentialsService', 'FlashService', function($location, $state, URL, UserFactory, CredentialsService, FlashService) {
+app.controller('UserEditController', ['$location', '$scope', '$state', 'URL', 'UserFactory', 'CredentialsService', 'FlashService', function($location, $scope, $state, URL, UserFactory, CredentialsService, FlashService) {
 	var self = this;
 	self.user = {id: null, login: '', role: null};
 
@@ -31,6 +31,14 @@ app.controller('UserEditController', ['$location', '$state', 'URL', 'UserFactory
 				FlashService.error(response.message);
 			}
 			self.dataLoading = false;
+		});
+	};
+
+	self.like = function(relation, id) {
+		UserFactory.setUserLike($scope.globals.user.id, relation, id, function(response) {
+			if (!response.success) {
+				FlashService.error(response.message);
+			}
 		});
 	};
 

@@ -14,6 +14,18 @@ app.factory('UserFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE,
 			});
 		},
 
+		setUserLike: function(idUser, relation, id, callback) {
+			$http.post(REST.USERS + '/' + idUser + '/' + relation + '/' + id + REST.JSON_EXT)
+			.success(function(response) {
+				response = {success: true};
+				callback(response);
+			})
+			.error(function(response) {
+				response = {success: false, message: MESSAGE.UPDATING_USER_ERROR};
+				callback(response);
+			});
+		},
+
 		getUser: function(login, password, callback) {
 			$http.post(REST.USERS + '/' + login + '/' + password + REST.JSON_EXT)
 			.success(function(response) {

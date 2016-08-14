@@ -13,16 +13,16 @@
 		<button type="submit" class="btn btn-default btn-search">Submit</button>
 	</form>
 	<ul class="navigation">
-		<li ng-show="globals.user.role == 'Admin'"><a ui-sref="tracks/add">Edit</a>
+		<li ng-show="globals.user.role == 'Admin'"><a ui-sref="track/add">Edit</a>
 		<li ng-show="!globals.user"><a ui-sref="login">Sign in</a>
 		<li><a ui-sref="settings">Settings</a>
 	</ul>
 </div>
 <div class="navbar navbar-primary justify" ng-show="globals.user">
 	<ul class="navigation">
-		<li><a href="/muschart/user_tracks">My tracks</a>
-		<li><a href="/muschart/user_artists">My artists</a>
-		<li><a href="/muschart/user_genres">My genres</a>
+		<li><a ui-sref="user/tracks({page:1})">My tracks</a>
+		<li><a ui-sref="user/artists({page:1})">My artists</a>
+		<li><a ui-sref="user/genres({page:1})">My genres</a>
 	</ul>
 	<ul class="navigation">
 		<li ng-show="globals.user"><a ui-sref="account">My account</a>

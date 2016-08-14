@@ -18,8 +18,4 @@ public interface IArtistDAO extends IDAO {
 
     void deleteArtistById(long id) throws ValidationException;
 
-    void incRating(long id) throws ValidationException;
-
-    void decRating(long id) throws ValidationException;
-
 }

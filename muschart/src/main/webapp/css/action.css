@@ -1,0 +1,40 @@
+.action-add {
+	background-image: url('../img/action/add.svg');
+	background-repeat: no-repeat;
+}
+.action-like {
+	background-image: url('../img/action/like.svg');
+	background-repeat: no-repeat;
+}
+.action-next {
+	background-image: url('../img/action/next.svg');
+	background-repeat: no-repeat;
+}
+.action-pause {
+	background-image: url('../img/action/pause.svg');
+	background-repeat: no-repeat;
+}
+.action-play {
+	background-image: url('../img/action/play.svg');
+	background-repeat: no-repeat;
+}
+.action-playlist {
+	background-image: url('../img/action/playlist.svg');
+	background-repeat: no-repeat;
+}
+.action-previous {
+	background-image: url('../img/action/previous.svg');
+	background-repeat: no-repeat;
+}
+.action-repeat {
+	background-image: url('../img/action/repeat.svg');
+	background-repeat: no-repeat;
+}
+.action-shuffle {
+	background-image: url('../img/action/shuffle.svg');
+	background-repeat: no-repeat;
+}
+.action-volume {
+	background-image: url('../img/action/volume.svg');
+	background-repeat: no-repeat;
+}

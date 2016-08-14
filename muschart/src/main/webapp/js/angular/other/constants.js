@@ -13,6 +13,7 @@ app.constant('MESSAGE', (function() {
 	var addingError = 'Error while adding ';
 	var gettingError = 'Error while getting ';
 	var deletingError = 'Error while deleting ';
+	var updatingError = 'Error while updating ';
 	var addingSuccess = ' has been added successfully';
 	var deletingSuccess = ' has been deleting successfully';
 	return {
@@ -31,6 +32,10 @@ app.constant('MESSAGE', (function() {
 		DELETING_ARTIST_ERROR: deletingError + 'artist',
 		DELETING_GENRE_ERROR: deletingError + 'genre',
 		DELETING_TRACK_ERROR: deletingError + 'track',
+		UPDATING_ARTIST_ERROR: updatingError + 'artist',
+		UPDATING_GENRE_ERROR: updatingError + 'genre',
+		UPDATING_TRACK_ERROR: updatingError + 'track',
+		UPDATING_USER_ERROR: updatingError + 'user',
 		ADDING_ARTIST_SUCCESS: 'Artist ' + addingSuccess,
 		ADDING_GENRE_SUCCESS: 'Genre ' + addingSuccess,
 		ADDING_TRACK_SUCCESS: 'Track ' + addingSuccess,
@@ -79,9 +84,10 @@ app.constant('STATE', (function() {
 	var artists = 'artists';
 	var genres = 'genres';
 	var tracks = 'tracks';
-	var artistOperation = '/artist';
-	var genreOperation = '/genre';
-	var trackOperation = '/track';
+	var artist = 'artist';
+	var genre = 'genre';
+	var track = 'track';
+	var user = 'user';
 	var addOperation = '/add';
 	return {
 		SETTINGS: 'settings',
@@ -90,15 +96,18 @@ app.constant('STATE', (function() {
 		ARTISTS: artists,
 		GENRES: genres,
 		TRACKS: tracks,
-		TRACK_ARTISTS: artists + trackOperation,
-		GENRE_ARTISTS: artists + genreOperation,
-		TRACK_GENRES: genres + trackOperation,
-		ARTIST_GENRES: genres + artistOperation,
-		ARTIST_TRACKS: tracks + artistOperation,
-		GENRE_TRACKS: tracks + genreOperation,
-		ARTISTS_ADD: artists + addOperation,
-		GENRES_ADD: genres + addOperation,
-		TRACKS_ADD: tracks + addOperation
+		GENRE_ARTISTS: genre + '/' + artists,
+		TRACK_ARTISTS: track + '/' + artists,
+		USER_ARTISTS: user + '/' + artists,
+		ARTIST_GENRES: artist + '/' + genres,
+		TRACK_GENRES: track + '/' + genres,
+		USER_GENRES: user + '/' + genres,
+		ARTIST_TRACKS: artist + '/' + tracks,
+		GENRE_TRACKS: genre + '/' + tracks,
+		USER_TRACKS: user + '/' + tracks,
+		ARTISTS_ADD: artist + addOperation,
+		GENRES_ADD: genre + addOperation,
+		TRACKS_ADD: track + addOperation
 	}
 })());
 app.constant('TYPE', {
@@ -108,32 +117,36 @@ app.constant('TYPE', {
 });
 app.constant('URL', (function() {
 	var url = '/muschart';
-	var artistsUrl = url + '/artists';
-	var genresUrl = url + '/genres';
-	var tracksUrl = url + '/tracks';
+	var artistsUrl = '/artists';
+	var genresUrl = '/genres';
+	var tracksUrl = '/tracks';
+	var artistUrl = '/artist';
+	var genreUrl = '/genre';
+	var trackUrl = '/track';
+	var userUrl = '/user';
 	var addOperation = '/add';
-	var artistOperation = '/artist';
-	var genreOperation = '/genre';
 	var pageOperation = '/page';
-	var trackOperation = '/track';
 	var idPattern = '/{id:[0-9]{1,}}';
 	var pagePattern = '/{page:[0-9]{1,}}';
 	return {
-		HOME_PAGE: tracksUrl + pageOperation + '/1',
+		HOME_PAGE: url + tracksUrl + pageOperation + '/1',
 		SETTINGS: url + '/settings',
 		LOGIN: url + '/login',
 		REGISTER: url + '/register',
-		ARTISTS: artistsUrl + pageOperation + pagePattern,
-		GENRES: genresUrl + pageOperation + pagePattern,
-		TRACKS: tracksUrl + pageOperation + pagePattern,
-		TRACK_ARTISTS: artistsUrl + trackOperation + idPattern + pageOperation + pagePattern,
-		GENRE_ARTISTS: artistsUrl + genreOperation + idPattern + pageOperation + pagePattern,
-		TRACK_GENRES: genresUrl + trackOperation + idPattern + pageOperation + pagePattern,
-		ARTIST_GENRES: genresUrl + artistOperation + idPattern + pageOperation + pagePattern,
-		ARTIST_TRACKS: tracksUrl + artistOperation + idPattern + pageOperation + pagePattern,
-		GENRE_TRACKS: tracksUrl + genreOperation + idPattern + pageOperation + pagePattern,
-		ARTISTS_ADD: artistsUrl + addOperation,
-		GENRES_ADD: genresUrl + addOperation,
-		TRACKS_ADD: tracksUrl + addOperation
+		ARTISTS: url + artistsUrl + pageOperation + pagePattern,
+		GENRES: url + genresUrl + pageOperation + pagePattern,
+		TRACKS: url + tracksUrl + pageOperation + pagePattern,
+		GENRE_ARTISTS: url + genreUrl + idPattern + artistsUrl + pageOperation + pagePattern,
+		TRACK_ARTISTS: url + trackUrl + idPattern + artistsUrl + pageOperation + pagePattern,
+		USER_ARTISTS: url + userUrl + artistsUrl + pageOperation + pagePattern,
+		ARTIST_GENRES: url + artistUrl + idPattern + genresUrl + pageOperation + pagePattern,
+		TRACK_GENRES: url + trackUrl + idPattern + genresUrl + pageOperation + pagePattern,
+		USER_GENRES: url + userUrl + genresUrl + pageOperation + pagePattern,
+		ARTIST_TRACKS: url + artistUrl + idPattern + tracksUrl + pageOperation + pagePattern,
+		GENRE_TRACKS: url + genreUrl + idPattern + tracksUrl + pageOperation + pagePattern,
+		USER_TRACKS: url + userUrl + tracksUrl + pageOperation + pagePattern,
+		ARTISTS_ADD: url + artistUrl + addOperation,
+		GENRES_ADD: url + genreUrl + addOperation,
+		TRACKS_ADD: url + trackUrl + addOperation
 	}
 })());

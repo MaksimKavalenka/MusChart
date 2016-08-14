@@ -22,8 +22,4 @@ public interface ITrackDAO extends IDAO {
 
     void deleteTrackById(long id) throws ValidationException;
 
-    void incRating(long id) throws ValidationException;
-
-    void decRating(long id) throws ValidationException;
-
 }

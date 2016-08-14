@@ -17,6 +17,10 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'TrackFactory', 
 				self.getTracksByCriteriaExt('genre', $state.params.id, sort, order, page);
 				self.getAmplitudeTracksByCriteriaExt('genre', $state.params.id, sort, order, page);
 				break;
+			case STATE.USER_TRACKS:
+				self.getTracksByCriteriaExt('user', $scope.globals.user.id, sort, order, page);
+				self.getAmplitudeTracksByCriteriaExt('user', $scope.globals.user.id, sort, order, page);
+				break;
 		}
 		PaginationService.getPages(page, state);
 	};

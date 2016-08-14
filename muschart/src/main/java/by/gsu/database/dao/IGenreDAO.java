@@ -19,8 +19,4 @@ public interface IGenreDAO extends IDAO {
 
     void deleteGenreById(long id) throws ValidationException;
 
-    void incRating(long id) throws ValidationException;
-
-    void decRating(long id) throws ValidationException;
-
 }

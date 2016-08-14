@@ -6,7 +6,7 @@
 	border: 2.5px solid #6699cc;
 	display: inline-block;
 	margin: 1px;
-	max-width: 306px;
+	width: 306px;
 }
 .content li > .title {
 	background-color: #575757;
@@ -14,15 +14,59 @@
 	font-weight: 600;
 	margin: 7px 0;
 	padding: 10px;
+	text-align: center;
 }
 .content li > .title > * {
-	display: inline;
+	display: block;
 	white-space: nowrap;
+}
+.content li > .title .artist {
+	display: inline;
+}
+.content li > .title a {
+	color: #ffffff;
+	text-decoration: none;
+}
+.content li > .title a:hover,
+.content li > .title a:active {
+	text-decoration: underline;
+}
+.content li > .body {
+	position: relative;
 }
 .content li > .body > * {
 	width: 100%;
 }
-.content li > .body:hover,
-.content li > .body:active {
-	opacity: 0.7;
+.content li > .body > .body-link {
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+}
+.content li > .body > .body-link:hover,
+.content li > .body > .body-link:active {
+	opacity: 1;
+}
+.content li > .body > .body-link .link {
+	background-color: #ffffff;
+	border: 2.5px solid transparent;
+	cursor: pointer;
+	font-size: 50px;
+	opacity: 0.8;
+	text-align: center;
+}
+.content li > .body > .body-link .link:hover,
+.content li > .body > .body-link .link:active {
+	border: 2.5px solid #575757;
+}
+.content li > .body > .body-link .link-main {
+	padding: 30px 0;
+}
+.content li > .body > .body-link .link-action {
+	background-size: 100% 100%;
+	display: inline-block;
+	height: 48px;
+	padding: 5px;
+    width: 48px;
 }

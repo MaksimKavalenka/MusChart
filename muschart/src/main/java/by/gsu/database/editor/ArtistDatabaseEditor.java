@@ -1,12 +1,10 @@
 package by.gsu.database.editor;
 
-import static by.gsu.constants.ExceptionConstants.COMMIT_TRANSACTION_ERROR;
 import static by.gsu.constants.ModelStructureConstants.ArtistFields;
 
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
 import org.hibernate.criterion.Order;
 
 import by.gsu.constants.ModelStructureConstants;
@@ -59,30 +57,6 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
     @Override
     public void deleteArtistById(final long id) throws ValidationException {
         delete(getArtistById(id));
-    }
-
-    @Override
-    public void incRating(final long id) throws ValidationException {
-        try {
-            session.beginTransaction();
-            // ArtistDatabaseQueries.incRating(session, id).executeUpdate();
-            session.getTransaction().commit();
-        } catch (HibernateException e) {
-            session.getTransaction().rollback();
-            throw new ValidationException(COMMIT_TRANSACTION_ERROR);
-        }
-    }
-
-    @Override
-    public void decRating(final long id) throws ValidationException {
-        try {
-            session.beginTransaction();
-            // ArtistDatabaseQueries.decRating(session, id).executeUpdate();
-            session.getTransaction().commit();
-        } catch (HibernateException e) {
-            session.getTransaction().rollback();
-            throw new ValidationException(COMMIT_TRANSACTION_ERROR);
-        }
     }
 
 }

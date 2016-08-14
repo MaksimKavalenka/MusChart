@@ -1,13 +1,20 @@
 <ul class="content">
 	<li ng-repeat="track in ctrl.tracks">
 		<div class="title">
-			<div ng-repeat="artist in track.artists">
-				<a ui-sref="tracks/artist({id:artist.id,page:1})">{{artist.name}}</a>
-				{{track.units[$index].name}}
+			<div>
+				<div class="artist" ng-repeat="artist in track.artists">
+					<a ui-sref="artist/tracks({id:artist.id,page:1})">{{artist.name}}</a>
+					{{track.units[$index].name}}
+				</div>
 			</div>
-			{{track.artistName}}<br>{{track.songName}}
+			<div>{{track.songName}}</div>
 		</div>
-		<div class="body" ng-click="">
+		<div class="body">
 			<img ng-src="{{track.cover}}">
+			<div class="body-link">
+				<div class="link link-main action-play"></div>
+				<div class="link link-main" ui-sref="track/genres({id:track.id,page:1})">Genres</div>
+				<div class="link link-action action-like"></div>
+			</div>
 		</div>
 </ul>

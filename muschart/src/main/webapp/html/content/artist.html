@@ -1,9 +1,13 @@
 <ul class="content">
 	<li ng-repeat="artist in ctrl.artists">
-		<div class="title">
-			<a ui-sref="tracks/artist({id:artist.id,page:1})">{{artist.name}}</a>
-		</div>
-		<div class="body" ng-click="">
+		<div class="title">{{artist.name}}</div>
+		<div class="body">
 			<img ng-src="{{artist.photo}}">
+			<div class="body-link">
+				<div class="link link-main" ui-sref="artist/tracks({id:artist.id,page:1})">Tracks</div>
+				<div class="link link-main" ui-sref="artist/genres({id:artist.id,page:1})">Genres</div>
+				<div class="link link-action action-like" ui-sref="login" ng-show="!globals.user"></div>
+				<div class="link link-action action-like" ng-controller="UserEditController as ctrl" ng-click="ctrl.like('artist',artist.id)" ng-show="globals.user"></div>
+			</div>
 		</div>
 </ul>

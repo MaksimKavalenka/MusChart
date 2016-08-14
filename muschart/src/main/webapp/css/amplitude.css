@@ -48,22 +48,6 @@
 	height: 100%;
 	width: 100%;
 }
-.amplitude-playing {
-	background-image: url('../img/amplitude/pause.swg');
-	background-repeat: no-repeat;
-}
-.amplitude-paused {
-	background-image: url('../img/amplitude/play.svg');
-	background-repeat: no-repeat;
-}
-.amplitude-prev {
-	background-image: url('../img/amplitude/previous.svg');
-	background-repeat: no-repeat;
-}
-.amplitude-next {
-	background-image: url('../img/amplitude/next.svg');
-	background-repeat: no-repeat;
-}
 .amplitude-song-time-visualization {
 	background: #c1c1c1;
 }
