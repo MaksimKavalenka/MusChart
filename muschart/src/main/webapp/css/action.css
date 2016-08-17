@@ -38,3 +38,11 @@
 	background-image: url('../img/action/volume.svg');
 	background-repeat: no-repeat;
 }
+.action-youtube {
+	background-image: url('../img/action/youtube.svg');
+	background-repeat: no-repeat;
+}
+.action-youtube-active {
+	background-image: url('../img/action/youtube-active.svg');
+	background-repeat: no-repeat;
+}

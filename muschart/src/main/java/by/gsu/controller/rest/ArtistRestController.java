@@ -2,7 +2,6 @@ package by.gsu.controller.rest;
 
 import static by.gsu.constants.RestConstants.JSON_EXT;
 import static by.gsu.constants.RestConstants.ARTISTS_PATH;
-import static by.gsu.constants.UploadConstants.Path.ARTIST_PHOTO_UPLOAD_PATH;
 
 import java.util.List;
 
@@ -29,8 +28,7 @@ public class ArtistRestController {
             @PathVariable("photo") final String photo,
             @PathVariable("genres") final String genres) {
         try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
-            artistDAO.createArtist(name, ARTIST_PHOTO_UPLOAD_PATH + "/" + photo,
-                    ModelJsonParser.getGenres(genres));
+            artistDAO.createArtist(name, photo, ModelJsonParser.getGenres(genres));
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (ValidationException e) {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);

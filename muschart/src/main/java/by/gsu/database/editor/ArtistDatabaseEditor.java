@@ -41,6 +41,8 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
                 return super.getElementsByCriteria(Artist.class, ArtistFields.ID, order, page);
             case 1:
                 return super.getElementsByCriteria(Artist.class, ArtistFields.RATING, order, page);
+            case 2:
+                return super.getElementsByCriteria(Artist.class, ArtistFields.NAME, order, page);
             default:
                 return null;
         }

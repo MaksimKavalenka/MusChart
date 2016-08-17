@@ -46,6 +46,8 @@ public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
                 return super.getElementsByCriteria(Genre.class, GenreFields.ID, order, page);
             case 1:
                 return super.getElementsByCriteria(Genre.class, GenreFields.RATING, order, page);
+            case 2:
+                return super.getElementsByCriteria(Genre.class, GenreFields.NAME, order, page);
             default:
                 return null;
         }

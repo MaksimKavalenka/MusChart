@@ -16,8 +16,8 @@
 			<button class="btn btn-default btn-input" ng-click="addArtistChoice()">Add artist</button>
 		</div>
 		<div class="field">
-			<label class="required" for="songName">Song name</label>
-			<input type="text" id="songName" name="songName" maxlength="255" ng-model="ctrl.track.songName" required/>
+			<label class="required" for="name">Song name</label>
+			<input type="text" id="name" name="name" maxlength="255" ng-model="ctrl.track.name" required/>
 		</div>
 		<div class="field">
 			<label class="required" for="song">Song</label>
@@ -26,6 +26,10 @@
 		<div class="field">
 			<label class="required" for="cover">Cover</label>
 			<input type="file" id="cover" name="cover" ng-model="ctrl.track.cover" file-model="coverFile" required file-required/>
+		</div>
+		<div class="field">
+			<label for="video">Youtube video url</label>
+			<input type="text" id="video" name="video" maxlength="255" ng-model="ctrl.track.video"/>
 		</div>
 		<div class="field">
 			<label class="required">Genre</label>
@@ -38,7 +42,7 @@
 			<button class="btn btn-default btn-input" ng-click="addGenreChoice()">Add genre</button>
 		</div>
 		<div class="field">
-			<label class="required" for="release">Released</label>
+			<label class="required" for="release">Release date</label>
 			<input type="date" id="release" name="release" ng-model="ctrl.track.release" required/>
 		</div>
 		<div>

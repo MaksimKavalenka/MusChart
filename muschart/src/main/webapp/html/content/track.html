@@ -1,20 +1,30 @@
 <ul class="content">
-	<li ng-repeat="track in ctrl.tracks">
+	<li ng-repeat="track in ctrl.tracks" ng-controller="ModalController" >
 		<div class="title">
 			<div>
 				<div class="artist" ng-repeat="artist in track.artists">
-					<a ui-sref="artist/tracks({id:artist.id,page:1})">{{artist.name}}</a>
+					<a ui-sref="artist/tracks({id: artist.id, page: 1})">{{artist.name}}</a>
 					{{track.units[$index].name}}
 				</div>
 			</div>
-			<div>{{track.songName}}</div>
+			<div>{{track.name}}</div>
 		</div>
 		<div class="body">
-			<img ng-src="{{track.cover}}">
+			<img ng-src="/muschart/img/track/{{track.cover}}">
 			<div class="body-link">
-				<div class="link link-main action-play"></div>
-				<div class="link link-main" ui-sref="track/genres({id:track.id,page:1})">Genres</div>
-				<div class="link link-action action-like"></div>
+				<div class="link link-main" ui-sref="track/artists({id: track.id, page: 1})">Artists</div>
+				<div class="link link-main" ui-sref="track/genres({id: track.id, page: 1})">Genres</div>
+				<div class="link link-action action-play"></div>
+				<div class="link link-action link-empty" ng-show="track.video === ''"></div>
+				<div class="link link-action action-youtube" ng-show="track.video !== ''" ng-click="show()"></div>
+				<div class="link link-action link-empty"></div>
+				<div class="link link-action action-like" ui-sref="login" ng-show="!globals.user"></div>
+				<div class="link link-action action-like" ng-controller="UserEditController as ctrl" ng-click="ctrl.like('track', track.id)" ng-show="globals.user"></div>
 			</div>
 		</div>
+		<modal visible="showModal">
+			<modal-body>
+				<iframe ng-src="{{track.video | trusted}}"></iframe>
+			</modal-body>
+		</modal>
 </ul>

@@ -25,14 +25,17 @@ public class Track extends Model {
 
     private static final long serialVersionUID = 1952582684617860747L;
 
-    @Column(name = "song_name", nullable = false, length = 255)
-    private String            songName;
+    @Column(name = "name", nullable = false, length = 255)
+    private String            name;
 
     @Column(name = "song", nullable = false, columnDefinition = "TEXT")
     private String            song;
 
     @Column(name = "cover", nullable = false, columnDefinition = "TEXT")
     private String            cover;
+
+    @Column(name = "video")
+    private String            video;
 
     @Column(name = "release", nullable = false)
     @Temporal(TemporalType.DATE)
@@ -72,12 +75,12 @@ public class Track extends Model {
         super();
     }
 
-    public String getSongName() {
-        return songName;
+    public String getName() {
+        return name;
     }
 
-    public void setSongName(final String songName) {
-        this.songName = songName;
+    public void setName(final String name) {
+        this.name = name;
     }
 
     public String getSong() {
@@ -94,6 +97,14 @@ public class Track extends Model {
 
     public void setCover(final String cover) {
         this.cover = cover;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(final String video) {
+        this.video = video;
     }
 
     public Date getRelease() {

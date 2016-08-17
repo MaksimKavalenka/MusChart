@@ -27,12 +27,21 @@
 		<li class="cell-primary radio-primary"><input type="radio" name="my_artists_sort" ng-model="sort.my_artists" value="1">
 		<li class="cell-primary radio-primary"><input type="radio" name="my_genres_sort" ng-model="sort.my_genres" value="1">
 	</ul>
+		<ul>
+		<li class="title cell-default">Alphabet
+		<li class="cell-default radio-default"><input type="radio" name="tracks_sort" ng-model="sort.tracks" value="2">
+		<li class="cell-default radio-default"><input type="radio" name="artists_sort" ng-model="sort.artists" value="2">
+		<li class="cell-default radio-default"><input type="radio" name="genres_sort" ng-model="sort.genres" value="2">
+		<li class="cell-primary radio-primary"><input type="radio" name="my_tracks_sort" ng-model="sort.my_tracks" value="2">
+		<li class="cell-primary radio-primary"><input type="radio" name="my_artists_sort" ng-model="sort.my_artists" value="2">
+		<li class="cell-primary radio-primary"><input type="radio" name="my_genres_sort" ng-model="sort.my_genres" value="2">
+	</ul>
 	<ul>
 		<li class="title cell-default">Release
-		<li class="cell-default radio-default"><input type="radio" name="tracks_sort" ng-model="sort.tracks" value="2">
+		<li class="cell-default radio-default"><input type="radio" name="tracks_sort" ng-model="sort.tracks" value="3">
 		<li class="cell-default not-available">Not available
 		<li class="cell-default not-available">Not available
-		<li class="cell-primary radio-primary"><input type="radio" name="my_tracks_sort" ng-model="sort.my_tracks" value="2">
+		<li class="cell-primary radio-primary"><input type="radio" name="my_tracks_sort" ng-model="sort.my_tracks" value="3">
 		<li class="cell-primary not-available">Not available
 		<li class="cell-primary not-available">Not available
 	</ul>
@@ -55,5 +64,3 @@
 		<li class="cell-option radio-option"><input type="radio" name="my_genres_sort_type" ng-model="order.my_genres" value="false">
 	</ul>
 </div>
-<div>{{sort}}</div>
-<div>{{order}}</div>

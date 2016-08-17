@@ -34,6 +34,9 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
             case 1:
                 return super.getElementsByCriteria(Artist.class, RelationFields.GENRES,
                         ArtistFields.RATING, idGenre, order, page);
+            case 2:
+                return super.getElementsByCriteria(Artist.class, RelationFields.GENRES,
+                        ArtistFields.NAME, idGenre, order, page);
             default:
                 return null;
         }
@@ -49,6 +52,9 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
             case 1:
                 return super.getElementsByCriteria(Artist.class, RelationFields.TRACKS,
                         ArtistFields.RATING, idTrack, order, page);
+            case 2:
+                return super.getElementsByCriteria(Artist.class, RelationFields.TRACKS,
+                        ArtistFields.NAME, idTrack, order, page);
             default:
                 return null;
         }
@@ -64,6 +70,9 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
             case 1:
                 return super.getElementsByCriteria(Artist.class, RelationFields.USERS,
                         ArtistFields.RATING, idUser, order, page);
+            case 2:
+                return super.getElementsByCriteria(Artist.class, RelationFields.USERS,
+                        ArtistFields.NAME, idUser, order, page);
             default:
                 return null;
         }
@@ -79,6 +88,9 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
             case 1:
                 return super.getElementsByCriteria(Genre.class, RelationFields.ARTISTS,
                         GenreFields.RATING, idArtist, order, page);
+            case 2:
+                return super.getElementsByCriteria(Genre.class, RelationFields.ARTISTS,
+                        GenreFields.NAME, idArtist, order, page);
             default:
                 return null;
         }
@@ -94,6 +106,9 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
             case 1:
                 return super.getElementsByCriteria(Genre.class, RelationFields.TRACKS,
                         GenreFields.RATING, idTrack, order, page);
+            case 2:
+                return super.getElementsByCriteria(Genre.class, RelationFields.TRACKS,
+                        GenreFields.NAME, idTrack, order, page);
             default:
                 return null;
         }
@@ -109,6 +124,9 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
             case 1:
                 return super.getElementsByCriteria(Genre.class, RelationFields.USERS,
                         GenreFields.RATING, idUser, order, page);
+            case 2:
+                return super.getElementsByCriteria(Genre.class, RelationFields.USERS,
+                        GenreFields.NAME, idUser, order, page);
             default:
                 return null;
         }
@@ -125,6 +143,9 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
                 return super.getElementsByCriteria(Track.class, RelationFields.ARTISTS,
                         TrackFields.RATING, idArtist, order, page);
             case 2:
+                return super.getElementsByCriteria(Track.class, RelationFields.ARTISTS,
+                        TrackFields.NAME, idArtist, order, page);
+            case 3:
                 return super.getElementsByCriteria(Track.class, RelationFields.ARTISTS,
                         TrackFields.RELEASE, idArtist, order, page);
             default:
@@ -144,6 +165,9 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
                         TrackFields.RATING, idGenre, order, page);
             case 2:
                 return super.getElementsByCriteria(Track.class, RelationFields.GENRES,
+                        TrackFields.NAME, idGenre, order, page);
+            case 3:
+                return super.getElementsByCriteria(Track.class, RelationFields.GENRES,
                         TrackFields.RELEASE, idGenre, order, page);
             default:
                 return null;
@@ -161,6 +185,9 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
                 return super.getElementsByCriteria(Track.class, RelationFields.USERS,
                         TrackFields.RATING, idUser, order, page);
             case 2:
+                return super.getElementsByCriteria(Track.class, RelationFields.USERS,
+                        TrackFields.NAME, idUser, order, page);
+            case 3:
                 return super.getElementsByCriteria(Track.class, RelationFields.USERS,
                         TrackFields.RELEASE, idUser, order, page);
             default:
@@ -201,7 +228,7 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
     @Override
     public void updateUserArtists(final User user, final Artist artist) throws ValidationException {
         List<Artist> artists = user.getArtists();
-        if (!artists.equals(artist)) {
+        if (!artists.contains(artist)) {
             artists.add(artist);
         } else {
             artists.remove(artist);
@@ -212,7 +239,7 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
     @Override
     public void updateUserGenres(final User user, final Genre genre) throws ValidationException {
         List<Genre> genres = user.getGenres();
-        if (!genres.equals(genre)) {
+        if (!genres.contains(genre)) {
             genres.add(genre);
         } else {
             genres.remove(genre);
@@ -223,7 +250,7 @@ public class RelationDatabaseEditor extends DatabaseEditor implements IRelationD
     @Override
     public void updateUserTracks(final User user, final Track track) throws ValidationException {
         List<Track> tracks = user.getTracks();
-        if (!tracks.equals(track)) {
+        if (!tracks.contains(track)) {
             tracks.add(track);
         } else {
             tracks.remove(track);

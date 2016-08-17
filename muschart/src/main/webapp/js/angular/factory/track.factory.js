@@ -2,8 +2,8 @@
 app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE, REST) {
 	return {
 
-		createTrack: function(songName, song, cover, artists, genres, release, callback) {
-			$http.post(REST.TRACKS + '/create/' + songName + '/' + song + '/' + cover + '/' + artists + '/' + genres + '/' + release + REST.JSON_EXT)
+		createTrack: function(name, song, cover, video, artists, genres, release, callback) {
+			$http.post(REST.TRACKS + '/create/' + name + '/' + song + '/' + cover + '/' + video + '/' + artists + '/' + genres + '/' + release + REST.JSON_EXT)
 			.success(function(response) {
 				response = {success: true, message: MESSAGE.ADDING_TRACK_SUCCESS};
 				callback(response);

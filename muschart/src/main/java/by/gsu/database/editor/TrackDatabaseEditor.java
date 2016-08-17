@@ -19,13 +19,14 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
     }
 
     @Override
-    public void createTrack(final String songName, final String song, final String cover,
-            final List<Unit> units, final List<Artist> artists, final List<Genre> genres,
-            final Date release) throws ValidationException {
+    public void createTrack(final String name, final String song, final String cover,
+            final String video, final List<Unit> units, final List<Artist> artists,
+            final List<Genre> genres, final Date release) throws ValidationException {
         Track track = new Track();
-        track.setSongName(songName);
+        track.setName(name);
         track.setSong(song);
         track.setCover(cover);
+        track.setVideo(video);
         track.setUnits(units);
         track.setArtists(artists);
         track.setGenres(genres);
@@ -46,6 +47,8 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
             case 1:
                 return super.getElementsByCriteria(Track.class, TrackFields.RATING, order, page);
             case 2:
+                return super.getElementsByCriteria(Track.class, TrackFields.NAME, order, page);
+            case 3:
                 return super.getElementsByCriteria(Track.class, TrackFields.RELEASE, order, page);
             default:
                 return null;

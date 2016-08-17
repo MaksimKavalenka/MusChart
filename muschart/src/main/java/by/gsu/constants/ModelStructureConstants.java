@@ -45,12 +45,12 @@ public abstract class ModelStructureConstants {
 
     public abstract static class TrackFields {
 
-        public static final String ID        = ModelFields.ID;
-        public static final String SONG_NAME = "song_name";
-        public static final String SONG      = "song";
-        public static final String COVER     = "cover";
-        public static final String RELEASE   = "release";
-        public static final String RATING    = "rating";
+        public static final String ID      = ModelFields.ID;
+        public static final String NAME    = "name";
+        public static final String SONG    = "song";
+        public static final String COVER   = "cover";
+        public static final String RELEASE = "release";
+        public static final String RATING  = "rating";
 
     }
 

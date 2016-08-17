@@ -60,13 +60,24 @@
 .content li > .body > .body-link .link:active {
 	border: 2.5px solid #575757;
 }
+.content li > .body > .body-link .link-empty {
+	cursor: auto;
+}
+.content li > .body > .body-link .link-empty:hover,
+.content li > .body > .body-link .link-empty:active {
+	border: 2.5px solid transparent;
+}
 .content li > .body > .body-link .link-main {
-	padding: 30px 0;
+	padding: 27.5px 0;
 }
 .content li > .body > .body-link .link-action {
 	background-size: 100% 100%;
-	display: inline-block;
-	height: 48px;
+	display: table-cell;
+	height: 72px;
 	padding: 5px;
-    width: 48px;
+	width: 72px;
+}
+iframe {
+	height: 360px;
+	width: 480px;
 }

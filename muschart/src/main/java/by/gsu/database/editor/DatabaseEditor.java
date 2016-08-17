@@ -1,6 +1,6 @@
 package by.gsu.database.editor;
 
-import static by.gsu.constants.DefaultConstants.*;
+import static by.gsu.constants.CountElementsConstants.*;
 import static by.gsu.constants.ExceptionConstants.CLOSE_SESSION_ERROR;
 import static by.gsu.constants.ExceptionConstants.COMMIT_TRANSACTION_ERROR;
 import static by.gsu.constants.ExceptionConstants.OPEN_SESSION_ERROR;

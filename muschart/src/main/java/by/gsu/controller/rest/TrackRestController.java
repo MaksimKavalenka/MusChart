@@ -2,8 +2,6 @@ package by.gsu.controller.rest;
 
 import static by.gsu.constants.RestConstants.JSON_EXT;
 import static by.gsu.constants.RestConstants.TRACKS_PATH;
-import static by.gsu.constants.UploadConstants.Path.AUDIO_UPLOAD_PATH;
-import static by.gsu.constants.UploadConstants.Path.TRACK_COVER_UPLOAD_PATH;
 
 import java.util.Date;
 import java.util.List;
@@ -27,16 +25,16 @@ import by.gsu.parser.ModelJsonParser;
 public class TrackRestController {
 
     @RequestMapping(value = TRACKS_PATH
-            + "/create/{songName}/{song}/{cover}/{artists}/{genres}/{release}"
+            + "/create/{name}/{song}/{cover}/{video}/{artists}/{genres}/{release}"
             + JSON_EXT, method = RequestMethod.POST)
-    public ResponseEntity<Void> createTrack(@PathVariable("songName") final String songName,
+    public ResponseEntity<Void> createTrack(@PathVariable("name") final String name,
             @PathVariable("song") final String song, @PathVariable("cover") final String cover,
+            @PathVariable("video") final String video,
             @PathVariable("artists") final String artists,
             @PathVariable("genres") final String genres,
             @PathVariable("release") final Date release) {
         try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
-            trackDAO.createTrack(songName, AUDIO_UPLOAD_PATH + "/" + song,
-                    TRACK_COVER_UPLOAD_PATH + "/" + cover, ModelJsonParser.getUnits(artists),
+            trackDAO.createTrack(name, song, cover, video, ModelJsonParser.getUnits(artists),
                     ModelJsonParser.getArtists(artists), ModelJsonParser.getGenres(genres),
                     release);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
