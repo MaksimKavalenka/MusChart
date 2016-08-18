@@ -1,7 +1,7 @@
 'use strict';
 app.controller('ArtistEditController', ['$scope', 'TYPE', 'ArtistFactory', 'ChoiceService', 'FileService', 'FlashService', function($scope, TYPE, ArtistFactory, ChoiceService, FileService, FlashService) {
 	var self = this;
-	self.artist = {id: null, name: '', photo: '', rating: null};
+	self.artist = {name: '', photo: ''};
 
 	self.init = function() {
 		ChoiceService.reset();
@@ -24,6 +24,7 @@ app.controller('ArtistEditController', ['$scope', 'TYPE', 'ArtistFactory', 'Choi
 		if (photoFlag) {
 			ArtistFactory.createArtist(self.artist.name, self.artist.photo.replace(/^C:\\fakepath\\/i, ''), angular.toJson($scope.genresChoice), function(response) {
 				if (response.success) {
+					self.reset();
 					FlashService.success(response.message);
 				} else {
 					FlashService.error(response.message);
@@ -44,7 +45,7 @@ app.controller('ArtistEditController', ['$scope', 'TYPE', 'ArtistFactory', 'Choi
 	};
 
 	self.reset = function() {
-		self.artist = {id: null, name: '', photo: '', rating: null};
+		self.artist = {name: '', photo: ''};
 		$scope.form.$setPristine();
 	};
 

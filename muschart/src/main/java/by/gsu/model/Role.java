@@ -18,7 +18,7 @@ public class Role extends Model {
 
     private static final long serialVersionUID = -2838272686668080339L;
 
-    @Column(name = "name", nullable = false, length = 255)
+    @Column(name = "name", unique = true, nullable = false, length = 255)
     private String            name;
 
     @JsonIgnore

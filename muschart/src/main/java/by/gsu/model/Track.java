@@ -28,16 +28,16 @@ public class Track extends Model {
     @Column(name = "name", nullable = false, length = 255)
     private String            name;
 
-    @Column(name = "song", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "song", nullable = false, length = 255)
     private String            song;
 
-    @Column(name = "cover", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "cover", nullable = false, length = 255)
     private String            cover;
 
-    @Column(name = "video")
+    @Column(name = "video", length = 255)
     private String            video;
 
-    @Column(name = "release", nullable = false)
+    @Column(name = "released", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date              release;
 

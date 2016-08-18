@@ -49,6 +49,7 @@ public abstract class ModelStructureConstants {
         public static final String NAME    = "name";
         public static final String SONG    = "song";
         public static final String COVER   = "cover";
+        public static final String VIDEO   = "video";
         public static final String RELEASE = "release";
         public static final String RATING  = "rating";
 

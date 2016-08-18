@@ -20,17 +20,17 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
 
     @Override
     public void createTrack(final String name, final String song, final String cover,
-            final String video, final List<Unit> units, final List<Artist> artists,
-            final List<Genre> genres, final Date release) throws ValidationException {
+            final String video, final Date release, final List<Unit> units,
+            final List<Artist> artists, final List<Genre> genres) throws ValidationException {
         Track track = new Track();
         track.setName(name);
         track.setSong(song);
         track.setCover(cover);
         track.setVideo(video);
+        track.setRelease(release);
         track.setUnits(units);
         track.setArtists(artists);
         track.setGenres(genres);
-        track.setRelease(release);
         save(track);
     }
 

@@ -25,18 +25,20 @@ import by.gsu.parser.ModelJsonParser;
 public class TrackRestController {
 
     @RequestMapping(value = TRACKS_PATH
-            + "/create/{name}/{song}/{cover}/{video}/{artists}/{genres}/{release}"
+            + "/create/{name}/{song}/{cover}/{video}/{release}/{artists}/{genres}"
             + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<Void> createTrack(@PathVariable("name") final String name,
             @PathVariable("song") final String song, @PathVariable("cover") final String cover,
-            @PathVariable("video") final String video,
+            @PathVariable("video") String video, @PathVariable("release") final Date release,
             @PathVariable("artists") final String artists,
-            @PathVariable("genres") final String genres,
-            @PathVariable("release") final Date release) {
+            @PathVariable("genres") final String genres) {
         try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
-            trackDAO.createTrack(name, song, cover, video, ModelJsonParser.getUnits(artists),
-                    ModelJsonParser.getArtists(artists), ModelJsonParser.getGenres(genres),
-                    release);
+            if ("null".equals(video)) {
+                video = "";
+            }
+            trackDAO.createTrack(name, song, cover, video, release,
+                    ModelJsonParser.getUnits(artists), ModelJsonParser.getArtists(artists),
+                    ModelJsonParser.getGenres(genres));
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (ValidationException e) {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);

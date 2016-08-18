@@ -11,8 +11,8 @@ import by.gsu.model.Unit;
 
 public interface ITrackDAO extends IDAO {
 
-    void createTrack(String name, String song, String cover, String video, List<Unit> units,
-            List<Artist> artists, List<Genre> genres, Date release) throws ValidationException;
+    void createTrack(String name, String song, String cover, String video, Date release,
+            List<Unit> units, List<Artist> artists, List<Genre> genres) throws ValidationException;
 
     Track getTrackById(long id) throws ValidationException;
 

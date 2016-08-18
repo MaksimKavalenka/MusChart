@@ -1,13 +1,13 @@
 'use strict';
 app.controller('GenreEditController', ['$scope', 'GenreFactory', 'FlashService', function($scope, GenreFactory, FlashService) {
 	var self = this;
-	self.genre = {id: null, name: '', rating: null};
-	self.genres = [];
+	self.genre = {name: ''};
 
 	self.createGenre = function() {
 		self.dataLoading = true;
 		GenreFactory.createGenre(self.genre.name, function(response) {
 			if (response.success) {
+				self.reset();
 				FlashService.success(response.message);
 			} else {
 				FlashService.error(response.message);
@@ -27,7 +27,7 @@ app.controller('GenreEditController', ['$scope', 'GenreFactory', 'FlashService',
 	};
 
 	self.reset = function() {
-		self.genre = {id: null, name: '', rating: null};
+		self.genre = {name: ''};
 		$scope.form.$setPristine();
 	};
 

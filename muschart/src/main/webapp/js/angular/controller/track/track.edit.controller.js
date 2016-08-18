@@ -39,8 +39,12 @@ app.controller('TrackEditController', ['$scope', 'TYPE', 'TrackFactory', 'Choice
 			}
 		});
 		if (songFlag && coverFlag) {
-			TrackFactory.createTrack(self.track.name, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), self.track.video, angular.toJson($scope.artistsChoice), angular.toJson($scope.genresChoice), self.track.release, function(response) {
+			if (self.track.video == '') {
+				self.track.video = null;
+			}
+			TrackFactory.createTrack(self.track.name, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), self.track.video, self.track.release, angular.toJson($scope.artistsChoice), angular.toJson($scope.genresChoice), function(response) {
 				if (response.success) {
+					self.reset();
 					FlashService.success(response.message);
 				} else {
 					FlashService.error(response.message);

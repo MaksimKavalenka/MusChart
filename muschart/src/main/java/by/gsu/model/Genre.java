@@ -22,7 +22,7 @@ public class Genre extends Model {
 
     private static final long serialVersionUID = 2354473633918150319L;
 
-    @Column(name = "name", nullable = false, length = 255)
+    @Column(name = "name", unique = true, nullable = false, length = 255)
     private String            name;
 
     @Column(name = "rating", nullable = false)

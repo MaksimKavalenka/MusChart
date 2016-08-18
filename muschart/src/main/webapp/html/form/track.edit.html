@@ -6,7 +6,7 @@
 			<div ng-repeat="artistChoice in artistsChoice">
 				<select ng-model="artistChoice.unit" ng-if="$first" ng-show="false"></select>
 				<select ng-model="artistChoice.unit" ng-if="!$first" required>
-					<option ng-repeat="un in units" value="{{un.id}}">{{unt.name}}</option>
+					<option ng-repeat="un in units" value="{{un.id}}">{{un.name}}</option>
 				</select>
 				<select ng-model="artistChoice.artist" required>
 					<option ng-repeat="art in artists" value="{{art.id}}">{{art.name}}</option>
@@ -28,7 +28,7 @@
 			<input type="file" id="cover" name="cover" ng-model="ctrl.track.cover" file-model="coverFile" required file-required/>
 		</div>
 		<div class="field">
-			<label for="video">Youtube video url</label>
+			<label for="video">Youtube video id</label>
 			<input type="text" id="video" name="video" maxlength="255" ng-model="ctrl.track.video"/>
 		</div>
 		<div class="field">
