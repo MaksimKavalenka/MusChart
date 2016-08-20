@@ -54,6 +54,18 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 			});
 		},
 
+		getAllGenres: function(callback) {
+			return $http.get(REST.GENRES + REST.JSON_EXT)
+			.success(function(response) {
+				var data = {success: true, data: response};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: MESSAGE.GETTING_GENRE_ERROR};
+				callback(response);
+			});
+		},
+
 		deleteGenre: function(id, callback) {
 			return $http.delete(REST.GENRES + '/delete/' + id + REST.JSON_EXT)
 			.success(function(response) {

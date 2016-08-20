@@ -1,12 +1,14 @@
 'use strict';
-app.controller('ArtistEditController', ['$scope', 'TYPE', 'ArtistFactory', 'ChoiceService', 'FileService', 'FlashService', function($scope, TYPE, ArtistFactory, ChoiceService, FileService, FlashService) {
+app.controller('ArtistEditController', ['$scope', 'TYPE', 'ArtistFactory', 'GenreFactory', 'ChoiceService', 'FileService', 'FlashService', function($scope, TYPE, ArtistFactory, GenreFactory, ChoiceService, FileService, FlashService) {
 	var self = this;
 	self.artist = {name: '', photo: ''};
 
 	self.init = function() {
 		ChoiceService.reset();
-		ChoiceService.getAllGenres(function(response) {
-			if (!response.success) {
+		GenreFactory.getAllGenres(function(response) {
+			if (response.success) {
+				$scope.genres = response.data;
+			} else {
 				FlashService.error(response.message);
 			}
 		});

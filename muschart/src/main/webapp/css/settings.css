@@ -40,10 +40,6 @@
 	border-color: #222222;
 	color: #222222;
 }
-.settings > ul > li.cell-primary {
-	border-color: #2780e3;
-	color: #2780e3;
-}
 .settings > ul > li.cell-option {
 	border-color: #9e842f;
 	color: #9e842f;
@@ -53,12 +49,6 @@
 }
 .settings > ul > li.radio-default:active {
 	background: #000000;
-}
-.settings > ul > li.radio-primary:hover {
-	background: #0fa3ff;
-}
-.settings > ul > li.radio-primary:active {
-	background: #1967be;
 }
 .settings > ul > li.radio-option:hover {
 	background: #9e842f;

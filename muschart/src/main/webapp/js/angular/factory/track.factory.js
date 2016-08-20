@@ -62,6 +62,18 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 			});
 		},
 
+		getAllTracks: function(callback) {
+			return $http.get(REST.TRACKS + REST.JSON_EXT)
+			.success(function(response) {
+				var data = {success: true, data: response};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: MESSAGE.GETTING_TRACK_ERROR};
+				callback(response);
+			});
+		},
+
 		deleteTrack: function(id, callback) {
 			return $http.delete(REST.TRACKS + '/delete/' + id + REST.JSON_EXT)
 			.success(function(response) {

@@ -1,22 +1,28 @@
 'use strict';
-app.controller('TrackEditController', ['$scope', 'TYPE', 'TrackFactory', 'ChoiceService', 'FileService', 'FlashService', function($scope, TYPE, TrackFactory, ChoiceService, FileService, FlashService) {
+app.controller('TrackEditController', ['$scope', 'TYPE', 'ArtistFactory', 'GenreFactory', 'TrackFactory', 'UnitFactory', 'ChoiceService', 'FileService', 'FlashService', function($scope, TYPE, ArtistFactory, GenreFactory, TrackFactory, UnitFactory, ChoiceService, FileService, FlashService) {
 	var self = this;
 	self.track = {name: '', song: '', cover: '', video: '', release: ''};
 
 	self.init = function() {
 		ChoiceService.reset();
-		ChoiceService.getAllUnits(function(response) {
-			if (!response.success) {
+		ArtistFactory.getAllArtists(function(response) {
+			if (response.success) {
+				$scope.artists = response.data;
+			} else {
 				FlashService.error(response.message);
 			}
 		});
-		ChoiceService.getAllArtists(function(response) {
-			if (!response.success) {
+		GenreFactory.getAllGenres(function(response) {
+			if (response.success) {
+				$scope.genres = response.data;
+			} else {
 				FlashService.error(response.message);
 			}
 		});
-		ChoiceService.getAllGenres(function(response) {
-			if (!response.success) {
+		UnitFactory.getAllUnits(function(response) {
+			if (response.success) {
+				$scope.units = response.data;
+			} else {
 				FlashService.error(response.message);
 			}
 		});

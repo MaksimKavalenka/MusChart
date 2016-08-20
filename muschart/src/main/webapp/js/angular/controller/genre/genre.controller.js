@@ -8,6 +8,12 @@ app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 
 			case STATE.GENRES:
 				self.getGenresByCriteria(sort, order, page);
 				break;
+			case STATE.ARTIST:
+				self.getGenresByCriteriaExt('artist', $state.params.id, sort, order, 0);
+				break;
+			case STATE.TRACK:
+				self.getGenresByCriteriaExt('track', $state.params.id, sort, order, 0);
+				break;
 			case STATE.ARTIST_GENRES:
 				self.getGenresByCriteriaExt('artist', $state.params.id, sort, order, page);
 				break;

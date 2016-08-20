@@ -70,7 +70,7 @@ angular.module('MassAutoComplete', [])
             'role="option" ' +
             'id="{{result.id}}" ' +
             'ng-class="$index == selected_index ? \'ac-state-focus\': \'\'">' +
-            '<a href ng-click="apply_selection($index)" ng-bind-html="result.label"></a>' +
+            '<a ui-sref="{{result.url}}" ng-click="apply_selection($index)" ng-bind-html="result.label"></a>' +
           '</li>' +
         '</ul>' +
 

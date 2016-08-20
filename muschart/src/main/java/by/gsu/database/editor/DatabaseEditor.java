@@ -76,13 +76,32 @@ public abstract class DatabaseEditor implements IDAO {
         }
     }
 
-    @SuppressWarnings("unchecked")
     protected <T extends Model> List<T> getElementsByCriteria(final Class<T> clazz,
             final String property, final boolean order, final int page) {
-        int count = getCountElements(clazz);
+        Criteria criteria = session.createCriteria(clazz);
+        return getElements(criteria, clazz, property, order, page);
+    }
+
+    protected <T extends Model> List<T> getElementsByCriteria(final Class<T> clazz,
+            final String searchProperty, final String sortProperty, final long id,
+            final boolean order, final int page) {
+        Criteria criteria = session.createCriteria(clazz);
+        criteria.createAlias(searchProperty, "alias");
+        criteria.add(Restrictions.eq("alias" + "." + ModelFields.ID, id));
+        return getElements(criteria, clazz, sortProperty, order, page);
+    }
+
+    @SuppressWarnings("unchecked")
+    private <T extends Model> List<T> getElements(final Criteria criteria, final Class<T> clazz,
+            final String property, final boolean order, final int page) {
+        int count = getCountElements(clazz, page);
         int fromIndex = count * page - count;
         int toIndex = count * page;
-        Criteria criteria = session.createCriteria(clazz);
+
+        if (page == 0) {
+            fromIndex = 0;
+            toIndex = count;
+        }
         if (order) {
             criteria.addOrder(Order.asc(property));
         } else {
@@ -97,39 +116,24 @@ public abstract class DatabaseEditor implements IDAO {
         return null;
     }
 
-    @SuppressWarnings("unchecked")
-    protected <T extends Model> List<T> getElementsByCriteria(final Class<T> clazz,
-            final String searchProperty, final String sortProperty, final long id,
-            final boolean order, final int page) {
-        int count = getCountElements(clazz);
-        int fromIndex = count * page - count;
-        int toIndex = count * page;
-        Criteria criteria = session.createCriteria(clazz);
-        criteria.createAlias(searchProperty, "alias");
-        criteria.add(Restrictions.eq("alias" + "." + ModelFields.ID, id));
-        if (order) {
-            criteria.addOrder(Order.asc(sortProperty));
-        } else {
-            criteria.addOrder(Order.desc(sortProperty));
-        }
-        if (criteria.list().size() >= toIndex) {
-            return criteria.list().subList(fromIndex, toIndex);
-        }
-        if (criteria.list().size() > fromIndex) {
-            return criteria.list().subList(fromIndex, criteria.list().size());
-        }
-        return null;
-    }
-
-    private <T extends Model> int getCountElements(final Class<T> clazz) {
+    private <T extends Model> int getCountElements(final Class<T> clazz, final int page) {
         if (clazz == Artist.class) {
-            return ARTIST_COUNT_ELEMENTS;
+            if (page == 0) {
+                return ArtistCountElements.ARTIST_COUNT_ELEMENTS;
+            }
+            return ArtistCountElements.ARTIST_FULL_COUNT_ELEMENTS;
         }
         if (clazz == Genre.class) {
-            return GENRE_COUNT_ELEMENTS;
+            if (page == 0) {
+                return GenreCountElements.GENRE_COUNT_ELEMENTS;
+            }
+            return GenreCountElements.GENRE_FULL_COUNT_ELEMENTS;
         }
         if (clazz == Track.class) {
-            return TRACK_COUN_ELEMENTST;
+            if (page == 0) {
+                return TrackCountElements.TRACK_COUNT_ELEMENTS;
+            }
+            return TrackCountElements.TRACK_FULL_COUNT_ELEMENTS;
         }
         return 0;
     }

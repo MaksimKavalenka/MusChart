@@ -9,6 +9,14 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'TrackFactory', 
 				self.getTracksByCriteria(sort, order, page);
 				self.getAmplitudeTracksByCriteria(sort, order, page);
 				break;
+			case STATE.ARTIST:
+				self.getTracksByCriteriaExt('artist', $state.params.id, sort, order, 0);
+				self.getAmplitudeTracksByCriteriaExt('artist', $state.params.id, sort, order, 0);
+				break;
+			case STATE.GENRE:
+				self.getTracksByCriteriaExt('genre', $state.params.id, sort, order, 0);
+				self.getAmplitudeTracksByCriteriaExt('genre', $state.params.id, sort, order, 0);
+				break;
 			case STATE.ARTIST_TRACKS:
 				self.getTracksByCriteriaExt('artist', $state.params.id, sort, order, page);
 				self.getAmplitudeTracksByCriteriaExt('artist', $state.params.id, sort, order, page);

@@ -76,6 +76,16 @@ public class TrackRestController {
         }
     }
 
+    @RequestMapping(value = TRACKS_PATH + JSON_EXT, method = RequestMethod.GET)
+    public ResponseEntity<List<Track>> getAllTracks() {
+        try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
+            List<Track> tracks = trackDAO.getAllTracks();
+            return new ResponseEntity<List<Track>>(tracks, HttpStatus.OK);
+        } catch (ValidationException e) {
+            return new ResponseEntity<List<Track>>(HttpStatus.CONFLICT);
+        }
+    }
+
     @RequestMapping(value = TRACKS_PATH + "/delete/{id}" + JSON_EXT, method = RequestMethod.DELETE)
     public ResponseEntity<Track> deleteTrackById(@PathVariable("id") final long id) {
         try (ITrackDAO trackDAO = TrackFactory.getEditor()) {

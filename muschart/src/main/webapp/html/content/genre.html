@@ -1,6 +1,6 @@
 <ul class="content">
 	<li ng-repeat="genre in ctrl.genres">
 		<div class="title">
-			<a ui-sref="genre/tracks({id:genre.id,page:1})">{{genre.name}}</a>
+			<a ui-sref="genre({id: genre.id})">{{genre.name}}</a>
 		</div>
 </ul>

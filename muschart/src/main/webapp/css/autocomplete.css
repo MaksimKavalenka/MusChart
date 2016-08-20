@@ -1,0 +1,17 @@
+.ac-container .ac-menu {
+	padding: 0;
+}
+.ac-container .ac-menu a {
+	background: #ffffff;
+	border: 1px solid #cccccc;
+	color: inherit;
+	display: block;
+	margin-top: -1px;
+	padding: 9px 15px;
+	text-decoration: none;
+	vertical-align: middle;
+}
+.ac-container .ac-menu a:hover {
+	background: #575757;
+	color: #ffffff;
+}

@@ -38,6 +38,18 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAG
 			});
 		},
 
+		getAllArtists: function(callback) {
+			return $http.get(REST.ARTISTS + REST.JSON_EXT)
+			.success(function(response) {
+				var data = {success: true, data: response};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: MESSAGE.GETTING_ARTIST_ERROR};
+				callback(response);
+			});
+		},
+
 		deleteArtist: function(id, callback) {
 			return $http.delete(REST.ARTISTS + '/delete/' + id + REST.JSON_EXT)
 			.success(function(response) {
