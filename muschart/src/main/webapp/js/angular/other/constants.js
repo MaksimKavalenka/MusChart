@@ -52,6 +52,7 @@ app.constant('PATH', (function() {
 	var toolPath = path + '/tool';
 	var htmlExt = '.html';
 	return {
+		INFO_CONTENT: contentPath + '/info' + htmlExt,
 		ARTIST_CONTENT: contentPath + '/artist' + htmlExt,
 		GENRE_CONTENT: contentPath + '/genre' + htmlExt,
 		TRACK_CONTENT: contentPath + '/track' + htmlExt,

@@ -53,11 +53,10 @@
 	<body>
 		<div class="indent" ui-view="header"></div>
 		<div class="indent" ng-class="{'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}" ng-if="flash" ng-bind="flash.message"></div>
-		<div class="indent" ui-view="main_tool"></div>
+		<div class="indent" ui-view="tool"></div>
+		<div class="indent" ui-view="info"></div>
 		<div class="indent" ui-view="main_content"></div>
-		<div class="indent" ui-view="main_tool_link"></div>
 		<div class="indent" ui-view="additional_content"></div>
-		<div class="indent" ui-view="additional_tool_link"></div>
 		<div class="flex"></div>
 		<div class="indent" ui-view="footer"></div>
 		<div class="amplitude" ng-controller="AmplitudeController" ng-show="show()">

@@ -14,6 +14,18 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAG
 			});
 		},
 
+		getArtistById: function(id, callback) {
+			return $http.get(REST.ARTISTS + '/' + id + REST.JSON_EXT)
+			.success(function(response) {
+				var data = {success: true, data: response};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: MESSAGE.GETTING_ARTIST_ERROR};
+				callback(response);
+			});
+		},
+
 		getArtistsByCriteria: function(sort, order, page, callback) {
 			return $http.get(REST.ARTISTS + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 			.success(function(response) {

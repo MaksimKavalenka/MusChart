@@ -5,12 +5,12 @@ body {
 	margin: 0;
 	width: 100%;
 }
-.indent {
-	margin: 15px;
+hr {
+	color: #575757;
 }
-.justify {
-	display: flex;
-	justify-content: space-between;
+.container {
+	height: 100%;
+	margin: auto;
 }
 .flex {
 	flex: 1;
@@ -19,12 +19,12 @@ body {
 	margin-bottom: 80px;
 	text-align: center;
 }
-.footer > hr {
-	color: #575757;
+.indent {
+	margin: 15px;
 }
-.container {
-	height: 100%;
-	margin: auto;
+.justify {
+	display: flex;
+	justify-content: space-between;
 }
 @media screen and (min-width: 1920px) {
 	.container {

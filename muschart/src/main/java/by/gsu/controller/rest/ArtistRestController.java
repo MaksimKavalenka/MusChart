@@ -35,6 +35,20 @@ public class ArtistRestController {
         }
     }
 
+    @RequestMapping(value = ARTISTS_PATH + "/{id}"
+            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Artist> getArtistById(@PathVariable("id") final long id) {
+        try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
+            Artist artist = artistDAO.getArtistById(id);
+            if (artist == null) {
+                return new ResponseEntity<Artist>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<Artist>(artist, HttpStatus.OK);
+        } catch (ValidationException e) {
+            return new ResponseEntity<Artist>(HttpStatus.CONFLICT);
+        }
+    }
+
     @RequestMapping(value = ARTISTS_PATH + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Artist>> getArtistsByCriteria(@PathVariable("sort") final int sort,

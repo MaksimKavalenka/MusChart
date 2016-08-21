@@ -4,3 +4,6 @@
 			<a ui-sref="genre({id: genre.id})">{{genre.name}}</a>
 		</div>
 </ul>
+<div class="link" ng-show="ctrl.url !== '#'">
+	<a ui-sref="{{ctrl.url}}">More genres</a>
+</div>

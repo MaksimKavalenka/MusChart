@@ -14,6 +14,18 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 			});
 		},
 
+		getGenreById: function(id, callback) {
+			return $http.get(REST.GENRES + '/' + id + REST.JSON_EXT)
+			.success(function(response) {
+				var data = {success: true, data: response};
+				callback(data);
+			})
+			.error(function(response) {
+				response = {success: false, message: MESSAGE.GETTING_GENRE_ERROR};
+				callback(response);
+			});
+		},
+
 		getGenreByName: function(name, callback) {
 			$http.post(REST.GENRES + '/' + name + REST.JSON_EXT)
 			.success(function(response) {

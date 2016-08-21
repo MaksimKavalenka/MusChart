@@ -71,6 +71,32 @@
 .content li > .body > .body-link .link-empty:active {
 	border: 2.5px solid transparent;
 }
+.link {
+	border: 2.5px solid #575757;
+	font-weight: 600;
+	margin: 10px 0;
+	padding: 5px 0;
+	text-align: center;
+	width: 100%;
+}
+.link a {
+	background: #6699cc;
+	color: #ffffff;
+	display: block;
+	padding: 5px;
+	text-decoration: none;
+}
+.info > * {
+	display: inline-block;
+	font-family: cursive;
+	font-size: 50px;
+}
+.info img {
+	border: 2.5px solid #575757;
+	margin-right: 15px;
+	vertical-align: top;
+	width: 200px;
+}
 iframe {
 	height: 360px;
 	width: 480px;

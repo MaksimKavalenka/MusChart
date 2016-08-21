@@ -45,6 +45,20 @@ public class TrackRestController {
         }
     }
 
+    @RequestMapping(value = TRACKS_PATH + "/{id}"
+            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Track> getTrackById(@PathVariable("id") final long id) {
+        try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
+            Track track = trackDAO.getTrackById(id);
+            if (track == null) {
+                return new ResponseEntity<Track>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<Track>(track, HttpStatus.OK);
+        } catch (ValidationException e) {
+            return new ResponseEntity<Track>(HttpStatus.CONFLICT);
+        }
+    }
+
     @RequestMapping(value = TRACKS_PATH + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Track>> getTracksByCriteria(@PathVariable("sort") final int sort,

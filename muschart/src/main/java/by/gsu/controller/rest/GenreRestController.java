@@ -31,6 +31,20 @@ public class GenreRestController {
         }
     }
 
+    @RequestMapping(value = GENRES_PATH + "/{id}"
+            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Genre> getGenreById(@PathVariable("id") final long id) {
+        try (IGenreDAO genreDAO = GenreFactory.getEditor()) {
+            Genre genre = genreDAO.getGenreById(id);
+            if (genre == null) {
+                return new ResponseEntity<Genre>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<Genre>(genre, HttpStatus.OK);
+        } catch (ValidationException e) {
+            return new ResponseEntity<Genre>(HttpStatus.CONFLICT);
+        }
+    }
+
     @RequestMapping(value = GENRES_PATH + "/{name}"
             + JSON_EXT, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Genre> getGenreByName(@PathVariable("name") final String name) {

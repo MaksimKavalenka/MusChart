@@ -22,7 +22,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		url: URL.SETTINGS,
 		views: {
 			header: mainHeader,
-			main_tool: {
+			tool: {
 				templateUrl: PATH.SETTINGS_TOOL
 			}
 		}
@@ -53,7 +53,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		url: URL.ARTISTS,
 		views: {
 			header: mainHeader,
-			main_tool: {
+			tool: {
 				controller: CONTROLLER.ARTIST_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
@@ -70,7 +70,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		url: URL.GENRES,
 		views: {
 			header: mainHeader,
-			main_tool: {
+			tool: {
 				controller: CONTROLLER.GENRE_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
@@ -87,7 +87,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		url: URL.TRACKS,
 		views: {
 			header: mainHeader,
-			main_tool: {
+			tool: {
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
@@ -104,6 +104,11 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		url: URL.ARTIST,
 		views: {
 			header: mainHeader,
+			info: {
+				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.INFO_CONTENT
+			},
 			main_content: {
 				controller: CONTROLLER.GENRE_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
@@ -121,6 +126,11 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		url: URL.GENRE,
 		views: {
 			header: mainHeader,
+			info: {
+				controller: CONTROLLER.GENRE_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.INFO_CONTENT
+			},
 			main_content: {
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
@@ -138,6 +148,11 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		url: URL.TRACK,
 		views: {
 			header: mainHeader,
+			info: {
+				controller: CONTROLLER.TRACK_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.INFO_CONTENT
+			},
 			main_content: {
 				controller: CONTROLLER.GENRE_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
@@ -151,96 +166,16 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 			footer: footer
 		}
 	})
-	.state(STATE.GENRE_ARTISTS, {
-		url: URL.GENRE_ARTISTS,
-		views: {
-			header: mainHeader,
-			main_tool: {
-				controller: CONTROLLER.ARTIST_CONTROLLER,
-				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.PAGINATION_TOOL
-			},
-			main_content: {
-				controller: CONTROLLER.ARTIST_CONTROLLER,
-				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.ARTIST_CONTENT
-			},
-			footer: footer
-		}
-	})
-	.state(STATE.TRACK_ARTISTS, {
-		url: URL.TRACK_ARTISTS,
-		views: {
-			header: mainHeader,
-			main_tool: {
-				controller: CONTROLLER.ARTIST_CONTROLLER,
-				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.PAGINATION_TOOL
-			},
-			main_content: {
-				controller: CONTROLLER.ARTIST_CONTROLLER,
-				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.ARTIST_CONTENT
-			},
-			footer: footer
-		}
-	})
-	.state(STATE.USER_ARTISTS, {
-		url: URL.USER_ARTISTS,
-		views: {
-			header: mainHeader,
-			main_tool: {
-				controller: CONTROLLER.ARTIST_CONTROLLER,
-				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.PAGINATION_TOOL
-			},
-			main_content: {
-				controller: CONTROLLER.ARTIST_CONTROLLER,
-				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.ARTIST_CONTENT
-			},
-			footer: footer
-		}
-	})
 	.state(STATE.ARTIST_GENRES, {
 		url: URL.ARTIST_GENRES,
 		views: {
 			header: mainHeader,
-			main_tool: {
-				controller: CONTROLLER.GENRE_CONTROLLER,
+			info: {
+				controller: CONTROLLER.ARTIST_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.PAGINATION_TOOL
+				templateUrl: PATH.INFO_CONTENT
 			},
-			main_content: {
-				controller: CONTROLLER.GENRE_CONTROLLER,
-				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.GENRE_CONTENT
-			},
-			footer: footer
-		}
-	})
-	.state(STATE.TRACK_GENRES, {
-		url: URL.TRACK_GENRES,
-		views: {
-			header: mainHeader,
-			main_tool: {
-				controller: CONTROLLER.GENRE_CONTROLLER,
-				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.PAGINATION_TOOL
-			},
-			main_content: {
-				controller: CONTROLLER.GENRE_CONTROLLER,
-				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.GENRE_CONTENT
-			},
-			footer: footer
-		}
-	})
-	.state(STATE.USER_GENRES, {
-		url: URL.USER_GENRES,
-		views: {
-			header: mainHeader,
-			main_tool: {
+			tool: {
 				controller: CONTROLLER.GENRE_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
@@ -257,7 +192,12 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		url: URL.ARTIST_TRACKS,
 		views: {
 			header: mainHeader,
-			main_tool: {
+			info: {
+				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.INFO_CONTENT
+			},
+			tool: {
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
@@ -266,6 +206,28 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.TRACK_CONTENT
+			},
+			footer: footer
+		}
+	})
+	.state(STATE.GENRE_ARTISTS, {
+		url: URL.GENRE_ARTISTS,
+		views: {
+			header: mainHeader,
+			info: {
+				controller: CONTROLLER.GENRE_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.INFO_CONTENT
+			},
+			tool: {
+				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.PAGINATION_TOOL
+			},
+			main_content: {
+				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.ARTIST_CONTENT
 			},
 			footer: footer
 		}
@@ -274,7 +236,12 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		url: URL.GENRE_TRACKS,
 		views: {
 			header: mainHeader,
-			main_tool: {
+			info: {
+				controller: CONTROLLER.GENRE_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.INFO_CONTENT
+			},
+			tool: {
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
@@ -287,11 +254,89 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 			footer: footer
 		}
 	})
+	.state(STATE.TRACK_ARTISTS, {
+		url: URL.TRACK_ARTISTS,
+		views: {
+			header: mainHeader,
+			info: {
+				controller: CONTROLLER.TRACK_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.INFO_CONTENT
+			},
+			tool: {
+				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.PAGINATION_TOOL
+			},
+			main_content: {
+				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.ARTIST_CONTENT
+			},
+			footer: footer
+		}
+	})
+	.state(STATE.TRACK_GENRES, {
+		url: URL.TRACK_GENRES,
+		views: {
+			header: mainHeader,
+			info: {
+				controller: CONTROLLER.TRACK_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.INFO_CONTENT
+			},
+			tool: {
+				controller: CONTROLLER.GENRE_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.PAGINATION_TOOL
+			},
+			main_content: {
+				controller: CONTROLLER.GENRE_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.GENRE_CONTENT
+			},
+			footer: footer
+		}
+	})
+	.state(STATE.USER_ARTISTS, {
+		url: URL.USER_ARTISTS,
+		views: {
+			header: mainHeader,
+			tool: {
+				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.PAGINATION_TOOL
+			},
+			main_content: {
+				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.ARTIST_CONTENT
+			},
+			footer: footer
+		}
+	})
+	.state(STATE.USER_GENRES, {
+		url: URL.USER_GENRES,
+		views: {
+			header: mainHeader,
+			tool: {
+				controller: CONTROLLER.GENRE_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.PAGINATION_TOOL
+			},
+			main_content: {
+				controller: CONTROLLER.GENRE_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.GENRE_CONTENT
+			},
+			footer: footer
+		}
+	})
 	.state(STATE.USER_TRACKS, {
 		url: URL.USER_TRACKS,
 		views: {
 			header: mainHeader,
-			main_tool: {
+			tool: {
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL

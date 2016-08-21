@@ -5,7 +5,7 @@
 				<a ui-sref="artist({id: artist.id})">{{artist.name}}</a>
 				{{track.units[$index].name}}
 			</div>
-			<div>{{track.name}}</div>
+			<a ui-sref="track({id: track.id})">{{track.name}}</a>
 		</div>
 		<div class="body">
 			<img ng-src="/muschart/img/track/{{track.cover}}">
@@ -15,8 +15,8 @@
 				<div class="link link-action action-youtube" ng-show="track.video !== ''" ng-click="show()"></div>
 				<div class="link link-action link-empty"></div>
 				<div class="link link-action link-empty"></div>
-				<div class="link link-action action-like" ui-sref="login" ng-show="!globals.user"></div>
-				<div class="link link-action action-like" ng-controller="UserEditController as ctrl" ng-click="ctrl.like('track', track.id)" ng-show="globals.user"></div>
+				<div class="link link-action action-like" ui-sref="login" ng-show="!user"></div>
+				<div class="link link-action action-like" ng-controller="UserEditController as ctrl" ng-click="ctrl.like('track', track.id)" ng-show="user"></div>
 			</div>
 		</div>
 		<modal visible="showModal">
@@ -25,3 +25,6 @@
 			</modal-body>
 		</modal>
 </ul>
+<div class="link" ng-show="ctrl.url !== '#'">
+	<a ui-sref="{{ctrl.url}}">More tracks</a>
+</div>

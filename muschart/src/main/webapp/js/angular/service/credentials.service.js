@@ -4,21 +4,24 @@ app.service('CredentialsService', ['$cookieStore', '$http', '$rootScope', functi
 
 		setCredentials: function(user) {
 			var authdata = Base64.encode(user.id + ':' + user.login + ':' + user.role);
-			$rootScope.globals = {
-				user: {
-					id: user.id,
-					login: user.login,
-					role: user.role.name,
-					authdata: authdata
-				}
+			$rootScope.user = {
+				id: user.id,
+				login: user.login,
+				role: user.role.name,
+				authdata: authdata
 			};
 			$http.defaults.headers.common['Credentials'] = 'Basic ' + authdata;
-			$cookieStore.put('globals', $rootScope.globals);
+			$cookieStore.put('user', $rootScope.user);
+		},
+
+		setTracks: function(tracks) {
+			$rootScope.tracks = tracks;
+			$cookieStore.put('tracks', $rootScope.tracks);
 		},
 
 		clearCredentials: function() {
-			$rootScope.globals = {};
-			$cookieStore.remove('globals');
+			$rootScope.user = null;
+			$cookieStore.remove('user');
 			$http.defaults.headers.common.Credentials = 'Basic';
 		}
 
