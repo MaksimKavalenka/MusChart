@@ -8,7 +8,7 @@
 			<span ng-show="form.name.$error.ngGenreExist">This genre already exists</span>
 		</div>
 		<div>
-			<button class="btn btn-success" ng-click="ctrl.createGenre()" ng-disabled="form.$invalid || ctrl.dataLoading">Submit</button>
+			<button class="btn btn-success" ng-click="ctrl.createGenre()" ng-disabled="form.$invalid || form.name.$pending || ctrl.dataLoading">Submit</button>
 			<img ng-if="ctrl.dataLoading" src="/muschart/img/load.gif"/>
 		</div>
 	</fieldset>

@@ -20,7 +20,7 @@
 			<button class="btn btn-default btn-input" ng-click="addGenreChoice()">Add genre</button>
 		</div>
 		<div>
-			<button class="btn btn-success" ng-click="ctrl.createArtist()" ng-disabled="form.$invalid || ctrl.dataLoading">Submit</button>
+			<button class="btn btn-success" ng-click="ctrl.createArtist()" ng-disabled="form.$invalid || form.name.$pending || ctrl.dataLoading">Submit</button>
 			<img ng-if="ctrl.dataLoading" src="/muschart/img/load.gif"/>
 		</div>
 	</fieldset>

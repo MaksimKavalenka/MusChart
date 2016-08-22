@@ -35,7 +35,7 @@ app.controller('UserEditController', ['$location', '$scope', '$state', 'URL', 'U
 	};
 
 	self.like = function(relation, id) {
-		UserFactory.setUserLike($scope.globals.user.id, relation, id, function(response) {
+		UserFactory.setUserLike($scope.user.id, relation, id, function(response) {
 			if (!response.success) {
 				FlashService.error(response.message);
 			}

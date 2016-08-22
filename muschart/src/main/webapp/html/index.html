@@ -52,7 +52,7 @@
 	</head>
 	<body>
 		<div class="indent" ui-view="header"></div>
-		<div class="indent" ng-class="{'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}" ng-if="flash" ng-bind="flash.message"></div>
+		<div class="indent" ng-class="{'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}" ng-bind="flash.message"></div>
 		<div class="indent" ui-view="tool"></div>
 		<div class="indent" ui-view="info"></div>
 		<div class="indent" ui-view="main_content"></div>

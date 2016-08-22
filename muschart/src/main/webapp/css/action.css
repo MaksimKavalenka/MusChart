@@ -6,6 +6,10 @@
 	background-image: url('../img/action/like.svg');
 	background-repeat: no-repeat;
 }
+.action-like-active {
+	background-image: url('../img/action/like-active.svg');
+	background-repeat: no-repeat;
+}
 .action-next {
 	background-image: url('../img/action/next.svg');
 	background-repeat: no-repeat;
@@ -40,9 +44,5 @@
 }
 .action-youtube {
 	background-image: url('../img/action/youtube.svg');
-	background-repeat: no-repeat;
-}
-.action-youtube-active {
-	background-image: url('../img/action/youtube-active.svg');
 	background-repeat: no-repeat;
 }

@@ -2,36 +2,37 @@
 app.service('FlashService', ['$rootScope', function($rootScope) {
 	return {
 
-		initService: function() {
-			$rootScope.$on('$locationChangeStart', function () {
-				clearFlashMessage();
-			});
-			function clearFlashMessage() {
-				var flash = $rootScope.flash;
-				if (flash) {
-					if (!flash.keepAfterLocationChange) {
-						delete $rootScope.flash;
-					} else {
-						flash.keepAfterLocationChange = false;
-					}
+		clearFlashMessage: function(delay) {
+			var flash = $rootScope.flash;
+			if (flash) {
+				if (!flash.keepAfterLocationChange) {
+					setTimeout(function() {
+						$rootScope.$apply(function() {
+							delete $rootScope.flash;
+						});
+					}, delay);
+				} else {
+					flash.keepAfterLocationChange = false;
 				}
 			}
 		},
 
-		success: function(message, keepAfterLocationChange) {
+		success: function(message) {
 			$rootScope.flash = {
 				message: message,
-				type: 'success', 
+				type: 'success',
 				keepAfterLocationChange: false
 			};
+			this.clearFlashMessage(3000);
 		},
 
-		error: function(message, keepAfterLocationChange) {
+		error: function(message) {
 			$rootScope.flash = {
 				message: message,
 				type: 'error',
 				keepAfterLocationChange: false
 			};
+			this.clearFlashMessage(3000);
 		}
 
 	};
