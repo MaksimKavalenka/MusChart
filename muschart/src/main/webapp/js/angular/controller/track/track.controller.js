@@ -1,5 +1,5 @@
 'use strict';
-app.controller('TrackController', ['$scope', '$state', 'STATE', 'TrackFactory', 'CredentialsService', 'FlashService', 'PaginationService', function($scope, $state, STATE, TrackFactory, CredentialsService, FlashService, PaginationService) {
+app.controller('TrackController', ['$scope', '$state', 'STATE', 'TrackFactory', 'FlashService', 'PaginationService', function($scope, $state, STATE, TrackFactory, FlashService, PaginationService) {
 	var self = this;
 	self.url = '#';
 	self.info = {image: '', text: ''};
@@ -81,7 +81,6 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'TrackFactory', 
 		TrackFactory.getAmplitudeTracksByCriteria(sort, order, page, function(response) {
 			if (response.success) {
 				Amplitude.init(response.data);
-				CredentialsService.setTracks(response.data);
 			} else {
 				FlashService.error(response.message);
 			}
@@ -92,13 +91,12 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'TrackFactory', 
 		TrackFactory.getAmplitudeTracksByCriteriaExt(relation, id, sort, order, page, function(response) {
 			if (response.success) {
 				Amplitude.init(response.data);
-				CredentialsService.setTracks(response.data);
 			} else {
 				FlashService.error(response.message);
 			}
 		});
 	};
 
-	self.init($state.current.name, $scope.sort.tracks, $scope.order.tracks, $state.params.page);
+	self.init($state.current.name, $scope.settings.sort.tracks, $scope.settings.order.tracks, $state.params.page);
 
 }]);

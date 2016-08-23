@@ -1,5 +1,5 @@
 'use strict';
-app.service('CredentialsService', ['$cookieStore', '$http', '$rootScope', function($cookieStore, $http, $rootScope) {
+app.service('CookieService', ['$cookieStore', '$http', '$rootScope', function($cookieStore, $http, $rootScope) {
 	return {
 
 		setCredentials: function(user) {
@@ -12,6 +12,10 @@ app.service('CredentialsService', ['$cookieStore', '$http', '$rootScope', functi
 			};
 			$http.defaults.headers.common['Credentials'] = 'Basic ' + authdata;
 			$cookieStore.put('user', $rootScope.user);
+		},
+
+		setSettings: function() {
+			$cookieStore.put('settings', $rootScope.settings);
 		},
 
 		setTracks: function(tracks) {

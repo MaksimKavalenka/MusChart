@@ -8,38 +8,38 @@
 	</ul>
 	<ul>
 		<li class="title cell-default">Time
-		<li class="cell-default radio-default"><input type="radio" name="tracks_sort" ng-model="sort.tracks" value="0">
-		<li class="cell-default radio-default"><input type="radio" name="artists_sort" ng-model="sort.artists" value="0">
-		<li class="cell-default radio-default"><input type="radio" name="genres_sort" ng-model="sort.genres" value="0">
+		<li class="cell-default radio-default"><input type="radio" name="tracks_sort" ng-change="saveSettings()" ng-model="settings.sort.tracks" value="0">
+		<li class="cell-default radio-default"><input type="radio" name="artists_sort" ng-change="saveSettings()" ng-model="settings.sort.artists" value="0">
+		<li class="cell-default radio-default"><input type="radio" name="genres_sort" ng-change="saveSettings()" ng-model="settings.sort.genres" value="0">
 	</ul>
 	<ul>
 		<li class="title cell-default">Rating
-		<li class="cell-default radio-default"><input type="radio" name="tracks_sort" ng-model="sort.tracks" value="1">
-		<li class="cell-default radio-default"><input type="radio" name="artists_sort" ng-model="sort.artists" value="1">
-		<li class="cell-default radio-default"><input type="radio" name="genres_sort" ng-model="sort.genres" value="1">
+		<li class="cell-default radio-default"><input type="radio" name="tracks_sort" ng-change="saveSettings()" ng-model="settings.sort.tracks" value="1">
+		<li class="cell-default radio-default"><input type="radio" name="artists_sort" ng-change="saveSettings()" ng-model="settings.sort.artists" value="1">
+		<li class="cell-default radio-default"><input type="radio" name="genres_sort" ng-change="saveSettings()" ng-model="settings.sort.genres" value="1">
 	</ul>
 		<ul>
 		<li class="title cell-default">Alphabet
-		<li class="cell-default radio-default"><input type="radio" name="tracks_sort" ng-model="sort.tracks" value="2">
-		<li class="cell-default radio-default"><input type="radio" name="artists_sort" ng-model="sort.artists" value="2">
-		<li class="cell-default radio-default"><input type="radio" name="genres_sort" ng-model="sort.genres" value="2">
+		<li class="cell-default radio-default"><input type="radio" name="tracks_sort" ng-change="saveSettings()" ng-model="settings.sort.tracks" value="2">
+		<li class="cell-default radio-default"><input type="radio" name="artists_sort" ng-change="saveSettings()" ng-model="settings.sort.artists" value="2">
+		<li class="cell-default radio-default"><input type="radio" name="genres_sort" ng-change="saveSettings()" ng-model="settings.sort.genres" value="2">
 	</ul>
 	<ul>
 		<li class="title cell-default">Release
-		<li class="cell-default radio-default"><input type="radio" name="tracks_sort" ng-model="sort.tracks" value="3">
+		<li class="cell-default radio-default"><input type="radio" name="tracks_sort" ng-change="saveSettings()" ng-model="settings.sort.tracks" value="3">
 		<li class="cell-default not-available">Not available
 		<li class="cell-default not-available">Not available
 	</ul>
 	<ul>
 		<li class="title cell-option">By ascending
-		<li class="cell-option radio-option"><input type="radio" name="tracks_sort_type" ng-model="order.tracks" value="true">
-		<li class="cell-option radio-option"><input type="radio" name="artists_sort_type" ng-model="order.artists" value="true">
-		<li class="cell-option radio-option"><input type="radio" name="genres_sort_type" ng-model="order.genres" value="true">
+		<li class="cell-option radio-option"><input type="radio" name="tracks_sort_type" ng-change="saveSettings()" ng-model="settings.order.tracks" value="true">
+		<li class="cell-option radio-option"><input type="radio" name="artists_sort_type" ng-change="saveSettings()" ng-model="settings.order.artists" value="true">
+		<li class="cell-option radio-option"><input type="radio" name="genres_sort_type" ng-change="saveSettings()" ng-model="settings.order.genres" value="true">
 	</ul>
 	<ul>
 		<li class="title cell-option">By descending
-		<li class="cell-option radio-option"><input type="radio" name="tracks_sort_type" ng-model="order.tracks" value="false">
-		<li class="cell-option radio-option"><input type="radio" name="artists_sort_type" ng-model="order.artists" value="false">
-		<li class="cell-option radio-option"><input type="radio" name="genres_sort_type" ng-model="order.genres" value="false">
+		<li class="cell-option radio-option"><input type="radio" name="tracks_sort_type" ng-change="saveSettings()" ng-model="settings.order.tracks" value="false">
+		<li class="cell-option radio-option"><input type="radio" name="artists_sort_type" ng-change="saveSettings()" ng-model="settings.order.artists" value="false">
+		<li class="cell-option radio-option"><input type="radio" name="genres_sort_type" ng-change="saveSettings()" ng-model="settings.order.genres" value="false">
 	</ul>
 </div>

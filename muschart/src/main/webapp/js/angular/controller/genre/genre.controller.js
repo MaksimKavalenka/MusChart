@@ -70,6 +70,6 @@ app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 
 		});
 	};
 
-	self.init($state.current.name, $scope.sort.genres, $scope.order.genres, $state.params.page);
+	self.init($state.current.name, $scope.settings.sort.genres, $scope.settings.order.genres, $state.params.page);
 
 }]);

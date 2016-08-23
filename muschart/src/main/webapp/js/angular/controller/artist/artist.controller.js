@@ -71,6 +71,6 @@ app.controller('ArtistController', ['$scope', '$state', 'STATE', 'ArtistFactory'
 		});
 	};
 
-	self.init($state.current.name, $scope.sort.artists, $scope.order.artists, $state.params.page);
+	self.init($state.current.name, $scope.settings.sort.artists, $scope.settings.order.artists, $state.params.page);
 
 }]);

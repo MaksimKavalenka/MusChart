@@ -1,5 +1,5 @@
 'use strict';
-app.controller('UserEditController', ['$location', '$scope', '$state', 'URL', 'UserFactory', 'CredentialsService', 'FlashService', function($location, $scope, $state, URL, UserFactory, CredentialsService, FlashService) {
+app.controller('UserEditController', ['$location', '$scope', '$state', 'URL', 'UserFactory', 'CookieService', 'FlashService', function($location, $scope, $state, URL, UserFactory, CookieService, FlashService) {
 	var self = this;
 	self.user = {id: null, login: '', role: null};
 
@@ -7,7 +7,7 @@ app.controller('UserEditController', ['$location', '$scope', '$state', 'URL', 'U
 		self.dataLoading = true;
 		UserFactory.getUser(self.user.login, self.user.password, function(response) {
 			if (response.success) {
-				CredentialsService.setCredentials(response.data);
+				CookieService.setCredentials(response.data);
 				$location.path(URL.HOME_PAGE);
 			} else {
 				FlashService.error(response.message);
@@ -17,7 +17,7 @@ app.controller('UserEditController', ['$location', '$scope', '$state', 'URL', 'U
 	};
 
 	self.logout = function() {
-		CredentialsService.clearCredentials();
+		CookieService.clearCredentials();
 		$state.reload();
 	};
 
@@ -25,7 +25,7 @@ app.controller('UserEditController', ['$location', '$scope', '$state', 'URL', 'U
 		self.dataLoading = true;
 		UserFactory.createUser(self.user.login, self.user.password, function(response) {
 			if (response.success) {
-				CredentialsService.setCredentials(response);
+				CookieService.setCredentials(response);
 				$location.path(URL.HOME_PAGE);
 			} else {
 				FlashService.error(response.message);
