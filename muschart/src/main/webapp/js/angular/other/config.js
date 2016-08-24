@@ -1,5 +1,6 @@
 'use strict';
-app.config(['$locationProvider', function($locationProvider) {
+app.config(['$cookiesProvider', '$locationProvider', function($cookiesProvider, $locationProvider) {
+	$cookiesProvider.defaults.expires = new Date(new Date().getTime() + 604800000);
 	$locationProvider.html5Mode(true);
 }]);
 app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE', 'URL', function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE, URL) {
