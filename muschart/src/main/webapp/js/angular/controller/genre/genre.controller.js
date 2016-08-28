@@ -2,7 +2,7 @@
 app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 'FlashService', 'PaginationService', function($scope, $state, STATE, GenreFactory, FlashService, PaginationService) {
 	var self = this;
 	self.url = '#';
-	self.info = {text: ''};
+	self.info = {data: ''};
 	self.genres = [];
 
 	self.init = function(state, sort, order, page) {
@@ -43,7 +43,7 @@ app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 
 	self.getGenreById = function(id) {
 		GenreFactory.getGenreById(id, function(response) {
 			if (response.success) {
-				self.info.text = response.data.name;
+				self.info.data = response.data.name;
 			} else {
 				FlashService.error(response.message);
 			}

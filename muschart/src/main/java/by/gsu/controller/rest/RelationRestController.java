@@ -32,47 +32,9 @@ import by.gsu.model.Artist;
 import by.gsu.model.Genre;
 import by.gsu.model.Track;
 import by.gsu.model.User;
-import by.gsu.parser.AmplitudeJsonParser;
 
 @RestController
 public class RelationRestController {
-
-    @RequestMapping(value = USERS_PATH + "/{idUser}/{relation}/{id}"
-            + JSON_EXT, method = RequestMethod.POST)
-    public ResponseEntity<Void> setUserLike(@PathVariable("idUser") final long idUser,
-            @PathVariable("relation") final String relation, @PathVariable("id") final long id) {
-        try (IRelationDAO relationDAO = RelationFactory.getEditor()) {
-            User user;
-            try (IUserDAO userDAO = UserFactory.getEditor()) {
-                user = userDAO.getUserById(idUser);
-            }
-            switch (relation) {
-                case Models.ARTIST:
-                    try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
-                        Artist artist = artistDAO.getArtistById(id);
-                        relationDAO.updateUserArtists(user, artist);
-                    }
-                    break;
-                case Models.GENRE:
-                    try (IGenreDAO genreDAO = GenreFactory.getEditor()) {
-                        Genre genre = genreDAO.getGenreById(id);
-                        relationDAO.updateUserGenres(user, genre);
-                    }
-                    break;
-                case Models.TRACK:
-                    try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
-                        Track track = trackDAO.getTrackById(id);
-                        relationDAO.updateUserTracks(user, track);
-                    }
-                    break;
-                default:
-                    break;
-            }
-            return new ResponseEntity<Void>(HttpStatus.OK);
-        } catch (ValidationException e) {
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }
-    }
 
     @RequestMapping(value = ARTISTS_PATH + "/{relation}/{id}/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -164,34 +126,40 @@ public class RelationRestController {
         }
     }
 
-    @RequestMapping(value = TRACKS_PATH + "/amplitude/{relation}/{id}/{sort}/{order}/{page}"
-            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> getAmplitudeTracksByCriteria(
-            @PathVariable("relation") final String relation, @PathVariable("id") final long id,
-            @PathVariable("sort") final int sort, @PathVariable("order") final boolean order,
-            @PathVariable("page") final int page) {
+    @RequestMapping(value = USERS_PATH + "/{idUser}/{relation}/{id}"
+            + JSON_EXT, method = RequestMethod.POST)
+    public ResponseEntity<Void> setUserLike(@PathVariable("idUser") final long idUser,
+            @PathVariable("relation") final String relation, @PathVariable("id") final long id) {
         try (IRelationDAO relationDAO = RelationFactory.getEditor()) {
-            List<Track> tracks = null;
+            User user;
+            try (IUserDAO userDAO = UserFactory.getEditor()) {
+                user = userDAO.getUserById(idUser);
+            }
             switch (relation) {
                 case Models.ARTIST:
-                    tracks = relationDAO.getArtistTracksByCriteria(id, sort, order, page);
+                    try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
+                        Artist artist = artistDAO.getArtistById(id);
+                        relationDAO.updateUserArtists(user, artist);
+                    }
                     break;
                 case Models.GENRE:
-                    tracks = relationDAO.getGenreTracksByCriteria(id, sort, order, page);
+                    try (IGenreDAO genreDAO = GenreFactory.getEditor()) {
+                        Genre genre = genreDAO.getGenreById(id);
+                        relationDAO.updateUserGenres(user, genre);
+                    }
                     break;
-                case Models.USER:
-                    tracks = relationDAO.getUserTracksByCriteria(id, sort, order, page);
+                case Models.TRACK:
+                    try (ITrackDAO trackDAO = TrackFactory.getEditor()) {
+                        Track track = trackDAO.getTrackById(id);
+                        relationDAO.updateUserTracks(user, track);
+                    }
                     break;
                 default:
                     break;
             }
-            if (tracks == null) {
-                return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<String>(AmplitudeJsonParser.getAmplitudeJson(tracks),
-                    HttpStatus.OK);
+            return new ResponseEntity<Void>(HttpStatus.OK);
         } catch (ValidationException e) {
-            return new ResponseEntity<String>(HttpStatus.CONFLICT);
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
     }
 

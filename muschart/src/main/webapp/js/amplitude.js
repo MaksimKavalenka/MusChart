@@ -2848,6 +2848,8 @@ var Amplitude = (function () {
 			If the state is playing we set all of the classes accordingly.
 		*/
 		if( state == 'playing' ){
+			$("#amplitude-play-pause").removeClass("action-play").addClass("action-pause");
+
 			if( document.querySelectorAll('.amplitude-play-pause[amplitude-song-index="'+config.active_index+'"]').length > 0 ){
 				var currentPlayPauseControls = document.querySelectorAll('.amplitude-play-pause[amplitude-song-index="'+config.active_index+'"]');
 				
@@ -2880,6 +2882,8 @@ var Amplitude = (function () {
 			If the state is paused, we set all of the classes accordingly.
 		*/
 		if( state == 'paused' ){
+			$("#amplitude-play-pause").removeClass("action-pause").addClass("action-play");
+
 			if( document.querySelectorAll('.amplitude-play-pause[amplitude-song-index="'+config.active_index+'"]').length > 0 ){
 				var currentPlayPauseControls = document.querySelectorAll('.amplitude-play-pause[amplitude-song-index="'+config.active_index+'"]');
 				
@@ -3138,6 +3142,7 @@ var Amplitude = (function () {
 		changeVisualization: publicChangeActiveVisualization,
 		addSong: publicAddSong,
 		analyser: publicGetAnalyser,
-		active: config.active_song
+		active: config.active_song,
+		songs: config.songs
 	};
 })();

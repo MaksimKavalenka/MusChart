@@ -55,7 +55,8 @@
 	background: #ffcc00;
 }
 .time > * {
-	padding: 0 15px;
+	display: flex;
+	padding: 0 20px;
 }
 .amplitude-song-slider {
 	opacity: 0;

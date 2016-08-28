@@ -5,7 +5,7 @@ public abstract class UploadConstants {
     public abstract static class Path {
 
         private static final String ROOT                     = "/muschart";
-        private static final String IMAGE_ROOT               = ROOT + "/img";
+        private static final String IMAGE_ROOT               = ROOT + "/image";
 
         public static final String  ARTIST_PHOTO_UPLOAD_PATH = IMAGE_ROOT + "/artist";
         public static final String  AUDIO_UPLOAD_PATH        = ROOT + "/audio";

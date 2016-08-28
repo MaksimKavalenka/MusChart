@@ -27,6 +27,7 @@ app.controller('ArtistEditController', ['$scope', 'TYPE', 'ArtistFactory', 'Genr
 			ArtistFactory.createArtist(self.artist.name, self.artist.photo.replace(/^C:\\fakepath\\/i, ''), angular.toJson($scope.genresChoice), function(response) {
 				if (response.success) {
 					self.reset();
+					ChoiceService.reset();
 					FlashService.success(response.message);
 				} else {
 					FlashService.error(response.message);

@@ -25,12 +25,12 @@ app.service('ChoiceService', ['$rootScope', function($rootScope) {
 		}
 	};
 
+	function reset() {
+		$rootScope.artistsChoice = [{index: 0}];
+		$rootScope.genresChoice = [{index: 0}];
+	}
+
 	return {
-
-		reset: function() {
-			$rootScope.artistsChoice = [{index: 0}];
-			$rootScope.genresChoice = [{index: 0}];
-		}
-
+		reset: reset
 	};
 }]);

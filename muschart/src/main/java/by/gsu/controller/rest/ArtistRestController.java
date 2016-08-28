@@ -35,6 +35,16 @@ public class ArtistRestController {
         }
     }
 
+    @RequestMapping(value = ARTISTS_PATH + "/delete/{id}" + JSON_EXT, method = RequestMethod.DELETE)
+    public ResponseEntity<Artist> deleteArtistById(@PathVariable("id") final long id) {
+        try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
+            artistDAO.deleteArtistById(id);
+            return new ResponseEntity<Artist>(HttpStatus.NO_CONTENT);
+        } catch (ValidationException e) {
+            return new ResponseEntity<Artist>(HttpStatus.CONFLICT);
+        }
+    }
+
     @RequestMapping(value = ARTISTS_PATH + "/{id}"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Artist> getArtistById(@PathVariable("id") final long id) {
@@ -75,16 +85,6 @@ public class ArtistRestController {
             return new ResponseEntity<List<Artist>>(artists, HttpStatus.OK);
         } catch (ValidationException e) {
             return new ResponseEntity<List<Artist>>(HttpStatus.CONFLICT);
-        }
-    }
-
-    @RequestMapping(value = ARTISTS_PATH + "/delete/{id}" + JSON_EXT, method = RequestMethod.DELETE)
-    public ResponseEntity<Artist> deleteArtistById(@PathVariable("id") final long id) {
-        try (IArtistDAO artistDAO = ArtistFactory.getEditor()) {
-            artistDAO.deleteArtistById(id);
-            return new ResponseEntity<Artist>(HttpStatus.NO_CONTENT);
-        } catch (ValidationException e) {
-            return new ResponseEntity<Artist>(HttpStatus.CONFLICT);
         }
     }
 

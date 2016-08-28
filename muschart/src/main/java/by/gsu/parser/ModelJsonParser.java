@@ -17,19 +17,9 @@ import by.gsu.factory.GenreFactory;
 import by.gsu.factory.UnitFactory;
 import by.gsu.model.Artist;
 import by.gsu.model.Genre;
-import by.gsu.model.Track;
 import by.gsu.model.Unit;
 
 public abstract class ModelJsonParser {
-
-    public static String getArtistsName(final Track track) throws ValidationException {
-        String artistsName = track.getArtists().get(0).getName();
-        for (int i = 1; i < track.getArtists().size(); i++) {
-            artistsName += track.getUnits().get(i - 1).getName();
-            artistsName += track.getArtists().get(i).getName();
-        }
-        return artistsName;
-    }
 
     public static List<Unit> getUnits(final String json) throws ValidationException {
         List<Unit> unions = new LinkedList<>();

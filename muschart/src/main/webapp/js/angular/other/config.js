@@ -50,6 +50,18 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 			}
 		}
 	})
+	.state(STATE.PLAYLIST, {
+		url: URL.PLAYLIST,
+		views: {
+			header: mainHeader,
+			main_content: {
+				controller: CONTROLLER.TRACK_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.TRACK_CONTENT
+			},
+			footer: footer
+		}
+	})
 	.state(STATE.ARTISTS, {
 		url: URL.ARTISTS,
 		views: {

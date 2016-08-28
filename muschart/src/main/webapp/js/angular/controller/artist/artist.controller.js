@@ -1,8 +1,8 @@
 'use strict';
-app.controller('ArtistController', ['$scope', '$state', 'STATE', 'ArtistFactory', 'FlashService', 'PaginationService', function($scope, $state, STATE, ArtistFactory, FlashService, PaginationService) {
+app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'ArtistFactory', 'FlashService', 'PaginationService', function($scope, $state, STATE, UPLOAD, ArtistFactory, FlashService, PaginationService) {
 	var self = this;
 	self.url = '#';
-	self.info = {image: '', text: ''};
+	self.info = {image: '', data: ''};
 	self.artists = [];
 
 	self.init = function(state, sort, order, page) {
@@ -43,8 +43,8 @@ app.controller('ArtistController', ['$scope', '$state', 'STATE', 'ArtistFactory'
 	self.getArtistById = function(id) {
 		ArtistFactory.getArtistById(id, function(response) {
 			if (response.success) {
-				self.info.image = '/muschart/img/artist/' + response.data.photo;
-				self.info.text = response.data.name;
+				self.info.image = UPLOAD.ARTIST_PHOTO + '/' + response.data.photo;
+				self.info.data = response.data.name;
 			} else {
 				FlashService.error(response.message);
 			}

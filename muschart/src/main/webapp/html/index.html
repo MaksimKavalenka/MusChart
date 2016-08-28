@@ -1,19 +1,19 @@
 <html ng-app="app.muschart">
 	<head>
 		<title>MusChart</title>
-		<link rel="shortcut icon" type="image/x-icon" href="/muschart/img/icon.png">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/action.css">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/amplitude.css">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/autocomplete.css">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/button.css">
+		<link rel="shortcut icon" type="image/x-icon" href="/muschart/img/icon.png"/>
+		<link rel="stylesheet" type="text/css" href="/muschart/css/action.css"/>
+		<link rel="stylesheet" type="text/css" href="/muschart/css/amplitude.css"/>
+		<link rel="stylesheet" type="text/css" href="/muschart/css/autocomplete.css"/>
+		<link rel="stylesheet" type="text/css" href="/muschart/css/button.css"/>
 		<link rel="stylesheet" type="text/css" href="/muschart/css/common.css"/>
-		<link rel="stylesheet" type="text/css" href="/muschart/css/content.css">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/flash.css">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/form.css">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/modal.css">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/navbar.css">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/pagination.css">
-		<link rel="stylesheet" type="text/css" href="/muschart/css/settings.css">
+		<link rel="stylesheet" type="text/css" href="/muschart/css/content.css"/>
+		<link rel="stylesheet" type="text/css" href="/muschart/css/flash.css"/>
+		<link rel="stylesheet" type="text/css" href="/muschart/css/form.css"/>
+		<link rel="stylesheet" type="text/css" href="/muschart/css/modal.css"/>
+		<link rel="stylesheet" type="text/css" href="/muschart/css/navbar.css"/>
+		<link rel="stylesheet" type="text/css" href="/muschart/css/pagination.css"/>
+		<link rel="stylesheet" type="text/css" href="/muschart/css/settings.css"/>
 		<script type="text/javascript" src="/muschart/webjars/jquery/3.0.0/jquery.js"></script>
 		<script type="text/javascript" src="/muschart/webjars/angularjs/1.5.7/angular.js"></script>
 		<script type="text/javascript" src="/muschart/webjars/angularjs/1.5.7/angular-cookies.js"></script>
@@ -24,7 +24,6 @@
 		<script type="text/javascript" src="/muschart/js/autocomplete.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/app.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/autocomplete.controller.js"></script>
-		<script type="text/javascript" src="/muschart/js/angular/controller/modal.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/user.edit.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/artist/artist.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/artist/artist.edit.controller.js"></script>
@@ -62,20 +61,21 @@
 			<div class="progress">
 				<div class="amplitude-song-time-visualization" amplitude-single-song-time-visualization="true"></div>
 				<div class="time justify">
-					<div><span class="amplitude-current-minutes" amplitude-single-current-minutes="true">0</span>:<span class="amplitude-current-seconds" amplitude-single-current-seconds="true">00</span></div>
-					<div><span class="amplitude-duration-minutes" amplitude-single-duration-minutes="true">0</span>:<span class="amplitude-duration-minutes" amplitude-single-duration-seconds="true">00</span></div>
+					<div><div class="amplitude-current-minutes" amplitude-single-current-minutes="true">0</div>:<div class="amplitude-current-seconds" amplitude-single-current-seconds="true">00</div></div>
+					<div><div class="amplitude-duration-minutes" amplitude-single-duration-minutes="true">0</div>:<div class="amplitude-duration-minutes" amplitude-single-duration-seconds="true">00</div></div>
 				</div>
 				<input type="range" class="amplitude-song-slider" amplitude-singular-song-slider="true" value="0"/>
 			</div>
 			<div class="player">
 				<div class="amplitude-prev player-button player-playlist-button action-previous"></div>
-				<div class="amplitude-play-pause amplitude-paused player-button player-main-button action-play"></div>
+				<div id="amplitude-play-pause" class="amplitude-play-pause player-button player-main-button action-play"></div>
 				<div class="amplitude-next player-button player-playlist-button action-next"></div>
+				<div class="player-button player-playlist-button action-playlist" ui-sref="playlist"></div>
 				<div class="player-info">
 					<img class="player-cover" amplitude-song-info="cover"/>
 					<div class="player-artist-name">
-						<span amplitude-song-info="artist"></span>
-						<span amplitude-song-info="name"></span>
+						<div amplitude-song-info="artist"></div>
+						<div amplitude-song-info="name"></div>
 					</div>
 				</div>
 			</div>

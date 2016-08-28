@@ -15,6 +15,7 @@ public abstract class PageConstants {
     public static final String  SETTINGS_URI              = "/settings";
     public static final String  LOGIN_URI                 = "/login";
     public static final String  REGISTRATION_URI          = "/register";
+    public static final String  PLAYLIST_URI              = "/playlist";
 
     public static final String  ARTISTS_URI               = "/artists";
     public static final String  GENRES_URI                = "/genres";

@@ -11,9 +11,9 @@ app.constant('CONTROLLER', {
 });
 app.constant('MESSAGE', (function() {
 	var addingError = 'Error while adding ';
-	var gettingError = 'Error while getting ';
-	var deletingError = 'Error while deleting ';
 	var updatingError = 'Error while updating ';
+	var deletingError = 'Error while deleting ';
+	var gettingError = 'Error while getting ';
 	var addingSuccess = ' has been added successfully';
 	var deletingSuccess = ' has been deleting successfully';
 	return {
@@ -24,18 +24,18 @@ app.constant('MESSAGE', (function() {
 		ADDING_GENRE_ERROR: addingError + 'genre',
 		ADDING_TRACK_ERROR: addingError + 'track',
 		ADDING_USER_ERROR: addingError + 'user',
+		UPDATING_ARTIST_ERROR: updatingError + 'artist',
+		UPDATING_GENRE_ERROR: updatingError + 'genre',
+		UPDATING_TRACK_ERROR: updatingError + 'track',
+		UPDATING_USER_ERROR: updatingError + 'user',
+		DELETING_ARTIST_ERROR: deletingError + 'artist',
+		DELETING_GENRE_ERROR: deletingError + 'genre',
+		DELETING_TRACK_ERROR: deletingError + 'track',
 		GETTING_ARTIST_ERROR: gettingError + 'artist',
 		GETTING_GENRE_ERROR: gettingError + 'genre',
 		GETTING_TRACK_ERROR: gettingError + 'track',
 		GETTING_UNIT_ERROR: gettingError + 'unit',
 		GETTING_USER_ERROR: gettingError + 'user',
-		DELETING_ARTIST_ERROR: deletingError + 'artist',
-		DELETING_GENRE_ERROR: deletingError + 'genre',
-		DELETING_TRACK_ERROR: deletingError + 'track',
-		UPDATING_ARTIST_ERROR: updatingError + 'artist',
-		UPDATING_GENRE_ERROR: updatingError + 'genre',
-		UPDATING_TRACK_ERROR: updatingError + 'track',
-		UPDATING_USER_ERROR: updatingError + 'user',
 		ADDING_ARTIST_SUCCESS: 'Artist ' + addingSuccess,
 		ADDING_GENRE_SUCCESS: 'Genre ' + addingSuccess,
 		ADDING_TRACK_SUCCESS: 'Track ' + addingSuccess,
@@ -94,6 +94,7 @@ app.constant('STATE', (function() {
 		SETTINGS: 'settings',
 		LOGIN: 'login',
 		REGISTER: 'register',
+		PLAYLIST: 'playlist',
 		ARTISTS: artists,
 		GENRES: genres,
 		TRACKS: tracks,
@@ -119,6 +120,15 @@ app.constant('TYPE', {
 	'PHOTO': 'photo',
 	'SONG': 'song'
 });
+app.constant('UPLOAD', (function() {
+	var root = '/muschart';
+	var imageRoot = root + '/image';
+	return {
+		ARTIST_PHOTO: imageRoot + '/artist',
+		AUDIO: root + '/audio',
+		TRACK_COVER: imageRoot + '/track'
+	}
+})());
 app.constant('URL', (function() {
 	var url = '/muschart';
 	var artistsUrl = '/artists';
@@ -137,6 +147,7 @@ app.constant('URL', (function() {
 		SETTINGS: url + '/settings',
 		LOGIN: url + '/login',
 		REGISTER: url + '/register',
+		PLAYLIST: url + '/playlist',
 		ARTISTS: url + artistsUrl + pageOperation + pagePattern,
 		GENRES: url + genresUrl + pageOperation + pagePattern,
 		TRACKS: url + tracksUrl + pageOperation + pagePattern,
