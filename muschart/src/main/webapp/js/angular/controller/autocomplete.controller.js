@@ -30,23 +30,32 @@ app.controller('AutocompleteController', ['$scope', 'ArtistFactory', 'GenreFacto
 		}
 	});
 
+	function highlight(str, term) {
+		var highlightRegex = new RegExp('(' + term + ')', 'gi');
+		return str.replace(highlightRegex, '<div class="ac-highlight">$1</div>');
+	};
+
 	function suggestNames(term) {
 		var q = term.toLowerCase().trim();
 		var results = [];
 		for (var i = 0; i < models.length && results.length < 10; i++) {
 			var model = models[i];
-			if (model.name.toLowerCase().indexOf(q) === 0) {
+			if (model.name.toLowerCase().indexOf(q) >= 0) {
+				var info = '';
 				var url = '';
 				if (artists.includes(model)) {
+					info = 'Artist';
 					url = 'artist({id: ' + model.id + '})';
 				} else if (genres.includes(model)) {
+					info = 'Genre';
 					url = 'genre({id: ' + model.id + '})';
 				} else if (tracks.includes(model)) {
+					info = 'Track';
 					url = 'track({id: ' + model.id + '})';
 				}
 				results.push({
-					label: model.name,
-					value: model.name,
+					info: info,
+					value: highlight(model.name, term),
 					url: url
 				});
 			}

@@ -10,7 +10,7 @@
 		<div class="body">
 			<img ng-src="/muschart/image/track/{{track.cover}}">
 			<div class="body-link">
-				<div class="link link-action action-play"></div>
+				<div class="link link-action action-play" ng-click="ctrl.playSong(track)"></div>
 				<div class="link link-action link-empty" ng-show="track.video === ''"></div>
 				<div class="link link-action action-youtube" ng-show="track.video !== ''" ng-click="showModal(track.video)"></div>
 				<div class="link link-action link-empty"></div>

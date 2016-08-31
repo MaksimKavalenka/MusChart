@@ -1,5 +1,5 @@
 'use strict';
-app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', 'UPLOAD', function($http, MESSAGE, REST, UPLOAD) {
+app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE, REST) {
 
 	function createTrack(name, song, cover, video, release, artists, genres, callback) {
 		$http.post(REST.TRACKS + '/create/' + name + '/' + song + '/' + cover + '/' + video + '/' + release + '/' + artists + '/' + genres + REST.JSON_EXT)
@@ -73,32 +73,12 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', 'UPLOAD', function($htt
 		});
 	}
 
-	function parseToAmplitudeSong(tracks) {
-		var songs = [];
-		for (var i = 0; i < tracks.length; i++) {
-			var artist = tracks[i].artists[0].name;
-			for (var j = 0; j < tracks[i].units.length; j++) {
-				artist += tracks[i].units[j].name + tracks[i].artists[j + 1].name;
-			}
-			songs.push({
-				id: tracks[i].id,
-				album: '',
-				artist: artist,
-				cover_art_url: UPLOAD.TRACK_COVER + '/' + tracks[i].cover,
-				name: '<a ui-sref="track({id: {{tracks[i].id}}})">' + tracks[i].name + '</a>',
-				url: UPLOAD.AUDIO + '/' + tracks[i].song
-			});
-		};
-		return {songs: songs};
-	}
-
 	return {
 		createTrack: createTrack,
 		deleteTrack: deleteTrack,
 		getTrackById: getTrackById,
 		getTracksByCriteria: getTracksByCriteria,
 		getTracksByCriteriaExt: getTracksByCriteriaExt,
-		getAllTracks: getAllTracks,
-		parseToAmplitudeSong: parseToAmplitudeSong
+		getAllTracks: getAllTracks
 	};
 }]);

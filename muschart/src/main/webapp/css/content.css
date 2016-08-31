@@ -64,7 +64,6 @@
 	border: 2.5px solid #575757;
 }
 .content li > .body > .body-link .link-empty {
-	background-color: transparent;
 	cursor: auto;
 }
 .content li > .body > .body-link .link-empty:hover,

@@ -15,3 +15,19 @@
 	background: #575757;
 	color: #ffffff;
 }
+.ac-highlight {
+	font-weight: 600;
+	text-decoration: underline;
+}
+.ac-info {
+	color: #aaaaaa;
+	font-size: 15px;
+	margin-right: 10px;
+	margin-top: -28px;
+	position: absolute;
+	right: 0;
+	z-index: 2;
+}
+.ac-link {
+	position: relative;
+}

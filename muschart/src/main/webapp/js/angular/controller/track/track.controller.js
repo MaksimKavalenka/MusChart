@@ -1,5 +1,5 @@
 'use strict';
-app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'TrackFactory', 'FlashService', 'PaginationService', function($scope, $state, STATE, UPLOAD, TrackFactory, FlashService, PaginationService) {
+app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'AmplitudeFactory', 'TrackFactory', 'FlashService', 'PaginationService', function($scope, $state, STATE, UPLOAD, AmplitudeFactory, TrackFactory, FlashService, PaginationService) {
 	var self = this;
 	self.url = '#';
 	self.info = {image: '', data: ''};
@@ -8,10 +8,16 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Track
 	self.init = function(state, sort, order, page) {
 		switch (state) {
 			case STATE.PLAYLIST:
+				var songs = Amplitude.allSongs();
 				self.tracks = [];
-				alert(Amplitude.songs.length);
-				for (var i = 0; i < Amplitude.songs.length; i++) {
-					self.tracks.push(self.getTrackById(Amplitude.songs[i].id));
+				for (var i = 0; i < songs.length; i++) {
+					TrackFactory.getTrackById(songs[i].id, function(response) {
+						if (response.success) {
+							self.tracks.push(response.data);
+						} else {
+							FlashService.error(response.message);
+						}
+					});
 				}
 				self.url = '#';
 				break;
@@ -63,7 +69,7 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Track
 		TrackFactory.getTracksByCriteria(sort, order, page, function(response) {
 			if (response.success) {
 				self.tracks = response.data;
-				Amplitude.init(TrackFactory.parseToAmplitudeSong(self.tracks));
+				Amplitude.init(AmplitudeFactory.parseSongs(self.tracks));
 			} else {
 				FlashService.error(response.message);
 			}
@@ -74,11 +80,15 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Track
 		TrackFactory.getTracksByCriteriaExt(relation, id, sort, order, page, function(response) {
 			if (response.success) {
 				self.tracks = response.data;
-				Amplitude.init(TrackFactory.parseToAmplitudeSong(self.tracks));
+				Amplitude.init(AmplitudeFactory.parseSongs(self.tracks));
 			} else {
 				FlashService.error(response.message);
 			}
 		});
+	};
+
+	self.playSong = function(track) {
+		Amplitude.playNow(AmplitudeFactory.parseSong(track));
 	};
 
 	$scope.showModal = function(video) {
