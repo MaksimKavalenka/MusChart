@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "artist")
-public class Artist extends Model {
+public class ArtistModel extends Model {
 
     private static final long serialVersionUID = 4082508064669884035L;
 
@@ -35,25 +35,25 @@ public class Artist extends Model {
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = Track.class)
+            CascadeType.PERSIST}, targetEntity = TrackModel.class)
     @JoinTable(name = "track_artist", joinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false))
-    private List<Track>       tracks;
+    private List<TrackModel>  tracks;
 
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = Genre.class)
+            CascadeType.PERSIST}, targetEntity = GenreModel.class)
     @JoinTable(name = "artist_genre", joinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false))
-    private List<Genre>       genres;
+    private List<GenreModel>  genres;
 
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = User.class)
+            CascadeType.PERSIST}, targetEntity = UserModel.class)
     @JoinTable(name = "user_artist", joinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false))
-    private List<User>        users;
+    private List<UserModel>   users;
 
-    public Artist() {
+    public ArtistModel() {
         super();
     }
 
@@ -81,28 +81,34 @@ public class Artist extends Model {
         this.rating = rating;
     }
 
-    public List<Track> getTracks() {
+    public List<TrackModel> getTracks() {
         return tracks;
     }
 
-    public void setTracks(final List<Track> tracks) {
+    public void setTracks(final List<TrackModel> tracks) {
         this.tracks = tracks;
     }
 
-    public List<Genre> getGenres() {
+    public List<GenreModel> getGenres() {
         return genres;
     }
 
-    public void setGenres(final List<Genre> genres) {
+    public void setGenres(final List<GenreModel> genres) {
         this.genres = genres;
     }
 
-    public List<User> getUsers() {
+    public List<UserModel> getUsers() {
         return users;
     }
 
-    public void setUsers(final List<User> users) {
+    public void setUsers(final List<UserModel> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Artist [id=" + super.getId() + ", name=" + name + ", photo=" + photo + ", rating="
+                + rating + "]";
     }
 
 }

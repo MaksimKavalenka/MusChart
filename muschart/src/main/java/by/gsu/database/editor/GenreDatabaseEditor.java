@@ -5,65 +5,77 @@ import static by.gsu.constants.ModelStructureConstants.GenreFields;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.transaction.annotation.Transactional;
 
 import by.gsu.constants.ModelStructureConstants;
-import by.gsu.database.dao.IGenreDAO;
-import by.gsu.exception.ValidationException;
-import by.gsu.model.Genre;
+import by.gsu.database.dao.GenreDAO;
+import by.gsu.model.GenreModel;
 
-public class GenreDatabaseEditor extends DatabaseEditor implements IGenreDAO {
+public class GenreDatabaseEditor extends DatabaseEditor implements GenreDAO {
 
-    public GenreDatabaseEditor() throws ValidationException {
+    public GenreDatabaseEditor() {
         super();
     }
 
+    public GenreDatabaseEditor(final SessionFactory sessionFactory) {
+        super(sessionFactory);
+    }
+
     @Override
-    public void createGenre(final String name) throws ValidationException {
-        Genre genre = new Genre();
+    @Transactional
+    public void createGenre(final String name) {
+        GenreModel genre = new GenreModel();
         genre.setName(name);
-        save(genre);
+        sessionFactory.getCurrentSession().save(genre);
     }
 
     @Override
-    public Genre getGenreById(final long id) {
-        return (Genre) session.get(Genre.class, id);
+    @Transactional
+    public GenreModel getGenreById(final long id) {
+        return (GenreModel) sessionFactory.getCurrentSession().get(GenreModel.class, id);
     }
 
     @Override
-    public Genre getGenreByName(final String name) {
-        session.beginTransaction();
-        Criteria criteria = session.createCriteria(Genre.class);
+    @Transactional
+    public GenreModel getGenreByName(final String name) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(GenreModel.class);
         criteria.add(Restrictions.eq(GenreFields.NAME, name));
-        return (Genre) criteria.uniqueResult();
+        return (GenreModel) criteria.uniqueResult();
     }
 
     @Override
-    public List<Genre> getGenresByCriteria(final int sort, final boolean order, final int page) {
+    @Transactional
+    public List<GenreModel> getGenresByCriteria(final int sort, final boolean order,
+            final int page) {
         switch (sort) {
             case 0:
-                return super.getElementsByCriteria(Genre.class, GenreFields.ID, order, page);
+                return super.getElementsByCriteria(GenreModel.class, GenreFields.ID, order, page);
             case 1:
-                return super.getElementsByCriteria(Genre.class, GenreFields.RATING, order, page);
+                return super.getElementsByCriteria(GenreModel.class, GenreFields.RATING, order,
+                        page);
             case 2:
-                return super.getElementsByCriteria(Genre.class, GenreFields.NAME, order, page);
+                return super.getElementsByCriteria(GenreModel.class, GenreFields.NAME, order, page);
             default:
                 return null;
         }
     }
 
     @Override
+    @Transactional
     @SuppressWarnings("unchecked")
-    public List<Genre> getAllGenres() {
-        Criteria criteria = session.createCriteria(Genre.class);
+    public List<GenreModel> getAllGenres() {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(GenreModel.class);
         criteria.addOrder(Order.asc(ModelStructureConstants.GenreFields.NAME));
         return criteria.list();
     }
 
     @Override
-    public void deleteGenreById(final long id) throws ValidationException {
-        delete(getGenreById(id));
+    @Transactional
+    public void deleteGenreById(final long id) {
+        sessionFactory.getCurrentSession().delete(getGenreById(id));
     }
 
 }

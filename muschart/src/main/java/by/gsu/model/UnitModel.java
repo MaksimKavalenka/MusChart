@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "unit")
-public class Unit extends Model {
+public class UnitModel extends Model {
 
     private static final long serialVersionUID = -6324472595495881439L;
 
@@ -27,11 +27,11 @@ public class Unit extends Model {
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = Track.class)
+            CascadeType.PERSIST}, targetEntity = TrackModel.class)
     @JoinTable(name = "track_unit", joinColumns = @JoinColumn(name = "id_unit", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false))
-    private List<Track>       tracks;
+    private List<TrackModel>  tracks;
 
-    public Unit() {
+    public UnitModel() {
         super();
     }
 
@@ -43,12 +43,17 @@ public class Unit extends Model {
         this.name = name;
     }
 
-    public List<Track> getTracks() {
+    public List<TrackModel> getTracks() {
         return tracks;
     }
 
-    public void setTracks(final List<Track> tracks) {
+    public void setTracks(final List<TrackModel> tracks) {
         this.tracks = tracks;
+    }
+
+    @Override
+    public String toString() {
+        return "Unit [id=" + super.getId() + ", name=" + name + "]";
     }
 
 }

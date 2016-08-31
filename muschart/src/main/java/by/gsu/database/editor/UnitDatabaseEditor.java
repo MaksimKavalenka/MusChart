@@ -5,27 +5,34 @@ import static by.gsu.constants.ModelStructureConstants.UnitFields;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.springframework.transaction.annotation.Transactional;
 
-import by.gsu.database.dao.IUnitDAO;
-import by.gsu.exception.ValidationException;
-import by.gsu.model.Unit;
+import by.gsu.database.dao.UnitDAO;
+import by.gsu.model.UnitModel;
 
-public class UnitDatabaseEditor extends DatabaseEditor implements IUnitDAO {
+public class UnitDatabaseEditor extends DatabaseEditor implements UnitDAO {
 
-    public UnitDatabaseEditor() throws ValidationException {
+    public UnitDatabaseEditor() {
         super();
     }
 
-    @Override
-    public Unit getUnitById(final long id) throws ValidationException {
-        return (Unit) session.get(Unit.class, id);
+    public UnitDatabaseEditor(final SessionFactory sessionFactory) {
+        super(sessionFactory);
     }
 
     @Override
+    @Transactional
+    public UnitModel getUnitById(final long id) {
+        return (UnitModel) sessionFactory.getCurrentSession().get(UnitModel.class, id);
+    }
+
+    @Override
+    @Transactional
     @SuppressWarnings("unchecked")
-    public List<Unit> getAllUnits() throws ValidationException {
-        Criteria criteria = session.createCriteria(Unit.class);
+    public List<UnitModel> getAllUnits() {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(UnitModel.class);
         criteria.addOrder(Order.asc(UnitFields.ID));
         return criteria.list();
     }

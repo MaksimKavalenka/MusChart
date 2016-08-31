@@ -25,8 +25,7 @@ app.controller('UserEditController', ['$location', '$scope', '$state', 'URL', 'U
 		self.dataLoading = true;
 		UserFactory.createUser(self.user.login, self.user.password, function(response) {
 			if (response.success) {
-				CookieService.setCredentials(response);
-				$location.path(URL.HOME_PAGE);
+				self.login();
 			} else {
 				FlashService.error(response.message);
 			}

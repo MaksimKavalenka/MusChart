@@ -1,57 +1,53 @@
 package by.gsu.database.editor;
 
 import static by.gsu.constants.ExceptionConstants.AUTHORIZATION_ERROR;
-import static by.gsu.constants.ExceptionConstants.COMMIT_TRANSACTION_ERROR;
 import static by.gsu.constants.ExceptionConstants.TAKEN_LOGIN_ERROR;
 import static by.gsu.constants.ModelStructureConstants.UserFields;
 
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.transaction.annotation.Transactional;
 
-import by.gsu.database.dao.IUserDAO;
+import by.gsu.database.dao.UserDAO;
 import by.gsu.exception.ValidationException;
-import by.gsu.model.Role;
-import by.gsu.model.User;
+import by.gsu.model.RoleModel;
+import by.gsu.model.UserModel;
 
-public class UserDatabaseEditor extends DatabaseEditor implements IUserDAO {
+public class UserDatabaseEditor extends DatabaseEditor implements UserDAO {
 
-    public UserDatabaseEditor() throws ValidationException {
+    public UserDatabaseEditor() {
         super();
     }
 
+    public UserDatabaseEditor(final SessionFactory sessionFactory) {
+        super(sessionFactory);
+    }
+
     @Override
-    public void createUser(final String login, final String password, final Role role)
+    @Transactional
+    public void createUser(final String login, final String password, final RoleModel role)
             throws ValidationException {
-        User checkUser;
-        User user = new User();
+        UserModel checkUser;
+        UserModel user = new UserModel();
         user.setLogin(login);
         user.setPassword(password);
         user.setRole(role);
 
-        try {
-            session.beginTransaction();
-            checkUser = getUserByCriteria(Restrictions.eq(UserFields.LOGIN, user.getLogin()));
-            session.getTransaction().commit();
-        } catch (HibernateException e) {
-            session.getTransaction().rollback();
-            throw new ValidationException(COMMIT_TRANSACTION_ERROR);
-        }
-
+        checkUser = getUserByCriteria(Restrictions.eq(UserFields.LOGIN, user.getLogin()));
         if (checkUser == null) {
-            save(user);
+            sessionFactory.getCurrentSession().save(user);
         } else {
             throw new ValidationException(TAKEN_LOGIN_ERROR);
         }
     }
 
     @Override
-    public User getUser(final String login, final String password) throws ValidationException {
-        session.beginTransaction();
-        User user = getUserByCriteria(Restrictions.eq(UserFields.LOGIN, login),
+    @Transactional
+    public UserModel getUser(final String login, final String password) throws ValidationException {
+        UserModel user = getUserByCriteria(Restrictions.eq(UserFields.LOGIN, login),
                 Restrictions.eq(UserFields.PASSWORD, password));
-
         if (user != null) {
             return user;
         } else {
@@ -60,27 +56,23 @@ public class UserDatabaseEditor extends DatabaseEditor implements IUserDAO {
     }
 
     @Override
-    public User getUserById(final long id) {
-        return (User) session.get(User.class, id);
+    @Transactional
+    public UserModel getUserById(final long id) {
+        return (UserModel) sessionFactory.getCurrentSession().get(UserModel.class, id);
     }
 
     @Override
-    public User getUserByLogin(final String login) {
-        session.beginTransaction();
+    @Transactional
+    public UserModel getUserByLogin(final String login) {
         return getUserByCriteria(Restrictions.eq(UserFields.LOGIN, login));
     }
 
-    @Override
-    public void close() throws ValidationException {
-        super.close();
-    }
-
-    private User getUserByCriteria(final Criterion... criterions) {
-        Criteria criteria = session.createCriteria(User.class);
+    private UserModel getUserByCriteria(final Criterion... criterions) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(UserModel.class);
         for (Criterion criterion : criterions) {
             criteria.add(criterion);
         }
-        return (User) criteria.uniqueResult();
+        return (UserModel) criteria.uniqueResult();
     }
 
 }

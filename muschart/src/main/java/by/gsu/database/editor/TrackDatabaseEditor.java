@@ -5,24 +5,31 @@ import static by.gsu.constants.ModelStructureConstants.TrackFields;
 import java.util.Date;
 import java.util.List;
 
-import by.gsu.database.dao.ITrackDAO;
-import by.gsu.exception.ValidationException;
-import by.gsu.model.Artist;
-import by.gsu.model.Genre;
-import by.gsu.model.Track;
-import by.gsu.model.Unit;
+import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
-public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
+import by.gsu.database.dao.TrackDAO;
+import by.gsu.model.ArtistModel;
+import by.gsu.model.GenreModel;
+import by.gsu.model.TrackModel;
+import by.gsu.model.UnitModel;
 
-    public TrackDatabaseEditor() throws ValidationException {
+public class TrackDatabaseEditor extends DatabaseEditor implements TrackDAO {
+
+    public TrackDatabaseEditor() {
         super();
     }
 
+    public TrackDatabaseEditor(final SessionFactory sessionFactory) {
+        super(sessionFactory);
+    }
+
     @Override
+    @Transactional
     public void createTrack(final String name, final String song, final String cover,
-            final String video, final Date release, final List<Unit> units,
-            final List<Artist> artists, final List<Genre> genres) throws ValidationException {
-        Track track = new Track();
+            final String video, final Date release, final List<UnitModel> units,
+            final List<ArtistModel> artists, final List<GenreModel> genres) {
+        TrackModel track = new TrackModel();
         track.setName(name);
         track.setSong(song);
         track.setCover(cover);
@@ -31,39 +38,46 @@ public class TrackDatabaseEditor extends DatabaseEditor implements ITrackDAO {
         track.setUnits(units);
         track.setArtists(artists);
         track.setGenres(genres);
-        save(track);
+        sessionFactory.getCurrentSession().save(track);
     }
 
     @Override
-    public Track getTrackById(final long id) {
-        return (Track) session.get(Track.class, id);
+    @Transactional
+    public TrackModel getTrackById(final long id) {
+        return (TrackModel) sessionFactory.getCurrentSession().get(TrackModel.class, id);
     }
 
     @Override
-    public List<Track> getTracksByCriteria(final int sort, final boolean order, final int page) {
+    @Transactional
+    public List<TrackModel> getTracksByCriteria(final int sort, final boolean order,
+            final int page) {
         switch (sort) {
             case 0:
-                return super.getElementsByCriteria(Track.class, TrackFields.ID, order, page);
+                return super.getElementsByCriteria(TrackModel.class, TrackFields.ID, order, page);
             case 1:
-                return super.getElementsByCriteria(Track.class, TrackFields.RATING, order, page);
+                return super.getElementsByCriteria(TrackModel.class, TrackFields.RATING, order,
+                        page);
             case 2:
-                return super.getElementsByCriteria(Track.class, TrackFields.NAME, order, page);
+                return super.getElementsByCriteria(TrackModel.class, TrackFields.NAME, order, page);
             case 3:
-                return super.getElementsByCriteria(Track.class, TrackFields.RELEASE, order, page);
+                return super.getElementsByCriteria(TrackModel.class, TrackFields.RELEASE, order,
+                        page);
             default:
                 return null;
         }
     }
 
     @Override
+    @Transactional
     @SuppressWarnings("unchecked")
-    public List<Track> getAllTracks() {
-        return session.createCriteria(Track.class).list();
+    public List<TrackModel> getAllTracks() {
+        return sessionFactory.getCurrentSession().createCriteria(TrackModel.class).list();
     }
 
     @Override
-    public void deleteTrackById(final long id) throws ValidationException {
-        delete(getTrackById(id));
+    @Transactional
+    public void deleteTrackById(final long id) {
+        sessionFactory.getCurrentSession().delete(getTrackById(id));
     }
 
 }

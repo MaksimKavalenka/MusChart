@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "genre")
-public class Genre extends Model {
+public class GenreModel extends Model {
 
     private static final long serialVersionUID = 2354473633918150319L;
 
@@ -32,25 +32,25 @@ public class Genre extends Model {
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = Track.class)
+            CascadeType.PERSIST}, targetEntity = TrackModel.class)
     @JoinTable(name = "track_genre", joinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false))
-    private List<Track>       tracks;
+    private List<TrackModel>  tracks;
 
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = Artist.class)
+            CascadeType.PERSIST}, targetEntity = ArtistModel.class)
     @JoinTable(name = "artist_genre", joinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false))
-    private List<Artist>      artists;
+    private List<ArtistModel> artists;
 
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = User.class)
+            CascadeType.PERSIST}, targetEntity = UserModel.class)
     @JoinTable(name = "user_genre", joinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false))
-    private List<User>        users;
+    private List<UserModel>   users;
 
-    public Genre() {
+    public GenreModel() {
         super();
     }
 
@@ -70,28 +70,33 @@ public class Genre extends Model {
         this.rating = rating;
     }
 
-    public List<Track> getTracks() {
+    public List<TrackModel> getTracks() {
         return tracks;
     }
 
-    public void setTracks(final List<Track> tracks) {
+    public void setTracks(final List<TrackModel> tracks) {
         this.tracks = tracks;
     }
 
-    public List<Artist> getArtists() {
+    public List<ArtistModel> getArtists() {
         return artists;
     }
 
-    public void setArtists(final List<Artist> artists) {
+    public void setArtists(final List<ArtistModel> artists) {
         this.artists = artists;
     }
 
-    public List<User> getUsers() {
+    public List<UserModel> getUsers() {
         return users;
     }
 
-    public void setUsers(final List<User> users) {
+    public void setUsers(final List<UserModel> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Genre [id=" + super.getId() + ", name=" + name + ", rating=" + rating + "]";
     }
 
 }

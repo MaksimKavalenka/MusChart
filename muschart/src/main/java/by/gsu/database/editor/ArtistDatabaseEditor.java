@@ -5,60 +5,72 @@ import static by.gsu.constants.ModelStructureConstants.ArtistFields;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.springframework.transaction.annotation.Transactional;
 
 import by.gsu.constants.ModelStructureConstants;
-import by.gsu.database.dao.IArtistDAO;
-import by.gsu.exception.ValidationException;
-import by.gsu.model.Artist;
-import by.gsu.model.Genre;
+import by.gsu.database.dao.ArtistDAO;
+import by.gsu.model.ArtistModel;
+import by.gsu.model.GenreModel;
 
-public class ArtistDatabaseEditor extends DatabaseEditor implements IArtistDAO {
+public class ArtistDatabaseEditor extends DatabaseEditor implements ArtistDAO {
 
-    public ArtistDatabaseEditor() throws ValidationException {
+    public ArtistDatabaseEditor() {
         super();
     }
 
+    public ArtistDatabaseEditor(final SessionFactory sessionFactory) {
+        super(sessionFactory);
+    }
+
     @Override
-    public void createArtist(final String name, final String photo, final List<Genre> genres)
-            throws ValidationException {
-        Artist artist = new Artist();
+    @Transactional
+    public void createArtist(final String name, final String photo, final List<GenreModel> genres) {
+        ArtistModel artist = new ArtistModel();
         artist.setName(name);
         artist.setPhoto(photo);
         artist.setGenres(genres);
-        save(artist);
+        sessionFactory.getCurrentSession().save(artist);
     }
 
     @Override
-    public Artist getArtistById(final long id) {
-        return (Artist) session.get(Artist.class, id);
+    @Transactional
+    public ArtistModel getArtistById(final long id) {
+        return (ArtistModel) sessionFactory.getCurrentSession().get(ArtistModel.class, id);
     }
 
     @Override
-    public List<Artist> getArtistsByCriteria(final int sort, final boolean order, final int page) {
+    @Transactional
+    public List<ArtistModel> getArtistsByCriteria(final int sort, final boolean order,
+            final int page) {
         switch (sort) {
             case 0:
-                return super.getElementsByCriteria(Artist.class, ArtistFields.ID, order, page);
+                return super.getElementsByCriteria(ArtistModel.class, ArtistFields.ID, order, page);
             case 1:
-                return super.getElementsByCriteria(Artist.class, ArtistFields.RATING, order, page);
+                return super.getElementsByCriteria(ArtistModel.class, ArtistFields.RATING, order,
+                        page);
             case 2:
-                return super.getElementsByCriteria(Artist.class, ArtistFields.NAME, order, page);
+                return super.getElementsByCriteria(ArtistModel.class, ArtistFields.NAME, order,
+                        page);
             default:
                 return null;
         }
     }
 
     @Override
+    @Transactional
     @SuppressWarnings("unchecked")
-    public List<Artist> getAllArtists() {
-        Criteria criteria = session.createCriteria(Artist.class);
+    public List<ArtistModel> getAllArtists() {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ArtistModel.class);
         criteria.addOrder(Order.asc(ModelStructureConstants.ArtistFields.NAME));
         return criteria.list();
     }
 
     @Override
-    public void deleteArtistById(final long id) throws ValidationException {
-        delete(getArtistById(id));
+    @Transactional
+    public void deleteArtistById(final long id) {
+        sessionFactory.getCurrentSession().delete(getArtistById(id));
     }
 
 }

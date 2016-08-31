@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "track")
-public class Track extends Model {
+public class TrackModel extends Model {
 
     private static final long serialVersionUID = 1952582684617860747L;
 
@@ -47,31 +47,31 @@ public class Track extends Model {
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = Unit.class)
+            CascadeType.PERSIST}, targetEntity = UnitModel.class)
     @JoinTable(name = "track_unit", joinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_unit", nullable = false, updatable = false))
-    private List<Unit>        units;
+    private List<UnitModel>   units;
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = Artist.class)
+            CascadeType.PERSIST}, targetEntity = ArtistModel.class)
     @JoinTable(name = "track_artist", joinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false))
-    private List<Artist>      artists;
+    private List<ArtistModel> artists;
 
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = Genre.class)
+            CascadeType.PERSIST}, targetEntity = GenreModel.class)
     @JoinTable(name = "track_genre", joinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false))
-    private List<Genre>       genres;
+    private List<GenreModel>  genres;
 
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = User.class)
+            CascadeType.PERSIST}, targetEntity = UserModel.class)
     @JoinTable(name = "user_track", joinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false))
-    private List<User>        users;
+    private List<UserModel>   users;
 
-    public Track() {
+    public TrackModel() {
         super();
     }
 
@@ -123,36 +123,42 @@ public class Track extends Model {
         this.rating = rating;
     }
 
-    public List<Unit> getUnits() {
+    public List<UnitModel> getUnits() {
         return units;
     }
 
-    public void setUnits(final List<Unit> units) {
+    public void setUnits(final List<UnitModel> units) {
         this.units = units;
     }
 
-    public List<Artist> getArtists() {
+    public List<ArtistModel> getArtists() {
         return artists;
     }
 
-    public void setArtists(final List<Artist> artists) {
+    public void setArtists(final List<ArtistModel> artists) {
         this.artists = artists;
     }
 
-    public List<Genre> getGenres() {
+    public List<GenreModel> getGenres() {
         return genres;
     }
 
-    public void setGenres(final List<Genre> genres) {
+    public void setGenres(final List<GenreModel> genres) {
         this.genres = genres;
     }
 
-    public List<User> getUsers() {
+    public List<UserModel> getUsers() {
         return users;
     }
 
-    public void setUsers(final List<User> users) {
+    public void setUsers(final List<UserModel> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Track [id=" + super.getId() + ", name=" + name + ", song=" + song + ", cover="
+                + cover + ", video=" + video + ", release=" + release + ", rating=" + rating + "]";
     }
 
 }

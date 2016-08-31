@@ -5,14 +5,14 @@
   <groupId>by.gsu</groupId>
   <artifactId>muschart</artifactId>
   <packaging>war</packaging>
-  <version>0.24</version>
+  <version>0.25</version>
 
   <name>Muschart Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <hibernate.version>4.3.10.Final</hibernate.version>
-    <springframework.version>4.2.0.RELEASE</springframework.version>
+    <springframework.version>4.3.2.RELEASE</springframework.version>
   </properties>
 
   <dependencies>
@@ -28,12 +28,6 @@
       <artifactId>javaee-api</artifactId>
       <version>7.0</version>
       <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
     </dependency>
 
     <dependency>
@@ -68,7 +62,7 @@
 
     <dependency>
       <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
+      <artifactId>spring-orm</artifactId>
       <version>${springframework.version}</version>
     </dependency>
 

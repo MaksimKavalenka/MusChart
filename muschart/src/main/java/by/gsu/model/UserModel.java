@@ -18,45 +18,44 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "user")
-public class User extends Model {
+public class UserModel extends Model {
 
     private static final long serialVersionUID = 7372820574885171442L;
 
     @Column(name = "login", unique = true, nullable = false, length = 255)
     private String            login;
 
-    @Column(name = "password", nullable = false, length = 255)
     @JsonIgnore
+    @Column(name = "password", nullable = false, length = 255)
     private String            password;
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = Role.class)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_role", nullable = false, updatable = false))
-    private Role              role;
+            CascadeType.PERSIST}, targetEntity = RoleModel.class, optional = false)
+    private RoleModel         role;
 
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = Track.class)
+            CascadeType.PERSIST}, targetEntity = TrackModel.class)
     @JoinTable(name = "user_track", joinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false))
-    private List<Track>       tracks;
+    private List<TrackModel>  tracks;
 
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = Artist.class)
+            CascadeType.PERSIST}, targetEntity = ArtistModel.class)
     @JoinTable(name = "user_artist", joinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false))
-    private List<Artist>      artists;
+    private List<ArtistModel> artists;
 
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.PERSIST}, targetEntity = Genre.class)
+            CascadeType.PERSIST}, targetEntity = GenreModel.class)
     @JoinTable(name = "user_genre", joinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false))
-    private List<Genre>       genres;
+    private List<GenreModel>  genres;
 
-    public User() {
+    public UserModel() {
         super();
     }
 
@@ -68,40 +67,49 @@ public class User extends Model {
         this.login = login;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(final String password) {
         this.password = password;
     }
 
-    public Role getRole() {
+    public RoleModel getRole() {
         return role;
     }
 
-    public void setRole(final Role role) {
+    public void setRole(final RoleModel role) {
         this.role = role;
     }
 
-    public List<Track> getTracks() {
+    public List<TrackModel> getTracks() {
         return tracks;
     }
 
-    public void setTracks(final List<Track> tracks) {
+    public void setTracks(final List<TrackModel> tracks) {
         this.tracks = tracks;
     }
 
-    public List<Artist> getArtists() {
+    public List<ArtistModel> getArtists() {
         return artists;
     }
 
-    public void setArtists(final List<Artist> artists) {
+    public void setArtists(final List<ArtistModel> artists) {
         this.artists = artists;
     }
 
-    public List<Genre> getGenres() {
+    public List<GenreModel> getGenres() {
         return genres;
     }
 
-    public void setGenres(final List<Genre> genres) {
+    public void setGenres(final List<GenreModel> genres) {
         this.genres = genres;
+    }
+
+    @Override
+    public String toString() {
+        return "User [id=" + super.getId() + ", login=" + login + "]";
     }
 
 }
