@@ -579,10 +579,6 @@ var Amplitude = (function () {
 		}
 	}
 
-	function publicGetAllSongs(){
-		return config.songs;
-	}
-
 	function publicGetAnalyser(){
 		return config.analyser;
 	}
@@ -3145,7 +3141,6 @@ var Amplitude = (function () {
 		visualizationCapable: publicVisualizationCapable,
 		changeVisualization: publicChangeActiveVisualization,
 		addSong: publicAddSong,
-		allSongs: publicGetAllSongs,
 		analyser: publicGetAnalyser,
 		active: config.active_song
 	};

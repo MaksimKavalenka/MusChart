@@ -1,5 +1,6 @@
 'use strict';
 app.config(['$cookiesProvider', '$locationProvider', function($cookiesProvider, $locationProvider) {
+	$cookiesProvider.defaults.path = "/muschart/";
 	$cookiesProvider.defaults.expires = new Date(new Date().getTime() + 604800000);
 	$locationProvider.html5Mode(true);
 }]);
@@ -362,8 +363,8 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 			footer: footer
 		}
 	})
-	.state(STATE.ARTISTS_ADD, {
-		url: URL.ARTISTS_ADD,
+	.state(STATE.ARTIST_ADD, {
+		url: URL.ARTIST_ADD,
 		views: {
 			header: editHeader,
 			main_content: {
@@ -373,8 +374,8 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 			}
 		}
 	})
-	.state(STATE.GENRES_ADD, {
-		url: URL.GENRES_ADD,
+	.state(STATE.GENRE_ADD, {
+		url: URL.GENRE_ADD,
 		views: {
 			header: editHeader,
 			main_content: {
@@ -384,8 +385,8 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 			}
 		}
 	})
-	.state(STATE.TRACKS_ADD, {
-		url: URL.TRACKS_ADD,
+	.state(STATE.TRACK_ADD, {
+		url: URL.TRACK_ADD,
 		views: {
 			header: editHeader,
 			main_content: {

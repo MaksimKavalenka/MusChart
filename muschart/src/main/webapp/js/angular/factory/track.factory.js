@@ -4,17 +4,17 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 	function createTrack(name, song, cover, video, release, artists, genres, callback) {
 		$http.post(REST.TRACKS + '/create/' + name + '/' + song + '/' + cover + '/' + video + '/' + release + '/' + artists + '/' + genres + REST.JSON_EXT)
 		.success(function(response) {
-			response = {success: true, message: MESSAGE.ADDING_TRACK_SUCCESS};
-			callback(response);
+			var data = {success: true, data: response, message: MESSAGE.CREATING_TRACK_SUCCESS};
+			callback(data);
 		})
 		.error(function(response) {
-			response = {success: false, message: MESSAGE.ADDING_TRACK_ERROR};
+			response = {success: false, message: MESSAGE.CREATING_TRACK_ERROR};
 			callback(response);
 		});
 	}
 
 	function deleteTrack(id, callback) {
-		return $http.delete(REST.TRACKS + '/delete/' + id + REST.JSON_EXT)
+		$http.delete(REST.TRACKS + '/delete/' + id + REST.JSON_EXT)
 		.success(function(response) {
 			response = {success: true, message: MESSAGE.GELETING_TRACK_SUCCESS};
 			callback(data);
@@ -26,7 +26,7 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 	}
 
 	function getTrackById(id, callback) {
-		return $http.get(REST.TRACKS + '/' + id + REST.JSON_EXT)
+		$http.get(REST.TRACKS + '/' + id + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -38,7 +38,7 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 	}
 
 	function getTracksByCriteria(sort, order, page, callback) {
-		return $http.get(REST.TRACKS + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
+		$http.get(REST.TRACKS + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -50,7 +50,7 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 	}
 
 	function getTracksByCriteriaExt(relation, id, sort, order, page, callback) {
-		return $http.get(REST.TRACKS + '/' + relation + '/' + id + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
+		$http.get(REST.TRACKS + '/' + relation + '/' + id + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -62,7 +62,7 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 	}
 
 	function getAllTracks(callback) {
-		return $http.get(REST.TRACKS + REST.JSON_EXT)
+		$http.get(REST.TRACKS + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);

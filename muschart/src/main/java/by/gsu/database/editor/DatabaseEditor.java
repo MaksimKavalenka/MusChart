@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ import by.gsu.model.TrackModel;
 public abstract class DatabaseEditor {
 
     @Autowired
-    protected SessionFactory sessionFactory;
+    public SessionFactory sessionFactory;
 
     public DatabaseEditor() {
     }
@@ -28,16 +30,28 @@ public abstract class DatabaseEditor {
         this.sessionFactory = sessionFactory;
     }
 
-    protected <T extends Model> List<T> getElementsByCriteria(final Class<T> clazz,
-            final String property, final boolean order, final int page) {
+    @SuppressWarnings("unchecked")
+    public <T extends Model> T getUniqueResultByCriteria(final Class<T> clazz,
+            final Criterion... criterions) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(clazz);
-        return getElements(criteria, clazz, property, order, page);
+        for (Criterion criterion : criterions) {
+            criteria.add(criterion);
+        }
+        return (T) criteria.uniqueResult();
     }
 
-    protected <T extends Model> List<T> getElementsByCriteria(final Class<T> clazz,
+    public <T extends Model> List<T> getElementsByCriteria(final Class<T> clazz,
+            final String sortProperty, final boolean order, final int page) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(clazz)
+                .setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+        return getElements(criteria, clazz, sortProperty, order, page);
+    }
+
+    public <T extends Model> List<T> getElementsByCriteria(final Class<T> clazz,
             final String searchProperty, final String sortProperty, final long id,
             final boolean order, final int page) {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(clazz);
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(clazz)
+                .setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
         criteria.createAlias(searchProperty, "alias");
         criteria.add(Restrictions.eq("alias" + "." + ModelFields.ID, id));
         return getElements(criteria, clazz, sortProperty, order, page);

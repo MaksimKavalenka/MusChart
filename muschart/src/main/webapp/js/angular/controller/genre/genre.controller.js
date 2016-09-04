@@ -8,8 +8,8 @@ app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 
 	self.init = function(state, sort, order, page) {
 		switch (state) {
 			case STATE.GENRES:
-				self.getGenresByCriteria(sort, order, page);
 				self.url = '#';
+				self.getGenresByCriteria(sort, order, page);
 				break;
 			case STATE.GENRE:
 			case STATE.GENRE_ARTISTS:
@@ -17,24 +17,24 @@ app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 
 				self.getGenreById($state.params.id);
 				break;
 			case STATE.ARTIST:
-				self.getGenresByCriteriaExt('artist', $state.params.id, sort, order, 0);
 				self.url = 'artist/genres({id: ' + $state.params.id + ', page: 1})';
+				self.getGenresByCriteriaExt('artist', $state.params.id, sort, order, 0);
 				break;
 			case STATE.TRACK:
-				self.getGenresByCriteriaExt('track', $state.params.id, sort, order, 0);
 				self.url = 'track/genres({id: ' + $state.params.id + ', page: 1})';
+				self.getGenresByCriteriaExt('track', $state.params.id, sort, order, 0);
 				break;
 			case STATE.ARTIST_GENRES:
-				self.getGenresByCriteriaExt('artist', $state.params.id, sort, order, page);
 				self.url = '#';
+				self.getGenresByCriteriaExt('artist', $state.params.id, sort, order, page);
 				break;
 			case STATE.TRACK_GENRES:
-				self.getGenresByCriteriaExt('track', $state.params.id, sort, order, page);
 				self.url = '#';
+				self.getGenresByCriteriaExt('track', $state.params.id, sort, order, page);
 				break;
 			case STATE.USER_GENRES:
-				self.getGenresByCriteriaExt('user', $scope.user.id, sort, order, page);
 				self.url = '#';
+				self.getGenresByCriteriaExt('user', $scope.user.id, sort, order, page);
 				break;
 		}
 		PaginationService.getPages(page, state);

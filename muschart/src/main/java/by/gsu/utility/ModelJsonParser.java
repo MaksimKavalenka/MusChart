@@ -1,4 +1,4 @@
-package by.gsu.parser;
+package by.gsu.utility;
 
 import static by.gsu.constants.ModelStructureConstants.Models;
 

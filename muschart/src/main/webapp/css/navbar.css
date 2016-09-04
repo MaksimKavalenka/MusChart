@@ -15,7 +15,6 @@
 }
 .navigation > li > a,
 .navigation > li > button.link {
-	background: none;
 	border-width: 0;
 	display: inline-block;
 	font-family: "Berlin Sans FB";

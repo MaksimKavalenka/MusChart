@@ -26,12 +26,20 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements ArtistDAO {
 
     @Override
     @Transactional
-    public void createArtist(final String name, final String photo, final List<GenreModel> genres) {
+    public ArtistModel createArtist(final String name, final String photo,
+            final List<GenreModel> genres) {
         ArtistModel artist = new ArtistModel();
         artist.setName(name);
         artist.setPhoto(photo);
         artist.setGenres(genres);
         sessionFactory.getCurrentSession().save(artist);
+        return artist;
+    }
+
+    @Override
+    @Transactional
+    public void deleteArtistById(final long id) {
+        sessionFactory.getCurrentSession().delete(getArtistById(id));
     }
 
     @Override
@@ -65,12 +73,6 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements ArtistDAO {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ArtistModel.class);
         criteria.addOrder(Order.asc(ModelStructureConstants.ArtistFields.NAME));
         return criteria.list();
-    }
-
-    @Override
-    @Transactional
-    public void deleteArtistById(final long id) {
-        sessionFactory.getCurrentSession().delete(getArtistById(id));
     }
 
 }

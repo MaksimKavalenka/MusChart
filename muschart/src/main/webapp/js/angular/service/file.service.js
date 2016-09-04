@@ -1,5 +1,5 @@
 'use strict';
-app.service('FileService', ['$http', 'REST', function($http, REST) {
+app.service('FileService', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE, REST) {
 	return {
 
 		uploadFile: function(file, type, callback) {
@@ -14,7 +14,7 @@ app.service('FileService', ['$http', 'REST', function($http, REST) {
 				callback(response);
 			})
 			.error(function(response) {
-				response = {success: false, message: 'Error while saving file'};
+				response = {success: false, message: MESSAGE.SAVING_FILE_ERROR};
 				callback(response);
 			});
 		}

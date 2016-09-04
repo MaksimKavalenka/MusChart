@@ -26,7 +26,7 @@ public class TrackDatabaseEditor extends DatabaseEditor implements TrackDAO {
 
     @Override
     @Transactional
-    public void createTrack(final String name, final String song, final String cover,
+    public TrackModel createTrack(final String name, final String song, final String cover,
             final String video, final Date release, final List<UnitModel> units,
             final List<ArtistModel> artists, final List<GenreModel> genres) {
         TrackModel track = new TrackModel();
@@ -39,6 +39,13 @@ public class TrackDatabaseEditor extends DatabaseEditor implements TrackDAO {
         track.setArtists(artists);
         track.setGenres(genres);
         sessionFactory.getCurrentSession().save(track);
+        return track;
+    }
+
+    @Override
+    @Transactional
+    public void deleteTrackById(final long id) {
+        sessionFactory.getCurrentSession().delete(getTrackById(id));
     }
 
     @Override
@@ -72,12 +79,6 @@ public class TrackDatabaseEditor extends DatabaseEditor implements TrackDAO {
     @SuppressWarnings("unchecked")
     public List<TrackModel> getAllTracks() {
         return sessionFactory.getCurrentSession().createCriteria(TrackModel.class).list();
-    }
-
-    @Override
-    @Transactional
-    public void deleteTrackById(final long id) {
-        sessionFactory.getCurrentSession().delete(getTrackById(id));
     }
 
 }

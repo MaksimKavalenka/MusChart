@@ -5,7 +5,7 @@ app.controller('UserEditController', ['$location', '$scope', '$state', 'URL', 'U
 
 	self.login = function() {
 		self.dataLoading = true;
-		UserFactory.getUser(self.user.login, self.user.password, function(response) {
+		UserFactory.authentication(self.user.login, self.user.password, function(response) {
 			if (response.success) {
 				CookieService.setCredentials(response.data);
 				$location.path(URL.HOME_PAGE);
@@ -25,7 +25,8 @@ app.controller('UserEditController', ['$location', '$scope', '$state', 'URL', 'U
 		self.dataLoading = true;
 		UserFactory.createUser(self.user.login, self.user.password, function(response) {
 			if (response.success) {
-				self.login();
+				CookieService.setCredentials(response.data);
+				$location.path(URL.HOME_PAGE);
 			} else {
 				FlashService.error(response.message);
 			}

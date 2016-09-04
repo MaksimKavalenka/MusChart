@@ -10,8 +10,8 @@
 				<div class="link link-empty"></div>
 				<div class="link link-empty"></div>
 				<div class="link link-empty"></div>
-				<div class="link action-like" ui-sref="login" ng-show="!globals.user"></div>
-				<div class="link action-like" ng-controller="UserEditController as ctrl" ng-click="ctrl.like('artist', artist.id)" ng-show="globals.user"></div>
+				<div class="link action-like" ui-sref="login" ng-show="!user"></div>
+				<div class="link action-like" ng-controller="UserEditController as ctrl" ng-click="ctrl.like('artist', artist.id)" ng-show="user"></div>
 			</div>
 		</div>
 </ul>

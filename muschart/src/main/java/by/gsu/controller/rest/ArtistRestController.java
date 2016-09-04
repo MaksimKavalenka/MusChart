@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import by.gsu.database.dao.ArtistDAO;
 import by.gsu.model.ArtistModel;
-import by.gsu.parser.ModelJsonParser;
+import by.gsu.utility.ModelJsonParser;
 
 @RestController
 public class ArtistRestController {
@@ -26,11 +26,11 @@ public class ArtistRestController {
 
     @RequestMapping(value = ARTISTS_PATH + "/create/{name}/{photo}/{genres}"
             + JSON_EXT, method = RequestMethod.POST)
-    public ResponseEntity<Void> createArtist(@PathVariable("name") final String name,
+    public ResponseEntity<ArtistModel> createArtist(@PathVariable("name") final String name,
             @PathVariable("photo") final String photo,
             @PathVariable("genres") final String genres) {
-        artistDAO.createArtist(name, photo, ModelJsonParser.getGenres(genres));
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        ArtistModel artist = artistDAO.createArtist(name, photo, ModelJsonParser.getGenres(genres));
+        return new ResponseEntity<ArtistModel>(artist, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = ARTISTS_PATH + "/delete/{id}" + JSON_EXT, method = RequestMethod.DELETE)

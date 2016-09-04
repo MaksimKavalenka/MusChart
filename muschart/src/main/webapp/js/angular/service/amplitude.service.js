@@ -1,5 +1,6 @@
 'use strict';
-app.factory('AmplitudeFactory', ['UPLOAD', function(UPLOAD) {
+app.service('AmplitudeService', ['UPLOAD', function(UPLOAD) {
+	var playlist = [];
 
 	function parseSong(track) {
 		var artist = track.artists[0].name;
@@ -19,7 +20,9 @@ app.factory('AmplitudeFactory', ['UPLOAD', function(UPLOAD) {
 
 	function parseSongs(tracks) {
 		var songs = [];
+		playlist.length = 0;
 		for (var i = 0; i < tracks.length; i++) {
+			playlist.push(tracks[i]);
 			var artist = tracks[i].artists[0].name;
 			for (var j = 0; j < tracks[i].units.length; j++) {
 				artist += tracks[i].units[j].name + tracks[i].artists[j + 1].name;
@@ -38,6 +41,7 @@ app.factory('AmplitudeFactory', ['UPLOAD', function(UPLOAD) {
 
 	return {
 		parseSong: parseSong,
-		parseSongs: parseSongs
+		parseSongs: parseSongs,
+		playlist: playlist
 	};
 }]);

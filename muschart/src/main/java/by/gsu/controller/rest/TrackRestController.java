@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import by.gsu.database.dao.TrackDAO;
 import by.gsu.model.TrackModel;
-import by.gsu.parser.ModelJsonParser;
+import by.gsu.utility.ModelJsonParser;
 
 @RestController
 public class TrackRestController {
@@ -28,7 +28,7 @@ public class TrackRestController {
     @RequestMapping(value = TRACKS_PATH
             + "/create/{name}/{song}/{cover}/{video}/{release}/{artists}/{genres}"
             + JSON_EXT, method = RequestMethod.POST)
-    public ResponseEntity<Void> createTrack(@PathVariable("name") final String name,
+    public ResponseEntity<TrackModel> createTrack(@PathVariable("name") final String name,
             @PathVariable("song") final String song, @PathVariable("cover") final String cover,
             @PathVariable("video") String video, @PathVariable("release") final Date release,
             @PathVariable("artists") final String artists,
@@ -36,9 +36,10 @@ public class TrackRestController {
         if ("null".equals(video)) {
             video = "";
         }
-        trackDAO.createTrack(name, song, cover, video, release, ModelJsonParser.getUnits(artists),
-                ModelJsonParser.getArtists(artists), ModelJsonParser.getGenres(genres));
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        TrackModel track = trackDAO.createTrack(name, song, cover, video, release,
+                ModelJsonParser.getUnits(artists), ModelJsonParser.getArtists(artists),
+                ModelJsonParser.getGenres(genres));
+        return new ResponseEntity<TrackModel>(track, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = TRACKS_PATH + "/delete/{id}" + JSON_EXT, method = RequestMethod.DELETE)

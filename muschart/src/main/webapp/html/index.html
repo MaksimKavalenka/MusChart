@@ -31,7 +31,6 @@
 		<script type="text/javascript" src="/muschart/js/angular/controller/genre/genre.edit.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/track/track.controller.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/controller/track/track.edit.controller.js"></script>
-		<script type="text/javascript" src="/muschart/js/angular/factory/amplitude.factory.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/factory/artist.factory.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/factory/genre.factory.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/factory/track.factory.js"></script>
@@ -42,6 +41,7 @@
 		<script type="text/javascript" src="/muschart/js/angular/other/directive.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/other/filter.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/other/run.js"></script>
+		<script type="text/javascript" src="/muschart/js/angular/service/amplitude.service.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/service/choice.service.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/service/cookie.service.js"></script>
 		<script type="text/javascript" src="/muschart/js/angular/service/file.service.js"></script>
@@ -50,14 +50,14 @@
 		<base href="/">
 	</head>
 	<body>
-		<div class="indent" ui-view="header"></div>
-		<div class="indent" ng-class="{'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}" ng-bind="flash.message"></div>
-		<div class="indent" ui-view="tool"></div>
-		<div class="indent" ui-view="info"></div>
-		<div class="indent" ui-view="main_content"></div>
-		<div class="indent" ui-view="additional_content"></div>
+		<div class="container" ui-view="header"></div>
+		<div class="container" ng-class="{'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}" ng-bind="flash.message"></div>
+		<div class="container" ui-view="tool"></div>
+		<div class="container" ui-view="info"></div>
+		<div class="container" ui-view="main_content"></div>
+		<div class="container" ui-view="additional_content"></div>
 		<div class="flex"></div>
-		<div class="indent" ui-view="footer"></div>
+		<div class="container" ui-view="footer"></div>
 		<div class="amplitude" ng-show="showAmplitude()">
 			<div class="progress">
 				<div class="amplitude-song-time-visualization" amplitude-single-song-time-visualization="true"></div>

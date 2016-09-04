@@ -10,15 +10,15 @@ import by.gsu.model.UnitModel;
 
 public interface TrackDAO {
 
-    void createTrack(String name, String song, String cover, String video, Date release,
+    TrackModel createTrack(String name, String song, String cover, String video, Date release,
             List<UnitModel> units, List<ArtistModel> artists, List<GenreModel> genres);
+
+    void deleteTrackById(long id);
 
     TrackModel getTrackById(long id);
 
     List<TrackModel> getTracksByCriteria(int sort, boolean order, int page);
 
     List<TrackModel> getAllTracks();
-
-    void deleteTrackById(long id);
 
 }

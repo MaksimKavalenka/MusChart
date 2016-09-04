@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.gsu.database.dao.GenreDAO;
+import by.gsu.exception.ValidationException;
 import by.gsu.model.GenreModel;
 
 @RestController
@@ -24,9 +25,13 @@ public class GenreRestController {
     private GenreDAO genreDAO;
 
     @RequestMapping(value = GENRES_PATH + "/create/{name}" + JSON_EXT, method = RequestMethod.POST)
-    public ResponseEntity<Void> createArtist(@PathVariable("name") final String name) {
-        genreDAO.createGenre(name);
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+    public ResponseEntity<GenreModel> createArtist(@PathVariable("name") final String name) {
+        try {
+            GenreModel genre = genreDAO.createGenre(name);
+            return new ResponseEntity<GenreModel>(genre, HttpStatus.CREATED);
+        } catch (ValidationException e) {
+            return new ResponseEntity<GenreModel>(HttpStatus.CONFLICT);
+        }
     }
 
     @RequestMapping(value = GENRES_PATH + "/delete/{id}" + JSON_EXT, method = RequestMethod.DELETE)
@@ -39,16 +44,6 @@ public class GenreRestController {
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<GenreModel> getGenreById(@PathVariable("id") final long id) {
         GenreModel genre = genreDAO.getGenreById(id);
-        if (genre == null) {
-            return new ResponseEntity<GenreModel>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<GenreModel>(genre, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = GENRES_PATH + "/{name}"
-            + JSON_EXT, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<GenreModel> getGenreByName(@PathVariable("name") final String name) {
-        GenreModel genre = genreDAO.getGenreByName(name);
         if (genre == null) {
             return new ResponseEntity<GenreModel>(HttpStatus.NO_CONTENT);
         }
@@ -75,6 +70,13 @@ public class GenreRestController {
             return new ResponseEntity<List<GenreModel>>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<GenreModel>>(genres, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = GENRES_PATH + "/checkName/{name}"
+            + JSON_EXT, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> getGenreByName(@PathVariable("name") final String name) {
+        boolean exists = genreDAO.checkName(name);
+        return new ResponseEntity<Boolean>(exists, HttpStatus.OK);
     }
 
 }

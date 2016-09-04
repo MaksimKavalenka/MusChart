@@ -1,5 +1,5 @@
 'use strict';
-app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'AmplitudeFactory', 'TrackFactory', 'FlashService', 'PaginationService', function($scope, $state, STATE, UPLOAD, AmplitudeFactory, TrackFactory, FlashService, PaginationService) {
+app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'TrackFactory', 'AmplitudeService', 'FlashService', 'PaginationService', function($scope, $state, STATE, UPLOAD, TrackFactory, AmplitudeService, FlashService, PaginationService) {
 	var self = this;
 	self.url = '#';
 	self.info = {image: '', data: ''};
@@ -8,22 +8,12 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Ampli
 	self.init = function(state, sort, order, page) {
 		switch (state) {
 			case STATE.PLAYLIST:
-				var songs = Amplitude.allSongs();
-				self.tracks = [];
-				for (var i = 0; i < songs.length; i++) {
-					TrackFactory.getTrackById(songs[i].id, function(response) {
-						if (response.success) {
-							self.tracks.push(response.data);
-						} else {
-							FlashService.error(response.message);
-						}
-					});
-				}
 				self.url = '#';
+				self.tracks = AmplitudeService.playlist;
 				break;
 			case STATE.TRACKS:
-				self.getTracksByCriteria(sort, order, page);
 				self.url = '#';
+				self.getTracksByCriteria(sort, order, page);
 				break;
 			case STATE.TRACK:
 			case STATE.TRACK_ARTISTS:
@@ -31,24 +21,24 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Ampli
 				self.getTrackById($state.params.id);
 				break;
 			case STATE.ARTIST:
-				self.getTracksByCriteriaExt('artist', $state.params.id, sort, order, 0);
 				self.url = 'artist/tracks({id: ' + $state.params.id + ', page: 1})';
+				self.getTracksByCriteriaExt('artist', $state.params.id, sort, order, 0);
 				break;
 			case STATE.GENRE:
-				self.getTracksByCriteriaExt('genre', $state.params.id, sort, order, 0);
 				self.url = 'genre/tracks({id: ' + $state.params.id + ', page: 1})';
+				self.getTracksByCriteriaExt('genre', $state.params.id, sort, order, 0);
 				break;
 			case STATE.ARTIST_TRACKS:
-				self.getTracksByCriteriaExt('artist', $state.params.id, sort, order, page);
 				self.url = '#';
+				self.getTracksByCriteriaExt('artist', $state.params.id, sort, order, page);
 				break;
 			case STATE.GENRE_TRACKS:
-				self.getTracksByCriteriaExt('genre', $state.params.id, sort, order, page);
 				self.url = '#';
+				self.getTracksByCriteriaExt('genre', $state.params.id, sort, order, page);
 				break;
 			case STATE.USER_TRACKS:
-				self.getTracksByCriteriaExt('user', $scope.user.id, sort, order, page);
 				self.url = '#';
+				self.getTracksByCriteriaExt('user', $scope.user.id, sort, order, page);
 				break;
 		}
 		PaginationService.getPages(page, state);
@@ -69,7 +59,7 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Ampli
 		TrackFactory.getTracksByCriteria(sort, order, page, function(response) {
 			if (response.success) {
 				self.tracks = response.data;
-				Amplitude.init(AmplitudeFactory.parseSongs(self.tracks));
+				Amplitude.init(AmplitudeService.parseSongs(self.tracks));
 			} else {
 				FlashService.error(response.message);
 			}
@@ -80,7 +70,7 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Ampli
 		TrackFactory.getTracksByCriteriaExt(relation, id, sort, order, page, function(response) {
 			if (response.success) {
 				self.tracks = response.data;
-				Amplitude.init(AmplitudeFactory.parseSongs(self.tracks));
+				Amplitude.init(AmplitudeService.parseSongs(self.tracks));
 			} else {
 				FlashService.error(response.message);
 			}
@@ -88,7 +78,7 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Ampli
 	};
 
 	self.playSong = function(track) {
-		Amplitude.playNow(AmplitudeFactory.parseSong(track));
+		Amplitude.playNow(AmplitudeService.parseSong(track));
 	};
 
 	$scope.showModal = function(video) {

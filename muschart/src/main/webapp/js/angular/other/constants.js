@@ -10,20 +10,21 @@ app.constant('CONTROLLER', {
 	'USER_EDIT_CONTROLLER': 'UserEditController'
 });
 app.constant('MESSAGE', (function() {
-	var addingError = 'Error while adding ';
+	var creatingError = 'Error while creating ';
 	var updatingError = 'Error while updating ';
 	var deletingError = 'Error while deleting ';
 	var gettingError = 'Error while getting ';
-	var addingSuccess = ' has been added successfully';
-	var deletingSuccess = ' has been deleting successfully';
+	var creatingSuccess = ' has been created successfully';
+	var deletingSuccess = ' has been deleted successfully';
 	return {
 		AUTHENTICATION_ERROR: 'Login or password is wrong',
 		EXIST_GENRE_ERROR: 'This genre already exists',
 		TAKEN_LOGIN_ERROR: 'This login is already taken',
-		ADDING_ARTIST_ERROR: addingError + 'artist',
-		ADDING_GENRE_ERROR: addingError + 'genre',
-		ADDING_TRACK_ERROR: addingError + 'track',
-		ADDING_USER_ERROR: addingError + 'user',
+		SAVING_FILE_ERROR: 'Error while saving file',
+		CREATING_ARTIST_ERROR: creatingError + 'artist',
+		CREATING_GENRE_ERROR: creatingError + 'genre',
+		CREATING_TRACK_ERROR: creatingError + 'track',
+		CREATING_USER_ERROR: creatingError + 'user',
 		UPDATING_ARTIST_ERROR: updatingError + 'artist',
 		UPDATING_GENRE_ERROR: updatingError + 'genre',
 		UPDATING_TRACK_ERROR: updatingError + 'track',
@@ -36,9 +37,9 @@ app.constant('MESSAGE', (function() {
 		GETTING_TRACK_ERROR: gettingError + 'track',
 		GETTING_UNIT_ERROR: gettingError + 'unit',
 		GETTING_USER_ERROR: gettingError + 'user',
-		ADDING_ARTIST_SUCCESS: 'Artist ' + addingSuccess,
-		ADDING_GENRE_SUCCESS: 'Genre ' + addingSuccess,
-		ADDING_TRACK_SUCCESS: 'Track ' + addingSuccess,
+		CREATING_ARTIST_SUCCESS: 'Artist ' + creatingSuccess,
+		CREATING_GENRE_SUCCESS: 'Genre ' + creatingSuccess,
+		CREATING_TRACK_SUCCESS: 'Track ' + creatingSuccess,
 		DELETING_ARTIST_SUCCESS: 'Artist ' + deletingSuccess,
 		DELETING_GENRE_SUCCESS: 'Genre ' + deletingSuccess,
 		DELETING_TRACK_SUCCESS: 'Track ' + deletingSuccess
@@ -110,9 +111,9 @@ app.constant('STATE', (function() {
 		ARTIST_TRACKS: artist + '/' + tracks,
 		GENRE_TRACKS: genre + '/' + tracks,
 		USER_TRACKS: user + '/' + tracks,
-		ARTISTS_ADD: artist + addOperation,
-		GENRES_ADD: genre + addOperation,
-		TRACKS_ADD: track + addOperation
+		ARTIST_ADD: artist + addOperation,
+		GENRE_ADD: genre + addOperation,
+		TRACK_ADD: track + addOperation
 	}
 })());
 app.constant('TYPE', {
@@ -163,8 +164,8 @@ app.constant('URL', (function() {
 		ARTIST_TRACKS: url + artistUrl + idPattern + tracksUrl + pageOperation + pagePattern,
 		GENRE_TRACKS: url + genreUrl + idPattern + tracksUrl + pageOperation + pagePattern,
 		USER_TRACKS: url + userUrl + tracksUrl + pageOperation + pagePattern,
-		ARTISTS_ADD: url + artistUrl + addOperation,
-		GENRES_ADD: url + genreUrl + addOperation,
-		TRACKS_ADD: url + trackUrl + addOperation
+		ARTIST_ADD: url + artistUrl + addOperation,
+		GENRE_ADD: url + genreUrl + addOperation,
+		TRACK_ADD: url + trackUrl + addOperation
 	}
 })());

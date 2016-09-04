@@ -7,14 +7,14 @@ import by.gsu.model.GenreModel;
 
 public interface ArtistDAO {
 
-    void createArtist(String name, String photo, List<GenreModel> genres);
+    ArtistModel createArtist(String name, String photo, List<GenreModel> genres);
+
+    void deleteArtistById(long id);
 
     ArtistModel getArtistById(long id);
 
     List<ArtistModel> getArtistsByCriteria(int sort, boolean order, int page);
 
     List<ArtistModel> getAllArtists();
-
-    void deleteArtistById(long id);
 
 }

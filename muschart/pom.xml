@@ -5,7 +5,7 @@
   <groupId>by.gsu</groupId>
   <artifactId>muschart</artifactId>
   <packaging>war</packaging>
-  <version>0.25</version>
+  <version>0.26</version>
 
   <name>Muschart Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -37,24 +37,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
-      <version>${hibernate.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <version>4.3.1.Final</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-c3p0</artifactId>
-      <version>${hibernate.version}</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
       <version>${springframework.version}</version>
@@ -79,6 +61,18 @@
     </dependency>
 
     <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.9</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20160212</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>jquery</artifactId>
       <version>3.0.0</version>
@@ -100,12 +94,6 @@
       <groupId>org.webjars.bower</groupId>
       <artifactId>bootstrap</artifactId>
       <version>3.3.7</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20160212</version>
     </dependency>
   </dependencies>
 

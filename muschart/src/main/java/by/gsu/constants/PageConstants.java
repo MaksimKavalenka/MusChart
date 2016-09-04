@@ -9,6 +9,11 @@ public abstract class PageConstants {
     private static final String PAGE_PATTERN              = "/{page:[0-9]{1,}}";
     private static final String PAGE_DEFAULT              = "/1";
 
+    private static final String  ARTIST_URI                = "/artist";
+    private static final String  GENRE_URI                 = "/genre";
+    private static final String  TRACK_URI                 = "/track";
+    private static final String  USER_URI                  = "/user";
+    
     public static final String  REDIRECT                  = "redirect:";
     public static final String  INDEX_PATH                = "/index";
     
@@ -20,10 +25,6 @@ public abstract class PageConstants {
     public static final String  ARTISTS_URI               = "/artists";
     public static final String  GENRES_URI                = "/genres";
     public static final String  TRACKS_URI                = "/tracks";
-    public static final String  ARTIST_URI                = "/artist";
-    public static final String  GENRE_URI                 = "/genre";
-    public static final String  TRACK_URI                 = "/track";
-    public static final String  USER_URI                  = "/user";
 
     public static final String  GENRE_ARTISTS_URI         = GENRE_URI + ID_PATTERN + ARTISTS_URI;
     public static final String  TRACK_ARTISTS_URI         = TRACK_URI + ID_PATTERN + ARTISTS_URI;
