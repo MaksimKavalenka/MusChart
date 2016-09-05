@@ -1,6 +1,4 @@
-package by.gsu.utility;
-
-import static by.gsu.constants.ModelStructureConstants.Models;
+package by.gsu.controller.rest;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -9,23 +7,36 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import by.gsu.constants.ModelStructureConstants.Models;
 import by.gsu.database.dao.ArtistDAO;
 import by.gsu.database.dao.GenreDAO;
+import by.gsu.database.dao.RelationDAO;
+import by.gsu.database.dao.RoleDAO;
+import by.gsu.database.dao.TrackDAO;
 import by.gsu.database.dao.UnitDAO;
+import by.gsu.database.dao.UserDAO;
 import by.gsu.model.ArtistModel;
 import by.gsu.model.GenreModel;
 import by.gsu.model.UnitModel;
 
-public abstract class ModelJsonParser {
+public abstract class RestController {
 
     @Autowired
-    private static ArtistDAO artistDAO;
+    public ArtistDAO   artistDAO;
     @Autowired
-    private static GenreDAO  genreDAO;
+    public GenreDAO    genreDAO;
     @Autowired
-    private static UnitDAO   unitDAO;
+    public RoleDAO     roleDAO;
+    @Autowired
+    public TrackDAO    trackDAO;
+    @Autowired
+    public UnitDAO     unitDAO;
+    @Autowired
+    public UserDAO     userDAO;
+    @Autowired
+    public RelationDAO relationDAO;
 
-    public static List<UnitModel> getUnits(final String json) {
+    public List<UnitModel> getUnits(final String json) {
         List<UnitModel> unions = new LinkedList<>();
         JSONArray jsonArray = new JSONArray(json);
         for (int i = 1; i < jsonArray.length(); i++) {
@@ -36,7 +47,7 @@ public abstract class ModelJsonParser {
         return unions;
     }
 
-    public static List<ArtistModel> getArtists(final String json) {
+    public List<ArtistModel> getArtists(final String json) {
         List<ArtistModel> artists = new LinkedList<>();
         JSONArray jsonArray = new JSONArray(json);
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -47,7 +58,7 @@ public abstract class ModelJsonParser {
         return artists;
     }
 
-    public static List<GenreModel> getGenres(final String json) {
+    public List<GenreModel> getGenres(final String json) {
         List<GenreModel> genres = new LinkedList<>();
         JSONArray jsonArray = new JSONArray(json);
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -58,15 +69,15 @@ public abstract class ModelJsonParser {
         return genres;
     }
 
-    private static UnitModel getUnitById(final long id) {
+    private UnitModel getUnitById(final long id) {
         return unitDAO.getUnitById(id);
     }
 
-    private static ArtistModel getArtistById(final long id) {
+    private ArtistModel getArtistById(final long id) {
         return artistDAO.getArtistById(id);
     }
 
-    private static GenreModel getGenreById(final long id) {
+    private GenreModel getGenreById(final long id) {
         return genreDAO.getGenreById(id);
     }
 

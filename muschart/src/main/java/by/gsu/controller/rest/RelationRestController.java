@@ -9,7 +9,6 @@ import static by.gsu.constants.RestConstants.USERS_PATH;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,29 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import by.gsu.database.dao.ArtistDAO;
-import by.gsu.database.dao.GenreDAO;
-import by.gsu.database.dao.RelationDAO;
-import by.gsu.database.dao.TrackDAO;
-import by.gsu.database.dao.UserDAO;
 import by.gsu.model.ArtistModel;
 import by.gsu.model.GenreModel;
 import by.gsu.model.TrackModel;
 import by.gsu.model.UserModel;
 
 @RestController
-public class RelationRestController {
-
-    @Autowired
-    private RelationDAO relationDAO;
-    @Autowired
-    private ArtistDAO   artistDAO;
-    @Autowired
-    private GenreDAO    genreDAO;
-    @Autowired
-    private TrackDAO    trackDAO;
-    @Autowired
-    private UserDAO     userDAO;
+public class RelationRestController extends by.gsu.controller.rest.RestController {
 
     @RequestMapping(value = ARTISTS_PATH + "/{relation}/{id}/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

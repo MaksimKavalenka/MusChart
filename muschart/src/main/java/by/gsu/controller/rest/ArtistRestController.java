@@ -5,7 +5,6 @@ import static by.gsu.constants.RestConstants.ARTISTS_PATH;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,22 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import by.gsu.database.dao.ArtistDAO;
 import by.gsu.model.ArtistModel;
-import by.gsu.utility.ModelJsonParser;
 
 @RestController
-public class ArtistRestController {
-
-    @Autowired
-    private ArtistDAO artistDAO;
+public class ArtistRestController extends by.gsu.controller.rest.RestController {
 
     @RequestMapping(value = ARTISTS_PATH + "/create/{name}/{photo}/{genres}"
             + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<ArtistModel> createArtist(@PathVariable("name") final String name,
             @PathVariable("photo") final String photo,
             @PathVariable("genres") final String genres) {
-        ArtistModel artist = artistDAO.createArtist(name, photo, ModelJsonParser.getGenres(genres));
+        ArtistModel artist = artistDAO.createArtist(name, photo, getGenres(genres));
         return new ResponseEntity<ArtistModel>(artist, HttpStatus.CREATED);
     }
 

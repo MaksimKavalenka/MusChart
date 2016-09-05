@@ -6,7 +6,6 @@ import static by.gsu.constants.RestConstants.TRACKS_PATH;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,15 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import by.gsu.database.dao.TrackDAO;
 import by.gsu.model.TrackModel;
-import by.gsu.utility.ModelJsonParser;
 
 @RestController
-public class TrackRestController {
-
-    @Autowired
-    private TrackDAO trackDAO;
+public class TrackRestController extends by.gsu.controller.rest.RestController {
 
     @RequestMapping(value = TRACKS_PATH
             + "/create/{name}/{song}/{cover}/{video}/{release}/{artists}/{genres}"
@@ -37,8 +31,7 @@ public class TrackRestController {
             video = "";
         }
         TrackModel track = trackDAO.createTrack(name, song, cover, video, release,
-                ModelJsonParser.getUnits(artists), ModelJsonParser.getArtists(artists),
-                ModelJsonParser.getGenres(genres));
+                getUnits(artists), getArtists(artists), getGenres(genres));
         return new ResponseEntity<TrackModel>(track, HttpStatus.CREATED);
     }
 

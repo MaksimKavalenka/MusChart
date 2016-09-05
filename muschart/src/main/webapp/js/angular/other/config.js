@@ -37,7 +37,8 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				controller: CONTROLLER.USER_EDIT_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.LOGIN_FORM
-			}
+			},
+			footer: footer
 		}
 	})
 	.state(STATE.REGISTER, {
@@ -48,7 +49,8 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				controller: CONTROLLER.USER_EDIT_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.REGISTER_FORM
-			}
+			},
+			footer: footer
 		}
 	})
 	.state(STATE.PLAYLIST, {
@@ -371,7 +373,8 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				controller: CONTROLLER.ARTIST_EDIT_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.ARTIST_EDIT_FORM
-			}
+			},
+			footer: footer
 		}
 	})
 	.state(STATE.GENRE_ADD, {
@@ -382,7 +385,8 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				controller: CONTROLLER.GENRE_EDIT_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.GENRE_EDIT_FORM
-			}
+			},
+			footer: footer
 		}
 	})
 	.state(STATE.TRACK_ADD, {
@@ -393,7 +397,8 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				controller: CONTROLLER.TRACK_EDIT_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.TRACK_EDIT_FORM
-			}
+			},
+			footer: footer
 		}
 	});
 	$urlRouterProvider.otherwise(URL.HOME_PAGE);

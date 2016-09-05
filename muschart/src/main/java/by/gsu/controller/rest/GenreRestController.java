@@ -5,7 +5,6 @@ import static by.gsu.constants.RestConstants.GENRES_PATH;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,15 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import by.gsu.database.dao.GenreDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.model.GenreModel;
 
 @RestController
-public class GenreRestController {
-
-    @Autowired
-    private GenreDAO genreDAO;
+public class GenreRestController extends by.gsu.controller.rest.RestController {
 
     @RequestMapping(value = GENRES_PATH + "/create/{name}" + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<GenreModel> createArtist(@PathVariable("name") final String name) {

@@ -1,5 +1,5 @@
 'use strict';
-app.controller('UserEditController', ['$location', '$scope', '$state', 'URL', 'UserFactory', 'CookieService', 'FlashService', function($location, $scope, $state, URL, UserFactory, CookieService, FlashService) {
+app.controller('UserEditController', ['$location', '$scope', '$state', 'STATE', 'URL', 'UserFactory', 'CookieService', 'FlashService', function($location, $scope, $state, STATE, URL, UserFactory, CookieService, FlashService) {
 	var self = this;
 	self.user = {id: null, login: '', role: null};
 
@@ -18,7 +18,19 @@ app.controller('UserEditController', ['$location', '$scope', '$state', 'URL', 'U
 
 	self.logout = function() {
 		CookieService.clearCredentials();
-		$state.reload();
+		switch ($state.current.name) {
+			case STATE.USER_ARTISTS:
+				$location.path(URL.ARTISTS);
+				break;
+			case STATE.USER_GENRES:
+				$location.path(URL.GENRES);
+				break;
+			case STATE.USER_TRACKS:
+				$location.path(URL.TRACKS);
+				break;
+			default:
+				$state.reload();
+		}
 	};
 
 	self.register = function() {
