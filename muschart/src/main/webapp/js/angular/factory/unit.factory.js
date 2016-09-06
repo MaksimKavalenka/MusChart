@@ -16,4 +16,5 @@ app.factory('UnitFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE,
 	return {
 		getAllUnits: getAllUnits
 	};
+
 }]);

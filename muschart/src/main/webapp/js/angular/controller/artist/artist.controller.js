@@ -1,8 +1,9 @@
 'use strict';
 app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'ArtistFactory', 'FlashService', 'PaginationService', function($scope, $state, STATE, UPLOAD, ArtistFactory, FlashService, PaginationService) {
+
 	var self = this;
 	self.url = '#';
-	self.info = {image: '', data: ''};
+	self.info = {};
 	self.artists = [];
 
 	self.init = function(state, sort, order, page) {
@@ -10,6 +11,7 @@ app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Arti
 			case STATE.ARTISTS:
 				self.url = '#';
 				self.getArtistsByCriteria(sort, order, page);
+				PaginationService.setPagination(page, state);
 				break;
 			case STATE.ARTIST:
 			case STATE.ARTIST_GENRES:
@@ -27,17 +29,19 @@ app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Arti
 			case STATE.GENRE_ARTISTS:
 				self.url = '#';
 				self.getArtistsByCriteriaExt('genre', $state.params.id, sort, order, page);
+				PaginationService.setPaginationExt($state.params.id, 'artist', page, state);
 				break;
 			case STATE.TRACK_ARTISTS:
 				self.url = '#';
 				self.getArtistsByCriteriaExt('track', $state.params.id, sort, order, page);
+				PaginationService.setPaginationExt($state.params.id, 'artist', page, state);
 				break;
 			case STATE.USER_ARTISTS:
 				self.url = '#';
 				self.getArtistsByCriteriaExt('user', $scope.user.id, sort, order, page);
+				PaginationService.setPaginationExt($scope.user.id, 'artist', page, state);
 				break;
 		}
-		PaginationService.getPages(page, state);
 	};
 
 	self.getArtistById = function(id) {

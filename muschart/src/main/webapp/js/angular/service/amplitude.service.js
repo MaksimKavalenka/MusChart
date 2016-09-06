@@ -1,5 +1,6 @@
 'use strict';
 app.service('AmplitudeService', ['UPLOAD', function(UPLOAD) {
+
 	var playlist = [];
 
 	function parseSong(track) {
@@ -44,4 +45,5 @@ app.service('AmplitudeService', ['UPLOAD', function(UPLOAD) {
 		parseSongs: parseSongs,
 		playlist: playlist
 	};
+
 }]);

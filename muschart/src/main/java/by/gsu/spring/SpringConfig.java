@@ -20,14 +20,12 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import by.gsu.database.dao.ArtistDAO;
 import by.gsu.database.dao.GenreDAO;
-import by.gsu.database.dao.RelationDAO;
 import by.gsu.database.dao.RoleDAO;
 import by.gsu.database.dao.TrackDAO;
 import by.gsu.database.dao.UnitDAO;
 import by.gsu.database.dao.UserDAO;
 import by.gsu.database.editor.ArtistDatabaseEditor;
 import by.gsu.database.editor.GenreDatabaseEditor;
-import by.gsu.database.editor.RelationDatabaseEditor;
 import by.gsu.database.editor.RoleDatabaseEditor;
 import by.gsu.database.editor.TrackDatabaseEditor;
 import by.gsu.database.editor.UnitDatabaseEditor;
@@ -84,11 +82,6 @@ public class SpringConfig extends WebMvcConfigurationSupport {
     @Bean(name = "genreDAO")
     public GenreDAO getGenreDao(final SessionFactory sessionFactory) {
         return new GenreDatabaseEditor(sessionFactory);
-    }
-
-    @Bean(name = "relationDAO")
-    public RelationDAO getRelationDao(final SessionFactory sessionFactory) {
-        return new RelationDatabaseEditor(sessionFactory);
     }
 
     @Bean(name = "roleDAO")

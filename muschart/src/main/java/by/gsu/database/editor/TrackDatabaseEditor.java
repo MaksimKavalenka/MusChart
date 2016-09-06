@@ -8,6 +8,7 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
+import by.gsu.constants.ModelStructureConstants.RelationFields;
 import by.gsu.database.dao.TrackDAO;
 import by.gsu.model.ArtistModel;
 import by.gsu.model.GenreModel;
@@ -69,6 +70,72 @@ public class TrackDatabaseEditor extends DatabaseEditor implements TrackDAO {
             case 3:
                 return super.getElementsByCriteria(TrackModel.class, TrackFields.RELEASE, order,
                         page);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    @Transactional
+    public List<TrackModel> getArtistTracksByCriteria(final long idArtist, final int sort,
+            final boolean order, final int page) {
+        switch (sort) {
+            case 0:
+                return super.getElementsByCriteria(TrackModel.class, RelationFields.ARTISTS,
+                        TrackFields.ID, idArtist, order, page);
+            case 1:
+                return super.getElementsByCriteria(TrackModel.class, RelationFields.ARTISTS,
+                        TrackFields.RATING, idArtist, order, page);
+            case 2:
+                return super.getElementsByCriteria(TrackModel.class, RelationFields.ARTISTS,
+                        TrackFields.NAME, idArtist, order, page);
+            case 3:
+                return super.getElementsByCriteria(TrackModel.class, RelationFields.ARTISTS,
+                        TrackFields.RELEASE, idArtist, order, page);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    @Transactional
+    public List<TrackModel> getGenreTracksByCriteria(final long idGenre, final int sort,
+            final boolean order, final int page) {
+        switch (sort) {
+            case 0:
+                return super.getElementsByCriteria(TrackModel.class, RelationFields.GENRES,
+                        TrackFields.ID, idGenre, order, page);
+            case 1:
+                return super.getElementsByCriteria(TrackModel.class, RelationFields.GENRES,
+                        TrackFields.RATING, idGenre, order, page);
+            case 2:
+                return super.getElementsByCriteria(TrackModel.class, RelationFields.GENRES,
+                        TrackFields.NAME, idGenre, order, page);
+            case 3:
+                return super.getElementsByCriteria(TrackModel.class, RelationFields.GENRES,
+                        TrackFields.RELEASE, idGenre, order, page);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    @Transactional
+    public List<TrackModel> getUserTracksByCriteria(final long idUser, final int sort,
+            final boolean order, final int page) {
+        switch (sort) {
+            case 0:
+                return super.getElementsByCriteria(TrackModel.class, RelationFields.USERS,
+                        TrackFields.ID, idUser, order, page);
+            case 1:
+                return super.getElementsByCriteria(TrackModel.class, RelationFields.USERS,
+                        TrackFields.RATING, idUser, order, page);
+            case 2:
+                return super.getElementsByCriteria(TrackModel.class, RelationFields.USERS,
+                        TrackFields.NAME, idUser, order, page);
+            case 3:
+                return super.getElementsByCriteria(TrackModel.class, RelationFields.USERS,
+                        TrackFields.RELEASE, idUser, order, page);
             default:
                 return null;
         }

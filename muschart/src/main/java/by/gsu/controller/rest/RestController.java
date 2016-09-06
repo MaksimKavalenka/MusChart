@@ -7,10 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import by.gsu.constants.ModelStructureConstants.Models;
+import by.gsu.constants.ModelStructureConstants.ModelFields;
 import by.gsu.database.dao.ArtistDAO;
 import by.gsu.database.dao.GenreDAO;
-import by.gsu.database.dao.RelationDAO;
 import by.gsu.database.dao.RoleDAO;
 import by.gsu.database.dao.TrackDAO;
 import by.gsu.database.dao.UnitDAO;
@@ -22,26 +21,24 @@ import by.gsu.model.UnitModel;
 public abstract class RestController {
 
     @Autowired
-    public ArtistDAO   artistDAO;
+    public ArtistDAO artistDAO;
     @Autowired
-    public GenreDAO    genreDAO;
+    public GenreDAO  genreDAO;
     @Autowired
-    public RoleDAO     roleDAO;
+    public RoleDAO   roleDAO;
     @Autowired
-    public TrackDAO    trackDAO;
+    public TrackDAO  trackDAO;
     @Autowired
-    public UnitDAO     unitDAO;
+    public UnitDAO   unitDAO;
     @Autowired
-    public UserDAO     userDAO;
-    @Autowired
-    public RelationDAO relationDAO;
+    public UserDAO   userDAO;
 
     public List<UnitModel> getUnits(final String json) {
         List<UnitModel> unions = new LinkedList<>();
         JSONArray jsonArray = new JSONArray(json);
-        for (int i = 1; i < jsonArray.length(); i++) {
+        for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            long id = jsonObject.getLong(Models.UNIT);
+            long id = jsonObject.getLong(ModelFields.ID);
             unions.add(getUnitById(id));
         }
         return unions;
@@ -52,7 +49,7 @@ public abstract class RestController {
         JSONArray jsonArray = new JSONArray(json);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            long id = jsonObject.getLong(Models.ARTIST);
+            long id = jsonObject.getLong(ModelFields.ID);
             artists.add(getArtistById(id));
         }
         return artists;
@@ -63,7 +60,7 @@ public abstract class RestController {
         JSONArray jsonArray = new JSONArray(json);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            long id = jsonObject.getLong(Models.GENRE);
+            long id = jsonObject.getLong(ModelFields.ID);
             genres.add(getGenreById(id));
         }
         return genres;

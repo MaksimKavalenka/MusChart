@@ -1,13 +1,14 @@
 'use strict';
 app.controller('ArtistEditController', ['$scope', 'TYPE', 'ArtistFactory', 'GenreFactory', 'ChoiceService', 'FileService', 'FlashService', function($scope, TYPE, ArtistFactory, GenreFactory, ChoiceService, FileService, FlashService) {
+
 	var self = this;
-	self.artist = {name: '', photo: ''};
+	self.genres = [];
 
 	self.init = function() {
 		ChoiceService.reset();
 		GenreFactory.getAllGenres(function(response) {
 			if (response.success) {
-				$scope.genres = response.data;
+				self.genres = response.data;
 			} else {
 				FlashService.error(response.message);
 			}
@@ -48,7 +49,6 @@ app.controller('ArtistEditController', ['$scope', 'TYPE', 'ArtistFactory', 'Genr
 	};
 
 	self.reset = function() {
-		self.artist = {name: '', photo: ''};
 		$scope.form.$setPristine();
 	};
 

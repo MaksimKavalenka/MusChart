@@ -15,6 +15,6 @@
 			</div>
 		</div>
 </ul>
-<div class="link" ng-show="ctrl.url !== '#'">
+<div class="link" ng-show="(ctrl.url !== '#') && (ctrl.artists.length >= amount.artists)">
 	<a ui-sref="{{ctrl.url}}">More artists</a>
 </div>

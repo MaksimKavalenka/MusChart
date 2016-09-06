@@ -4,12 +4,11 @@
 		<div class="field">
 			<label class="required">Artist</label>
 			<div ng-repeat="artistChoice in artistsChoice">
-				<select ng-model="artistChoice.unit" ng-if="$first" ng-show="false"></select>
-				<select ng-model="artistChoice.unit" ng-if="!$first" required>
-					<option ng-repeat="un in units" value="{{un.id}}">{{un.name}}</option>
+				<select ng-model="unitsChoice[$index - 1].id" ng-if="!$first" required>
+					<option ng-repeat="unit in ctrl.units" value="{{unit.id}}">{{unit.name}}</option>
 				</select>
-				<select ng-model="artistChoice.artist" required>
-					<option ng-repeat="art in artists" value="{{art.id}}">{{art.name}}</option>
+				<select ng-model="artistChoice.id" required>
+					<option ng-repeat="artist in ctrl.artists" value="{{artist.id}}">{{artist.name}}</option>
 				</select>
 				<button class="btn btn-danger btn-input" ng-click="removeArtistChoice(artistChoice.index)">Remove artist</button>
 			</div>
@@ -34,8 +33,8 @@
 		<div class="field">
 			<label class="required">Genre</label>
 			<div ng-repeat="genreChoice in genresChoice">
-				<select ng-model="genreChoice.genre" required>
-					<option ng-repeat="gen in genres" value="{{gen.id}}">{{gen.name}}</option>
+				<select ng-model="genreChoice.id" required>
+					<option ng-repeat="genre in ctrl.genres" value="{{genre.id}}">{{genre.name}}</option>
 				</select>
 				<button class="btn btn-danger btn-input" ng-click="removeGenreChoice(genreChoice.index)">Remove genre</button>
 			</div>

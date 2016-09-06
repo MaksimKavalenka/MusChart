@@ -1,7 +1,7 @@
 'use strict';
 app.controller('UserEditController', ['$location', '$scope', '$state', 'STATE', 'URL', 'UserFactory', 'CookieService', 'FlashService', function($location, $scope, $state, STATE, URL, UserFactory, CookieService, FlashService) {
+
 	var self = this;
-	self.user = {id: null, login: '', role: null};
 
 	self.login = function() {
 		self.dataLoading = true;

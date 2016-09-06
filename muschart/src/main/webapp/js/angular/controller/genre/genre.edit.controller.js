@@ -1,7 +1,7 @@
 'use strict';
 app.controller('GenreEditController', ['$scope', 'GenreFactory', 'FlashService', function($scope, GenreFactory, FlashService) {
+
 	var self = this;
-	self.genre = {name: ''};
 
 	self.createGenre = function() {
 		self.dataLoading = true;
@@ -27,7 +27,6 @@ app.controller('GenreEditController', ['$scope', 'GenreFactory', 'FlashService',
 	};
 
 	self.reset = function() {
-		self.genre = {name: ''};
 		$scope.form.$setPristine();
 	};
 

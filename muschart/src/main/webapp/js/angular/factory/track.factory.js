@@ -1,8 +1,8 @@
 'use strict';
 app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE, REST) {
 
-	function createTrack(name, song, cover, video, release, artists, genres, callback) {
-		$http.post(REST.TRACKS + '/create/' + name + '/' + song + '/' + cover + '/' + video + '/' + release + '/' + artists + '/' + genres + REST.JSON_EXT)
+	function createTrack(name, song, cover, video, release, units, artists, genres, callback) {
+		$http.post(REST.TRACKS + '/create/' + name + '/' + song + '/' + cover + '/' + video + '/' + release + '/' + units + '/' + artists + '/' + genres + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response, message: MESSAGE.CREATING_TRACK_SUCCESS};
 			callback(data);
@@ -73,12 +73,39 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
+	function getPageAmount(callback) {
+		$http.get(REST.TRACKS + '/page_amount' + REST.JSON_EXT)
+		.success(function(response) {
+			var data = {success: true, data: response};
+			callback(data);
+		})
+		.error(function(response) {
+			response = {success: false, message: MESSAGE.GETTING_TRACK_ERROR};
+			callback(response);
+		});
+	}
+
+	function getPageAmountExt(id, relation, callback) {
+		$http.get(REST.TRACKS + '/' + id + '/' + relation + '/page_amount' + REST.JSON_EXT)
+		.success(function(response) {
+			var data = {success: true, data: response};
+			callback(data);
+		})
+		.error(function(response) {
+			response = {success: false, message: MESSAGE.GETTING_TRACK_ERROR};
+			callback(response);
+		});
+	}
+
 	return {
 		createTrack: createTrack,
 		deleteTrack: deleteTrack,
 		getTrackById: getTrackById,
 		getTracksByCriteria: getTracksByCriteria,
 		getTracksByCriteriaExt: getTracksByCriteriaExt,
-		getAllTracks: getAllTracks
+		getAllTracks: getAllTracks,
+		getPageAmount: getPageAmount,
+		getPageAmountExt: getPageAmountExt
 	};
+
 }]);

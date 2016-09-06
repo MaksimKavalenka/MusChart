@@ -12,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.gsu.constants.ModelStructureConstants;
+import by.gsu.constants.ModelStructureConstants.RelationFields;
 import by.gsu.database.dao.GenreDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.model.GenreModel;
@@ -65,6 +66,63 @@ public class GenreDatabaseEditor extends DatabaseEditor implements GenreDAO {
                         page);
             case 2:
                 return super.getElementsByCriteria(GenreModel.class, GenreFields.NAME, order, page);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    @Transactional
+    public List<GenreModel> getArtistGenresByCriteria(final long idArtist, final int sort,
+            final boolean order, final int page) {
+        switch (sort) {
+            case 0:
+                return super.getElementsByCriteria(GenreModel.class, RelationFields.ARTISTS,
+                        GenreFields.ID, idArtist, order, page);
+            case 1:
+                return super.getElementsByCriteria(GenreModel.class, RelationFields.ARTISTS,
+                        GenreFields.RATING, idArtist, order, page);
+            case 2:
+                return super.getElementsByCriteria(GenreModel.class, RelationFields.ARTISTS,
+                        GenreFields.NAME, idArtist, order, page);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    @Transactional
+    public List<GenreModel> getTrackGenresByCriteria(final long idTrack, final int sort,
+            final boolean order, final int page) {
+        switch (sort) {
+            case 0:
+                return super.getElementsByCriteria(GenreModel.class, RelationFields.TRACKS,
+                        GenreFields.ID, idTrack, order, page);
+            case 1:
+                return super.getElementsByCriteria(GenreModel.class, RelationFields.TRACKS,
+                        GenreFields.RATING, idTrack, order, page);
+            case 2:
+                return super.getElementsByCriteria(GenreModel.class, RelationFields.TRACKS,
+                        GenreFields.NAME, idTrack, order, page);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    @Transactional
+    public List<GenreModel> getUserGenresByCriteria(final long idUser, final int sort,
+            final boolean order, final int page) {
+        switch (sort) {
+            case 0:
+                return super.getElementsByCriteria(GenreModel.class, RelationFields.USERS,
+                        GenreFields.ID, idUser, order, page);
+            case 1:
+                return super.getElementsByCriteria(GenreModel.class, RelationFields.USERS,
+                        GenreFields.RATING, idUser, order, page);
+            case 2:
+                return super.getElementsByCriteria(GenreModel.class, RelationFields.USERS,
+                        GenreFields.NAME, idUser, order, page);
             default:
                 return null;
         }

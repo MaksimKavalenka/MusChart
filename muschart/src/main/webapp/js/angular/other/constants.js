@@ -9,6 +9,7 @@ app.constant('CONTROLLER', {
 	'TRACK_EDIT_CONTROLLER': 'TrackEditController',
 	'USER_EDIT_CONTROLLER': 'UserEditController'
 });
+
 app.constant('MESSAGE', (function() {
 	var creatingError = 'Error while creating ';
 	var updatingError = 'Error while updating ';
@@ -45,6 +46,7 @@ app.constant('MESSAGE', (function() {
 		DELETING_TRACK_SUCCESS: 'Track ' + deletingSuccess
 	}
 })());
+
 app.constant('PATH', (function() {
 	var path = 'muschart/html';
 	var contentPath = path + '/content';
@@ -70,6 +72,7 @@ app.constant('PATH', (function() {
 		SETTINGS_TOOL: toolPath + '/settings' + htmlExt
 	}
 })());
+
 app.constant('REST', (function() {
 	var url = '/muschart';
 	return {
@@ -82,6 +85,7 @@ app.constant('REST', (function() {
 		USERS: url + '/users'
 	}
 })());
+
 app.constant('STATE', (function() {
 	var artists = 'artists';
 	var genres = 'genres';
@@ -116,11 +120,13 @@ app.constant('STATE', (function() {
 		TRACK_ADD: track + addOperation
 	}
 })());
+
 app.constant('TYPE', {
 	'COVER': 'cover',
 	'PHOTO': 'photo',
 	'SONG': 'song'
 });
+
 app.constant('UPLOAD', (function() {
 	var root = '/muschart';
 	var imageRoot = root + '/image';
@@ -130,6 +136,7 @@ app.constant('UPLOAD', (function() {
 		TRACK_COVER: imageRoot + '/track'
 	}
 })());
+
 app.constant('URL', (function() {
 	var url = '/muschart';
 	var artistsUrl = '/artists';

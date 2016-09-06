@@ -1,5 +1,6 @@
 'use strict';
 app.controller('AutocompleteController', ['$scope', 'ArtistFactory', 'GenreFactory', 'TrackFactory', 'FlashService', function ($scope, ArtistFactory, GenreFactory, TrackFactory, FlashService) {
+
 	var artists = [];
 	var genres = [];
 	var tracks = [];
@@ -66,4 +67,5 @@ app.controller('AutocompleteController', ['$scope', 'ArtistFactory', 'GenreFacto
 	$scope.options = {
 		suggest: suggestNames
 	};
+
 }]);

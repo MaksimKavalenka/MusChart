@@ -1,5 +1,7 @@
 'use strict';
 app.run(['$cookies', '$location', '$rootScope', '$state', 'STATE', 'URL', 'CookieService', 'FlashService', function($cookies, $location, $rootScope, $state, STATE, URL, CookieService, FlashService) {
+
+	$rootScope.amount = {artists: 6, genres: 18, tracks: 6};
 	$rootScope.saveSettings = function() {
 		CookieService.setSettings();
 	};
@@ -35,4 +37,5 @@ app.run(['$cookies', '$location', '$rootScope', '$state', 'STATE', 'URL', 'Cooki
 	$rootScope.$on('$stateChangeStart', function() {
 		FlashService.clearFlashMessage(0);
 	});
+
 }]);

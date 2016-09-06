@@ -20,7 +20,7 @@
 			</div>
 		</div>
 </ul>
-<div class="link" ng-show="ctrl.url !== '#'">
+<div class="link" ng-show="(ctrl.url !== '#') && (ctrl.tracks.length >= amount.tracks)">
 	<a ui-sref="{{ctrl.url}}">More tracks</a>
 </div>
 <modal visible="modal">

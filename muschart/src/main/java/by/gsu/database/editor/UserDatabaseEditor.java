@@ -5,6 +5,7 @@ import static by.gsu.constants.ExceptionConstants.TAKEN_LOGIN_ERROR;
 import static by.gsu.constants.ModelStructureConstants.UserFields;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -12,7 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import by.gsu.database.dao.UserDAO;
 import by.gsu.exception.ValidationException;
+import by.gsu.model.ArtistModel;
+import by.gsu.model.GenreModel;
 import by.gsu.model.RoleModel;
+import by.gsu.model.TrackModel;
 import by.gsu.model.UserModel;
 import by.gsu.utility.SecureData;
 
@@ -70,6 +74,42 @@ public class UserDatabaseEditor extends DatabaseEditor implements UserDAO {
         } catch (NoSuchAlgorithmException e) {
             throw new ValidationException(e.getMessage());
         }
+    }
+
+    @Override
+    @Transactional
+    public void updateUserArtists(final UserModel user, final ArtistModel artist) {
+        List<ArtistModel> artists = user.getArtists();
+        if (!artists.contains(artist)) {
+            artists.add(artist);
+        } else {
+            artists.remove(artist);
+        }
+        sessionFactory.getCurrentSession().update(user);
+    }
+
+    @Override
+    @Transactional
+    public void updateUserGenres(final UserModel user, final GenreModel genre) {
+        List<GenreModel> genres = user.getGenres();
+        if (!genres.contains(genre)) {
+            genres.add(genre);
+        } else {
+            genres.remove(genre);
+        }
+        sessionFactory.getCurrentSession().update(user);
+    }
+
+    @Override
+    @Transactional
+    public void updateUserTracks(final UserModel user, final TrackModel track) {
+        List<TrackModel> tracks = user.getTracks();
+        if (!tracks.contains(track)) {
+            tracks.add(track);
+        } else {
+            tracks.remove(track);
+        }
+        sessionFactory.getCurrentSession().update(user);
     }
 
     @Override

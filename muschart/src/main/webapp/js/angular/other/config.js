@@ -4,6 +4,7 @@ app.config(['$cookiesProvider', '$locationProvider', function($cookiesProvider, 
 	$cookiesProvider.defaults.expires = new Date(new Date().getTime() + 604800000);
 	$locationProvider.html5Mode(true);
 }]);
+
 app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE', 'URL', function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE, URL) {
 	var mainHeader = {
 		controller: CONTROLLER.USER_EDIT_CONTROLLER,
@@ -19,6 +20,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 	var footer = {
 		templateUrl: PATH.FOOTER
 	}
+
 	$stateProvider
 	.state(STATE.SETTINGS, {
 		url: URL.SETTINGS,
@@ -401,5 +403,6 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 			footer: footer
 		}
 	});
+
 	$urlRouterProvider.otherwise(URL.HOME_PAGE);
 }]);

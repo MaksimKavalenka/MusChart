@@ -1,27 +1,30 @@
 'use strict';
 app.controller('TrackEditController', ['$scope', 'TYPE', 'ArtistFactory', 'GenreFactory', 'TrackFactory', 'UnitFactory', 'ChoiceService', 'FileService', 'FlashService', function($scope, TYPE, ArtistFactory, GenreFactory, TrackFactory, UnitFactory, ChoiceService, FileService, FlashService) {
+
 	var self = this;
-	self.track = {name: '', song: '', cover: '', video: '', release: ''};
+	self.artists = [];
+	self.genres = [];
+	self.units = [];
 
 	self.init = function() {
 		ChoiceService.reset();
 		ArtistFactory.getAllArtists(function(response) {
 			if (response.success) {
-				$scope.artists = response.data;
+				self.artists = response.data;
 			} else {
 				FlashService.error(response.message);
 			}
 		});
 		GenreFactory.getAllGenres(function(response) {
 			if (response.success) {
-				$scope.genres = response.data;
+				self.genres = response.data;
 			} else {
 				FlashService.error(response.message);
 			}
 		});
 		UnitFactory.getAllUnits(function(response) {
 			if (response.success) {
-				$scope.units = response.data;
+				self.units = response.data;
 			} else {
 				FlashService.error(response.message);
 			}
@@ -48,7 +51,7 @@ app.controller('TrackEditController', ['$scope', 'TYPE', 'ArtistFactory', 'Genre
 			if (self.track.video == '') {
 				self.track.video = null;
 			}
-			TrackFactory.createTrack(self.track.name, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), self.track.video, self.track.release, angular.toJson($scope.artistsChoice), angular.toJson($scope.genresChoice), function(response) {
+			TrackFactory.createTrack(self.track.name, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), self.track.video, self.track.release, angular.toJson($scope.unitsChoice), angular.toJson($scope.artistsChoice), angular.toJson($scope.genresChoice), function(response) {
 				if (response.success) {
 					self.reset();
 					ChoiceService.reset();
@@ -72,7 +75,6 @@ app.controller('TrackEditController', ['$scope', 'TYPE', 'ArtistFactory', 'Genre
 	};
 
 	self.reset = function() {
-		self.track = {name: '', song: '', cover: '', video: '', release: ''};
 		$scope.form.$setPristine();
 	};
 

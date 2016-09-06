@@ -19,6 +19,12 @@ public interface TrackDAO {
 
     List<TrackModel> getTracksByCriteria(int sort, boolean order, int page);
 
+    List<TrackModel> getArtistTracksByCriteria(long idArtist, int sort, boolean order, int page);
+
+    List<TrackModel> getGenreTracksByCriteria(long idGenre, int sort, boolean order, int page);
+
+    List<TrackModel> getUserTracksByCriteria(long idUser, int sort, boolean order, int page);
+
     List<TrackModel> getAllTracks();
 
 }

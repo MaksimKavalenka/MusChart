@@ -1,8 +1,9 @@
 'use strict';
 app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'TrackFactory', 'AmplitudeService', 'FlashService', 'PaginationService', function($scope, $state, STATE, UPLOAD, TrackFactory, AmplitudeService, FlashService, PaginationService) {
+
 	var self = this;
 	self.url = '#';
-	self.info = {image: '', data: ''};
+	self.info = {};
 	self.tracks = [];
 
 	self.init = function(state, sort, order, page) {
@@ -14,6 +15,7 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Track
 			case STATE.TRACKS:
 				self.url = '#';
 				self.getTracksByCriteria(sort, order, page);
+				PaginationService.setPagination(page, state);
 				break;
 			case STATE.TRACK:
 			case STATE.TRACK_ARTISTS:
@@ -31,17 +33,19 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Track
 			case STATE.ARTIST_TRACKS:
 				self.url = '#';
 				self.getTracksByCriteriaExt('artist', $state.params.id, sort, order, page);
+				PaginationService.setPaginationExt($state.params.id, 'track', page, state);
 				break;
 			case STATE.GENRE_TRACKS:
 				self.url = '#';
 				self.getTracksByCriteriaExt('genre', $state.params.id, sort, order, page);
+				PaginationService.setPaginationExt($state.params.id, 'track', page, state);
 				break;
 			case STATE.USER_TRACKS:
 				self.url = '#';
 				self.getTracksByCriteriaExt('user', $scope.user.id, sort, order, page);
+				PaginationService.setPaginationExt($scope.user.id, 'track', page, state);
 				break;
 		}
-		PaginationService.getPages(page, state);
 	};
 
 	self.getTrackById = function(id) {

@@ -30,4 +30,5 @@ app.service('CookieService', ['$cookies', '$rootScope', function($cookies, $root
 		setTracks: setTracks,
 		clearCredentials: clearCredentials
 	};
+
 }]);
