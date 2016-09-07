@@ -1,14 +1,16 @@
 'use strict';
-app.constant('CONTROLLER', {
-	'CTRL': 'ctrl',
-	'ARTIST_CONTROLLER': 'ArtistController',
-	'ARTIST_EDIT_CONTROLLER': 'ArtistEditController',
-	'GENRE_CONTROLLER': 'GenreController',
-	'GENRE_EDIT_CONTROLLER': 'GenreEditController',
-	'TRACK_CONTROLLER': 'TrackController',
-	'TRACK_EDIT_CONTROLLER': 'TrackEditController',
-	'USER_EDIT_CONTROLLER': 'UserEditController'
-});
+app.constant('CONTROLLER', (function() {
+	return {
+		CTRL: 'ctrl',
+		ARTIST_CONTROLLER: 'ArtistController',
+		ARTIST_EDIT_CONTROLLER: 'ArtistEditController',
+		GENRE_CONTROLLER: 'GenreController',
+		GENRE_EDIT_CONTROLLER: 'GenreEditController',
+		TRACK_CONTROLLER: 'TrackController',
+		TRACK_EDIT_CONTROLLER: 'TrackEditController',
+		USER_EDIT_CONTROLLER: 'UserEditController'
+	}
+})());
 
 app.constant('MESSAGE', (function() {
 	var creatingError = 'Error while creating ';
@@ -87,6 +89,7 @@ app.constant('REST', (function() {
 })());
 
 app.constant('STATE', (function() {
+	var delimiter = '_';
 	var artists = 'artists';
 	var genres = 'genres';
 	var tracks = 'tracks';
@@ -94,38 +97,55 @@ app.constant('STATE', (function() {
 	var genre = 'genre';
 	var track = 'track';
 	var user = 'user';
-	var addOperation = '/add';
+	var addOperation = delimiter + 'add';
 	return {
 		SETTINGS: 'settings',
 		LOGIN: 'login',
 		REGISTER: 'register',
 		PLAYLIST: 'playlist',
+		ARTIST_ADD: artist + addOperation,
+		GENRE_ADD: genre + addOperation,
+		TRACK_ADD: track + addOperation,
 		ARTISTS: artists,
 		GENRES: genres,
 		TRACKS: tracks,
 		ARTIST: artist,
 		GENRE: genre,
 		TRACK: track,
-		GENRE_ARTISTS: genre + '/' + artists,
-		TRACK_ARTISTS: track + '/' + artists,
-		USER_ARTISTS: user + '/' + artists,
-		ARTIST_GENRES: artist + '/' + genres,
-		TRACK_GENRES: track + '/' + genres,
-		USER_GENRES: user + '/' + genres,
-		ARTIST_TRACKS: artist + '/' + tracks,
-		GENRE_TRACKS: genre + '/' + tracks,
-		USER_TRACKS: user + '/' + tracks,
-		ARTIST_ADD: artist + addOperation,
-		GENRE_ADD: genre + addOperation,
-		TRACK_ADD: track + addOperation
+		GENRE_ARTISTS: genre + delimiter + artists,
+		TRACK_ARTISTS: track + delimiter + artists,
+		USER_ARTISTS: user + delimiter + artists,
+		ARTIST_GENRES: artist + delimiter + genres,
+		TRACK_GENRES: track + delimiter + genres,
+		USER_GENRES: user + delimiter + genres,
+		ARTIST_TRACKS: artist + delimiter + tracks,
+		GENRE_TRACKS: genre + delimiter + tracks,
+		USER_TRACKS: user + delimiter + tracks
 	}
 })());
 
-app.constant('TYPE', {
-	'COVER': 'cover',
-	'PHOTO': 'photo',
-	'SONG': 'song'
-});
+app.constant('TITLE', (function() {
+	return {
+		LOGIN: 'Login',
+		REGISTER: 'Register',
+		SETTINGS: 'Settings',
+		PLAYLIST: 'Playlist',
+		ARTISTS: 'Artists',
+		GENRES: 'Genres',
+		TRACKS: 'Tracks',
+		USER_ARTISTS: 'My artists',
+		USER_GENRES: 'My genres',
+		USER_TRACKS: 'My tracks'
+	}
+})());
+
+app.constant('TYPE', (function() {
+	return {
+		COVER: 'cover',
+		PHOTO: 'photo',
+		SONG: 'song'
+	}
+})());
 
 app.constant('UPLOAD', (function() {
 	var root = '/muschart';
@@ -151,11 +171,13 @@ app.constant('URL', (function() {
 	var idPattern = '/{id:[0-9]{1,}}';
 	var pagePattern = '/{page:[0-9]{1,}}';
 	return {
-		HOME_PAGE: url + tracksUrl + pageOperation + '/1',
-		SETTINGS: url + '/settings',
 		LOGIN: url + '/login',
 		REGISTER: url + '/register',
+		SETTINGS: url + '/settings',
 		PLAYLIST: url + '/playlist',
+		ARTIST_ADD: url + artistUrl + addOperation,
+		GENRE_ADD: url + genreUrl + addOperation,
+		TRACK_ADD: url + trackUrl + addOperation,
 		ARTISTS: url + artistsUrl + pageOperation + pagePattern,
 		GENRES: url + genresUrl + pageOperation + pagePattern,
 		TRACKS: url + tracksUrl + pageOperation + pagePattern,
@@ -170,9 +192,6 @@ app.constant('URL', (function() {
 		USER_GENRES: url + userUrl + genresUrl + pageOperation + pagePattern,
 		ARTIST_TRACKS: url + artistUrl + idPattern + tracksUrl + pageOperation + pagePattern,
 		GENRE_TRACKS: url + genreUrl + idPattern + tracksUrl + pageOperation + pagePattern,
-		USER_TRACKS: url + userUrl + tracksUrl + pageOperation + pagePattern,
-		ARTIST_ADD: url + artistUrl + addOperation,
-		GENRE_ADD: url + genreUrl + addOperation,
-		TRACK_ADD: url + trackUrl + addOperation
+		USER_TRACKS: url + userUrl + tracksUrl + pageOperation + pagePattern
 	}
 })());

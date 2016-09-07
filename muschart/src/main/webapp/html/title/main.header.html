@@ -1,8 +1,8 @@
 <div class="navbar navbar-default justify">
 	<ul class="navigation">
-		<li><a ui-sref="tracks({page: 1})">Tracks</a>
-		<li><a ui-sref="artists({page: 1})">Artists</a>
-		<li><a ui-sref="genres({page: 1})">Genres</a>
+		<li><a ui-sref="tracks">Tracks</a>
+		<li><a ui-sref="artists">Artists</a>
+		<li><a ui-sref="genres">Genres</a>
 	</ul>
 	<form class="form-search" role="search">
 		<div ng-controller="AutocompleteController">
@@ -10,7 +10,6 @@
 				<input type="text" class="input-search form-control ng-isolate-scope ng-valid ng-dirty" ng-model="dirty.state_simple" placeholder="Track, artist, genre" mass-autocomplete-item="options" autocomplete="off">
 			</div>
 		</div>
-		<button type="submit" class="btn btn-default btn-search">Submit</button>
 	</form>
 	<ul class="navigation">
 		<li ng-show="user.role === 'Admin'"><a ui-sref="track/add">Edit</a>
@@ -20,9 +19,9 @@
 </div>
 <div class="navbar navbar-primary justify" ng-show="user">
 	<ul class="navigation">
-		<li><a ui-sref="user/tracks({page: 1})">My tracks</a>
-		<li><a ui-sref="user/artists({page: 1})">My artists</a>
-		<li><a ui-sref="user/genres({page: 1})">My genres</a>
+		<li><a ui-sref="user_tracks">My tracks</a>
+		<li><a ui-sref="user_artists">My artists</a>
+		<li><a ui-sref="user_genres">My genres</a>
 	</ul>
 	<ul class="navigation">
 		<li><a ui-sref="account">My account</a>

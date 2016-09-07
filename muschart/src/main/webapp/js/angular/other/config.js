@@ -5,7 +5,7 @@ app.config(['$cookiesProvider', '$locationProvider', function($cookiesProvider, 
 	$locationProvider.html5Mode(true);
 }]);
 
-app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE', 'URL', function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE, URL) {
+app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE', 'TITLE', 'URL', function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE, TITLE, URL) {
 	var mainHeader = {
 		controller: CONTROLLER.USER_EDIT_CONTROLLER,
 		controllerAs: CONTROLLER.CTRL,
@@ -22,16 +22,8 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 	}
 
 	$stateProvider
-	.state(STATE.SETTINGS, {
-		url: URL.SETTINGS,
-		views: {
-			header: mainHeader,
-			tool: {
-				templateUrl: PATH.SETTINGS_TOOL
-			}
-		}
-	})
 	.state(STATE.LOGIN, {
+		title: TITLE.LOGIN,
 		url: URL.LOGIN,
 		views: {
 			header: authenticationHeader,
@@ -44,6 +36,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		}
 	})
 	.state(STATE.REGISTER, {
+		title: TITLE.REGISTER,
 		url: URL.REGISTER,
 		views: {
 			header: authenticationHeader,
@@ -55,7 +48,18 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 			footer: footer
 		}
 	})
+	.state(STATE.SETTINGS, {
+		title: TITLE.SETTINGS,
+		url: URL.SETTINGS,
+		views: {
+			header: mainHeader,
+			tool: {
+				templateUrl: PATH.SETTINGS_TOOL
+			}
+		}
+	})
 	.state(STATE.PLAYLIST, {
+		title: TITLE.PLAYLIST,
 		url: URL.PLAYLIST,
 		views: {
 			header: mainHeader,
@@ -68,7 +72,11 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		}
 	})
 	.state(STATE.ARTISTS, {
+		title: TITLE.ARTISTS,
 		url: URL.ARTISTS,
+		params: {
+			page: '1'
+		},
 		views: {
 			header: mainHeader,
 			tool: {
@@ -85,7 +93,11 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		}
 	})
 	.state(STATE.GENRES, {
+		title: TITLE.GENRES,
 		url: URL.GENRES,
+		params: {
+			page: '1'
+		},
 		views: {
 			header: mainHeader,
 			tool: {
@@ -102,7 +114,11 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		}
 	})
 	.state(STATE.TRACKS, {
+		title: TITLE.TRACKS,
 		url: URL.TRACKS,
+		params: {
+			page: '1'
+		},
 		views: {
 			header: mainHeader,
 			tool: {
@@ -186,6 +202,9 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 	})
 	.state(STATE.ARTIST_GENRES, {
 		url: URL.ARTIST_GENRES,
+		params: {
+			page: '1'
+		},
 		views: {
 			header: mainHeader,
 			info: {
@@ -208,6 +227,9 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 	})
 	.state(STATE.ARTIST_TRACKS, {
 		url: URL.ARTIST_TRACKS,
+		params: {
+			page: '1'
+		},
 		views: {
 			header: mainHeader,
 			info: {
@@ -230,6 +252,9 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 	})
 	.state(STATE.GENRE_ARTISTS, {
 		url: URL.GENRE_ARTISTS,
+		params: {
+			page: '1'
+		},
 		views: {
 			header: mainHeader,
 			info: {
@@ -252,6 +277,9 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 	})
 	.state(STATE.GENRE_TRACKS, {
 		url: URL.GENRE_TRACKS,
+		params: {
+			page: '1'
+		},
 		views: {
 			header: mainHeader,
 			info: {
@@ -274,6 +302,9 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 	})
 	.state(STATE.TRACK_ARTISTS, {
 		url: URL.TRACK_ARTISTS,
+		params: {
+			page: '1'
+		},
 		views: {
 			header: mainHeader,
 			info: {
@@ -296,6 +327,9 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 	})
 	.state(STATE.TRACK_GENRES, {
 		url: URL.TRACK_GENRES,
+		params: {
+			page: '1'
+		},
 		views: {
 			header: mainHeader,
 			info: {
@@ -317,7 +351,11 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		}
 	})
 	.state(STATE.USER_ARTISTS, {
+		title: TITLE.USER_ARTISTS,
 		url: URL.USER_ARTISTS,
+		params: {
+			page: '1'
+		},
 		views: {
 			header: mainHeader,
 			tool: {
@@ -334,7 +372,11 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		}
 	})
 	.state(STATE.USER_GENRES, {
+		title: TITLE.USER_GENRES,
 		url: URL.USER_GENRES,
+		params: {
+			page: '1'
+		},
 		views: {
 			header: mainHeader,
 			tool: {
@@ -351,7 +393,11 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		}
 	})
 	.state(STATE.USER_TRACKS, {
+		title: TITLE.USER_TRACKS,
 		url: URL.USER_TRACKS,
+		params: {
+			page: '1'
+		},
 		views: {
 			header: mainHeader,
 			tool: {
@@ -404,5 +450,5 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		}
 	});
 
-	$urlRouterProvider.otherwise(URL.HOME_PAGE);
+	$urlRouterProvider.otherwise(STATE.TRACKS, {page: 1});
 }]);

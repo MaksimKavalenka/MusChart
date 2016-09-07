@@ -1,5 +1,5 @@
 'use strict';
-app.controller('UserEditController', ['$location', '$scope', '$state', 'STATE', 'URL', 'UserFactory', 'CookieService', 'FlashService', function($location, $scope, $state, STATE, URL, UserFactory, CookieService, FlashService) {
+app.controller('UserEditController', ['$scope', '$state', 'STATE', 'UserFactory', 'CookieService', 'FlashService', function($scope, $state, STATE, UserFactory, CookieService, FlashService) {
 
 	var self = this;
 
@@ -8,7 +8,7 @@ app.controller('UserEditController', ['$location', '$scope', '$state', 'STATE', 
 		UserFactory.authentication(self.user.login, self.user.password, function(response) {
 			if (response.success) {
 				CookieService.setCredentials(response.data);
-				$location.path(URL.HOME_PAGE);
+				$state.go(STATE.TRACKS);
 			} else {
 				FlashService.error(response.message);
 			}
@@ -38,7 +38,7 @@ app.controller('UserEditController', ['$location', '$scope', '$state', 'STATE', 
 		UserFactory.createUser(self.user.login, self.user.password, function(response) {
 			if (response.success) {
 				CookieService.setCredentials(response.data);
-				$location.path(URL.HOME_PAGE);
+				$state.go(STATE.TRACKS);
 			} else {
 				FlashService.error(response.message);
 			}

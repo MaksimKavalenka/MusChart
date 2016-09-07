@@ -1,6 +1,8 @@
 'use strict';
 app.run(['$cookies', '$location', '$rootScope', '$state', 'STATE', 'URL', 'CookieService', 'FlashService', function($cookies, $location, $rootScope, $state, STATE, URL, CookieService, FlashService) {
 
+	$rootScope.$state = $state;
+
 	$rootScope.amount = {artists: 6, genres: 18, tracks: 6};
 	$rootScope.saveSettings = function() {
 		CookieService.setSettings();
