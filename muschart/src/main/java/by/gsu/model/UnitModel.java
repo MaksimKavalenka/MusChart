@@ -31,6 +31,11 @@ public class UnitModel extends Model {
         super();
     }
 
+    public UnitModel(final String name) {
+        super();
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

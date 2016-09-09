@@ -11,9 +11,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.ws.rs.DefaultValue;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -30,14 +27,12 @@ public class GenreModel extends Model {
     private long              rating;
 
     @JsonIgnore
-    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(targetEntity = TrackModel.class, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinTable(name = "track_genre", joinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false))
     private List<TrackModel>  tracks;
 
     @JsonIgnore
-    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(targetEntity = ArtistModel.class, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinTable(name = "artist_genre", joinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false))
@@ -51,6 +46,11 @@ public class GenreModel extends Model {
 
     public GenreModel() {
         super();
+    }
+
+    public GenreModel(final String name) {
+        super();
+        this.name = name;
     }
 
     public String getName() {

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.gsu.constants.CountElementsConstants;
-import by.gsu.constants.ModelStructureConstants.Models;
 import by.gsu.model.TrackModel;
 
 @RestController
@@ -26,13 +25,10 @@ public class TrackRestController extends by.gsu.controller.rest.RestController {
             + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<TrackModel> createTrack(@PathVariable("name") final String name,
             @PathVariable("song") final String song, @PathVariable("cover") final String cover,
-            @PathVariable("video") String video, @PathVariable("release") final Date release,
+            @PathVariable("video") final String video, @PathVariable("release") final Date release,
             @PathVariable("units") final String units,
             @PathVariable("artists") final String artists,
             @PathVariable("genres") final String genres) {
-        if ("null".equals(video)) {
-            video = "";
-        }
         TrackModel track = trackDAO.createTrack(name, song, cover, video, release, getUnits(units),
                 getArtists(artists), getGenres(genres));
         return new ResponseEntity<TrackModel>(track, HttpStatus.CREATED);
@@ -59,7 +55,8 @@ public class TrackRestController extends by.gsu.controller.rest.RestController {
     public ResponseEntity<List<TrackModel>> getTracksByCriteria(
             @PathVariable("sort") final int sort, @PathVariable("order") final boolean order,
             @PathVariable("page") final int page) {
-        List<TrackModel> tracks = trackDAO.getTracksByCriteria(sort, order, page);
+        List<TrackModel> tracks = relationDAO.getElementsByCriteria(TrackModel.class, sort, order,
+                page);
         if (tracks == null) {
             return new ResponseEntity<List<TrackModel>>(HttpStatus.NO_CONTENT);
         }
@@ -72,20 +69,8 @@ public class TrackRestController extends by.gsu.controller.rest.RestController {
             @PathVariable("relation") final String relation, @PathVariable("id") final long id,
             @PathVariable("sort") final int sort, @PathVariable("order") final boolean order,
             @PathVariable("page") final int page) {
-        List<TrackModel> tracks = null;
-        switch (relation) {
-            case Models.ARTIST:
-                tracks = trackDAO.getArtistTracksByCriteria(id, sort, order, page);
-                break;
-            case Models.GENRE:
-                tracks = trackDAO.getGenreTracksByCriteria(id, sort, order, page);
-                break;
-            case Models.USER:
-                tracks = trackDAO.getUserTracksByCriteria(id, sort, order, page);
-                break;
-            default:
-                break;
-        }
+        List<TrackModel> tracks = relationDAO.getElementsByCriteria(TrackModel.class, sort,
+                relation, id, order, page);
         if (tracks == null) {
             return new ResponseEntity<List<TrackModel>>(HttpStatus.NO_CONTENT);
         }
@@ -98,24 +83,11 @@ public class TrackRestController extends by.gsu.controller.rest.RestController {
         return new ResponseEntity<List<TrackModel>>(tracks, HttpStatus.OK);
     }
 
-    @RequestMapping(value = TRACKS_PATH + "/{id}/{relation}/page_amount"
+    @RequestMapping(value = TRACKS_PATH + "/{relation}/{id}/page_amount"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> getPageAmount(@PathVariable("id") final long id,
             @PathVariable("relation") final String relation) {
-        int amount = 0;
-        TrackModel track = trackDAO.getTrackById(id);
-        switch (relation) {
-            case Models.ARTIST:
-                amount = (int) Math.ceil(track.getArtists().size()
-                        / (double) CountElementsConstants.ArtistCountElements.ARTIST_FULL_COUNT_ELEMENTS);
-                break;
-            case Models.GENRE:
-                amount = (int) Math.ceil(track.getGenres().size()
-                        / (double) CountElementsConstants.GenreCountElements.GENRE_FULL_COUNT_ELEMENTS);
-                break;
-            default:
-                break;
-        }
+        int amount = relationDAO.getSizeByCriteria(TrackModel.class, relation, id);
         return new ResponseEntity<Integer>(amount, HttpStatus.OK);
     }
 

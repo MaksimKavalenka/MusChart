@@ -85,8 +85,8 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getPageAmountExt(id, relation, callback) {
-		$http.get(REST.TRACKS + '/' + id + '/' + relation + '/page_amount' + REST.JSON_EXT)
+	function getPageAmountExt(relation, id, callback) {
+		$http.get(REST.TRACKS + '/' + relation + '/' + id + '/page_amount' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);

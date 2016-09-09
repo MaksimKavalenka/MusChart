@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import by.gsu.constants.CountElementsConstants;
 import by.gsu.constants.ModelStructureConstants.Models;
 import by.gsu.exception.ValidationException;
 import by.gsu.model.ArtistModel;
@@ -71,31 +70,6 @@ public class UserRestController extends by.gsu.controller.rest.RestController {
                 break;
         }
         return new ResponseEntity<Void>(HttpStatus.OK);
-    }
-
-    @RequestMapping(value = USERS_PATH + "/{id}/{relation}/page_amount"
-            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Integer> getPageAmount(@PathVariable("id") final long id,
-            @PathVariable("relation") final String relation) {
-        int amount = 0;
-        UserModel user = userDAO.getUserById(id);
-        switch (relation) {
-            case Models.ARTIST:
-                amount = (int) Math.ceil(user.getArtists().size()
-                        / (double) CountElementsConstants.ArtistCountElements.ARTIST_FULL_COUNT_ELEMENTS);
-                break;
-            case Models.GENRE:
-                amount = (int) Math.ceil(user.getGenres().size()
-                        / (double) CountElementsConstants.GenreCountElements.GENRE_FULL_COUNT_ELEMENTS);
-                break;
-            case Models.TRACK:
-                amount = (int) Math.ceil(user.getTracks().size()
-                        / (double) CountElementsConstants.TrackCountElements.TRACK_FULL_COUNT_ELEMENTS);
-                break;
-            default:
-                break;
-        }
-        return new ResponseEntity<Integer>(amount, HttpStatus.OK);
     }
 
     @RequestMapping(value = USERS_PATH + "/check_login/{login}"

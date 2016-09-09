@@ -1,5 +1,5 @@
 'use strict';
-app.service('PaginationService', ['$rootScope', 'STATE', 'ArtistFactory', 'GenreFactory', 'TrackFactory', 'UserFactory', 'FlashService', function($rootScope, STATE, ArtistFactory, GenreFactory, TrackFactory, UserFactory, FlashService) {
+app.service('PaginationService', ['$rootScope', 'STATE', 'ArtistFactory', 'GenreFactory', 'TrackFactory', 'FlashService', function($rootScope, STATE, ArtistFactory, GenreFactory, TrackFactory, FlashService) {
 
 	function setPagination(page, state) {
 		switch (state) {
@@ -15,24 +15,22 @@ app.service('PaginationService', ['$rootScope', 'STATE', 'ArtistFactory', 'Genre
 		}
 	};
 
-	function setPaginationExt(id, relation, page, state) {
+	function setPaginationExt(relation, id, page, state) {
 		switch (state) {
-			case STATE.ARTIST_GENRES:
-			case STATE.ARTIST_TRACKS:
-				setPageAmountExt(ArtistFactory, id, relation, page, state);
-				break;
 			case STATE.GENRE_ARTISTS:
-			case STATE.GENRE_TRACKS:
-				setPageAmountExt(GenreFactory, id, relation, page, state);
-				break;
 			case STATE.TRACK_ARTISTS:
-			case STATE.TRACK_GENRES:
-				setPageAmountExt(TrackFactory, id, relation, page, state);
-				break;
 			case STATE.USER_ARTISTS:
+				setPageAmountExt(ArtistFactory, relation, id, page, state);
+				break;
+			case STATE.ARTIST_GENRES:
+			case STATE.TRACK_GENRES:
 			case STATE.USER_GENRES:
+				setPageAmountExt(GenreFactory, relation, id, page, state);
+				break;
+			case STATE.ARTIST_TRACKS:
+			case STATE.GENRE_TRACKS:
 			case STATE.USER_TRACKS:
-				setPageAmountExt(UserFactory, id, relation, page, state);
+				setPageAmountExt(TrackFactory, relation, id, page, state);
 				break;
 		}
 	};

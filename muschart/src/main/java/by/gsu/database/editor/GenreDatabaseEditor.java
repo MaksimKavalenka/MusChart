@@ -12,7 +12,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.gsu.constants.ModelStructureConstants;
-import by.gsu.constants.ModelStructureConstants.RelationFields;
 import by.gsu.database.dao.GenreDAO;
 import by.gsu.exception.ValidationException;
 import by.gsu.model.GenreModel;
@@ -33,8 +32,7 @@ public class GenreDatabaseEditor extends DatabaseEditor implements GenreDAO {
         GenreModel checkGenre = getUniqueResultByCriteria(GenreModel.class,
                 Restrictions.eq(GenreFields.NAME, name));
         if (checkGenre == null) {
-            GenreModel genre = new GenreModel();
-            genre.setName(name);
+            GenreModel genre = new GenreModel(name);
             sessionFactory.getCurrentSession().save(genre);
             return genre;
         } else {
@@ -52,80 +50,6 @@ public class GenreDatabaseEditor extends DatabaseEditor implements GenreDAO {
     @Transactional
     public GenreModel getGenreById(final long id) {
         return (GenreModel) sessionFactory.getCurrentSession().get(GenreModel.class, id);
-    }
-
-    @Override
-    @Transactional
-    public List<GenreModel> getGenresByCriteria(final int sort, final boolean order,
-            final int page) {
-        switch (sort) {
-            case 0:
-                return super.getElementsByCriteria(GenreModel.class, GenreFields.ID, order, page);
-            case 1:
-                return super.getElementsByCriteria(GenreModel.class, GenreFields.RATING, order,
-                        page);
-            case 2:
-                return super.getElementsByCriteria(GenreModel.class, GenreFields.NAME, order, page);
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    @Transactional
-    public List<GenreModel> getArtistGenresByCriteria(final long idArtist, final int sort,
-            final boolean order, final int page) {
-        switch (sort) {
-            case 0:
-                return super.getElementsByCriteria(GenreModel.class, RelationFields.ARTISTS,
-                        GenreFields.ID, idArtist, order, page);
-            case 1:
-                return super.getElementsByCriteria(GenreModel.class, RelationFields.ARTISTS,
-                        GenreFields.RATING, idArtist, order, page);
-            case 2:
-                return super.getElementsByCriteria(GenreModel.class, RelationFields.ARTISTS,
-                        GenreFields.NAME, idArtist, order, page);
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    @Transactional
-    public List<GenreModel> getTrackGenresByCriteria(final long idTrack, final int sort,
-            final boolean order, final int page) {
-        switch (sort) {
-            case 0:
-                return super.getElementsByCriteria(GenreModel.class, RelationFields.TRACKS,
-                        GenreFields.ID, idTrack, order, page);
-            case 1:
-                return super.getElementsByCriteria(GenreModel.class, RelationFields.TRACKS,
-                        GenreFields.RATING, idTrack, order, page);
-            case 2:
-                return super.getElementsByCriteria(GenreModel.class, RelationFields.TRACKS,
-                        GenreFields.NAME, idTrack, order, page);
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    @Transactional
-    public List<GenreModel> getUserGenresByCriteria(final long idUser, final int sort,
-            final boolean order, final int page) {
-        switch (sort) {
-            case 0:
-                return super.getElementsByCriteria(GenreModel.class, RelationFields.USERS,
-                        GenreFields.ID, idUser, order, page);
-            case 1:
-                return super.getElementsByCriteria(GenreModel.class, RelationFields.USERS,
-                        GenreFields.RATING, idUser, order, page);
-            case 2:
-                return super.getElementsByCriteria(GenreModel.class, RelationFields.USERS,
-                        GenreFields.NAME, idUser, order, page);
-            default:
-                return null;
-        }
     }
 
     @Override

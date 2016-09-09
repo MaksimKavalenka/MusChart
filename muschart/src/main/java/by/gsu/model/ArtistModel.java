@@ -33,7 +33,6 @@ public class ArtistModel extends Model {
     private long              rating;
 
     @JsonIgnore
-    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(targetEntity = TrackModel.class, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinTable(name = "track_artist", joinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false))
@@ -54,6 +53,13 @@ public class ArtistModel extends Model {
 
     public ArtistModel() {
         super();
+    }
+
+    public ArtistModel(final String name, final String photo, final List<GenreModel> genres) {
+        super();
+        this.name = name;
+        this.photo = photo;
+        this.genres = genres;
     }
 
     public String getName() {

@@ -85,8 +85,8 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAG
 		});
 	}
 
-	function getPageAmountExt(id, relation, callback) {
-		$http.get(REST.ARTISTS + '/' + id + '/' + relation + '/page_amount' + REST.JSON_EXT)
+	function getPageAmountExt(relation, id, callback) {
+		$http.get(REST.ARTISTS + '/' + relation + '/' + id + '/page_amount' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);

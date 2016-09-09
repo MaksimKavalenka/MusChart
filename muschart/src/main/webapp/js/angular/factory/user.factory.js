@@ -37,18 +37,6 @@ app.factory('UserFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE,
 		});
 	}
 
-	function getPageAmountExt(id, relation, callback) {
-		$http.get(REST.USERS + '/' + id + '/' + relation + '/page_amount' + REST.JSON_EXT)
-		.success(function(response) {
-			var data = {success: true, data: response};
-			callback(data);
-		})
-		.error(function(response) {
-			response = {success: false, message: MESSAGE.GETTING_USER_ERROR};
-			callback(response);
-		});
-	}
-
 	function checkLogin(login, callback) {
 		$http.post(REST.USERS + '/check_login/' + login + REST.JSON_EXT)
 		.success(function(response) {
@@ -69,7 +57,6 @@ app.factory('UserFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE,
 		createUser: createUser,
 		authentication: authentication,
 		setUserLike: setUserLike,
-		getPageAmountExt: getPageAmountExt,
 		checkLogin: checkLogin
 	};
 

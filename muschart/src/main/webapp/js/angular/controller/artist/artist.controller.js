@@ -19,27 +19,27 @@ app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Arti
 				self.getArtistById($state.params.id);
 				break;
 			case STATE.GENRE:
-				self.url = 'genre/artists({id: ' + $state.params.id + ', page: 1})';
+				self.url = 'genre_artists({id: ' + $state.params.id + ', page: 1})';
 				self.getArtistsByCriteriaExt('genre', $state.params.id, sort, order, 0);
 				break;
 			case STATE.TRACK:
-				self.url = 'track/artists({id: ' + $state.params.id + ', page: 1})';
+				self.url = 'track_artists({id: ' + $state.params.id + ', page: 1})';
 				self.getArtistsByCriteriaExt('track', $state.params.id, sort, order, 0);
 				break;
 			case STATE.GENRE_ARTISTS:
 				self.url = '#';
 				self.getArtistsByCriteriaExt('genre', $state.params.id, sort, order, page);
-				PaginationService.setPaginationExt($state.params.id, 'artist', page, state);
+				PaginationService.setPaginationExt('genre', $state.params.id, page, state);
 				break;
 			case STATE.TRACK_ARTISTS:
 				self.url = '#';
 				self.getArtistsByCriteriaExt('track', $state.params.id, sort, order, page);
-				PaginationService.setPaginationExt($state.params.id, 'artist', page, state);
+				PaginationService.setPaginationExt('track', $state.params.id, page, state);
 				break;
 			case STATE.USER_ARTISTS:
 				self.url = '#';
 				self.getArtistsByCriteriaExt('user', $scope.user.id, sort, order, page);
-				PaginationService.setPaginationExt($scope.user.id, 'artist', page, state);
+				PaginationService.setPaginationExt('user', $scope.user.id, page, state);
 				break;
 		}
 	};

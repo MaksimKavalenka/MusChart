@@ -75,6 +75,20 @@ public class TrackModel extends Model {
         super();
     }
 
+    public TrackModel(final String name, final String song, final String cover, final String video,
+            final Date release, final List<UnitModel> units, final List<ArtistModel> artists,
+            final List<GenreModel> genres) {
+        super();
+        this.name = name;
+        this.song = song;
+        this.cover = cover;
+        this.video = video;
+        this.release = release;
+        this.units = units;
+        this.artists = artists;
+        this.genres = genres;
+    }
+
     public String getName() {
         return name;
     }

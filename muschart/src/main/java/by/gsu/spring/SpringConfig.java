@@ -19,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import by.gsu.database.dao.ArtistDAO;
+import by.gsu.database.dao.RelationDAO;
 import by.gsu.database.dao.GenreDAO;
 import by.gsu.database.dao.RoleDAO;
 import by.gsu.database.dao.TrackDAO;
@@ -26,6 +27,7 @@ import by.gsu.database.dao.UnitDAO;
 import by.gsu.database.dao.UserDAO;
 import by.gsu.database.editor.ArtistDatabaseEditor;
 import by.gsu.database.editor.GenreDatabaseEditor;
+import by.gsu.database.editor.RelationDatabaseEditor;
 import by.gsu.database.editor.RoleDatabaseEditor;
 import by.gsu.database.editor.TrackDatabaseEditor;
 import by.gsu.database.editor.UnitDatabaseEditor;
@@ -102,6 +104,11 @@ public class SpringConfig extends WebMvcConfigurationSupport {
     @Bean(name = "userDAO")
     public UserDAO getUserDao(final SessionFactory sessionFactory) {
         return new UserDatabaseEditor(sessionFactory);
+    }
+
+    @Bean(name = "relationDAO")
+    public RelationDAO getRelationDao(final SessionFactory sessionFactory) {
+        return new RelationDatabaseEditor(sessionFactory);
     }
 
     @Bean(name = "multipartResolver")

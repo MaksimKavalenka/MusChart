@@ -73,22 +73,6 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function checkName(name, callback) {
-		$http.post(REST.GENRES + '/check_name/' + name + REST.JSON_EXT)
-		.success(function(response) {
-			if (response) {
-				response = {success: true};
-			} else {
-				response = {success: false, message: MESSAGE.EXIST_GENRE_ERROR};
-			}
-			callback(response);
-		})
-		.error(function(response) {
-			response = {success: false, message: MESSAGE.GETTING_GENRE_ERROR};
-			callback(response);
-		});
-	}
-
 	function getPageAmount(callback) {
 		$http.get(REST.GENRES + '/page_amount' + REST.JSON_EXT)
 		.success(function(response) {
@@ -101,11 +85,27 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getPageAmountExt(id, relation, callback) {
-		$http.get(REST.GENRES + '/' + id + '/' + relation + '/page_amount' + REST.JSON_EXT)
+	function getPageAmountExt(relation, id, callback) {
+		$http.get(REST.GENRES + '/' + relation + '/' + id + '/page_amount' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
+		})
+		.error(function(response) {
+			response = {success: false, message: MESSAGE.GETTING_GENRE_ERROR};
+			callback(response);
+		});
+	}
+
+	function checkName(name, callback) {
+		$http.post(REST.GENRES + '/check_name/' + name + REST.JSON_EXT)
+		.success(function(response) {
+			if (response) {
+				response = {success: true};
+			} else {
+				response = {success: false, message: MESSAGE.EXIST_GENRE_ERROR};
+			}
+			callback(response);
 		})
 		.error(function(response) {
 			response = {success: false, message: MESSAGE.GETTING_GENRE_ERROR};

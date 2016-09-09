@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.gsu.constants.CountElementsConstants;
-import by.gsu.constants.ModelStructureConstants.Models;
 import by.gsu.model.ArtistModel;
 
 @RestController
@@ -50,7 +49,8 @@ public class ArtistRestController extends by.gsu.controller.rest.RestController 
     public ResponseEntity<List<ArtistModel>> getArtistsByCriteria(
             @PathVariable("sort") final int sort, @PathVariable("order") final boolean order,
             @PathVariable("page") final int page) {
-        List<ArtistModel> artists = artistDAO.getArtistsByCriteria(sort, order, page);
+        List<ArtistModel> artists = relationDAO.getElementsByCriteria(ArtistModel.class, sort,
+                order, page);
         if (artists == null) {
             return new ResponseEntity<List<ArtistModel>>(HttpStatus.NO_CONTENT);
         }
@@ -63,20 +63,8 @@ public class ArtistRestController extends by.gsu.controller.rest.RestController 
             @PathVariable("relation") final String relation, @PathVariable("id") final long id,
             @PathVariable("sort") final int sort, @PathVariable("order") final boolean order,
             @PathVariable("page") final int page) {
-        List<ArtistModel> artists = null;
-        switch (relation) {
-            case Models.GENRE:
-                artists = artistDAO.getGenreArtistsByCriteria(id, sort, order, page);
-                break;
-            case Models.TRACK:
-                artists = artistDAO.getTrackArtistsByCriteria(id, sort, order, page);
-                break;
-            case Models.USER:
-                artists = artistDAO.getUserArtistsByCriteria(id, sort, order, page);
-                break;
-            default:
-                break;
-        }
+        List<ArtistModel> artists = relationDAO.getElementsByCriteria(ArtistModel.class, sort,
+                relation, id, order, page);
         if (artists == null) {
             return new ResponseEntity<List<ArtistModel>>(HttpStatus.NO_CONTENT);
         }
@@ -102,24 +90,11 @@ public class ArtistRestController extends by.gsu.controller.rest.RestController 
         return new ResponseEntity<Integer>(amount, HttpStatus.OK);
     }
 
-    @RequestMapping(value = ARTISTS_PATH + "/{id}/{relation}/page_amount"
+    @RequestMapping(value = ARTISTS_PATH + "/{relation}/{id}/page_amount"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> getPageAmount(@PathVariable("id") final long id,
             @PathVariable("relation") final String relation) {
-        int amount = 0;
-        ArtistModel artist = artistDAO.getArtistById(id);
-        switch (relation) {
-            case Models.GENRE:
-                amount = (int) Math.ceil(artist.getGenres().size()
-                        / (double) CountElementsConstants.GenreCountElements.GENRE_FULL_COUNT_ELEMENTS);
-                break;
-            case Models.TRACK:
-                amount = (int) Math.ceil(artist.getTracks().size()
-                        / (double) CountElementsConstants.TrackCountElements.TRACK_FULL_COUNT_ELEMENTS);
-                break;
-            default:
-                break;
-        }
+        int amount = relationDAO.getSizeByCriteria(ArtistModel.class, relation, id);
         return new ResponseEntity<Integer>(amount, HttpStatus.OK);
     }
 

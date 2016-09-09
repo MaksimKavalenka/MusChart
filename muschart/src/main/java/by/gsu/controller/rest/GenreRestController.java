@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.gsu.constants.CountElementsConstants;
-import by.gsu.constants.ModelStructureConstants.Models;
 import by.gsu.exception.ValidationException;
 import by.gsu.model.GenreModel;
 
@@ -52,7 +51,8 @@ public class GenreRestController extends by.gsu.controller.rest.RestController {
     public ResponseEntity<List<GenreModel>> getGenresByCriteria(
             @PathVariable("sort") final int sort, @PathVariable("order") final boolean order,
             @PathVariable("page") final int page) {
-        List<GenreModel> genres = genreDAO.getGenresByCriteria(sort, order, page);
+        List<GenreModel> genres = relationDAO.getElementsByCriteria(GenreModel.class, sort, order,
+                page);
         if (genres == null) {
             return new ResponseEntity<List<GenreModel>>(HttpStatus.NO_CONTENT);
         }
@@ -65,20 +65,8 @@ public class GenreRestController extends by.gsu.controller.rest.RestController {
             @PathVariable("relation") final String relation, @PathVariable("id") final long id,
             @PathVariable("sort") final int sort, @PathVariable("order") final boolean order,
             @PathVariable("page") final int page) {
-        List<GenreModel> genres = null;
-        switch (relation) {
-            case Models.ARTIST:
-                genres = genreDAO.getArtistGenresByCriteria(id, sort, order, page);
-                break;
-            case Models.TRACK:
-                genres = genreDAO.getTrackGenresByCriteria(id, sort, order, page);
-                break;
-            case Models.USER:
-                genres = genreDAO.getUserGenresByCriteria(id, sort, order, page);
-                break;
-            default:
-                break;
-        }
+        List<GenreModel> genres = relationDAO.getElementsByCriteria(GenreModel.class, sort,
+                relation, id, order, page);
         if (genres == null) {
             return new ResponseEntity<List<GenreModel>>(HttpStatus.NO_CONTENT);
         }
@@ -104,24 +92,11 @@ public class GenreRestController extends by.gsu.controller.rest.RestController {
         return new ResponseEntity<Integer>(amount, HttpStatus.OK);
     }
 
-    @RequestMapping(value = GENRES_PATH + "/{id}/{relation}/page_amount"
+    @RequestMapping(value = GENRES_PATH + "/{relation}/{id}/page_amount"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> getPageAmount(@PathVariable("id") final long id,
             @PathVariable("relation") final String relation) {
-        int amount = 0;
-        GenreModel genre = genreDAO.getGenreById(id);
-        switch (relation) {
-            case Models.ARTIST:
-                amount = (int) Math.ceil(genre.getArtists().size()
-                        / (double) CountElementsConstants.ArtistCountElements.ARTIST_FULL_COUNT_ELEMENTS);
-                break;
-            case Models.TRACK:
-                amount = (int) Math.ceil(genre.getTracks().size()
-                        / (double) CountElementsConstants.TrackCountElements.TRACK_FULL_COUNT_ELEMENTS);
-                break;
-            default:
-                break;
-        }
+        int amount = relationDAO.getSizeByCriteria(GenreModel.class, relation, id);
         return new ResponseEntity<Integer>(amount, HttpStatus.OK);
     }
 

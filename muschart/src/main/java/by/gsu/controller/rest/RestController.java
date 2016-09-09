@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import by.gsu.constants.ModelStructureConstants.ModelFields;
 import by.gsu.database.dao.ArtistDAO;
 import by.gsu.database.dao.GenreDAO;
+import by.gsu.database.dao.RelationDAO;
 import by.gsu.database.dao.RoleDAO;
 import by.gsu.database.dao.TrackDAO;
 import by.gsu.database.dao.UnitDAO;
@@ -21,17 +22,19 @@ import by.gsu.model.UnitModel;
 public abstract class RestController {
 
     @Autowired
-    public ArtistDAO artistDAO;
+    public ArtistDAO   artistDAO;
     @Autowired
-    public GenreDAO  genreDAO;
+    public GenreDAO    genreDAO;
     @Autowired
-    public RoleDAO   roleDAO;
+    public RoleDAO     roleDAO;
     @Autowired
-    public TrackDAO  trackDAO;
+    public TrackDAO    trackDAO;
     @Autowired
-    public UnitDAO   unitDAO;
+    public UnitDAO     unitDAO;
     @Autowired
-    public UserDAO   userDAO;
+    public UserDAO     userDAO;
+    @Autowired
+    public RelationDAO relationDAO;
 
     public List<UnitModel> getUnits(final String json) {
         List<UnitModel> unions = new LinkedList<>();

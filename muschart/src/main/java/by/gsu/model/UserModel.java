@@ -58,6 +58,13 @@ public class UserModel extends Model {
         super();
     }
 
+    public UserModel(final String login, final String password, final RoleModel role) {
+        super();
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
+
     public String getLogin() {
         return login;
     }
