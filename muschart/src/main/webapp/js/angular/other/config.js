@@ -450,5 +450,5 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		}
 	});
 
-	$urlRouterProvider.otherwise(STATE.TRACKS, {page: 1});
+	$urlRouterProvider.otherwise(URL.HOME);
 }]);
