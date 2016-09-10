@@ -71,6 +71,42 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 			footer: footer
 		}
 	})
+	.state(STATE.ARTIST_ADD, {
+		url: URL.ARTIST_ADD,
+		views: {
+			header: editHeader,
+			main_content: {
+				controller: CONTROLLER.ARTIST_EDIT_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.ARTIST_EDIT_FORM
+			},
+			footer: footer
+		}
+	})
+	.state(STATE.GENRE_ADD, {
+		url: URL.GENRE_ADD,
+		views: {
+			header: editHeader,
+			main_content: {
+				controller: CONTROLLER.GENRE_EDIT_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.GENRE_EDIT_FORM
+			},
+			footer: footer
+		}
+	})
+	.state(STATE.TRACK_ADD, {
+		url: URL.TRACK_ADD,
+		views: {
+			header: editHeader,
+			main_content: {
+				controller: CONTROLLER.TRACK_EDIT_CONTROLLER,
+				controllerAs: CONTROLLER.CTRL,
+				templateUrl: PATH.TRACK_EDIT_FORM
+			},
+			footer: footer
+		}
+	})
 	.state(STATE.ARTISTS, {
 		title: TITLE.ARTISTS,
 		url: URL.ARTISTS,
@@ -409,42 +445,6 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.TRACK_CONTENT
-			},
-			footer: footer
-		}
-	})
-	.state(STATE.ARTIST_ADD, {
-		url: URL.ARTIST_ADD,
-		views: {
-			header: editHeader,
-			main_content: {
-				controller: CONTROLLER.ARTIST_EDIT_CONTROLLER,
-				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.ARTIST_EDIT_FORM
-			},
-			footer: footer
-		}
-	})
-	.state(STATE.GENRE_ADD, {
-		url: URL.GENRE_ADD,
-		views: {
-			header: editHeader,
-			main_content: {
-				controller: CONTROLLER.GENRE_EDIT_CONTROLLER,
-				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.GENRE_EDIT_FORM
-			},
-			footer: footer
-		}
-	})
-	.state(STATE.TRACK_ADD, {
-		url: URL.TRACK_ADD,
-		views: {
-			header: editHeader,
-			main_content: {
-				controller: CONTROLLER.TRACK_EDIT_CONTROLLER,
-				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.TRACK_EDIT_FORM
 			},
 			footer: footer
 		}

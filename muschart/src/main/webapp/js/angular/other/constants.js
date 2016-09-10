@@ -167,10 +167,10 @@ app.constant('URL', (function() {
 	var trackUrl = '/track';
 	var userUrl = '/user';
 	var addOperation = '/add';
-	var pageOperation = '/page';
-	var idPattern = '/{id:[0-9]{1,}}';
-	var pagePattern = '/{page:[0-9]{1,}}';
+	var idKey = '{id:[0-9]{1,}}';
+	var pageKey = '{page:[0-9]{1,}}';
 	return {
+		HOME: url + tracksUrl + '?page=1',
 		LOGIN: url + '/login',
 		REGISTER: url + '/register',
 		SETTINGS: url + '/settings',
@@ -178,20 +178,20 @@ app.constant('URL', (function() {
 		ARTIST_ADD: url + artistUrl + addOperation,
 		GENRE_ADD: url + genreUrl + addOperation,
 		TRACK_ADD: url + trackUrl + addOperation,
-		ARTISTS: url + artistsUrl + pageOperation + pagePattern,
-		GENRES: url + genresUrl + pageOperation + pagePattern,
-		TRACKS: url + tracksUrl + pageOperation + pagePattern,
-		ARTIST: url + artistUrl + idPattern,
-		GENRE: url + genreUrl + idPattern,
-		TRACK: url + trackUrl + idPattern,
-		GENRE_ARTISTS: url + genreUrl + idPattern + artistsUrl + pageOperation + pagePattern,
-		TRACK_ARTISTS: url + trackUrl + idPattern + artistsUrl + pageOperation + pagePattern,
-		USER_ARTISTS: url + userUrl + artistsUrl + pageOperation + pagePattern,
-		ARTIST_GENRES: url + artistUrl + idPattern + genresUrl + pageOperation + pagePattern,
-		TRACK_GENRES: url + trackUrl + idPattern + genresUrl + pageOperation + pagePattern,
-		USER_GENRES: url + userUrl + genresUrl + pageOperation + pagePattern,
-		ARTIST_TRACKS: url + artistUrl + idPattern + tracksUrl + pageOperation + pagePattern,
-		GENRE_TRACKS: url + genreUrl + idPattern + tracksUrl + pageOperation + pagePattern,
-		USER_TRACKS: url + userUrl + tracksUrl + pageOperation + pagePattern
+		ARTISTS: url + artistsUrl + '?' + pageKey,
+		GENRES: url + genresUrl + '?' + pageKey,
+		TRACKS: url + tracksUrl + '?' + pageKey,
+		ARTIST: url + artistUrl + '/' + idKey,
+		GENRE: url + genreUrl + '/' + idKey,
+		TRACK: url + trackUrl + '/' + idKey,
+		GENRE_ARTISTS: url + genreUrl + '/' + idKey + artistsUrl + '?' + pageKey,
+		TRACK_ARTISTS: url + trackUrl + '/' + idKey + artistsUrl + '?' + pageKey,
+		USER_ARTISTS: url + userUrl + artistsUrl + '?' + pageKey,
+		ARTIST_GENRES: url + artistUrl + '/' + idKey + genresUrl + '?' + pageKey,
+		TRACK_GENRES: url + trackUrl + '/' + idKey + genresUrl + '?' + pageKey,
+		USER_GENRES: url + userUrl + genresUrl + '?' + pageKey,
+		ARTIST_TRACKS: url + artistUrl + '/' + idKey + tracksUrl + '?' + pageKey,
+		GENRE_TRACKS: url + genreUrl + '/' + idKey + tracksUrl + '?' + pageKey,
+		USER_TRACKS: url + userUrl + tracksUrl + '?' + pageKey
 	}
 })());

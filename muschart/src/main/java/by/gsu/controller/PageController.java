@@ -1,6 +1,7 @@
 package by.gsu.controller;
 
-import static by.gsu.constants.PageConstants.*;
+import static by.gsu.constants.DefaultConstants.*;
+import static by.gsu.constants.UrlConstants.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,75 +10,79 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class PageController {
 
-    @RequestMapping(value = {ARTISTS_URI}, method = RequestMethod.GET)
-    public String artistsPage() {
-        return REDIRECT + ARTISTS_DEFAULT_URI;
+    @RequestMapping(value = {ARTISTS_URL}, method = RequestMethod.GET)
+    public String defaultArtistsPage() {
+        return REDIRECT + ARTISTS_URL + DEFAULT_PAGE;
     }
 
-    @RequestMapping(value = {GENRES_URI}, method = RequestMethod.GET)
-    public String genresPage() {
-        return REDIRECT + GENRES_DEFAULT_URI;
+    @RequestMapping(value = {GENRES_URL}, method = RequestMethod.GET)
+    public String defaultGenresPage() {
+        return REDIRECT + GENRES_URL + DEFAULT_PAGE;
     }
 
-    @RequestMapping(value = {"/", TRACKS_URI}, method = RequestMethod.GET)
-    public String tracksPage() {
-        return REDIRECT + TRACKS_DEFAULT_URI;
+    @RequestMapping(value = {"/", TRACKS_URL}, method = RequestMethod.GET)
+    public String defaultTracksPage() {
+        return REDIRECT + TRACKS_URL + DEFAULT_PAGE;
     }
 
-    @RequestMapping(value = {GENRE_ARTISTS_URI}, method = RequestMethod.GET)
-    public String genreArtistsPage() {
-        return REDIRECT + GENRE_ARTISTS_DEFAULT_URI;
+    @RequestMapping(value = {ARTIST_GENRES_URL}, method = RequestMethod.GET)
+    public String defaultArtistGenresPage() {
+        return REDIRECT + ARTIST_GENRES_URL + DEFAULT_PAGE;
     }
 
-    @RequestMapping(value = {TRACK_ARTISTS_URI}, method = RequestMethod.GET)
-    public String trackArtistsPage() {
-        return REDIRECT + TRACK_ARTISTS_DEFAULT_URI;
+    @RequestMapping(value = {ARTIST_TRACKS_URL}, method = RequestMethod.GET)
+    public String defaultArtistTracksPage() {
+        return REDIRECT + ARTIST_TRACKS_URL + DEFAULT_PAGE;
     }
 
-    @RequestMapping(value = {USER_ARTISTS_URI}, method = RequestMethod.GET)
-    public String userArtistsPage() {
-        return REDIRECT + USER_ARTISTS_DEFAULT_URI;
+    @RequestMapping(value = {GENRE_ARTISTS_URL}, method = RequestMethod.GET)
+    public String defaultGenreArtistsPage() {
+        return REDIRECT + GENRE_ARTISTS_URL + DEFAULT_PAGE;
     }
 
-    @RequestMapping(value = {ARTIST_GENRES_URI}, method = RequestMethod.GET)
-    public String artistGenresPage() {
-        return REDIRECT + ARTIST_GENRES_DEFAULT_URI;
+    @RequestMapping(value = {GENRE_TRACKS_URL}, method = RequestMethod.GET)
+    public String defaultGenreTracksPage() {
+        return REDIRECT + GENRE_TRACKS_URL + DEFAULT_PAGE;
     }
 
-    @RequestMapping(value = {TRACK_GENRES_URI}, method = RequestMethod.GET)
-    public String trackGenresPage() {
-        return REDIRECT + TRACK_GENRES_DEFAULT_URI;
+    @RequestMapping(value = {TRACK_ARTISTS_URL}, method = RequestMethod.GET)
+    public String defaultTrackArtistsPage() {
+        return REDIRECT + TRACK_ARTISTS_URL + DEFAULT_PAGE;
     }
 
-    @RequestMapping(value = {USER_GENRES_URI}, method = RequestMethod.GET)
-    public String userGenresPage() {
-        return REDIRECT + USER_GENRES_DEFAULT_URI;
+    @RequestMapping(value = {TRACK_GENRES_URL}, method = RequestMethod.GET)
+    public String defaultTrackGenresPage() {
+        return REDIRECT + TRACK_GENRES_URL + DEFAULT_PAGE;
     }
 
-    @RequestMapping(value = {ARTIST_TRACKS_URI}, method = RequestMethod.GET)
-    public String artistTracksPage() {
-        return REDIRECT + ARTIST_TRACKS_DEFAULT_URI;
+    @RequestMapping(value = {USER_ARTISTS_URL}, method = RequestMethod.GET)
+    public String defaultUserArtistsPage() {
+        return REDIRECT + USER_ARTISTS_URL + DEFAULT_PAGE;
     }
 
-    @RequestMapping(value = {GENRE_TRACKS_URI}, method = RequestMethod.GET)
-    public String genreTracksPage() {
-        return REDIRECT + GENRE_TRACKS_DEFAULT_URI;
+    @RequestMapping(value = {USER_GENRES_URL}, method = RequestMethod.GET)
+    public String defaultUserGenresPage() {
+        return REDIRECT + USER_GENRES_URL + DEFAULT_PAGE;
     }
 
-    @RequestMapping(value = {USER_TRACKS_URI}, method = RequestMethod.GET)
-    public String userTracksPage() {
-        return REDIRECT + USER_TRACKS_DEFAULT_URI;
+    @RequestMapping(value = {USER_TRACKS_URL}, method = RequestMethod.GET)
+    public String defaultUserTracksPage() {
+        return REDIRECT + USER_TRACKS_URL + DEFAULT_PAGE;
     }
 
-    @RequestMapping(value = {LOGIN_URI, REGISTRATION_URI, SETTINGS_URI, PLAYLIST_URI,
-            ARTIST_ADD_URI, GENRE_ADD_URI, TRACK_ADD_URI, ARTISTS_FULL_URI, GENRES_FULL_URI,
-            TRACKS_FULL_URI, ARTIST_FULL_URI, GENRE_FULL_URI, TRACK_FULL_URI,
-            GENRE_ARTISTS_FULL_URI, TRACK_ARTISTS_FULL_URI, USER_ARTISTS_FULL_URI,
-            ARTIST_GENRES_FULL_URI, TRACK_GENRES_FULL_URI, USER_GENRES_FULL_URI,
-            ARTIST_TRACKS_FULL_URI, GENRE_TRACKS_FULL_URI,
-            USER_TRACKS_FULL_URI}, method = RequestMethod.GET)
-    public String page() {
-        return INDEX_PATH;
+    @RequestMapping(value = {LOGIN_URL, REGISTRATION_URL, SETTINGS_URL, PLAYLIST_URL,
+            ARTIST_ADD_URL, GENRE_ADD_URL, TRACK_ADD_URL, ARTIST_URL, GENRE_URL,
+            TRACK_URL}, method = RequestMethod.GET)
+    public String withoutParams() {
+        return DEFAULT_PATH;
+    }
+
+    @RequestMapping(value = {ARTISTS_URL, GENRES_URL, TRACKS_URL, GENRE_ARTISTS_URL,
+            TRACK_ARTISTS_URL, USER_ARTISTS_URL, ARTIST_GENRES_URL, TRACK_GENRES_URL,
+            USER_GENRES_URL, ARTIST_TRACKS_URL, GENRE_TRACKS_URL,
+            USER_TRACKS_URL}, params = {"page"}, method = RequestMethod.GET)
+    public String withParams() {
+        return DEFAULT_PATH;
     }
 
 }
