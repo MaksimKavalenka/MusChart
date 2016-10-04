@@ -2,17 +2,17 @@ package by.gsu.database.dao;
 
 import java.util.List;
 
-import by.gsu.model.ArtistModel;
-import by.gsu.model.GenreModel;
+import by.gsu.entity.ArtistEntity;
+import by.gsu.entity.GenreEntity;
 
 public interface ArtistDAO {
 
-    ArtistModel createArtist(String name, String photo, List<GenreModel> genres);
+    ArtistEntity createArtist(String name, String photo, List<GenreEntity> genres);
 
     void deleteArtistById(long id);
 
-    ArtistModel getArtistById(long id);
+    ArtistEntity getArtistById(long id);
 
-    List<ArtistModel> getAllArtists();
+    List<ArtistEntity> getAllArtists();
 
 }

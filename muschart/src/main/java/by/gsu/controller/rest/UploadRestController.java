@@ -1,10 +1,9 @@
 package by.gsu.controller.rest;
 
-import static by.gsu.constants.ExceptionConstants.UPLOAD_FILE_ERROR;
-import static by.gsu.constants.RestConstants.JSON_EXT;
-import static by.gsu.constants.RestConstants.UPLOAD_PATH;
+import static by.gsu.constants.MessageConstants.UPLOAD_FILE_ERROR;
 import static by.gsu.constants.UploadConstants.Path.*;
 import static by.gsu.constants.UploadConstants.Type.*;
+import static by.gsu.constants.UrlConstants.Rest.UPLOAD_URL;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,9 +28,10 @@ import by.gsu.exception.ValidationException;
 
 @Controller
 @MultipartConfig
-public class UploadRestController {
+@RequestMapping(UPLOAD_URL)
+public class UploadRestController extends RestController {
 
-    @RequestMapping(value = UPLOAD_PATH + "/{type}" + JSON_EXT, method = RequestMethod.POST)
+    @RequestMapping(value = "/{type}" + JSON_EXT, method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Void> uploadFile(@PathVariable("type") final String type,
             @RequestParam(value = "file") final MultipartFile file) {
         try {

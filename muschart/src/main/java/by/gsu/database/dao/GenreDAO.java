@@ -2,18 +2,18 @@ package by.gsu.database.dao;
 
 import java.util.List;
 
+import by.gsu.entity.GenreEntity;
 import by.gsu.exception.ValidationException;
-import by.gsu.model.GenreModel;
 
 public interface GenreDAO {
 
-    GenreModel createGenre(String name) throws ValidationException;
+    GenreEntity createGenre(String name) throws ValidationException;
 
     void deleteGenreById(long id);
 
-    GenreModel getGenreById(long id);
+    GenreEntity getGenreById(long id);
 
-    List<GenreModel> getAllGenres();
+    List<GenreEntity> getAllGenres();
 
     boolean checkName(String name);
 

@@ -1,6 +1,6 @@
 package by.gsu.database.editor;
 
-import static by.gsu.constants.ExceptionConstants.TAKEN_GENRE_ERROR;
+import static by.gsu.constants.MessageConstants.TAKEN_GENRE_ERROR;
 import static by.gsu.constants.ModelStructureConstants.GenreFields;
 
 import java.util.List;
@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import by.gsu.constants.ModelStructureConstants;
 import by.gsu.database.dao.GenreDAO;
+import by.gsu.entity.GenreEntity;
 import by.gsu.exception.ValidationException;
-import by.gsu.model.GenreModel;
 
 public class GenreDatabaseEditor extends DatabaseEditor implements GenreDAO {
 
@@ -28,11 +28,11 @@ public class GenreDatabaseEditor extends DatabaseEditor implements GenreDAO {
 
     @Override
     @Transactional(rollbackFor = ValidationException.class)
-    public GenreModel createGenre(final String name) throws ValidationException {
-        GenreModel checkGenre = getUniqueResultByCriteria(GenreModel.class,
+    public GenreEntity createGenre(final String name) throws ValidationException {
+        GenreEntity checkGenre = getUniqueResultByCriteria(GenreEntity.class,
                 Restrictions.eq(GenreFields.NAME, name));
         if (checkGenre == null) {
-            GenreModel genre = new GenreModel(name);
+            GenreEntity genre = new GenreEntity(name);
             sessionFactory.getCurrentSession().save(genre);
             return genre;
         } else {
@@ -48,15 +48,15 @@ public class GenreDatabaseEditor extends DatabaseEditor implements GenreDAO {
 
     @Override
     @Transactional
-    public GenreModel getGenreById(final long id) {
-        return (GenreModel) sessionFactory.getCurrentSession().get(GenreModel.class, id);
+    public GenreEntity getGenreById(final long id) {
+        return (GenreEntity) sessionFactory.getCurrentSession().get(GenreEntity.class, id);
     }
 
     @Override
     @Transactional
     @SuppressWarnings("unchecked")
-    public List<GenreModel> getAllGenres() {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(GenreModel.class);
+    public List<GenreEntity> getAllGenres() {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(GenreEntity.class);
         criteria.addOrder(Order.asc(ModelStructureConstants.GenreFields.NAME));
         return criteria.list();
     }
@@ -64,7 +64,7 @@ public class GenreDatabaseEditor extends DatabaseEditor implements GenreDAO {
     @Override
     @Transactional
     public boolean checkName(final String name) {
-        return getUniqueResultByCriteria(GenreModel.class,
+        return getUniqueResultByCriteria(GenreEntity.class,
                 Restrictions.eq(GenreFields.NAME, name)) != null;
     }
 

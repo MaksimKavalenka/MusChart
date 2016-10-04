@@ -1,10 +1,10 @@
 package by.gsu.controller.rest;
 
-import static by.gsu.constants.RestConstants.JSON_EXT;
-import static by.gsu.constants.RestConstants.ARTISTS_PATH;
+import static by.gsu.constants.UrlConstants.Rest.ARTISTS_URL;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,87 +14,95 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.gsu.constants.CountElementsConstants;
-import by.gsu.model.ArtistModel;
+import by.gsu.database.dao.ArtistDAO;
+import by.gsu.database.dao.RelationDAO;
+import by.gsu.entity.ArtistEntity;
 
 @RestController
+@RequestMapping(ARTISTS_URL)
 public class ArtistRestController extends by.gsu.controller.rest.RestController {
 
-    @RequestMapping(value = ARTISTS_PATH + "/create/{name}/{photo}/{genres}"
+    @Autowired
+    private ArtistDAO   artistDAO;
+    @Autowired
+    private RelationDAO relationDAO;
+
+    @RequestMapping(value = "/create/{name}/{photo}/{genres}"
             + JSON_EXT, method = RequestMethod.POST)
-    public ResponseEntity<ArtistModel> createArtist(@PathVariable("name") final String name,
+    public ResponseEntity<ArtistEntity> createArtist(@PathVariable("name") final String name,
             @PathVariable("photo") final String photo,
             @PathVariable("genres") final String genres) {
-        ArtistModel artist = artistDAO.createArtist(name, photo, getGenres(genres));
-        return new ResponseEntity<ArtistModel>(artist, HttpStatus.CREATED);
+        ArtistEntity artist = artistDAO.createArtist(name, photo, getGenres(genres));
+        return new ResponseEntity<ArtistEntity>(artist, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = ARTISTS_PATH + "/delete/{id}" + JSON_EXT, method = RequestMethod.DELETE)
-    public ResponseEntity<ArtistModel> deleteArtistById(@PathVariable("id") final long id) {
+    @RequestMapping(value = "/delete/{id}" + JSON_EXT, method = RequestMethod.DELETE)
+    public ResponseEntity<ArtistEntity> deleteArtistById(@PathVariable("id") final long id) {
         artistDAO.deleteArtistById(id);
-        return new ResponseEntity<ArtistModel>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<ArtistEntity>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = ARTISTS_PATH + "/{id}"
+    @RequestMapping(value = "/{id}"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ArtistModel> getArtistById(@PathVariable("id") final long id) {
-        ArtistModel artist = artistDAO.getArtistById(id);
+    public ResponseEntity<ArtistEntity> getArtistById(@PathVariable("id") final long id) {
+        ArtistEntity artist = artistDAO.getArtistById(id);
         if (artist == null) {
-            return new ResponseEntity<ArtistModel>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<ArtistEntity>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<ArtistModel>(artist, HttpStatus.OK);
+        return new ResponseEntity<ArtistEntity>(artist, HttpStatus.OK);
     }
 
-    @RequestMapping(value = ARTISTS_PATH + "/{sort}/{order}/{page}"
+    @RequestMapping(value = "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ArtistModel>> getArtistsByCriteria(
+    public ResponseEntity<List<ArtistEntity>> getArtistsByCriteria(
             @PathVariable("sort") final int sort, @PathVariable("order") final boolean order,
             @PathVariable("page") final int page) {
-        List<ArtistModel> artists = relationDAO.getElementsByCriteria(ArtistModel.class, sort,
+        List<ArtistEntity> artists = relationDAO.getElementsByCriteria(ArtistEntity.class, sort,
                 order, page);
         if (artists == null) {
-            return new ResponseEntity<List<ArtistModel>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<ArtistEntity>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<ArtistModel>>(artists, HttpStatus.OK);
+        return new ResponseEntity<List<ArtistEntity>>(artists, HttpStatus.OK);
     }
 
-    @RequestMapping(value = ARTISTS_PATH + "/{relation}/{id}/{sort}/{order}/{page}"
+    @RequestMapping(value = "/{relation}/{id}/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ArtistModel>> getArtistsByCriteria(
+    public ResponseEntity<List<ArtistEntity>> getArtistsByCriteria(
             @PathVariable("relation") final String relation, @PathVariable("id") final long id,
             @PathVariable("sort") final int sort, @PathVariable("order") final boolean order,
             @PathVariable("page") final int page) {
-        List<ArtistModel> artists = relationDAO.getElementsByCriteria(ArtistModel.class, sort,
+        List<ArtistEntity> artists = relationDAO.getElementsByCriteria(ArtistEntity.class, sort,
                 relation, id, order, page);
         if (artists == null) {
-            return new ResponseEntity<List<ArtistModel>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<ArtistEntity>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<ArtistModel>>(artists, HttpStatus.OK);
+        return new ResponseEntity<List<ArtistEntity>>(artists, HttpStatus.OK);
     }
 
-    @RequestMapping(value = ARTISTS_PATH
+    @RequestMapping(value = "/all"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ArtistModel>> getAllArtists() {
-        List<ArtistModel> artists = artistDAO.getAllArtists();
+    public ResponseEntity<List<ArtistEntity>> getAllArtists() {
+        List<ArtistEntity> artists = artistDAO.getAllArtists();
         if (artists == null) {
-            return new ResponseEntity<List<ArtistModel>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<ArtistEntity>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<ArtistModel>>(artists, HttpStatus.OK);
+        return new ResponseEntity<List<ArtistEntity>>(artists, HttpStatus.OK);
     }
 
-    @RequestMapping(value = ARTISTS_PATH + "/page_amount"
+    @RequestMapping(value = "/page_amount"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> getPageAmount() {
-        List<ArtistModel> artists = artistDAO.getAllArtists();
+        List<ArtistEntity> artists = artistDAO.getAllArtists();
         int amount = (int) Math.ceil(artists.size()
                 / (double) CountElementsConstants.ArtistCountElements.ARTIST_FULL_COUNT_ELEMENTS);
         return new ResponseEntity<Integer>(amount, HttpStatus.OK);
     }
 
-    @RequestMapping(value = ARTISTS_PATH + "/{relation}/{id}/page_amount"
+    @RequestMapping(value = "/{relation}/{id}/page_amount"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> getPageAmount(@PathVariable("id") final long id,
             @PathVariable("relation") final String relation) {
-        int amount = relationDAO.getSizeByCriteria(ArtistModel.class, relation, id);
+        int amount = relationDAO.getSizeByCriteria(ArtistEntity.class, relation, id);
         return new ResponseEntity<Integer>(amount, HttpStatus.OK);
     }
 

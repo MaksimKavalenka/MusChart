@@ -11,9 +11,9 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.gsu.constants.ModelStructureConstants.ModelFields;
+import by.gsu.constants.ModelStructureConstants.AbstractFields;
 import by.gsu.database.dao.RelationDAO;
-import by.gsu.model.Model;
+import by.gsu.entity.AbstractEntity;
 
 public class RelationDatabaseEditor extends DatabaseEditor implements RelationDAO {
 
@@ -26,49 +26,51 @@ public class RelationDatabaseEditor extends DatabaseEditor implements RelationDA
 
     @Override
     @Transactional
-    public <T extends Model> List<T> getElementsByCriteria(final Class<T> clazz, final int sort,
-            final boolean order, final int page) {
+    public <T extends AbstractEntity> List<T> getElementsByCriteria(final Class<T> clazz,
+            final int sort, final boolean order, final int page) {
         return getElements(clazz, getSortField(clazz, sort), order, page);
     }
 
     @Override
     @Transactional
-    public <T extends Model> List<T> getElementsByCriteria(final Class<T> clazz, final int sort,
-            final String relation, final long id, final boolean order, final int page) {
+    public <T extends AbstractEntity> List<T> getElementsByCriteria(final Class<T> clazz,
+            final int sort, final String relation, final long id, final boolean order,
+            final int page) {
         return getElements(clazz, getSearchField(relation), getSortField(clazz, sort), id, order,
                 page);
     }
 
     @Override
     @Transactional
-    public <T extends Model> int getSizeByCriteria(final Class<T> clazz, final String relation,
-            final long id) {
+    public <T extends AbstractEntity> int getSizeByCriteria(final Class<T> clazz,
+            final String relation, final long id) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(clazz)
                 .setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
         criteria.createAlias(getSearchField(relation), "alias");
-        criteria.add(Restrictions.eq("alias" + "." + ModelFields.ID, id));
+        criteria.add(Restrictions.eq("alias" + "." + AbstractFields.ID, id));
         return (int) Math.ceil(criteria.list().size() / (double) getCountElements(clazz, 1));
     }
 
-    private <T extends Model> List<T> getElements(final Class<T> clazz, final String sortProperty,
-            final boolean order, final int page) {
+    private <T extends AbstractEntity> List<T> getElements(final Class<T> clazz,
+            final String sortProperty, final boolean order, final int page) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(clazz)
                 .setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
         return getElements(criteria, clazz, sortProperty, order, page);
     }
 
-    private <T extends Model> List<T> getElements(final Class<T> clazz, final String searchProperty,
-            final String sortProperty, final long id, final boolean order, final int page) {
+    private <T extends AbstractEntity> List<T> getElements(final Class<T> clazz,
+            final String searchProperty, final String sortProperty, final long id,
+            final boolean order, final int page) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(clazz)
                 .setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
         criteria.createAlias(searchProperty, "alias");
-        criteria.add(Restrictions.eq("alias" + "." + ModelFields.ID, id));
+        criteria.add(Restrictions.eq("alias" + "." + AbstractFields.ID, id));
         return getElements(criteria, clazz, sortProperty, order, page);
     }
 
     @SuppressWarnings("unchecked")
-    private <T extends Model> List<T> getElements(final Criteria criteria, final Class<T> clazz,
-            final String property, final boolean order, final int page) {
+    private <T extends AbstractEntity> List<T> getElements(final Criteria criteria,
+            final Class<T> clazz, final String property, final boolean order, final int page) {
         int count = getCountElements(clazz, page);
         int fromIndex = count * page - count;
         int toIndex = count * page;

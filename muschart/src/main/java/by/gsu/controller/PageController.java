@@ -1,7 +1,7 @@
 package by.gsu.controller;
 
 import static by.gsu.constants.DefaultConstants.*;
-import static by.gsu.constants.UrlConstants.*;
+import static by.gsu.constants.UrlConstants.Page.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,8 +71,8 @@ public class PageController {
     }
 
     @RequestMapping(value = {LOGIN_URL, REGISTRATION_URL, SETTINGS_URL, PLAYLIST_URL,
-            ARTIST_ADD_URL, GENRE_ADD_URL, TRACK_ADD_URL, ARTIST_URL, GENRE_URL,
-            TRACK_URL}, method = RequestMethod.GET)
+            ARTIST_ADD_URL, GENRE_ADD_URL, TRACK_ADD_URL, ARTIST_FULL_URL, GENRE_FULL_URL,
+            TRACK_FULL_URL}, method = RequestMethod.GET)
     public String withoutParams() {
         return DEFAULT_PATH;
     }

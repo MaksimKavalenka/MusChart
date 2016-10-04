@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import by.gsu.model.Model;
+import by.gsu.entity.AbstractEntity;
 
 public class DatabaseEditor {
 
@@ -20,7 +20,7 @@ public class DatabaseEditor {
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends Model> T getUniqueResultByCriteria(final Class<T> clazz,
+    public <T extends AbstractEntity> T getUniqueResultByCriteria(final Class<T> clazz,
             final Criterion... criterions) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(clazz);
         for (Criterion criterion : criterions) {

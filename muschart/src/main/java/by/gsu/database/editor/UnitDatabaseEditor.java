@@ -10,7 +10,7 @@ import org.hibernate.criterion.Order;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.gsu.database.dao.UnitDAO;
-import by.gsu.model.UnitModel;
+import by.gsu.entity.UnitEntity;
 
 public class UnitDatabaseEditor extends DatabaseEditor implements UnitDAO {
 
@@ -24,15 +24,15 @@ public class UnitDatabaseEditor extends DatabaseEditor implements UnitDAO {
 
     @Override
     @Transactional
-    public UnitModel getUnitById(final long id) {
-        return (UnitModel) sessionFactory.getCurrentSession().get(UnitModel.class, id);
+    public UnitEntity getUnitById(final long id) {
+        return (UnitEntity) sessionFactory.getCurrentSession().get(UnitEntity.class, id);
     }
 
     @Override
     @Transactional
     @SuppressWarnings("unchecked")
-    public List<UnitModel> getAllUnits() {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(UnitModel.class);
+    public List<UnitEntity> getAllUnits() {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(UnitEntity.class);
         criteria.addOrder(Order.asc(UnitFields.ID));
         return criteria.list();
     }

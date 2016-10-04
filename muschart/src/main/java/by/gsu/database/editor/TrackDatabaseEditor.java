@@ -7,10 +7,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.gsu.database.dao.TrackDAO;
-import by.gsu.model.ArtistModel;
-import by.gsu.model.GenreModel;
-import by.gsu.model.TrackModel;
-import by.gsu.model.UnitModel;
+import by.gsu.entity.ArtistEntity;
+import by.gsu.entity.GenreEntity;
+import by.gsu.entity.TrackEntity;
+import by.gsu.entity.UnitEntity;
 
 public class TrackDatabaseEditor extends DatabaseEditor implements TrackDAO {
 
@@ -24,10 +24,10 @@ public class TrackDatabaseEditor extends DatabaseEditor implements TrackDAO {
 
     @Override
     @Transactional
-    public TrackModel createTrack(final String name, final String song, final String cover,
-            final String video, final Date release, final List<UnitModel> units,
-            final List<ArtistModel> artists, final List<GenreModel> genres) {
-        TrackModel track = new TrackModel(name, song, cover, video, release, units, artists,
+    public TrackEntity createTrack(final String name, final String song, final String cover,
+            final String video, final Date release, final List<UnitEntity> units,
+            final List<ArtistEntity> artists, final List<GenreEntity> genres) {
+        TrackEntity track = new TrackEntity(name, song, cover, video, release, units, artists,
                 genres);
         sessionFactory.getCurrentSession().save(track);
         return track;
@@ -41,15 +41,15 @@ public class TrackDatabaseEditor extends DatabaseEditor implements TrackDAO {
 
     @Override
     @Transactional
-    public TrackModel getTrackById(final long id) {
-        return (TrackModel) sessionFactory.getCurrentSession().get(TrackModel.class, id);
+    public TrackEntity getTrackById(final long id) {
+        return (TrackEntity) sessionFactory.getCurrentSession().get(TrackEntity.class, id);
     }
 
     @Override
     @Transactional
     @SuppressWarnings("unchecked")
-    public List<TrackModel> getAllTracks() {
-        return sessionFactory.getCurrentSession().createCriteria(TrackModel.class).list();
+    public List<TrackEntity> getAllTracks() {
+        return sessionFactory.getCurrentSession().createCriteria(TrackEntity.class).list();
     }
 
 }

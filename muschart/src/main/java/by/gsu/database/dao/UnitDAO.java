@@ -2,12 +2,12 @@ package by.gsu.database.dao;
 
 import java.util.List;
 
-import by.gsu.model.UnitModel;
+import by.gsu.entity.UnitEntity;
 
 public interface UnitDAO {
 
-    UnitModel getUnitById(long id);
+    UnitEntity getUnitById(long id);
 
-    List<UnitModel> getAllUnits();
+    List<UnitEntity> getAllUnits();
 
 }

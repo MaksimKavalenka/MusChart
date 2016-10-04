@@ -2,7 +2,7 @@ package by.gsu.constants;
 
 public abstract class ModelStructureConstants {
 
-    public abstract static class Models {
+    public abstract static class Entities {
 
         public static final String ARTIST = "artist";
         public static final String GENRE  = "genre";
@@ -13,7 +13,7 @@ public abstract class ModelStructureConstants {
 
     }
 
-    public abstract static class ModelFields {
+    public abstract static class AbstractFields {
 
         public static final String ID = "id";
 
@@ -21,7 +21,7 @@ public abstract class ModelStructureConstants {
 
     public abstract static class ArtistFields {
 
-        public static final String ID     = ModelFields.ID;
+        public static final String ID     = AbstractFields.ID;
         public static final String NAME   = "name";
         public static final String PHOTO  = "photo";
         public static final String RATING = "rating";
@@ -30,7 +30,7 @@ public abstract class ModelStructureConstants {
 
     public abstract static class GenreFields {
 
-        public static final String ID     = ModelFields.ID;
+        public static final String ID     = AbstractFields.ID;
         public static final String NAME   = "name";
         public static final String RATING = "rating";
 
@@ -38,14 +38,14 @@ public abstract class ModelStructureConstants {
 
     public abstract static class RoleFields {
 
-        public static final String ID   = ModelFields.ID;
+        public static final String ID   = AbstractFields.ID;
         public static final String NAME = "name";
 
     }
 
     public abstract static class TrackFields {
 
-        public static final String ID      = ModelFields.ID;
+        public static final String ID      = AbstractFields.ID;
         public static final String NAME    = "name";
         public static final String SONG    = "song";
         public static final String COVER   = "cover";
@@ -57,17 +57,16 @@ public abstract class ModelStructureConstants {
 
     public abstract static class UnitFields {
 
-        public static final String ID   = ModelFields.ID;
+        public static final String ID   = AbstractFields.ID;
         public static final String NAME = "name";
 
     }
 
     public abstract static class UserFields {
 
-        public static final String ID       = ModelFields.ID;
+        public static final String ID       = AbstractFields.ID;
         public static final String LOGIN    = "login";
         public static final String PASSWORD = "password";
-        public static final String ROLE     = "role";
 
     }
 

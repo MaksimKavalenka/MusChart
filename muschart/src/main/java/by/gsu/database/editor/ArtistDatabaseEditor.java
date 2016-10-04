@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import by.gsu.constants.ModelStructureConstants;
 import by.gsu.database.dao.ArtistDAO;
-import by.gsu.model.ArtistModel;
-import by.gsu.model.GenreModel;
+import by.gsu.entity.ArtistEntity;
+import by.gsu.entity.GenreEntity;
 
 public class ArtistDatabaseEditor extends DatabaseEditor implements ArtistDAO {
 
@@ -24,9 +24,9 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements ArtistDAO {
 
     @Override
     @Transactional
-    public ArtistModel createArtist(final String name, final String photo,
-            final List<GenreModel> genres) {
-        ArtistModel artist = new ArtistModel(name, photo, genres);
+    public ArtistEntity createArtist(final String name, final String photo,
+            final List<GenreEntity> genres) {
+        ArtistEntity artist = new ArtistEntity(name, photo, genres);
         sessionFactory.getCurrentSession().save(artist);
         return artist;
     }
@@ -39,15 +39,15 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements ArtistDAO {
 
     @Override
     @Transactional
-    public ArtistModel getArtistById(final long id) {
-        return (ArtistModel) sessionFactory.getCurrentSession().get(ArtistModel.class, id);
+    public ArtistEntity getArtistById(final long id) {
+        return (ArtistEntity) sessionFactory.getCurrentSession().get(ArtistEntity.class, id);
     }
 
     @Override
     @Transactional
     @SuppressWarnings("unchecked")
-    public List<ArtistModel> getAllArtists() {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ArtistModel.class);
+    public List<ArtistEntity> getAllArtists() {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ArtistEntity.class);
         criteria.addOrder(Order.asc(ModelStructureConstants.ArtistFields.NAME));
         return criteria.list();
     }
