@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import by.gsu.constants.ModelStructureConstants.AbstractFields;
+import by.gsu.constants.EntityConstants.Structure.AbstractFields;
 import by.gsu.database.dao.ArtistDAO;
-import by.gsu.database.dao.GenreDAO;
-import by.gsu.database.dao.UnitDAO;
 import by.gsu.entity.ArtistEntity;
 import by.gsu.entity.GenreEntity;
 import by.gsu.entity.UnitEntity;
 import by.gsu.entity.UserEntity;
+import by.gsu.jpa.service.dao.GenreServiceDAO;
+import by.gsu.jpa.service.dao.UnitServiceDAO;
 
 public abstract class RestController {
 
@@ -25,9 +25,9 @@ public abstract class RestController {
     @Autowired
     private ArtistDAO          artistDAO;
     @Autowired
-    private GenreDAO           genreDAO;
+    private GenreServiceDAO    genreService;
     @Autowired
-    private UnitDAO            unitDAO;
+    private UnitServiceDAO     unitService;
 
     public UserEntity getLoggedUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -69,7 +69,7 @@ public abstract class RestController {
     }
 
     private UnitEntity getUnitById(final long id) {
-        return unitDAO.getUnitById(id);
+        return unitService.getUnitById(id);
     }
 
     private ArtistEntity getArtistById(final long id) {
@@ -77,7 +77,7 @@ public abstract class RestController {
     }
 
     private GenreEntity getGenreById(final long id) {
-        return genreDAO.getGenreById(id);
+        return genreService.getGenreById(id);
     }
 
 }

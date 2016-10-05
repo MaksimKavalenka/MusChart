@@ -73,8 +73,8 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getPageAmount(callback) {
-		$http.get(REST.TRACKS + '/page_amount' + REST.JSON_EXT)
+	function getPageCount(callback) {
+		$http.get(REST.TRACKS + '/page_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -85,8 +85,8 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getPageAmountExt(relation, id, callback) {
-		$http.get(REST.TRACKS + '/' + relation + '/' + id + '/page_amount' + REST.JSON_EXT)
+	function getPageCountExt(relation, id, callback) {
+		$http.get(REST.TRACKS + '/' + relation + '/' + id + '/page_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -104,8 +104,8 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		getTracksByCriteria: getTracksByCriteria,
 		getTracksByCriteriaExt: getTracksByCriteriaExt,
 		getAllTracks: getAllTracks,
-		getPageAmount: getPageAmount,
-		getPageAmountExt: getPageAmountExt
+		getPageCount: getPageCount,
+		getPageCountExt: getPageCountExt
 	};
 
 }]);

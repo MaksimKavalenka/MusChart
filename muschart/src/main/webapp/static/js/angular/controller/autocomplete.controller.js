@@ -14,7 +14,7 @@ app.controller('AutocompleteController', ['$scope', 'ArtistFactory', 'GenreFacto
 			FlashService.error(response.message);
 		}
 	});
-	GenreFactory.getAllGenres(function(response) {
+	GenreFactory.getAllGenresIdAndName(function(response) {
 		if (response.success) {
 			genres = response.data;
 			models = models.concat(response.data);

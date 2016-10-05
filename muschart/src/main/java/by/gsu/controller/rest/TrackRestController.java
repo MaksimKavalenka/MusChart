@@ -90,21 +90,21 @@ public class TrackRestController extends by.gsu.controller.rest.RestController {
         return new ResponseEntity<List<TrackEntity>>(tracks, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{relation}/{id}/page_amount"
+    @RequestMapping(value = "/{relation}/{id}/page_count"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Integer> getPageAmount(@PathVariable("id") final long id,
+    public ResponseEntity<Integer> getPageCount(@PathVariable("id") final long id,
             @PathVariable("relation") final String relation) {
-        int amount = relationDAO.getSizeByCriteria(TrackEntity.class, relation, id);
-        return new ResponseEntity<Integer>(amount, HttpStatus.OK);
+        int count = relationDAO.getSizeByCriteria(TrackEntity.class, relation, id);
+        return new ResponseEntity<Integer>(count, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/page_amount"
+    @RequestMapping(value = "/page_count"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Integer> getPageAmount() {
+    public ResponseEntity<Integer> getPageCount() {
         List<TrackEntity> tracks = trackDAO.getAllTracks();
-        int amount = (int) Math.ceil(tracks.size()
+        int count = (int) Math.ceil(tracks.size()
                 / (double) CountElementsConstants.TrackCountElements.TRACK_FULL_COUNT_ELEMENTS);
-        return new ResponseEntity<Integer>(amount, HttpStatus.OK);
+        return new ResponseEntity<Integer>(count, HttpStatus.OK);
     }
 
 }

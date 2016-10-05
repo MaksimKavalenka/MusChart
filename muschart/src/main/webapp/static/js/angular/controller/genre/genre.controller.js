@@ -10,41 +10,37 @@ app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 
 		switch (state) {
 			case STATE.GENRES:
 				self.url = '#';
-				self.getGenresByCriteria(sort, order, page);
-				PaginationService.setPagination(page, state);
+				getGenres(sort, order, page);
 				break;
 			case STATE.GENRE:
 			case STATE.GENRE_ARTISTS:
 			case STATE.GENRE_TRACKS:
-				self.getGenreById($state.params.id);
+				getGenreById($state.params.id);
 				break;
 			case STATE.ARTIST:
 				self.url = 'artist_genres({id: ' + $state.params.id + ', page: 1})';
-				self.getGenresByCriteriaExt('artist', $state.params.id, sort, order, 0);
+				getEntityGenres('artist', $state.params.id, sort, order, 0);
 				break;
 			case STATE.TRACK:
 				self.url = 'track_genres({id: ' + $state.params.id + ', page: 1})';
-				self.getGenresByCriteriaExt('track', $state.params.id, sort, order, 0);
+				getEntityGenres('track', $state.params.id, sort, order, 0);
 				break;
 			case STATE.ARTIST_GENRES:
 				self.url = '#';
-				self.getGenresByCriteriaExt('artist', $state.params.id, sort, order, page);
-				PaginationService.setPaginationExt('artist', $state.params.id, page, state);
+				getEntityGenres('artist', $state.params.id, sort, order, page);
 				break;
 			case STATE.TRACK_GENRES:
 				self.url = '#';
-				self.getGenresByCriteriaExt('track', $state.params.id, sort, order, page);
-				PaginationService.setPaginationExt('track', $state.params.id, page, state);
+				getEntityGenres('track', $state.params.id, sort, order, page);
 				break;
 			case STATE.USER_GENRES:
 				self.url = '#';
-				self.getGenresByCriteriaExt('user', $scope.user.id, sort, order, page);
-				PaginationService.setPaginationExt('user', $scope.user.id, page, state);
+				getUserGenres(sort, order, page);
 				break;
 		}
 	};
 
-	self.getGenreById = function(id) {
+	function getGenreById(id) {
 		GenreFactory.getGenreById(id, function(response) {
 			if (response.success) {
 				self.info.data = response.data.name;
@@ -54,8 +50,8 @@ app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 
 		});
 	};
 
-	self.getGenresByCriteria = function(sort, order, page, idTo) {
-		GenreFactory.getGenresByCriteria(sort, order, page, function(response) {
+	function getGenres(sort, order, page) {
+		GenreFactory.getGenres(sort, order, page, function(response) {
 			if (response.success) {
 				self.genres = response.data;
 			} else {
@@ -64,8 +60,18 @@ app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 
 		});
 	};
 
-	self.getGenresByCriteriaExt = function(relation, id, sort, order, page, idTo) {
-		GenreFactory.getGenresByCriteriaExt(relation, id, sort, order, page, function(response) {
+	function getEntityGenres(entity, entityId, sort, order, page) {
+		GenreFactory.getEntityGenres(entity, entityId, sort, order, page, function(response) {
+			if (response.success) {
+				self.genres = response.data;
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+	};
+
+	function getUserGenres(sort, order, page) {
+		GenreFactory.getUserGenres(sort, order, page, function(response) {
 			if (response.success) {
 				self.genres = response.data;
 			} else {

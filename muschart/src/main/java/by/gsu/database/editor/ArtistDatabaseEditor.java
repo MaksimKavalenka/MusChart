@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.gsu.constants.ModelStructureConstants;
+import by.gsu.constants.EntityConstants;
 import by.gsu.database.dao.ArtistDAO;
 import by.gsu.entity.ArtistEntity;
 import by.gsu.entity.GenreEntity;
@@ -40,7 +40,7 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements ArtistDAO {
     @Override
     @Transactional
     public ArtistEntity getArtistById(final long id) {
-        return (ArtistEntity) sessionFactory.getCurrentSession().get(ArtistEntity.class, id);
+        return sessionFactory.getCurrentSession().get(ArtistEntity.class, id);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ArtistDatabaseEditor extends DatabaseEditor implements ArtistDAO {
     @SuppressWarnings("unchecked")
     public List<ArtistEntity> getAllArtists() {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ArtistEntity.class);
-        criteria.addOrder(Order.asc(ModelStructureConstants.ArtistFields.NAME));
+        criteria.addOrder(Order.asc(EntityConstants.Structure.ArtistFields.NAME));
         return criteria.list();
     }
 

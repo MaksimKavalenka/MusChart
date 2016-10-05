@@ -4,13 +4,13 @@ app.service('PaginationService', ['$rootScope', 'STATE', 'ArtistFactory', 'Genre
 	function setPagination(page, state) {
 		switch (state) {
 			case STATE.ARTISTS:
-				setPageAmount(ArtistFactory, page, state);
+				setPageCount(ArtistFactory, page, state);
 				break;
 			case STATE.GENRES:
-				setPageAmount(GenreFactory, page, state);
+				setPageCount(GenreFactory, page, state);
 				break;
 			case STATE.TRACKS:
-				setPageAmount(TrackFactory, page, state);
+				setPageCount(TrackFactory, page, state);
 				break;
 		}
 	};
@@ -20,17 +20,17 @@ app.service('PaginationService', ['$rootScope', 'STATE', 'ArtistFactory', 'Genre
 			case STATE.GENRE_ARTISTS:
 			case STATE.TRACK_ARTISTS:
 			case STATE.USER_ARTISTS:
-				setPageAmountExt(ArtistFactory, relation, id, page, state);
+				setPageCountExt(ArtistFactory, relation, id, page, state);
 				break;
 			case STATE.ARTIST_GENRES:
 			case STATE.TRACK_GENRES:
 			case STATE.USER_GENRES:
-				setPageAmountExt(GenreFactory, relation, id, page, state);
+				setPageCountExt(GenreFactory, relation, id, page, state);
 				break;
 			case STATE.ARTIST_TRACKS:
 			case STATE.GENRE_TRACKS:
 			case STATE.USER_TRACKS:
-				setPageAmountExt(TrackFactory, relation, id, page, state);
+				setPageCountExt(TrackFactory, relation, id, page, state);
 				break;
 		}
 	};
@@ -56,8 +56,8 @@ app.service('PaginationService', ['$rootScope', 'STATE', 'ArtistFactory', 'Genre
 		}
 	}
 
-	function setPageAmount(factory, page, state) {
-		factory.getPageAmount(function(response) {
+	function setPageCount(factory, page, state) {
+		factory.getPageCount(function(response) {
 			if (response.success) {
 				getPages(page, state, response.data);
 			} else {
@@ -66,8 +66,8 @@ app.service('PaginationService', ['$rootScope', 'STATE', 'ArtistFactory', 'Genre
 		});
 	};
 
-	function setPageAmountExt(factory, id, relation, page, state) {
-		factory.getPageAmountExt(id, relation, function(response) {
+	function setPageCountExt(factory, id, relation, page, state) {
+		factory.getPageCountExt(id, relation, function(response) {
 			if (response.success) {
 				getPages(page, state, response.data);
 			} else {

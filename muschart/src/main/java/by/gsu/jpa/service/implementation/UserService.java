@@ -7,9 +7,6 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 
-import by.gsu.entity.ArtistEntity;
-import by.gsu.entity.GenreEntity;
-import by.gsu.entity.TrackEntity;
 import by.gsu.entity.UserEntity;
 import by.gsu.exception.ValidationException;
 import by.gsu.jpa.repository.UserRepository;
@@ -39,39 +36,30 @@ public class UserService implements UserServiceDAO {
     }
 
     @Override
-    public void updateUserArtists(final UserEntity user, final ArtistEntity artist) {
-        Set<ArtistEntity> artists = repository.getUserArtists(user.getId());
-        if (!artists.contains(artist)) {
-            artists.add(artist);
+    public void updateUserArtists(final long userId, final long artistId) {
+        if (!repository.isArtistLiked(artistId)) {
+            repository.setArtistLike(userId, artistId);
         } else {
-            artists.remove(artist);
+            repository.setArtistDislike(userId, artistId);
         }
-        user.setArtists(artists);
-        repository.save(user);
     }
 
     @Override
-    public void updateUserGenres(final UserEntity user, final GenreEntity genre) {
-        Set<GenreEntity> genres = repository.getUserGenres(user.getId());
-        if (!genres.contains(genre)) {
-            genres.add(genre);
+    public void updateUserGenres(final long userId, final long genreId) {
+        if (!repository.isGenreLiked(genreId)) {
+            repository.setGenreLike(userId, genreId);
         } else {
-            genres.remove(genre);
+            repository.setGenreDislike(userId, genreId);
         }
-        user.setGenres(genres);
-        repository.save(user);
     }
 
     @Override
-    public void updateUserTracks(final UserEntity user, final TrackEntity track) {
-        Set<TrackEntity> tracks = repository.getUserTracks(user.getId());
-        if (!tracks.contains(track)) {
-            tracks.add(track);
+    public void updateUserTracks(final long userId, final long trackId) {
+        if (!repository.isTrackLiked(trackId)) {
+            repository.setTrackLike(userId, trackId);
         } else {
-            tracks.remove(track);
+            repository.setTrackDislike(userId, trackId);
         }
-        user.setTracks(tracks);
-        repository.save(user);
     }
 
     @Override

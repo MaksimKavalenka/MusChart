@@ -15,14 +15,14 @@ app.controller('TrackEditController', ['$scope', 'TYPE', 'ArtistFactory', 'Genre
 				FlashService.error(response.message);
 			}
 		});
-		GenreFactory.getAllGenres(function(response) {
+		GenreFactory.getAllGenresIdAndName(function(response) {
 			if (response.success) {
 				self.genres = response.data;
 			} else {
 				FlashService.error(response.message);
 			}
 		});
-		UnitFactory.getAllUnits(function(response) {
+		UnitFactory.getAllUnitsIdAndName(function(response) {
 			if (response.success) {
 				self.units = response.data;
 			} else {

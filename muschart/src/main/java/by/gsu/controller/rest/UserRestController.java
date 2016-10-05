@@ -25,13 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.gsu.bean.ErrorMessage;
-import by.gsu.constants.ModelStructureConstants.Entities;
-import by.gsu.database.dao.ArtistDAO;
-import by.gsu.database.dao.GenreDAO;
-import by.gsu.database.dao.TrackDAO;
-import by.gsu.entity.ArtistEntity;
-import by.gsu.entity.GenreEntity;
-import by.gsu.entity.TrackEntity;
+import by.gsu.constants.EntityConstants.Structure.Entities;
 import by.gsu.entity.UserEntity;
 import by.gsu.constants.RoleConstants;
 import by.gsu.exception.ValidationException;
@@ -45,13 +39,7 @@ import by.gsu.utility.Validator;
 public class UserRestController extends by.gsu.controller.rest.RestController {
 
     @Autowired
-    private ArtistDAO      artistDAO;
-    @Autowired
-    private GenreDAO       genreDAO;
-    @Autowired
     private RoleServiceDAO roleService;
-    @Autowired
-    private TrackDAO       trackDAO;
     @Autowired
     private UserServiceDAO userService;
 
@@ -106,16 +94,13 @@ public class UserRestController extends by.gsu.controller.rest.RestController {
             @PathVariable("entityId") final long entityId) {
         switch (entity) {
             case Entities.ARTIST:
-                ArtistEntity artist = artistDAO.getArtistById(entityId);
-                userService.updateUserArtists(getLoggedUser(), artist);
+                userService.updateUserArtists(getLoggedUser().getId(), entityId);
                 break;
             case Entities.GENRE:
-                GenreEntity genre = genreDAO.getGenreById(entityId);
-                userService.updateUserGenres(getLoggedUser(), genre);
+                userService.updateUserGenres(getLoggedUser().getId(), entityId);
                 break;
             case Entities.TRACK:
-                TrackEntity track = trackDAO.getTrackById(entityId);
-                userService.updateUserTracks(getLoggedUser(), track);
+                userService.updateUserTracks(getLoggedUser().getId(), entityId);
                 break;
             default:
                 break;
@@ -123,8 +108,7 @@ public class UserRestController extends by.gsu.controller.rest.RestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/check_login/{login}"
-            + JSON_EXT, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/check_login/{login}" + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<Boolean> checkLogin(@PathVariable("login") final String login) {
         boolean exists = userService.checkLogin(login);
         return new ResponseEntity<Boolean>(exists, HttpStatus.OK);

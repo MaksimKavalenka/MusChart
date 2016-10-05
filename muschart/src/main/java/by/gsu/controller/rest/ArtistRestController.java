@@ -89,21 +89,21 @@ public class ArtistRestController extends by.gsu.controller.rest.RestController 
         return new ResponseEntity<List<ArtistEntity>>(artists, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/page_amount"
+    @RequestMapping(value = "/page_count"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Integer> getPageAmount() {
+    public ResponseEntity<Integer> getPageCount() {
         List<ArtistEntity> artists = artistDAO.getAllArtists();
-        int amount = (int) Math.ceil(artists.size()
+        int count = (int) Math.ceil(artists.size()
                 / (double) CountElementsConstants.ArtistCountElements.ARTIST_FULL_COUNT_ELEMENTS);
-        return new ResponseEntity<Integer>(amount, HttpStatus.OK);
+        return new ResponseEntity<Integer>(count, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{relation}/{id}/page_amount"
+    @RequestMapping(value = "/{relation}/{id}/page_count"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Integer> getPageAmount(@PathVariable("id") final long id,
+    public ResponseEntity<Integer> getPageCount(@PathVariable("id") final long id,
             @PathVariable("relation") final String relation) {
-        int amount = relationDAO.getSizeByCriteria(ArtistEntity.class, relation, id);
-        return new ResponseEntity<Integer>(amount, HttpStatus.OK);
+        int count = relationDAO.getSizeByCriteria(ArtistEntity.class, relation, id);
+        return new ResponseEntity<Integer>(count, HttpStatus.OK);
     }
 
 }

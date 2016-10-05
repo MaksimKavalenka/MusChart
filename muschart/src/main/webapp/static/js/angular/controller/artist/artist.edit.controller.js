@@ -6,7 +6,7 @@ app.controller('ArtistEditController', ['$scope', 'TYPE', 'ArtistFactory', 'Genr
 
 	self.init = function() {
 		ChoiceService.reset();
-		GenreFactory.getAllGenres(function(response) {
+		GenreFactory.getAllGenresIdAndName(function(response) {
 			if (response.success) {
 				self.genres = response.data;
 			} else {

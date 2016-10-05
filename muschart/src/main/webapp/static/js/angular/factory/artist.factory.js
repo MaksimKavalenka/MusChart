@@ -73,8 +73,8 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAG
 		});
 	}
 
-	function getPageAmount(callback) {
-		$http.get(REST.ARTISTS + '/page_amount' + REST.JSON_EXT)
+	function getPageCount(callback) {
+		$http.get(REST.ARTISTS + '/page_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -85,8 +85,8 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAG
 		});
 	}
 
-	function getPageAmountExt(relation, id, callback) {
-		$http.get(REST.ARTISTS + '/' + relation + '/' + id + '/page_amount' + REST.JSON_EXT)
+	function getPageCountExt(relation, id, callback) {
+		$http.get(REST.ARTISTS + '/' + relation + '/' + id + '/page_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -104,8 +104,8 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAG
 		getArtistsByCriteria: getArtistsByCriteria,
 		getArtistsByCriteriaExt: getArtistsByCriteriaExt,
 		getAllArtists: getAllArtists,
-		getPageAmount: getPageAmount,
-		getPageAmountExt: getPageAmountExt
+		getPageCount: getPageCount,
+		getPageCountExt: getPageCountExt
 	};
 
 }]);

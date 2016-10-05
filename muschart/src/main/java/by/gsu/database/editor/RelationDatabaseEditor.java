@@ -11,7 +11,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.gsu.constants.ModelStructureConstants.AbstractFields;
+import by.gsu.constants.EntityConstants.Structure.AbstractFields;
 import by.gsu.database.dao.RelationDAO;
 import by.gsu.entity.AbstractEntity;
 

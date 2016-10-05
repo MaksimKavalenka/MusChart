@@ -4,9 +4,6 @@ import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import by.gsu.entity.ArtistEntity;
-import by.gsu.entity.GenreEntity;
-import by.gsu.entity.TrackEntity;
 import by.gsu.entity.UserEntity;
 import by.gsu.exception.ValidationException;
 
@@ -17,11 +14,11 @@ public interface UserServiceDAO {
 
     UserEntity getUserByLogin(String login);
 
-    void updateUserArtists(UserEntity user, ArtistEntity artist);
+    void updateUserArtists(long userId, long artistId);
 
-    void updateUserGenres(UserEntity user, GenreEntity genre);
+    void updateUserGenres(long userId, long genreId);
 
-    void updateUserTracks(UserEntity user, TrackEntity track);
+    void updateUserTracks(long userId, long trackId);
 
     boolean checkLogin(String login);
 

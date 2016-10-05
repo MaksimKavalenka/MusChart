@@ -37,7 +37,7 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getGenresByCriteria(sort, order, page, callback) {
+	function getGenres(sort, order, page, callback) {
 		$http.get(REST.GENRES + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
@@ -49,8 +49,8 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getGenresByCriteriaExt(relation, id, sort, order, page, callback) {
-		$http.get(REST.GENRES + '/' + relation + '/' + id + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
+	function getEntityGenres(entity, entityId, sort, order, page, callback) {
+		$http.get(REST.GENRES + '/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -61,8 +61,8 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getAllGenres(callback) {
-		$http.get(REST.GENRES + '/all' + REST.JSON_EXT)
+	function getUserGenres(sort, order, page, callback) {
+		$http.get(REST.GENRES + '/user/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -73,8 +73,20 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getPageAmount(callback) {
-		$http.get(REST.GENRES + '/page_amount' + REST.JSON_EXT)
+	function getAllGenresIdAndName(callback) {
+		$http.get(REST.GENRES + '/all/id/name' + REST.JSON_EXT)
+		.success(function(response) {
+			var data = {success: true, data: response};
+			callback(data);
+		})
+		.error(function(response) {
+			response = {success: false, message: MESSAGE.GETTING_GENRE_ERROR};
+			callback(response);
+		});
+	}
+
+	function getPageCount(callback) {
+		$http.get(REST.GENRES + '/page_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -85,8 +97,8 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getPageAmountExt(relation, id, callback) {
-		$http.get(REST.GENRES + '/' + relation + '/' + id + '/page_amount' + REST.JSON_EXT)
+	function getEntityPageCount(entity, entityId, callback) {
+		$http.get(REST.GENRES + '/' + entity + '/' + entityId + '/page_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -97,8 +109,20 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function checkName(name, callback) {
-		$http.post(REST.GENRES + '/check_name/' + name + REST.JSON_EXT)
+	function getUserPageCount(callback) {
+		$http.get(REST.GENRES + '/user/page_count' + REST.JSON_EXT)
+		.success(function(response) {
+			var data = {success: true, data: response};
+			callback(data);
+		})
+		.error(function(response) {
+			response = {success: false, message: MESSAGE.GETTING_GENRE_ERROR};
+			callback(response);
+		});
+	}
+
+	function checkGenreName(name, callback) {
+		$http.post(REST.GENRES + '/check_genre_name/' + name + REST.JSON_EXT)
 		.success(function(response) {
 			if (response) {
 				response = {success: true};
@@ -117,12 +141,14 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		createGenre: createGenre,
 		deleteGenre: deleteGenre,
 		getGenreById: getGenreById,
-		getGenresByCriteria: getGenresByCriteria,
-		getGenresByCriteriaExt: getGenresByCriteriaExt,
-		getAllGenres: getAllGenres,
-		getPageAmount: getPageAmount,
-		getPageAmountExt: getPageAmountExt,
-		checkName: checkName
+		getGenres: getGenres,
+		getEntityGenres: getEntityGenres,
+		getUserGenres: getUserGenres,
+		getAllGenresIdAndName: getAllGenresIdAndName,
+		getPageCount: getPageCount,
+		getEntityPageCount: getEntityPageCount,
+		getUserPageCount: getUserPageCount,
+		checkGenreName: checkGenreName
 	};
 
 }]);

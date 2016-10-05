@@ -1,8 +1,8 @@
 'use strict';
 app.factory('UnitFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE, REST) {
 
-	function getAllUnits(callback) {
-		$http.get(REST.UNITS + '/all' + REST.JSON_EXT)
+	function getAllUnitsIdAndName(callback) {
+		$http.get(REST.UNITS + '/all/id/name' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -14,7 +14,7 @@ app.factory('UnitFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE,
 	}
 
 	return {
-		getAllUnits: getAllUnits
+		getAllUnitsIdAndName: getAllUnitsIdAndName
 	};
 
 }]);

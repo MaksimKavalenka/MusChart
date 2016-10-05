@@ -1,24 +1,20 @@
-package by.gsu.entity;
+package by.gsu.bean;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+public class EntityIdAndName implements Serializable {
 
-@MappedSuperclass
-public abstract class AbstractEntity implements Serializable {
+    private static final long serialVersionUID = 7794693790810942212L;
 
-    private static final long serialVersionUID = 702208025730502671L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", unique = true, nullable = false)
     private long              id;
+    private String            name;
 
-    public AbstractEntity() {
+    public EntityIdAndName() {
+    }
+
+    public EntityIdAndName(final long id, final String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public long getId() {
@@ -27,6 +23,14 @@ public abstract class AbstractEntity implements Serializable {
 
     public void setId(final long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
     }
 
     @Override
@@ -48,7 +52,7 @@ public abstract class AbstractEntity implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        AbstractEntity other = (AbstractEntity) obj;
+        EntityIdAndName other = (EntityIdAndName) obj;
         if (id != other.id) {
             return false;
         }
@@ -56,6 +60,8 @@ public abstract class AbstractEntity implements Serializable {
     }
 
     @Override
-    public abstract String toString();
+    public String toString() {
+        return "EntityBody [id=" + id + ", name=" + name + "]";
+    }
 
 }

@@ -22,18 +22,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import by.gsu.database.dao.ArtistDAO;
-import by.gsu.database.dao.GenreDAO;
 import by.gsu.database.dao.RelationDAO;
 import by.gsu.database.dao.TrackDAO;
-import by.gsu.database.dao.UnitDAO;
 import by.gsu.database.editor.ArtistDatabaseEditor;
-import by.gsu.database.editor.GenreDatabaseEditor;
 import by.gsu.database.editor.RelationDatabaseEditor;
 import by.gsu.database.editor.TrackDatabaseEditor;
-import by.gsu.database.editor.UnitDatabaseEditor;
+import by.gsu.jpa.service.dao.GenreServiceDAO;
 import by.gsu.jpa.service.dao.RoleServiceDAO;
+import by.gsu.jpa.service.dao.UnitServiceDAO;
 import by.gsu.jpa.service.dao.UserServiceDAO;
+import by.gsu.jpa.service.implementation.GenreService;
 import by.gsu.jpa.service.implementation.RoleService;
+import by.gsu.jpa.service.implementation.UnitService;
 import by.gsu.jpa.service.implementation.UserService;
 
 @Configuration
@@ -88,8 +88,8 @@ public class MvcSpringConfiguration extends WebMvcConfigurationSupport {
     }
 
     @Bean
-    public GenreDAO genreDao(final SessionFactory sessionFactory) {
-        return new GenreDatabaseEditor(sessionFactory);
+    public GenreServiceDAO genreService() {
+        return new GenreService();
     }
 
     @Bean
@@ -108,8 +108,8 @@ public class MvcSpringConfiguration extends WebMvcConfigurationSupport {
     }
 
     @Bean
-    public UnitDAO unitDao(final SessionFactory sessionFactory) {
-        return new UnitDatabaseEditor(sessionFactory);
+    public UnitServiceDAO unitService() {
+        return new UnitService();
     }
 
     @Bean

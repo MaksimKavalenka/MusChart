@@ -15,7 +15,7 @@ app.directive(ngGenreExist, ['$timeout', '$q', 'GenreFactory', function($timeout
 				var def = $q.defer();
 				$timeout.cancel(timer);
 				timer = $timeout(function() {
-					GenreFactory.checkName(modelValue, function(response) {
+					GenreFactory.checkGenreName(modelValue, function(response) {
 						if (!response.success) {
 							def.resolve();
 						} else {

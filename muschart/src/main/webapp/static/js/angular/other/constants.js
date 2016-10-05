@@ -6,6 +6,7 @@ app.constant('CONTROLLER', (function() {
 		ARTIST_EDIT_CONTROLLER: 'ArtistEditController',
 		GENRE_CONTROLLER: 'GenreController',
 		GENRE_EDIT_CONTROLLER: 'GenreEditController',
+		PAGINATION_CONTROLLER: 'PaginationController',
 		TRACK_CONTROLLER: 'TrackController',
 		TRACK_EDIT_CONTROLLER: 'TrackEditController',
 		USER_EDIT_CONTROLLER: 'UserEditController'
