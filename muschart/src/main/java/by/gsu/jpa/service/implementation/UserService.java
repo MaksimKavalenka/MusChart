@@ -2,7 +2,7 @@ package by.gsu.jpa.service.implementation;
 
 import static by.gsu.constants.MessageConstants.TAKEN_LOGIN_ERROR;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +19,7 @@ public class UserService implements UserServiceDAO {
 
     @Override
     public UserEntity createUser(final String login, final String password,
-            final Set<GrantedAuthority> roles) throws ValidationException {
+            final List<GrantedAuthority> roles) throws ValidationException {
         UserEntity user = new UserEntity(login, password, roles);
         synchronized (UserService.class) {
             if (!checkLogin(login)) {

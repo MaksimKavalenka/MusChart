@@ -4,14 +4,12 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.hibernate.SessionFactory;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -21,18 +19,16 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import by.gsu.database.dao.ArtistDAO;
-import by.gsu.database.dao.RelationDAO;
-import by.gsu.database.dao.TrackDAO;
-import by.gsu.database.editor.ArtistDatabaseEditor;
-import by.gsu.database.editor.RelationDatabaseEditor;
-import by.gsu.database.editor.TrackDatabaseEditor;
+import by.gsu.jpa.service.dao.ArtistServiceDAO;
 import by.gsu.jpa.service.dao.GenreServiceDAO;
 import by.gsu.jpa.service.dao.RoleServiceDAO;
+import by.gsu.jpa.service.dao.TrackServiceDAO;
 import by.gsu.jpa.service.dao.UnitServiceDAO;
 import by.gsu.jpa.service.dao.UserServiceDAO;
+import by.gsu.jpa.service.implementation.ArtistService;
 import by.gsu.jpa.service.implementation.GenreService;
 import by.gsu.jpa.service.implementation.RoleService;
+import by.gsu.jpa.service.implementation.TrackService;
 import by.gsu.jpa.service.implementation.UnitService;
 import by.gsu.jpa.service.implementation.UserService;
 
@@ -75,16 +71,8 @@ public class MvcSpringConfiguration extends WebMvcConfigurationSupport {
     }
 
     @Bean
-    public SessionFactory sessionFactory(final DataSource dataSource) {
-        LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-        sessionBuilder.scanPackages("by.gsu.entity");
-        sessionBuilder.addProperties(getHibernateProperties());
-        return sessionBuilder.buildSessionFactory();
-    }
-
-    @Bean
-    public ArtistDAO artistDao(final SessionFactory sessionFactory) {
-        return new ArtistDatabaseEditor(sessionFactory);
+    public ArtistServiceDAO artistService() {
+        return new ArtistService();
     }
 
     @Bean
@@ -93,18 +81,13 @@ public class MvcSpringConfiguration extends WebMvcConfigurationSupport {
     }
 
     @Bean
-    public RelationDAO relationDao(final SessionFactory sessionFactory) {
-        return new RelationDatabaseEditor(sessionFactory);
-    }
-
-    @Bean
     public RoleServiceDAO roleService() {
         return new RoleService();
     }
 
     @Bean
-    public TrackDAO trackDao(final SessionFactory sessionFactory) {
-        return new TrackDatabaseEditor(sessionFactory);
+    public TrackServiceDAO trackService() {
+        return new TrackService();
     }
 
     @Bean

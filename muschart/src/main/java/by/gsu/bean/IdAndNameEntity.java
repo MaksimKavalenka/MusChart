@@ -2,17 +2,17 @@ package by.gsu.bean;
 
 import java.io.Serializable;
 
-public class EntityIdAndName implements Serializable {
+public class IdAndNameEntity implements Serializable {
 
     private static final long serialVersionUID = 7794693790810942212L;
 
     private long              id;
     private String            name;
 
-    public EntityIdAndName() {
+    public IdAndNameEntity() {
     }
 
-    public EntityIdAndName(final long id, final String name) {
+    public IdAndNameEntity(final long id, final String name) {
         this.id = id;
         this.name = name;
     }
@@ -52,7 +52,7 @@ public class EntityIdAndName implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        EntityIdAndName other = (EntityIdAndName) obj;
+        IdAndNameEntity other = (IdAndNameEntity) obj;
         if (id != other.id) {
             return false;
         }

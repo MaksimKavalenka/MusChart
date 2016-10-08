@@ -1,8 +1,8 @@
 'use strict';
 app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE, REST) {
 
-	function createTrack(name, song, cover, video, release, units, artists, genres, callback) {
-		$http.post(REST.TRACKS + '/create/' + name + '/' + song + '/' + cover + '/' + video + '/' + release + '/' + units + '/' + artists + '/' + genres + REST.JSON_EXT)
+	function createTrack(name, song, cover, video, release, artists, units, genres, callback) {
+		$http.post(REST.TRACKS + '/create/' + name + '/' + song + '/' + cover + '/' + video + '/' + release + '/' + artists + '/' + units + '/' + genres + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response, message: MESSAGE.CREATING_TRACK_SUCCESS};
 			callback(data);
@@ -37,7 +37,7 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getTracksByCriteria(sort, order, page, callback) {
+	function getTracks(sort, order, page, callback) {
 		$http.get(REST.TRACKS + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
@@ -49,8 +49,8 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getTracksByCriteriaExt(relation, id, sort, order, page, callback) {
-		$http.get(REST.TRACKS + '/' + relation + '/' + id + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
+	function getEntityTracks(entity, entityId, sort, order, page, callback) {
+		$http.get(REST.TRACKS + '/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -61,8 +61,8 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getAllTracks(callback) {
-		$http.get(REST.TRACKS + '/all' + REST.JSON_EXT)
+	function getUserTracks(sort, order, page, callback) {
+		$http.get(REST.TRACKS + '/user/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -73,8 +73,8 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getPageCount(callback) {
-		$http.get(REST.TRACKS + '/page_count' + REST.JSON_EXT)
+	function getAllTracksIdAndName(callback) {
+		$http.get(REST.TRACKS + '/all/id_name' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -85,8 +85,32 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getPageCountExt(relation, id, callback) {
-		$http.get(REST.TRACKS + '/' + relation + '/' + id + '/page_count' + REST.JSON_EXT)
+	function getPagesCount(callback) {
+		$http.get(REST.TRACKS + '/pages_count' + REST.JSON_EXT)
+		.success(function(response) {
+			var data = {success: true, data: response};
+			callback(data);
+		})
+		.error(function(response) {
+			response = {success: false, message: MESSAGE.GETTING_TRACK_ERROR};
+			callback(response);
+		});
+	}
+
+	function getEntityPagesCount(entity, entityId, callback) {
+		$http.get(REST.TRACKS + '/' + entity + '/' + entityId + '/pages_count' + REST.JSON_EXT)
+		.success(function(response) {
+			var data = {success: true, data: response};
+			callback(data);
+		})
+		.error(function(response) {
+			response = {success: false, message: MESSAGE.GETTING_TRACK_ERROR};
+			callback(response);
+		});
+	}
+
+	function getUserPagesCount(callback) {
+		$http.get(REST.TRACKS + '/user/pages_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -101,11 +125,13 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		createTrack: createTrack,
 		deleteTrack: deleteTrack,
 		getTrackById: getTrackById,
-		getTracksByCriteria: getTracksByCriteria,
-		getTracksByCriteriaExt: getTracksByCriteriaExt,
-		getAllTracks: getAllTracks,
-		getPageCount: getPageCount,
-		getPageCountExt: getPageCountExt
+		getTracks: getTracks,
+		getEntityTracks: getEntityTracks,
+		getUserTracks: getUserTracks,
+		getAllTracksIdAndName: getAllTracksIdAndName,
+		getPagesCount: getPagesCount,
+		getEntityPagesCount: getEntityPagesCount,
+		getUserPagesCount: getUserPagesCount
 	};
 
 }]);

@@ -1,5 +1,5 @@
 'use strict';
-app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'TrackFactory', 'AmplitudeService', 'FlashService', 'PaginationService', function($scope, $state, STATE, UPLOAD, TrackFactory, AmplitudeService, FlashService, PaginationService) {
+app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'TrackFactory', 'AmplitudeService', 'FlashService', function($scope, $state, STATE, UPLOAD, TrackFactory, AmplitudeService, FlashService) {
 
 	var self = this;
 	self.url = '#';
@@ -14,41 +14,37 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Track
 				break;
 			case STATE.TRACKS:
 				self.url = '#';
-				self.getTracksByCriteria(sort, order, page);
-				PaginationService.setPagination(page, state);
+				getTracks(sort, order, page);
 				break;
 			case STATE.TRACK:
 			case STATE.TRACK_ARTISTS:
 			case STATE.TRACK_GENRES:
-				self.getTrackById($state.params.id);
+				getTrackById($state.params.id);
 				break;
 			case STATE.ARTIST:
 				self.url = 'artist_tracks({id: ' + $state.params.id + ', page: 1})';
-				self.getTracksByCriteriaExt('artist', $state.params.id, sort, order, 0);
+				getEntityTracks('artist', $state.params.id, sort, order, 0);
 				break;
 			case STATE.GENRE:
 				self.url = 'genre_tracks({id: ' + $state.params.id + ', page: 1})';
-				self.getTracksByCriteriaExt('genre', $state.params.id, sort, order, 0);
+				getEntityTracks('genre', $state.params.id, sort, order, 0);
 				break;
 			case STATE.ARTIST_TRACKS:
 				self.url = '#';
-				self.getTracksByCriteriaExt('artist', $state.params.id, sort, order, page);
-				PaginationService.setPaginationExt('artist', $state.params.id, page, state);
+				getEntityTracks('artist', $state.params.id, sort, order, page);
 				break;
 			case STATE.GENRE_TRACKS:
 				self.url = '#';
-				self.getTracksByCriteriaExt('genre', $state.params.id, sort, order, page);
-				PaginationService.setPaginationExt('genre', $state.params.id, page, state);
+				getEntityTracks('genre', $state.params.id, sort, order, page);
 				break;
 			case STATE.USER_TRACKS:
 				self.url = '#';
-				self.getTracksByCriteriaExt('user', $scope.user.id, sort, order, page);
-				PaginationService.setPaginationExt('user', $scope.user.id, page, state);
+				getUserTracks(sort, order, page);
 				break;
 		}
 	};
 
-	self.getTrackById = function(id) {
+	function getTrackById(id) {
 		TrackFactory.getTrackById(id, function(response) {
 			if (response.success) {
 				self.info.image = UPLOAD.TRACK_COVER + '/' + response.data.cover;
@@ -59,8 +55,8 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Track
 		});
 	};
 
-	self.getTracksByCriteria = function(sort, order, page) {
-		TrackFactory.getTracksByCriteria(sort, order, page, function(response) {
+	function getTracks(sort, order, page) {
+		TrackFactory.getTracks(sort, order, page, function(response) {
 			if (response.success) {
 				self.tracks = response.data;
 				Amplitude.init(AmplitudeService.parseSongs(self.tracks));
@@ -70,11 +66,21 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Track
 		});
 	};
 
-	self.getTracksByCriteriaExt = function(relation, id, sort, order, page) {
-		TrackFactory.getTracksByCriteriaExt(relation, id, sort, order, page, function(response) {
+	function getEntityTracks(entity, entityId, sort, order, page) {
+		TrackFactory.getEntityTracks(entity, entityId, sort, order, page, function(response) {
 			if (response.success) {
 				self.tracks = response.data;
 				Amplitude.init(AmplitudeService.parseSongs(self.tracks));
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+	};
+
+	function getUserTracks(sort, order, page) {
+		TrackFactory.getUserTracks(sort, order, page, function(response) {
+			if (response.success) {
+				self.tracks = response.data;
 			} else {
 				FlashService.error(response.message);
 			}

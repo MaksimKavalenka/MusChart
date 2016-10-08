@@ -1,6 +1,6 @@
 package by.gsu.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,7 +26,7 @@ public class RoleEntity extends AbstractEntity implements GrantedAuthority {
     @JsonIgnore
     @ManyToMany(targetEntity = UserEntity.class, cascade = {CascadeType.DETACH})
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "role_id", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "user_id", nullable = false, updatable = false))
-    private Set<UserEntity>   users;
+    private List<UserEntity>  users;
 
     public RoleEntity() {
         super();
@@ -45,11 +45,11 @@ public class RoleEntity extends AbstractEntity implements GrantedAuthority {
         this.name = name;
     }
 
-    public Set<UserEntity> getUsers() {
+    public List<UserEntity> getUsers() {
         return users;
     }
 
-    public void setUsers(final Set<UserEntity> users) {
+    public void setUsers(final List<UserEntity> users) {
         this.users = users;
     }
 

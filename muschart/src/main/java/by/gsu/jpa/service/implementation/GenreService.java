@@ -1,17 +1,13 @@
 package by.gsu.jpa.service.implementation;
 
-import static by.gsu.constants.EntityConstants.ElementsCount.GenreCountElements.*;
 import static by.gsu.constants.MessageConstants.TAKEN_GENRE_ERROR;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
-import by.gsu.bean.EntityIdAndName;
+import by.gsu.bean.IdAndNameEntity;
 import by.gsu.entity.GenreEntity;
 import by.gsu.exception.ValidationException;
 import by.gsu.jpa.repository.GenreRepository;
@@ -46,71 +42,65 @@ public class GenreService implements GenreServiceDAO {
     }
 
     @Override
-    public Set<GenreEntity> getGenres(final int sort, final boolean order, final int page) {
-        return new HashSet<>(repository.findAll(getPageable(sort, order, page)));
+    public List<GenreEntity> getGenres(final int sort, final boolean order, final int page) {
+        return repository.findAll(JpaHelper.GENRE.getPageRequest(sort, order, page));
     }
 
     @Override
-    public Set<GenreEntity> getArtistGenres(final long artistId, final int sort,
+    public List<GenreEntity> getArtistGenres(final long artistId, final int sort,
             final boolean order, final int page) {
-        return new HashSet<>(repository.findByArtistsId(artistId, getPageable(sort, order, page)));
+        return repository.findByArtistsId(artistId,
+                JpaHelper.GENRE.getPageRequest(sort, order, page));
     }
 
     @Override
-    public Set<GenreEntity> getTrackGenres(final long trackId, final int sort, final boolean order,
+    public List<GenreEntity> getTrackGenres(final long trackId, final int sort, final boolean order,
             final int page) {
-        return new HashSet<>(repository.findByTracksId(trackId, getPageable(sort, order, page)));
+        return repository.findByTracksId(trackId,
+                JpaHelper.GENRE.getPageRequest(sort, order, page));
     }
 
     @Override
-    public Set<GenreEntity> getUserGenres(final long userId, final int sort, final boolean order,
+    public List<GenreEntity> getUserGenres(final long userId, final int sort, final boolean order,
             final int page) {
-        return new HashSet<>(repository.findByUsersId(userId, getPageable(sort, order, page)));
+        return repository.findByUsersId(userId, JpaHelper.GENRE.getPageRequest(sort, order, page));
     }
 
     @Override
-    public Set<EntityIdAndName> getAllGenresIdAndName() {
+    public List<IdAndNameEntity> getAllGenresIdAndName() {
         List<Object[]> objectsArray = repository.getAllGenresIdAndName();
-        Set<EntityIdAndName> entitiesIdAndName = new HashSet<>(objectsArray.size());
+        List<IdAndNameEntity> idAndNameEntities = new ArrayList<>(objectsArray.size());
         for (Object[] object : objectsArray) {
-            EntityIdAndName unitBody = new EntityIdAndName((Long) object[0], (String) object[1]);
-            entitiesIdAndName.add(unitBody);
+            IdAndNameEntity genreIdAndName = new IdAndNameEntity((Long) object[0],
+                    (String) object[1]);
+            idAndNameEntities.add(genreIdAndName);
         }
-        return entitiesIdAndName;
+        return idAndNameEntities;
     }
 
     @Override
-    public long getGenresCount() {
-        return repository.count();
+    public int getGenresPagesCount() {
+        return JpaHelper.GENRE.getPagesCount(repository.count());
     }
 
     @Override
-    public long getArtistGenresCount(final long artistId) {
-        return repository.countByArtistsId(artistId);
+    public int getArtistGenresPagesCount(final long artistId) {
+        return JpaHelper.GENRE.getPagesCount(repository.countByArtistsId(artistId));
     }
 
     @Override
-    public long getTrackGenresCount(final long trackId) {
-        return repository.countByTracksId(trackId);
+    public int getTrackGenresPagesCount(final long trackId) {
+        return JpaHelper.GENRE.getPagesCount(repository.countByTracksId(trackId));
     }
 
     @Override
-    public long getUserGenresCount(final long userId) {
-        return repository.countByUsersId(userId);
+    public int getUserGenresPagesCount(final long userId) {
+        return JpaHelper.GENRE.getPagesCount(repository.countByUsersId(userId));
     }
 
     @Override
     public boolean checkGenreName(final String name) {
         return repository.checkGenreName(name);
-    }
-
-    private Pageable getPageable(final int sort, final boolean order, final int page) {
-        if (page > 0) {
-            return new PageRequest(page - 1, GENRE_FULL_COUNT_ELEMENTS,
-                    JpaHelper.getGenreSort(sort, order));
-        } else {
-            return new PageRequest(0, GENRE_COUNT_ELEMENTS, JpaHelper.getGenreSort(sort, order));
-        }
     }
 
 }

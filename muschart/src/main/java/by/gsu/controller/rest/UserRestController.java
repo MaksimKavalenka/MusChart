@@ -6,8 +6,8 @@ import static by.gsu.constants.UrlConstants.Rest.USERS_URL;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +31,7 @@ import by.gsu.constants.RoleConstants;
 import by.gsu.exception.ValidationException;
 import by.gsu.jpa.service.dao.RoleServiceDAO;
 import by.gsu.jpa.service.dao.UserServiceDAO;
-import by.gsu.utility.SecureData;
+import by.gsu.utility.Secure;
 import by.gsu.utility.Validator;
 
 @RestController
@@ -78,9 +78,9 @@ public class UserRestController extends by.gsu.controller.rest.RestController {
                         HttpStatus.CONFLICT);
             }
 
-            Set<GrantedAuthority> roles = new HashSet<>();
+            List<GrantedAuthority> roles = new ArrayList<>(1);
             roles.add(roleService.getRoleByName(RoleConstants.ROLE_USER.name()));
-            userService.createUser(login, SecureData.secureBySha(password, login), roles);
+            userService.createUser(login, Secure.secureBySha(password, login), roles);
             return new ResponseEntity<Object>(HttpStatus.CREATED);
 
         } catch (ValidationException | NoSuchAlgorithmException e) {
@@ -94,13 +94,13 @@ public class UserRestController extends by.gsu.controller.rest.RestController {
             @PathVariable("entityId") final long entityId) {
         switch (entity) {
             case Entities.ARTIST:
-                userService.updateUserArtists(getLoggedUser().getId(), entityId);
+                userService.updateUserArtists(Secure.getLoggedUser().getId(), entityId);
                 break;
             case Entities.GENRE:
-                userService.updateUserGenres(getLoggedUser().getId(), entityId);
+                userService.updateUserGenres(Secure.getLoggedUser().getId(), entityId);
                 break;
             case Entities.TRACK:
-                userService.updateUserTracks(getLoggedUser().getId(), entityId);
+                userService.updateUserTracks(Secure.getLoggedUser().getId(), entityId);
                 break;
             default:
                 break;

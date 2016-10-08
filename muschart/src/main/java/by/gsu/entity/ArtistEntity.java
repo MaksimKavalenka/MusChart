@@ -11,9 +11,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.ws.rs.DefaultValue;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -39,7 +36,6 @@ public class ArtistEntity extends AbstractEntity {
     private List<TrackEntity> tracks;
 
     @JsonIgnore
-    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(targetEntity = GenreEntity.class, cascade = {CascadeType.DETACH})
     @JoinTable(name = "artist_genre", joinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false))
     private List<GenreEntity> genres;
@@ -51,6 +47,12 @@ public class ArtistEntity extends AbstractEntity {
 
     public ArtistEntity() {
         super();
+    }
+
+    public ArtistEntity(final String name, final String photo) {
+        super();
+        this.name = name;
+        this.photo = photo;
     }
 
     public ArtistEntity(final String name, final String photo, final List<GenreEntity> genres) {

@@ -116,7 +116,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		views: {
 			header: mainHeader,
 			tool: {
-				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controller: CONTROLLER.PAGINATION_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
 			},
@@ -158,7 +158,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		views: {
 			header: mainHeader,
 			tool: {
-				controller: CONTROLLER.TRACK_CONTROLLER,
+				controller: CONTROLLER.PAGINATION_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
 			},
@@ -249,7 +249,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				templateUrl: PATH.INFO_CONTENT
 			},
 			tool: {
-				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controller: CONTROLLER.PAGINATION_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
 			},
@@ -274,7 +274,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				templateUrl: PATH.INFO_CONTENT
 			},
 			tool: {
-				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controller: CONTROLLER.PAGINATION_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
 			},
@@ -295,7 +295,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		views: {
 			header: mainHeader,
 			tool: {
-				controller: CONTROLLER.ARTIST_CONTROLLER,
+				controller: CONTROLLER.PAGINATION_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
 			},
@@ -391,7 +391,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				templateUrl: PATH.INFO_CONTENT
 			},
 			tool: {
-				controller: CONTROLLER.TRACK_CONTROLLER,
+				controller: CONTROLLER.PAGINATION_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
 			},
@@ -416,7 +416,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				templateUrl: PATH.INFO_CONTENT
 			},
 			tool: {
-				controller: CONTROLLER.TRACK_CONTROLLER,
+				controller: CONTROLLER.PAGINATION_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
 			},
@@ -437,7 +437,7 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 		views: {
 			header: mainHeader,
 			tool: {
-				controller: CONTROLLER.TRACK_CONTROLLER,
+				controller: CONTROLLER.PAGINATION_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.PAGINATION_TOOL
 			},

@@ -47,15 +47,15 @@ public class TrackEntity extends AbstractEntity {
     private long               rating;
 
     @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(targetEntity = ArtistEntity.class, cascade = {CascadeType.DETACH})
+    @JoinTable(name = "track_artist", joinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false))
+    private List<ArtistEntity> artists;
+
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(targetEntity = UnitEntity.class, cascade = {
             CascadeType.DETACH}, fetch = FetchType.EAGER)
     @JoinTable(name = "track_unit", joinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_unit", nullable = false, updatable = false))
     private List<UnitEntity>   units;
-
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToMany(targetEntity = ArtistEntity.class, cascade = {CascadeType.DETACH})
-    @JoinTable(name = "track_artist", joinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false))
-    private List<ArtistEntity> artists;
 
     @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -73,7 +73,17 @@ public class TrackEntity extends AbstractEntity {
     }
 
     public TrackEntity(final String name, final String song, final String cover, final String video,
-            final Date release, final List<UnitEntity> units, final List<ArtistEntity> artists,
+            final Date release) {
+        super();
+        this.name = name;
+        this.song = song;
+        this.cover = cover;
+        this.video = video;
+        this.release = release;
+    }
+
+    public TrackEntity(final String name, final String song, final String cover, final String video,
+            final Date release, final List<ArtistEntity> artists, final List<UnitEntity> units,
             final List<GenreEntity> genres) {
         super();
         this.name = name;
@@ -81,8 +91,8 @@ public class TrackEntity extends AbstractEntity {
         this.cover = cover;
         this.video = video;
         this.release = release;
-        this.units = units;
         this.artists = artists;
+        this.units = units;
         this.genres = genres;
     }
 
@@ -134,20 +144,20 @@ public class TrackEntity extends AbstractEntity {
         this.rating = rating;
     }
 
-    public List<UnitEntity> getUnits() {
-        return units;
-    }
-
-    public void setUnits(final List<UnitEntity> units) {
-        this.units = units;
-    }
-
     public List<ArtistEntity> getArtists() {
         return artists;
     }
 
     public void setArtists(final List<ArtistEntity> artists) {
         this.artists = artists;
+    }
+
+    public List<UnitEntity> getUnits() {
+        return units;
+    }
+
+    public void setUnits(final List<UnitEntity> units) {
+        this.units = units;
     }
 
     public List<GenreEntity> getGenres() {

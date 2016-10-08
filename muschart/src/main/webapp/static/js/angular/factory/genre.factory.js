@@ -74,7 +74,7 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 	}
 
 	function getAllGenresIdAndName(callback) {
-		$http.get(REST.GENRES + '/all/id/name' + REST.JSON_EXT)
+		$http.get(REST.GENRES + '/all/id_name' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -85,8 +85,8 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getPageCount(callback) {
-		$http.get(REST.GENRES + '/page_count' + REST.JSON_EXT)
+	function getPagesCount(callback) {
+		$http.get(REST.GENRES + '/pages_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -97,8 +97,8 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getEntityPageCount(entity, entityId, callback) {
-		$http.get(REST.GENRES + '/' + entity + '/' + entityId + '/page_count' + REST.JSON_EXT)
+	function getEntityPagesCount(entity, entityId, callback) {
+		$http.get(REST.GENRES + '/' + entity + '/' + entityId + '/pages_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -109,8 +109,8 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		});
 	}
 
-	function getUserPageCount(callback) {
-		$http.get(REST.GENRES + '/user/page_count' + REST.JSON_EXT)
+	function getUserPagesCount(callback) {
+		$http.get(REST.GENRES + '/user/pages_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -145,9 +145,9 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 		getEntityGenres: getEntityGenres,
 		getUserGenres: getUserGenres,
 		getAllGenresIdAndName: getAllGenresIdAndName,
-		getPageCount: getPageCount,
-		getEntityPageCount: getEntityPageCount,
-		getUserPageCount: getUserPageCount,
+		getPagesCount: getPagesCount,
+		getEntityPagesCount: getEntityPagesCount,
+		getUserPagesCount: getUserPagesCount,
 		checkGenreName: checkGenreName
 	};
 

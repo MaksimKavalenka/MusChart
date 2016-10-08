@@ -1,7 +1,7 @@
 package by.gsu.entity;
 
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,60 +21,60 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "user")
 public class UserEntity extends AbstractEntity implements UserDetails {
 
-    private static final long     serialVersionUID = 7372820574885171442L;
+    private static final long      serialVersionUID = 7372820574885171442L;
 
     @JsonIgnore
-    private boolean               accountNonExpired;
+    private boolean                accountNonExpired;
 
     @JsonIgnore
-    private boolean               accountNonLocked;
+    private boolean                accountNonLocked;
 
     @JsonIgnore
-    private boolean               credentialsNonExpired;
+    private boolean                credentialsNonExpired;
 
     @JsonIgnore
-    private boolean               enabled;
+    private boolean                enabled;
 
     @Column(name = "login", unique = true, nullable = false, length = 255)
-    private String                login;
+    private String                 login;
 
     @JsonIgnore
     @Column(name = "password", nullable = false, length = 255)
-    private String                password;
+    private String                 password;
 
     @JsonIgnore
     @ManyToMany(targetEntity = RoleEntity.class, fetch = FetchType.EAGER, cascade = {
             CascadeType.DETACH})
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "role_id", nullable = false, updatable = false))
-    private Set<GrantedAuthority> roles;
+    private List<GrantedAuthority> roles;
 
     @JsonIgnore
     @ManyToMany(targetEntity = TrackEntity.class, cascade = {CascadeType.DETACH})
     @JoinTable(name = "user_track", joinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false))
-    private Set<TrackEntity>      tracks;
+    private List<TrackEntity>      tracks;
 
     @JsonIgnore
     @ManyToMany(targetEntity = ArtistEntity.class, cascade = {CascadeType.DETACH})
     @JoinTable(name = "user_artist", joinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false))
-    private Set<ArtistEntity>     artists;
+    private List<ArtistEntity>     artists;
 
     @JsonIgnore
     @ManyToMany(targetEntity = GenreEntity.class, cascade = {CascadeType.DETACH})
     @JoinTable(name = "user_genre", joinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false))
-    private Set<GenreEntity>      genres;
+    private List<GenreEntity>      genres;
 
     public UserEntity() {
         super();
     }
 
     public UserEntity(final String login, final String password,
-            final Set<GrantedAuthority> roles) {
+            final List<GrantedAuthority> roles) {
         this(true, true, true, true, login, password, roles);
     }
 
     public UserEntity(final boolean accountNonExpired, final boolean accountNonLocked,
             final boolean credentialsNonExpired, final boolean enabled, final String login,
-            final String password, final Set<GrantedAuthority> roles) {
+            final String password, final List<GrantedAuthority> roles) {
         super();
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
@@ -134,35 +134,35 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         this.password = password;
     }
 
-    public Set<GrantedAuthority> getRoles() {
+    public List<GrantedAuthority> getRoles() {
         return roles;
     }
 
-    public void setRoles(final Set<GrantedAuthority> roles) {
+    public void setRoles(final List<GrantedAuthority> roles) {
         this.roles = roles;
     }
 
-    public Set<TrackEntity> getTracks() {
+    public List<TrackEntity> getTracks() {
         return tracks;
     }
 
-    public void setTracks(final Set<TrackEntity> tracks) {
+    public void setTracks(final List<TrackEntity> tracks) {
         this.tracks = tracks;
     }
 
-    public Set<ArtistEntity> getArtists() {
+    public List<ArtistEntity> getArtists() {
         return artists;
     }
 
-    public void setArtists(final Set<ArtistEntity> artists) {
+    public void setArtists(final List<ArtistEntity> artists) {
         this.artists = artists;
     }
 
-    public Set<GenreEntity> getGenres() {
+    public List<GenreEntity> getGenres() {
         return genres;
     }
 
-    public void setGenres(final Set<GenreEntity> genres) {
+    public void setGenres(final List<GenreEntity> genres) {
         this.genres = genres;
     }
 

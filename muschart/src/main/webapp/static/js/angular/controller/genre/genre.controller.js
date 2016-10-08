@@ -1,5 +1,5 @@
 'use strict';
-app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 'FlashService', 'PaginationService', function($scope, $state, STATE, GenreFactory, FlashService, PaginationService) {
+app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 'FlashService', function($scope, $state, STATE, GenreFactory, FlashService) {
 
 	var self = this;
 	self.url = '#';

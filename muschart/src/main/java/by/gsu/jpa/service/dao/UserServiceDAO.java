@@ -1,6 +1,6 @@
 package by.gsu.jpa.service.dao;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -9,7 +9,7 @@ import by.gsu.exception.ValidationException;
 
 public interface UserServiceDAO {
 
-    UserEntity createUser(String login, String password, Set<GrantedAuthority> roles)
+    UserEntity createUser(String login, String password, List<GrantedAuthority> roles)
             throws ValidationException;
 
     UserEntity getUserByLogin(String login);

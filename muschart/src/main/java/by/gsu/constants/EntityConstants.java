@@ -6,24 +6,24 @@ public abstract class EntityConstants {
 
     public static abstract class ElementsCount {
 
-        public static abstract class ArtistCountElements {
+        public static abstract class ArtistElementsCount {
 
-            public static final int ARTIST_COUNT_ELEMENTS      = 6;
-            public static final int ARTIST_FULL_COUNT_ELEMENTS = 18;
-
-        }
-
-        public static abstract class GenreCountElements {
-
-            public static final int GENRE_COUNT_ELEMENTS      = 18;
-            public static final int GENRE_FULL_COUNT_ELEMENTS = 54;
+            public static final int ARTIST_ELEMENTS_COUNT      = 6;
+            public static final int ARTIST_FULL_ELEMENTS_COUNT = 18;
 
         }
 
-        public static abstract class TrackCountElements {
+        public static abstract class GenreElementsCount {
 
-            public static final int TRACK_COUNT_ELEMENTS      = 6;
-            public static final int TRACK_FULL_COUNT_ELEMENTS = 18;
+            public static final int GENRE_ELEMENTS_COUNT      = 18;
+            public static final int GENRE_FULL_ELEMENTS_COUNT = 54;
+
+        }
+
+        public static abstract class TrackElementsCount {
+
+            public static final int TRACK_ELEMENTS_COUNT      = 6;
+            public static final int TRACK_FULL_ELEMENTS_COUNT = 18;
 
         }
 

@@ -1,6 +1,6 @@
 package by.gsu.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,29 +17,29 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "genre")
 public class GenreEntity extends AbstractEntity {
 
-    private static final long serialVersionUID = 2354473633918150319L;
+    private static final long  serialVersionUID = 2354473633918150319L;
 
     @Column(name = "name", unique = true, nullable = false, length = 255)
-    private String            name;
+    private String             name;
 
     @Column(name = "rating", nullable = false)
     @DefaultValue(value = "0")
-    private long              rating;
+    private long               rating;
 
     @JsonIgnore
     @ManyToMany(targetEntity = TrackEntity.class, cascade = {CascadeType.DETACH})
     @JoinTable(name = "track_genre", joinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false))
-    private Set<TrackEntity>  tracks;
+    private List<TrackEntity>  tracks;
 
     @JsonIgnore
     @ManyToMany(targetEntity = ArtistEntity.class, cascade = {CascadeType.DETACH})
     @JoinTable(name = "artist_genre", joinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false))
-    private Set<ArtistEntity> artists;
+    private List<ArtistEntity> artists;
 
     @JsonIgnore
     @ManyToMany(targetEntity = UserEntity.class, cascade = {CascadeType.DETACH})
     @JoinTable(name = "user_genre", joinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false))
-    private Set<UserEntity>   users;
+    private List<UserEntity>   users;
 
     public GenreEntity() {
         super();
@@ -66,27 +66,27 @@ public class GenreEntity extends AbstractEntity {
         this.rating = rating;
     }
 
-    public Set<TrackEntity> getTracks() {
+    public List<TrackEntity> getTracks() {
         return tracks;
     }
 
-    public void setTracks(final Set<TrackEntity> tracks) {
+    public void setTracks(final List<TrackEntity> tracks) {
         this.tracks = tracks;
     }
 
-    public Set<ArtistEntity> getArtists() {
+    public List<ArtistEntity> getArtists() {
         return artists;
     }
 
-    public void setArtists(final Set<ArtistEntity> artists) {
+    public void setArtists(final List<ArtistEntity> artists) {
         this.artists = artists;
     }
 
-    public Set<UserEntity> getUsers() {
+    public List<UserEntity> getUsers() {
         return users;
     }
 
-    public void setUsers(final Set<UserEntity> users) {
+    public void setUsers(final List<UserEntity> users) {
         this.users = users;
     }
 

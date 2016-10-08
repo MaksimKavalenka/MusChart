@@ -51,7 +51,7 @@ app.controller('TrackEditController', ['$scope', 'TYPE', 'ArtistFactory', 'Genre
 			if (self.track.video == '') {
 				self.track.video = null;
 			}
-			TrackFactory.createTrack(self.track.name, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), self.track.video, self.track.release, angular.toJson($scope.unitsChoice), angular.toJson($scope.artistsChoice), angular.toJson($scope.genresChoice), function(response) {
+			TrackFactory.createTrack(self.track.name, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), self.track.video, self.track.release, angular.toJson($scope.artistsChoice), angular.toJson($scope.unitsChoice), angular.toJson($scope.genresChoice), function(response) {
 				if (response.success) {
 					self.reset();
 					ChoiceService.reset();

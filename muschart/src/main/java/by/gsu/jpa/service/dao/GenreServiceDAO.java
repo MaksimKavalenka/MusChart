@@ -1,8 +1,8 @@
 package by.gsu.jpa.service.dao;
 
-import java.util.Set;
+import java.util.List;
 
-import by.gsu.bean.EntityIdAndName;
+import by.gsu.bean.IdAndNameEntity;
 import by.gsu.entity.GenreEntity;
 import by.gsu.exception.ValidationException;
 
@@ -14,23 +14,23 @@ public interface GenreServiceDAO {
 
     GenreEntity getGenreById(long id);
 
-    Set<GenreEntity> getGenres(int sort, boolean order, int page);
+    List<GenreEntity> getGenres(int sort, boolean order, int page);
 
-    Set<GenreEntity> getArtistGenres(long artistId, int sort, boolean order, int page);
+    List<GenreEntity> getArtistGenres(long artistId, int sort, boolean order, int page);
 
-    Set<GenreEntity> getTrackGenres(long trackId, int sort, boolean order, int page);
+    List<GenreEntity> getTrackGenres(long trackId, int sort, boolean order, int page);
 
-    Set<GenreEntity> getUserGenres(long userId, int sort, boolean order, int page);
+    List<GenreEntity> getUserGenres(long userId, int sort, boolean order, int page);
 
-    Set<EntityIdAndName> getAllGenresIdAndName();
+    List<IdAndNameEntity> getAllGenresIdAndName();
 
-    long getGenresCount();
+    int getGenresPagesCount();
 
-    long getArtistGenresCount(long artistId);
+    int getArtistGenresPagesCount(long artistId);
 
-    long getTrackGenresCount(long trackId);
+    int getTrackGenresPagesCount(long trackId);
 
-    long getUserGenresCount(long userId);
+    int getUserGenresPagesCount(long userId);
 
     boolean checkGenreName(String name);
 

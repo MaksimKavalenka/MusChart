@@ -1,5 +1,5 @@
 'use strict';
-app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'ArtistFactory', 'FlashService', 'PaginationService', function($scope, $state, STATE, UPLOAD, ArtistFactory, FlashService, PaginationService) {
+app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'ArtistFactory', 'FlashService', function($scope, $state, STATE, UPLOAD, ArtistFactory, FlashService) {
 
 	var self = this;
 	self.url = '#';
@@ -10,41 +10,37 @@ app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Arti
 		switch (state) {
 			case STATE.ARTISTS:
 				self.url = '#';
-				self.getArtistsByCriteria(sort, order, page);
-				PaginationService.setPagination(page, state);
+				getArtists(sort, order, page);
 				break;
 			case STATE.ARTIST:
 			case STATE.ARTIST_GENRES:
 			case STATE.ARTIST_TRACKS:
-				self.getArtistById($state.params.id);
+				getArtistById($state.params.id);
 				break;
 			case STATE.GENRE:
 				self.url = 'genre_artists({id: ' + $state.params.id + ', page: 1})';
-				self.getArtistsByCriteriaExt('genre', $state.params.id, sort, order, 0);
+				getEntityArtists('genre', $state.params.id, sort, order, 0);
 				break;
 			case STATE.TRACK:
 				self.url = 'track_artists({id: ' + $state.params.id + ', page: 1})';
-				self.getArtistsByCriteriaExt('track', $state.params.id, sort, order, 0);
+				getEntityArtists('track', $state.params.id, sort, order, 0);
 				break;
 			case STATE.GENRE_ARTISTS:
 				self.url = '#';
-				self.getArtistsByCriteriaExt('genre', $state.params.id, sort, order, page);
-				PaginationService.setPaginationExt('genre', $state.params.id, page, state);
+				getEntityArtists('genre', $state.params.id, sort, order, page);
 				break;
 			case STATE.TRACK_ARTISTS:
 				self.url = '#';
-				self.getArtistsByCriteriaExt('track', $state.params.id, sort, order, page);
-				PaginationService.setPaginationExt('track', $state.params.id, page, state);
+				getEntityArtists('track', $state.params.id, sort, order, page);
 				break;
 			case STATE.USER_ARTISTS:
 				self.url = '#';
-				self.getArtistsByCriteriaExt('user', $scope.user.id, sort, order, page);
-				PaginationService.setPaginationExt('user', $scope.user.id, page, state);
+				getUserArtists(sort, order, page);
 				break;
 		}
 	};
 
-	self.getArtistById = function(id) {
+	function getArtistById(id) {
 		ArtistFactory.getArtistById(id, function(response) {
 			if (response.success) {
 				self.info.image = UPLOAD.ARTIST_PHOTO + '/' + response.data.photo;
@@ -55,8 +51,8 @@ app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Arti
 		});
 	};
 
-	self.getArtistsByCriteria = function(sort, order, page) {
-		ArtistFactory.getArtistsByCriteria(sort, order, page, function(response) {
+	function getArtists(sort, order, page) {
+		ArtistFactory.getArtists(sort, order, page, function(response) {
 			if (response.success) {
 				self.artists = response.data;
 			} else {
@@ -65,8 +61,18 @@ app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Arti
 		});
 	};
 
-	self.getArtistsByCriteriaExt = function(relation, id, sort, order, page) {
-		ArtistFactory.getArtistsByCriteriaExt(relation, id, sort, order, page, function(response) {
+	function getEntityArtists(entity, entityId, sort, order, page) {
+		ArtistFactory.getEntityArtists(entity, entityId, sort, order, page, function(response) {
+			if (response.success) {
+				self.artists = response.data;
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+	};
+
+	function getUserArtists(sort, order, page) {
+		ArtistFactory.getUserArtists(sort, order, page, function(response) {
 			if (response.success) {
 				self.artists = response.data;
 			} else {

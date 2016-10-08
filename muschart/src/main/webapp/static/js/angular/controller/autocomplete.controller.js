@@ -6,7 +6,7 @@ app.controller('AutocompleteController', ['$scope', 'ArtistFactory', 'GenreFacto
 	var tracks = [];
 	var models = [];
 
-	ArtistFactory.getAllArtists(function(response) {
+	ArtistFactory.getAllArtistsIdAndName(function(response) {
 		if (response.success) {
 			artists = response.data;
 			models = models.concat(response.data);
@@ -22,7 +22,7 @@ app.controller('AutocompleteController', ['$scope', 'ArtistFactory', 'GenreFacto
 			FlashService.error(response.message);
 		}
 	});
-	TrackFactory.getAllTracks(function(response) {
+	TrackFactory.getAllTracksIdAndName(function(response) {
 		if (response.success) {
 			tracks = response.data;
 			models = models.concat(response.data);

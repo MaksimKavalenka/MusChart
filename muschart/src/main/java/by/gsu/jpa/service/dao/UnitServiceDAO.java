@@ -1,14 +1,14 @@
 package by.gsu.jpa.service.dao;
 
-import java.util.Set;
+import java.util.List;
 
-import by.gsu.bean.EntityIdAndName;
+import by.gsu.bean.IdAndNameEntity;
 import by.gsu.entity.UnitEntity;
 
 public interface UnitServiceDAO {
 
     UnitEntity getUnitById(long id);
 
-    Set<EntityIdAndName> getAllUnitsIdAndName();
+    List<IdAndNameEntity> getAllUnitsIdAndName();
 
 }
