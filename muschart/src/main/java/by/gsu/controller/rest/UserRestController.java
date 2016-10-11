@@ -2,6 +2,7 @@ package by.gsu.controller.rest;
 
 import static by.gsu.constants.MessageConstants.PASSWORDS_ERROR;
 import static by.gsu.constants.MessageConstants.VALIDATION_ERROR;
+import static by.gsu.constants.UrlConstants.JSON_EXT;
 import static by.gsu.constants.UrlConstants.Rest.USERS_URL;
 
 import java.security.NoSuchAlgorithmException;
@@ -36,7 +37,7 @@ import by.gsu.utility.Validator;
 
 @RestController
 @RequestMapping(USERS_URL)
-public class UserRestController extends by.gsu.controller.rest.RestController {
+public class UserRestController {
 
     @Autowired
     private RoleServiceDAO roleService;

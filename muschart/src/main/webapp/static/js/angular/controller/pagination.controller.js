@@ -19,31 +19,31 @@ app.controller('PaginationController', ['$rootScope', '$state', 'STATE', 'Artist
 			case STATE.TRACKS:
 				setPagesCount(TrackFactory, callback);
 				break;
-			case GENRE_ARTISTS:
+			case STATE.GENRE_ARTISTS:
 				setEntityPagesCount(ArtistFactory, 'genre', $state.params.id, callback);
 				break;
-			case TRACK_ARTISTS:
+			case STATE.TRACK_ARTISTS:
 				setEntityPagesCount(ArtistFactory, 'track', $state.params.id, callback);
 				break;
-			case USER_ARTISTS:
+			case STATE.USER_ARTISTS:
 				setUserPagesCount(ArtistFactory, callback);
 				break;
-			case ARTIST_GENRES:
+			case STATE.ARTIST_GENRES:
 				setEntityPagesCount(GenreFactory, 'artist', $state.params.id, callback);
 				break;
-			case TRACK_GENRES:
+			case STATE.TRACK_GENRES:
 				setEntityPagesCount(GenreFactory, 'track', $state.params.id, callback);
 				break;
-			case USER_GENRES:
+			case STATE.USER_GENRES:
 				setUserPagesCount(GenreFactory, callback);
 				break;
-			case ARTIST_TRACKS:
+			case STATE.ARTIST_TRACKS:
 				setEntityPagesCount(TrackFactory, 'artist', $state.params.id, callback);
 				break;
-			case GENRE_TRACKS:
+			case STATE.GENRE_TRACKS:
 				setEntityPagesCount(TrackFactory, 'genre', $state.params.id, callback);
 				break;
-			case USER_TRACKS:
+			case STATE.USER_TRACKS:
 				setUserPagesCount(TrackFactory, callback);
 				break;
 		}

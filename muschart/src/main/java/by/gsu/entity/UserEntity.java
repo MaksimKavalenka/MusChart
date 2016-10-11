@@ -72,6 +72,18 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         this(true, true, true, true, login, password, roles);
     }
 
+    public UserEntity(final String login, final String password, final List<GrantedAuthority> roles,
+            final List<TrackEntity> tracks, final List<ArtistEntity> artists,
+            final List<GenreEntity> genres) {
+        this(true, true, true, true, login, password, roles, tracks, artists, genres);
+    }
+
+    public UserEntity(final long id, final String login, final String password,
+            final List<GrantedAuthority> roles, final List<TrackEntity> tracks,
+            final List<ArtistEntity> artists, final List<GenreEntity> genres) {
+        this(id, true, true, true, true, login, password, roles, tracks, artists, genres);
+    }
+
     public UserEntity(final boolean accountNonExpired, final boolean accountNonLocked,
             final boolean credentialsNonExpired, final boolean enabled, final String login,
             final String password, final List<GrantedAuthority> roles) {
@@ -83,6 +95,42 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         this.login = login;
         this.password = password;
         this.roles = roles;
+    }
+
+    public UserEntity(final boolean accountNonExpired, final boolean accountNonLocked,
+            final boolean credentialsNonExpired, final boolean enabled, final String login,
+            final String password, final List<GrantedAuthority> roles,
+            final List<TrackEntity> tracks, final List<ArtistEntity> artists,
+            final List<GenreEntity> genres) {
+        super();
+        this.accountNonExpired = accountNonExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.enabled = enabled;
+        this.login = login;
+        this.password = password;
+        this.roles = roles;
+        this.tracks = tracks;
+        this.artists = artists;
+        this.genres = genres;
+    }
+
+    public UserEntity(final long id, final boolean accountNonExpired,
+            final boolean accountNonLocked, final boolean credentialsNonExpired,
+            final boolean enabled, final String login, final String password,
+            final List<GrantedAuthority> roles, final List<TrackEntity> tracks,
+            final List<ArtistEntity> artists, final List<GenreEntity> genres) {
+        super(id);
+        this.accountNonExpired = accountNonExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.enabled = enabled;
+        this.login = login;
+        this.password = password;
+        this.roles = roles;
+        this.tracks = tracks;
+        this.artists = artists;
+        this.genres = genres;
     }
 
     @Override

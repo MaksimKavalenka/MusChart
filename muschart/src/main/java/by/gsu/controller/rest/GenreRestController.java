@@ -1,5 +1,6 @@
 package by.gsu.controller.rest;
 
+import static by.gsu.constants.UrlConstants.JSON_EXT;
 import static by.gsu.constants.UrlConstants.Rest.GENRES_URL;
 
 import java.util.List;
@@ -21,7 +22,7 @@ import by.gsu.utility.Secure;
 
 @RestController
 @RequestMapping(GENRES_URL)
-public class GenreRestController extends by.gsu.controller.rest.RestController {
+public class GenreRestController {
 
     @Autowired
     private GenreServiceDAO genreService;

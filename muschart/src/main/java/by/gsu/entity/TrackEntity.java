@@ -6,17 +6,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.ws.rs.DefaultValue;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,49 +21,45 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "track")
 public class TrackEntity extends AbstractEntity {
 
-    private static final long  serialVersionUID = 1952582684617860747L;
+    private static final long       serialVersionUID = 1952582684617860747L;
 
     @Column(name = "name", nullable = false, length = 255)
-    private String             name;
+    private String                  name;
 
     @Column(name = "song", nullable = false, length = 255)
-    private String             song;
+    private String                  song;
 
     @Column(name = "cover", nullable = false, length = 255)
-    private String             cover;
+    private String                  cover;
 
     @Column(name = "video", length = 255)
-    private String             video;
+    private String                  video;
 
     @Column(name = "released", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date               release;
+    private Date                    release;
 
     @Column(name = "rating", nullable = false)
     @DefaultValue(value = "0")
-    private long               rating;
-
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToMany(targetEntity = ArtistEntity.class, cascade = {CascadeType.DETACH})
-    @JoinTable(name = "track_artist", joinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false))
-    private List<ArtistEntity> artists;
-
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToMany(targetEntity = UnitEntity.class, cascade = {
-            CascadeType.DETACH}, fetch = FetchType.EAGER)
-    @JoinTable(name = "track_unit", joinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_unit", nullable = false, updatable = false))
-    private List<UnitEntity>   units;
+    private long                    rating;
 
     @JsonIgnore
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = {CascadeType.DETACH}, mappedBy = "artist")
+    private List<TrackArtistEntity> artistsOrder;
+
+    @JsonIgnore
+    @OneToMany(cascade = {CascadeType.DETACH}, mappedBy = "unit")
+    private List<TrackUnitEntity>   unitsOrder;
+
+    @JsonIgnore
     @ManyToMany(targetEntity = GenreEntity.class, cascade = {CascadeType.DETACH})
     @JoinTable(name = "track_genre", joinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false))
-    private List<GenreEntity>  genres;
+    private List<GenreEntity>       genres;
 
     @JsonIgnore
     @ManyToMany(targetEntity = UserEntity.class, cascade = {CascadeType.DETACH})
     @JoinTable(name = "user_track", joinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false))
-    private List<UserEntity>   users;
+    private List<UserEntity>        users;
 
     public TrackEntity() {
         super();
@@ -83,17 +76,37 @@ public class TrackEntity extends AbstractEntity {
     }
 
     public TrackEntity(final String name, final String song, final String cover, final String video,
-            final Date release, final List<ArtistEntity> artists, final List<UnitEntity> units,
-            final List<GenreEntity> genres) {
+            final Date release, final long rating, final List<TrackArtistEntity> artistsOrder,
+            final List<TrackUnitEntity> unitsOrder, final List<GenreEntity> genres,
+            final List<UserEntity> users) {
         super();
         this.name = name;
         this.song = song;
         this.cover = cover;
         this.video = video;
         this.release = release;
-        this.artists = artists;
-        this.units = units;
+        this.rating = rating;
+        this.artistsOrder = artistsOrder;
+        this.unitsOrder = unitsOrder;
         this.genres = genres;
+        this.users = users;
+    }
+
+    public TrackEntity(final long id, final String name, final String song, final String cover,
+            final String video, final Date release, final long rating,
+            final List<TrackArtistEntity> artistsOrder, final List<TrackUnitEntity> unitsOrder,
+            final List<GenreEntity> genres, final List<UserEntity> users) {
+        super(id);
+        this.name = name;
+        this.song = song;
+        this.cover = cover;
+        this.video = video;
+        this.release = release;
+        this.rating = rating;
+        this.artistsOrder = artistsOrder;
+        this.unitsOrder = unitsOrder;
+        this.genres = genres;
+        this.users = users;
     }
 
     public String getName() {
@@ -144,20 +157,20 @@ public class TrackEntity extends AbstractEntity {
         this.rating = rating;
     }
 
-    public List<ArtistEntity> getArtists() {
-        return artists;
+    public List<TrackArtistEntity> getArtistsOrder() {
+        return artistsOrder;
     }
 
-    public void setArtists(final List<ArtistEntity> artists) {
-        this.artists = artists;
+    public void setArtistsOrder(final List<TrackArtistEntity> artistsOrder) {
+        this.artistsOrder = artistsOrder;
     }
 
-    public List<UnitEntity> getUnits() {
-        return units;
+    public List<TrackUnitEntity> getUnitsOrder() {
+        return unitsOrder;
     }
 
-    public void setUnits(final List<UnitEntity> units) {
-        this.units = units;
+    public void setUnitsOrder(final List<TrackUnitEntity> unitsOrder) {
+        this.unitsOrder = unitsOrder;
     }
 
     public List<GenreEntity> getGenres() {

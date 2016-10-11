@@ -77,6 +77,43 @@ public abstract class EntityConstants {
 
             }
 
+            public static abstract class TrackArtist {
+
+                public static abstract class Artist {
+
+                    public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(
+                            DIRECTION, Structure.Entities.ARTIST + "." + Structure.ArtistFields.ID);
+
+                    public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(
+                            DIRECTION,
+                            Structure.Entities.ARTIST + "." + Structure.ArtistFields.NAME);
+
+                    public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(
+                            DIRECTION,
+                            Structure.Entities.ARTIST + "." + Structure.ArtistFields.RATING);
+
+                }
+
+                public static abstract class Track {
+
+                    public static final org.springframework.data.domain.Sort ID      = new org.springframework.data.domain.Sort(
+                            DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.ID);
+
+                    public static final org.springframework.data.domain.Sort NAME    = new org.springframework.data.domain.Sort(
+                            DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.NAME);
+
+                    public static final org.springframework.data.domain.Sort RATING  = new org.springframework.data.domain.Sort(
+                            DIRECTION,
+                            Structure.Entities.TRACK + "." + Structure.TrackFields.RATING);
+
+                    public static final org.springframework.data.domain.Sort RELEASE = new org.springframework.data.domain.Sort(
+                            DIRECTION,
+                            Structure.Entities.TRACK + "." + Structure.TrackFields.RELEASE);
+
+                }
+
+            }
+
         }
 
         public static abstract class Desc {
@@ -122,6 +159,43 @@ public abstract class EntityConstants {
 
                 public static final org.springframework.data.domain.Sort RELEASE = new org.springframework.data.domain.Sort(
                         DIRECTION, Structure.TrackFields.RELEASE);
+
+            }
+
+            public static abstract class TrackArtist {
+
+                public static abstract class Artist {
+
+                    public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(
+                            DIRECTION, Structure.Entities.ARTIST + "." + Structure.ArtistFields.ID);
+
+                    public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(
+                            DIRECTION,
+                            Structure.Entities.ARTIST + "." + Structure.ArtistFields.NAME);
+
+                    public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(
+                            DIRECTION,
+                            Structure.Entities.ARTIST + "." + Structure.ArtistFields.RATING);
+
+                }
+
+                public static abstract class Track {
+
+                    public static final org.springframework.data.domain.Sort ID      = new org.springframework.data.domain.Sort(
+                            DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.ID);
+
+                    public static final org.springframework.data.domain.Sort NAME    = new org.springframework.data.domain.Sort(
+                            DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.NAME);
+
+                    public static final org.springframework.data.domain.Sort RATING  = new org.springframework.data.domain.Sort(
+                            DIRECTION,
+                            Structure.Entities.TRACK + "." + Structure.TrackFields.RATING);
+
+                    public static final org.springframework.data.domain.Sort RELEASE = new org.springframework.data.domain.Sort(
+                            DIRECTION,
+                            Structure.Entities.TRACK + "." + Structure.TrackFields.RELEASE);
+
+                }
 
             }
 
@@ -196,16 +270,6 @@ public abstract class EntityConstants {
             public static final String ID       = AbstractFields.ID;
             public static final String LOGIN    = "login";
             public static final String PASSWORD = "password";
-
-        }
-
-        public abstract static class RelationFields {
-
-            public static final String ARTISTS = "artists";
-            public static final String GENRES  = "genres";
-            public static final String TRACKS  = "tracks";
-            public static final String UNITS   = "units";
-            public static final String USERS   = "users";
 
         }
 

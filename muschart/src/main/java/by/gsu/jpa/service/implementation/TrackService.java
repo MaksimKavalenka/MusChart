@@ -1,6 +1,5 @@
 package by.gsu.jpa.service.implementation;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,14 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import by.gsu.bean.IdAndNameEntity;
 import by.gsu.entity.TrackEntity;
+import by.gsu.jpa.repository.TrackArtistRepository;
 import by.gsu.jpa.repository.TrackRepository;
 import by.gsu.jpa.service.dao.TrackServiceDAO;
 import by.gsu.utility.JpaHelper;
+import by.gsu.utility.Parser;
 
 public class TrackService implements TrackServiceDAO {
 
     @Autowired
-    private TrackRepository repository;
+    private TrackRepository       repository;
+    @Autowired
+    private TrackArtistRepository trackArtistRepository;
 
     @Override
     public TrackEntity createTrack(final String name, final String song, final String cover,
@@ -67,8 +70,8 @@ public class TrackService implements TrackServiceDAO {
     @Override
     public List<TrackEntity> getArtistTracks(final long artistId, final int sort,
             final boolean order, final int page) {
-        return repository.findByArtistsId(artistId,
-                JpaHelper.TRACK.getPageRequest(sort, order, page));
+        return trackArtistRepository.getArtistTracks(artistId,
+                JpaHelper.TRACK_ARTIST_TRACK.getPageRequest(sort, order, page));
     }
 
     @Override
@@ -86,14 +89,7 @@ public class TrackService implements TrackServiceDAO {
 
     @Override
     public List<IdAndNameEntity> getAllTracksIdAndName() {
-        List<Object[]> objectsArray = repository.getAllTracksIdAndName();
-        List<IdAndNameEntity> idAndNameEntities = new ArrayList<>(objectsArray.size());
-        for (Object[] object : objectsArray) {
-            IdAndNameEntity trackIdAndName = new IdAndNameEntity((Long) object[0],
-                    (String) object[1]);
-            idAndNameEntities.add(trackIdAndName);
-        }
-        return idAndNameEntities;
+        return Parser.parseObjectsToIdAndNameEntities(repository.getAllTracksIdAndName());
     }
 
     @Override
@@ -103,7 +99,7 @@ public class TrackService implements TrackServiceDAO {
 
     @Override
     public int getArtistTracksPagesCount(final long artistId) {
-        return JpaHelper.TRACK.getPagesCount(repository.countByArtistsId(artistId));
+        return JpaHelper.TRACK.getPagesCount(trackArtistRepository.getArtistTracksCount(artistId));
     }
 
     @Override

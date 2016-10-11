@@ -8,4 +8,6 @@ public interface RoleServiceDAO {
 
     RoleEntity getRoleByName(String name);
 
+    boolean checkRoleName(String name);
+
 }

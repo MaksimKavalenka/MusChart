@@ -3,6 +3,7 @@ package by.gsu.controller.rest;
 import static by.gsu.constants.MessageConstants.UPLOAD_FILE_ERROR;
 import static by.gsu.constants.UploadConstants.Path.*;
 import static by.gsu.constants.UploadConstants.Type.*;
+import static by.gsu.constants.UrlConstants.JSON_EXT;
 import static by.gsu.constants.UrlConstants.Rest.UPLOAD_URL;
 
 import java.io.File;
@@ -29,7 +30,7 @@ import by.gsu.exception.ValidationException;
 @Controller
 @MultipartConfig
 @RequestMapping(UPLOAD_URL)
-public class UploadRestController extends RestController {
+public class UploadRestController {
 
     @RequestMapping(value = "/{type}" + JSON_EXT, method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Void> uploadFile(@PathVariable("type") final String type,

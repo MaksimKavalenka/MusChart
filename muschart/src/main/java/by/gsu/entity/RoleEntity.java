@@ -37,6 +37,18 @@ public class RoleEntity extends AbstractEntity implements GrantedAuthority {
         this.name = name;
     }
 
+    public RoleEntity(final String name, final List<UserEntity> users) {
+        super();
+        this.name = name;
+        this.users = users;
+    }
+
+    public RoleEntity(final long id, final String name, final List<UserEntity> users) {
+        super(id);
+        this.name = name;
+        this.users = users;
+    }
+
     public String getName() {
         return name;
     }

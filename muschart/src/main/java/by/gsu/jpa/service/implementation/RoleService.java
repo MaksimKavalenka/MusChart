@@ -22,4 +22,9 @@ public class RoleService implements RoleServiceDAO {
         return repository.findByName(name);
     }
 
+    @Override
+    public boolean checkRoleName(final String name) {
+        return repository.checkRoleName(name);
+    }
+
 }

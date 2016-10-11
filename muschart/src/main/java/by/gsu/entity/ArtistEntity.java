@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.ws.rs.DefaultValue;
 
@@ -17,33 +18,31 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "artist")
 public class ArtistEntity extends AbstractEntity {
 
-    private static final long serialVersionUID = 4082508064669884035L;
+    private static final long       serialVersionUID = 4082508064669884035L;
 
     @Column(name = "name", nullable = false, length = 255)
-    private String            name;
+    private String                  name;
 
     @Column(name = "photo", nullable = false, length = 255)
-    private String            photo;
+    private String                  photo;
 
     @Column(name = "rating", nullable = false)
     @DefaultValue(value = "0")
-    private long              rating;
+    private long                    rating;
 
     @JsonIgnore
-    @ManyToMany(targetEntity = TrackEntity.class, cascade = {CascadeType.DETACH,
-            CascadeType.REMOVE})
-    @JoinTable(name = "track_artist", joinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false))
-    private List<TrackEntity> tracks;
+    @OneToMany(cascade = {CascadeType.DETACH}, mappedBy = "track")
+    private List<TrackArtistEntity> tracksOrder;
 
     @JsonIgnore
     @ManyToMany(targetEntity = GenreEntity.class, cascade = {CascadeType.DETACH})
     @JoinTable(name = "artist_genre", joinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_genre", nullable = false, updatable = false))
-    private List<GenreEntity> genres;
+    private List<GenreEntity>       genres;
 
     @JsonIgnore
     @ManyToMany(targetEntity = UserEntity.class, cascade = {CascadeType.DETACH})
     @JoinTable(name = "user_artist", joinColumns = @JoinColumn(name = "id_artist", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false))
-    private List<UserEntity>  users;
+    private List<UserEntity>        users;
 
     public ArtistEntity() {
         super();
@@ -55,11 +54,28 @@ public class ArtistEntity extends AbstractEntity {
         this.photo = photo;
     }
 
-    public ArtistEntity(final String name, final String photo, final List<GenreEntity> genres) {
+    public ArtistEntity(final String name, final String photo, final long rating,
+            final List<TrackArtistEntity> tracksOrder, final List<GenreEntity> genres,
+            final List<UserEntity> users) {
         super();
         this.name = name;
         this.photo = photo;
+        this.rating = rating;
+        this.tracksOrder = tracksOrder;
         this.genres = genres;
+        this.users = users;
+    }
+
+    public ArtistEntity(final long id, final String name, final String photo, final long rating,
+            final List<TrackArtistEntity> tracksOrder, final List<GenreEntity> genres,
+            final List<UserEntity> users) {
+        super(id);
+        this.name = name;
+        this.photo = photo;
+        this.rating = rating;
+        this.tracksOrder = tracksOrder;
+        this.genres = genres;
+        this.users = users;
     }
 
     public String getName() {
@@ -86,12 +102,12 @@ public class ArtistEntity extends AbstractEntity {
         this.rating = rating;
     }
 
-    public List<TrackEntity> getTracks() {
-        return tracks;
+    public List<TrackArtistEntity> getTracksOrder() {
+        return tracksOrder;
     }
 
-    public void setTracks(final List<TrackEntity> tracks) {
-        this.tracks = tracks;
+    public void setTracksOrder(final List<TrackArtistEntity> tracksOrder) {
+        this.tracksOrder = tracksOrder;
     }
 
     public List<GenreEntity> getGenres() {

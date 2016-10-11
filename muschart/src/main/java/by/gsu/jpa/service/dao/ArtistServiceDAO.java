@@ -25,6 +25,8 @@ public interface ArtistServiceDAO {
 
     List<IdAndNameEntity> getAllArtistsIdAndName();
 
+    List<IdAndNameEntity> getTrackArtistsIdAndName(long trackId);
+
     int getArtistsPagesCount();
 
     int getGenreArtistsPagesCount(long genreId);

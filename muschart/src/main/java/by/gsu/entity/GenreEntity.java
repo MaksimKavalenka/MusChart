@@ -50,6 +50,27 @@ public class GenreEntity extends AbstractEntity {
         this.name = name;
     }
 
+    public GenreEntity(final String name, final long rating, final List<TrackEntity> tracks,
+            final List<ArtistEntity> artists, final List<UserEntity> users) {
+        super();
+        this.name = name;
+        this.rating = rating;
+        this.tracks = tracks;
+        this.artists = artists;
+        this.users = users;
+    }
+
+    public GenreEntity(final long id, final String name, final long rating,
+            final List<TrackEntity> tracks, final List<ArtistEntity> artists,
+            final List<UserEntity> users) {
+        super(id);
+        this.name = name;
+        this.rating = rating;
+        this.tracks = tracks;
+        this.artists = artists;
+        this.users = users;
+    }
+
     public String getName() {
         return name;
     }

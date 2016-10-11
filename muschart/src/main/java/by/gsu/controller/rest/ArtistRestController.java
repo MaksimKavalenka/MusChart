@@ -1,12 +1,12 @@
 package by.gsu.controller.rest;
 
+import static by.gsu.constants.UrlConstants.JSON_EXT;
 import static by.gsu.constants.UrlConstants.Rest.ARTISTS_URL;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +17,12 @@ import by.gsu.bean.IdAndNameEntity;
 import by.gsu.constants.EntityConstants.Structure.Entities;
 import by.gsu.entity.ArtistEntity;
 import by.gsu.jpa.service.dao.ArtistServiceDAO;
+import by.gsu.utility.Parser;
 import by.gsu.utility.Secure;
 
 @RestController
 @RequestMapping(ARTISTS_URL)
-public class ArtistRestController extends by.gsu.controller.rest.RestController {
+public class ArtistRestController {
 
     @Autowired
     private ArtistServiceDAO artistService;
@@ -31,7 +32,8 @@ public class ArtistRestController extends by.gsu.controller.rest.RestController 
     public ResponseEntity<ArtistEntity> createArtist(@PathVariable("name") final String name,
             @PathVariable("photo") final String photo,
             @PathVariable("genres") final String genres) {
-        ArtistEntity artist = artistService.createArtist(name, photo, getIds(genres));
+        ArtistEntity artist = artistService.createArtist(name, photo,
+                Parser.getIdsFromJson(genres));
         return new ResponseEntity<ArtistEntity>(artist, HttpStatus.CREATED);
     }
 
@@ -41,8 +43,7 @@ public class ArtistRestController extends by.gsu.controller.rest.RestController 
         return new ResponseEntity<ArtistEntity>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/{id}"
-            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}" + JSON_EXT, method = RequestMethod.GET)
     public ResponseEntity<ArtistEntity> getArtistById(@PathVariable("id") final long id) {
         ArtistEntity artist = artistService.getArtistById(id);
         if (artist == null) {

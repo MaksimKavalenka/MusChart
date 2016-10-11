@@ -1,6 +1,5 @@
 package by.gsu.jpa.service.implementation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import by.gsu.bean.IdAndNameEntity;
 import by.gsu.entity.ArtistEntity;
 import by.gsu.jpa.repository.ArtistRepository;
+import by.gsu.jpa.repository.TrackArtistRepository;
 import by.gsu.jpa.service.dao.ArtistServiceDAO;
 import by.gsu.utility.JpaHelper;
+import by.gsu.utility.Parser;
 
 public class ArtistService implements ArtistServiceDAO {
 
     @Autowired
-    private ArtistRepository repository;
+    private ArtistRepository      repository;
+    @Autowired
+    private TrackArtistRepository trackArtistRepository;
 
     @Override
     public ArtistEntity createArtist(final String name, final String photo,
@@ -57,8 +60,8 @@ public class ArtistService implements ArtistServiceDAO {
     @Override
     public List<ArtistEntity> getTrackArtists(final long trackId, final int sort,
             final boolean order, final int page) {
-        return repository.findByTracksId(trackId,
-                JpaHelper.ARTIST.getPageRequest(sort, order, page));
+        return trackArtistRepository.getTrackArtists(trackId,
+                JpaHelper.TRACK_ARTIST_ARTIST.getPageRequest(sort, order, page));
     }
 
     @Override
@@ -69,14 +72,12 @@ public class ArtistService implements ArtistServiceDAO {
 
     @Override
     public List<IdAndNameEntity> getAllArtistsIdAndName() {
-        List<Object[]> objectsArray = repository.getAllArtistsIdAndName();
-        List<IdAndNameEntity> idAndNameEntities = new ArrayList<>(objectsArray.size());
-        for (Object[] object : objectsArray) {
-            IdAndNameEntity artistIdAndName = new IdAndNameEntity((Long) object[0],
-                    (String) object[1]);
-            idAndNameEntities.add(artistIdAndName);
-        }
-        return idAndNameEntities;
+        return Parser.parseObjectsToIdAndNameEntities(repository.getAllArtistsIdAndName());
+    }
+
+    @Override
+    public List<IdAndNameEntity> getTrackArtistsIdAndName(final long trackId) {
+        return Parser.parseObjectsToIdAndNameEntities(repository.getTrackArtistsIdAndName(trackId));
     }
 
     @Override
@@ -91,7 +92,7 @@ public class ArtistService implements ArtistServiceDAO {
 
     @Override
     public int getTrackArtistsPagesCount(final long trackId) {
-        return JpaHelper.ARTIST.getPagesCount(repository.countByTracksId(trackId));
+        return JpaHelper.ARTIST.getPagesCount(trackArtistRepository.getTrackArtistsCount(trackId));
     }
 
     @Override

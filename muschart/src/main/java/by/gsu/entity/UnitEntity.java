@@ -5,9 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,15 +14,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "unit")
 public class UnitEntity extends AbstractEntity {
 
-    private static final long serialVersionUID = -6324472595495881439L;
+    private static final long     serialVersionUID = -6324472595495881439L;
 
     @Column(name = "name", nullable = false, length = 255)
-    private String            name;
+    private String                name;
 
     @JsonIgnore
-    @ManyToMany(targetEntity = TrackEntity.class, cascade = {CascadeType.DETACH})
-    @JoinTable(name = "track_unit", joinColumns = @JoinColumn(name = "id_unit", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "id_track", nullable = false, updatable = false))
-    private List<TrackEntity> tracks;
+    @OneToMany(cascade = {CascadeType.DETACH}, mappedBy = "track")
+    private List<TrackUnitEntity> tracksOrder;
 
     public UnitEntity() {
         super();
@@ -35,6 +32,18 @@ public class UnitEntity extends AbstractEntity {
         this.name = name;
     }
 
+    public UnitEntity(final String name, final List<TrackUnitEntity> tracksOrder) {
+        super();
+        this.name = name;
+        this.tracksOrder = tracksOrder;
+    }
+
+    public UnitEntity(final long id, final String name, final List<TrackUnitEntity> tracksOrder) {
+        super(id);
+        this.name = name;
+        this.tracksOrder = tracksOrder;
+    }
+
     public String getName() {
         return name;
     }
@@ -43,12 +52,12 @@ public class UnitEntity extends AbstractEntity {
         this.name = name;
     }
 
-    public List<TrackEntity> getTracks() {
-        return tracks;
+    public List<TrackUnitEntity> getTracksOrder() {
+        return tracksOrder;
     }
 
-    public void setTracks(final List<TrackEntity> tracks) {
-        this.tracks = tracks;
+    public void setTracksOrder(final List<TrackUnitEntity> tracksOrder) {
+        this.tracksOrder = tracksOrder;
     }
 
     @Override

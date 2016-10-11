@@ -1,13 +1,14 @@
 package by.gsu.controller.rest;
 
+import static by.gsu.constants.UrlConstants.JSON_EXT;
 import static by.gsu.constants.UrlConstants.Rest.TRACKS_URL;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,17 +16,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.gsu.bean.IdAndNameEntity;
+import by.gsu.bean.TrackInfo;
 import by.gsu.constants.EntityConstants.Structure.Entities;
 import by.gsu.entity.TrackEntity;
+import by.gsu.jpa.service.dao.ArtistServiceDAO;
 import by.gsu.jpa.service.dao.TrackServiceDAO;
+import by.gsu.jpa.service.dao.UnitServiceDAO;
+import by.gsu.utility.Parser;
 import by.gsu.utility.Secure;
 
 @RestController
 @RequestMapping(TRACKS_URL)
-public class TrackRestController extends by.gsu.controller.rest.RestController {
+public class TrackRestController {
 
     @Autowired
-    private TrackServiceDAO trackService;
+    private ArtistServiceDAO artistService;
+    @Autowired
+    private TrackServiceDAO  trackService;
+    @Autowired
+    private UnitServiceDAO   unitService;
 
     @RequestMapping(value = "/create/{name}/{song}/{cover}/{video}/{release}/{artists}/{units}/{genres}"
             + JSON_EXT, method = RequestMethod.POST)
@@ -36,7 +45,8 @@ public class TrackRestController extends by.gsu.controller.rest.RestController {
             @PathVariable("artists") final String artists,
             @PathVariable("genres") final String genres) {
         TrackEntity track = trackService.createTrack(name, song, cover, video, release,
-                getIds(artists), getIds(units), getIds(genres));
+                Parser.getIdsFromJson(artists), Parser.getIdsFromJson(units),
+                Parser.getIdsFromJson(genres));
         return new ResponseEntity<TrackEntity>(track, HttpStatus.CREATED);
     }
 
@@ -46,8 +56,7 @@ public class TrackRestController extends by.gsu.controller.rest.RestController {
         return new ResponseEntity<TrackEntity>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/{id}"
-            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}" + JSON_EXT, method = RequestMethod.GET)
     public ResponseEntity<TrackEntity> getTrackById(@PathVariable("id") final long id) {
         TrackEntity track = trackService.getTrackById(id);
         if (track == null) {
@@ -57,18 +66,25 @@ public class TrackRestController extends by.gsu.controller.rest.RestController {
     }
 
     @RequestMapping(value = "/{sort}/{order}/{page}" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<TrackEntity>> getTracks(@PathVariable("sort") final int sort,
+    public ResponseEntity<List<TrackInfo>> getTracks(@PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         List<TrackEntity> tracks = trackService.getTracks(sort, order, page);
         if (tracks == null) {
-            return new ResponseEntity<List<TrackEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<TrackInfo>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<TrackEntity>>(tracks, HttpStatus.OK);
+
+        List<TrackInfo> trackInfos = new ArrayList<>(tracks.size());
+        for (TrackEntity track : tracks) {
+            List<IdAndNameEntity> artists = artistService.getTrackArtistsIdAndName(track.getId());
+            List<IdAndNameEntity> units = unitService.getTrackUnitsIdAndName(track.getId());
+            trackInfos.add(new TrackInfo(track, artists, units));
+        }
+        return new ResponseEntity<List<TrackInfo>>(trackInfos, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{entity}/{entityId}/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<TrackEntity>> getEntityTracks(
+    public ResponseEntity<List<TrackInfo>> getEntityTracks(
             @PathVariable("entity") final String entity,
             @PathVariable("entityId") final long entityId, @PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
@@ -84,20 +100,34 @@ public class TrackRestController extends by.gsu.controller.rest.RestController {
                 break;
         }
         if (tracks == null) {
-            return new ResponseEntity<List<TrackEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<TrackInfo>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<TrackEntity>>(tracks, HttpStatus.OK);
+
+        List<TrackInfo> trackInfos = new ArrayList<>(tracks.size());
+        for (TrackEntity track : tracks) {
+            List<IdAndNameEntity> artists = artistService.getTrackArtistsIdAndName(track.getId());
+            List<IdAndNameEntity> units = unitService.getTrackUnitsIdAndName(track.getId());
+            trackInfos.add(new TrackInfo(track, artists, units));
+        }
+        return new ResponseEntity<List<TrackInfo>>(trackInfos, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/user/{sort}/{order}/{page}" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<TrackEntity>> getUserTracks(@PathVariable("sort") final int sort,
+    public ResponseEntity<List<TrackInfo>> getUserTracks(@PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         List<TrackEntity> tracks = trackService.getUserTracks(Secure.getLoggedUser().getId(), sort,
                 order, page);
         if (tracks == null) {
-            return new ResponseEntity<List<TrackEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<TrackInfo>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<TrackEntity>>(tracks, HttpStatus.OK);
+
+        List<TrackInfo> trackInfos = new ArrayList<>(tracks.size());
+        for (TrackEntity track : tracks) {
+            List<IdAndNameEntity> artists = artistService.getTrackArtistsIdAndName(track.getId());
+            List<IdAndNameEntity> units = unitService.getTrackUnitsIdAndName(track.getId());
+            trackInfos.add(new TrackInfo(track, artists, units));
+        }
+        return new ResponseEntity<List<TrackInfo>>(trackInfos, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/all/id_name" + JSON_EXT, method = RequestMethod.GET)

@@ -2,6 +2,7 @@ package by.gsu.constants;
 
 public abstract class UrlConstants {
 
+    public static final String JSON_EXT = ".json";
     public static final String ID_KEY   = "/{id:[0-9]{1,}}";
     public static final String PAGE_KEY = "/{page:[0-9]{1,}}";
 

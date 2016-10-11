@@ -7,8 +7,14 @@ import by.gsu.entity.UnitEntity;
 
 public interface UnitServiceDAO {
 
+    UnitEntity createUnit(String name);
+
     UnitEntity getUnitById(long id);
 
     List<IdAndNameEntity> getAllUnitsIdAndName();
+
+    List<IdAndNameEntity> getTrackUnitsIdAndName(long trackId);
+
+    boolean checkUnitName(String name);
 
 }

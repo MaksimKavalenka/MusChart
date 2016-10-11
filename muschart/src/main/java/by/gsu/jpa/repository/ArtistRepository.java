@@ -22,19 +22,15 @@ public interface ArtistRepository extends CrudRepository<ArtistEntity, Long> {
 
     List<ArtistEntity> findByGenresId(long genreId, Pageable pageable);
 
-    List<ArtistEntity> findByTracksId(long trackId, Pageable pageable);
-
     List<ArtistEntity> findByUsersId(long userId, Pageable pageable);
 
     @Query("SELECT artist.id, artist.name FROM ArtistEntity artist")
     List<Object[]> getAllArtistsIdAndName();
 
-    @Query("SELECT artist.id, artist.name FROM ArtistEntity artist JOIN artist.tracks artistTracks WHERE artistTracks.id = ?1")
+    @Query("SELECT artist.id, artist.name FROM TrackArtistEntity trackArtist JOIN trackArtist.track track JOIN trackArtist.artist artist WHERE track.id = ?1 ORDER BY trackArtist.id")
     List<Object[]> getTrackArtistsIdAndName(long trackId);
 
     long countByGenresId(long genreId);
-
-    long countByTracksId(long trackId);
 
     long countByUsersId(long userId);
 

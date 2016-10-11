@@ -2,7 +2,6 @@ package by.gsu.jpa.service.implementation;
 
 import static by.gsu.constants.MessageConstants.TAKEN_GENRE_ERROR;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import by.gsu.exception.ValidationException;
 import by.gsu.jpa.repository.GenreRepository;
 import by.gsu.jpa.service.dao.GenreServiceDAO;
 import by.gsu.utility.JpaHelper;
+import by.gsu.utility.Parser;
 
 public class GenreService implements GenreServiceDAO {
 
@@ -68,14 +68,7 @@ public class GenreService implements GenreServiceDAO {
 
     @Override
     public List<IdAndNameEntity> getAllGenresIdAndName() {
-        List<Object[]> objectsArray = repository.getAllGenresIdAndName();
-        List<IdAndNameEntity> idAndNameEntities = new ArrayList<>(objectsArray.size());
-        for (Object[] object : objectsArray) {
-            IdAndNameEntity genreIdAndName = new IdAndNameEntity((Long) object[0],
-                    (String) object[1]);
-            idAndNameEntities.add(genreIdAndName);
-        }
-        return idAndNameEntities;
+        return Parser.parseObjectsToIdAndNameEntities(repository.getAllGenresIdAndName());
     }
 
     @Override

@@ -30,16 +30,12 @@ public interface TrackRepository extends CrudRepository<TrackEntity, Long> {
     @Query("FROM TrackEntity")
     List<TrackEntity> findAll(Pageable pageable);
 
-    List<TrackEntity> findByArtistsId(long artistId, Pageable pageable);
-
     List<TrackEntity> findByGenresId(long genreId, Pageable pageable);
 
     List<TrackEntity> findByUsersId(long userId, Pageable pageable);
 
     @Query("SELECT track.id, track.name FROM TrackEntity track")
     List<Object[]> getAllTracksIdAndName();
-
-    long countByArtistsId(long artistId);
 
     long countByGenresId(long genreId);
 
