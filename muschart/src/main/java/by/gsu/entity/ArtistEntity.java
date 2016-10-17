@@ -128,8 +128,8 @@ public class ArtistEntity extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Artist [id=" + super.getId() + ", name=" + name + ", photo=" + photo + ", rating="
-                + rating + "]";
+        return getClass().getName() + "[id:" + super.getId() + ",name:" + name + ",photo:" + photo
+                + ",rating:" + rating + "]";
     }
 
 }

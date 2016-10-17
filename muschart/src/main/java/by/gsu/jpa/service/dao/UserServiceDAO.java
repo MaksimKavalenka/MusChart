@@ -20,6 +20,12 @@ public interface UserServiceDAO {
 
     void updateUserTracks(long userId, long trackId);
 
+    boolean isArtistLiked(long artistId);
+
+    boolean isGenreLiked(long genreId);
+
+    boolean isTrackLiked(long trackId);
+
     boolean checkLogin(String login);
 
 }

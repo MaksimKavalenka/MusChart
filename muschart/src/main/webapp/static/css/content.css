@@ -3,7 +3,7 @@
 	padding: 0;
 }
 .content li {
-	border: 2.5px solid #6699cc;
+	border: 2.5px solid #575757;
 	display: inline-block;
 	margin: 1px;
 	width: 306px;
@@ -59,19 +59,11 @@
 	text-align: center;
 	width: 61px;
 }
-.content li > .body > .body-link .link:hover,
-.content li > .body > .body-link .link:active {
-	border: 2.5px solid #575757;
-}
 .content li > .body > .body-link .link-empty {
 	cursor: auto;
 }
-.content li > .body > .body-link .link-empty:hover,
-.content li > .body > .body-link .link-empty:active {
-	border: 2.5px solid transparent;
-}
 .link {
-	border: 2.5px solid #575757;
+	border: 2.5px solid #6699cc;
 	font-weight: 600;
 	margin: 10px 0;
 	padding: 5px 0;

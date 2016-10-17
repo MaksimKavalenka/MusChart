@@ -1,7 +1,10 @@
 'use strict';
-app.factory('UserFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE, REST) {
+app.factory('UserFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', function($http, MESSAGE, REST, ValidatorService) {
 
 	function authentication(login, password, callback) {
+		if (!ValidatorService.allNotEmpty(callback, login, password)) {
+			return;
+		}
 		var headers = {authorization: "Basic " + btoa(login + ":" + password)};
 		$http.get(REST.USERS + '/auth' + REST.JSON_EXT, {'headers' : headers})
 		.success(function(response) {
@@ -24,6 +27,9 @@ app.factory('UserFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE,
 	}
 
 	function createUser(login, password, confirmPassword, callback) {
+		if (!ValidatorService.allNotEmpty(callback, login, password, confirmPassword)) {
+			return;
+		}
 		$http.post(REST.USERS + '/create/' + login + '/' + password + '/' + confirmPassword + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
@@ -48,18 +54,24 @@ app.factory('UserFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE,
 	}
 
 	function setUserLike(entity, entityId, callback) {
+		if (!ValidatorService.allNotEmpty(callback, entity, entityId)) {
+			return;
+		}
 		$http.post(REST.USERS + '/like/' + entity + '/' + entityId + REST.JSON_EXT)
 		.success(function(response) {
 			response = {success: true};
 			callback(response);
 		})
 		.error(function(response) {
-			response = {success: false, message: MESSAGE.UPDATING_USER_ERROR};
+			response = {success: false, message: response.message};
 			callback(response);
 		});
 	}
 
 	function checkLogin(login, callback) {
+		if (!ValidatorService.allNotEmpty(callback, login)) {
+			return;
+		}
 		$http.post(REST.USERS + '/check_login/' + login + REST.JSON_EXT)
 		.success(function(response) {
 			if (response) {
@@ -70,7 +82,7 @@ app.factory('UserFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE,
 			callback(response);
 		})
 		.error(function(response) {
-			response = {success: false, message: MESSAGE.GETTING_USER_ERROR};
+			response = {success: false, message: response.message};
 			callback(response);
 		});
 	}

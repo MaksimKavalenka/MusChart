@@ -55,7 +55,7 @@ public class ErrorMessage implements Serializable {
 
     @Override
     public String toString() {
-        return "ErrorMessage [message=" + message + "]";
+        return getClass().getName() + "[message:" + message + "]";
     }
 
 }

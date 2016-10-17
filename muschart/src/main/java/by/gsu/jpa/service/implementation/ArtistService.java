@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import by.gsu.bean.IdAndNameEntity;
+import by.gsu.bean.entity.IdAndNameEntity;
 import by.gsu.entity.ArtistEntity;
 import by.gsu.jpa.repository.ArtistRepository;
 import by.gsu.jpa.repository.TrackArtistRepository;

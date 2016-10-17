@@ -5,7 +5,7 @@
   <groupId>by.gsu</groupId>
   <artifactId>muschart</artifactId>
   <packaging>war</packaging>
-  <version>0.30.3</version>
+  <version>0.31</version>
 
   <name>Muschart</name>
 

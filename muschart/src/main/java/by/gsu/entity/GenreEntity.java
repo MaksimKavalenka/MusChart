@@ -113,7 +113,8 @@ public class GenreEntity extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Genre [id=" + super.getId() + ", name=" + name + ", rating=" + rating + "]";
+        return getClass().getName() + "[id:" + super.getId() + ",name:" + name + ",rating:" + rating
+                + "]";
     }
 
 }

@@ -51,8 +51,8 @@ public class TrackUnitEntity extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "TrackUnit [id=" + super.getId() + "trackId=" + track.getId() + ", unitId="
-                + unit.getId() + "]";
+        return getClass().getName() + "[id:" + super.getId() + ",trackId:" + track.getId()
+                + ",unitId:" + unit.getId() + "]";
     }
 
 }

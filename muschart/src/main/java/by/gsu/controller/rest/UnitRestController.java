@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import by.gsu.bean.IdAndNameEntity;
+import by.gsu.bean.entity.IdAndNameEntity;
 import by.gsu.jpa.service.dao.UnitServiceDAO;
 
 @RestController

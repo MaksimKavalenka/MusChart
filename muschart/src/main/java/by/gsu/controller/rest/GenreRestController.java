@@ -3,6 +3,7 @@ package by.gsu.controller.rest;
 import static by.gsu.constants.UrlConstants.JSON_EXT;
 import static by.gsu.constants.UrlConstants.Rest.GENRES_URL;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import by.gsu.bean.IdAndNameEntity;
+import by.gsu.bean.entity.GenreInfoEntity;
+import by.gsu.bean.entity.IdAndNameEntity;
 import by.gsu.constants.EntityConstants.Structure.Entities;
 import by.gsu.entity.GenreEntity;
 import by.gsu.exception.ValidationException;
 import by.gsu.jpa.service.dao.GenreServiceDAO;
+import by.gsu.jpa.service.dao.UserServiceDAO;
 import by.gsu.utility.Secure;
 
 @RestController
@@ -26,6 +29,8 @@ public class GenreRestController {
 
     @Autowired
     private GenreServiceDAO genreService;
+    @Autowired
+    private UserServiceDAO  userService;
 
     @RequestMapping(value = "/create/{name}" + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<GenreEntity> createArtist(@PathVariable("name") final String name) {
@@ -53,18 +58,24 @@ public class GenreRestController {
     }
 
     @RequestMapping(value = "/{sort}/{order}/{page}" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<GenreEntity>> getGenres(@PathVariable("sort") final int sort,
+    public ResponseEntity<List<GenreInfoEntity>> getGenres(@PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         List<GenreEntity> genres = genreService.getGenres(sort, order, page);
         if (genres == null) {
-            return new ResponseEntity<List<GenreEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<GenreInfoEntity>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<GenreEntity>>(genres, HttpStatus.OK);
+
+        List<GenreInfoEntity> genreInfoEntities = new ArrayList<>(genres.size());
+        for (GenreEntity genre : genres) {
+            boolean isLiked = userService.isGenreLiked(genre.getId());
+            genreInfoEntities.add(new GenreInfoEntity(genre, isLiked));
+        }
+        return new ResponseEntity<List<GenreInfoEntity>>(genreInfoEntities, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{entity}/{entityId}/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<GenreEntity>> getEntityGenres(
+    public ResponseEntity<List<GenreInfoEntity>> getEntityGenres(
             @PathVariable("entity") final String entity,
             @PathVariable("entityId") final long entityId, @PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
@@ -80,20 +91,32 @@ public class GenreRestController {
                 break;
         }
         if (genres == null) {
-            return new ResponseEntity<List<GenreEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<GenreInfoEntity>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<GenreEntity>>(genres, HttpStatus.OK);
+
+        List<GenreInfoEntity> genreInfoEntities = new ArrayList<>(genres.size());
+        for (GenreEntity genre : genres) {
+            boolean isLiked = userService.isGenreLiked(genre.getId());
+            genreInfoEntities.add(new GenreInfoEntity(genre, isLiked));
+        }
+        return new ResponseEntity<List<GenreInfoEntity>>(genreInfoEntities, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/user/{sort}/{order}/{page}" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<GenreEntity>> getUserGenres(@PathVariable("sort") final int sort,
+    public ResponseEntity<List<GenreInfoEntity>> getUserGenres(@PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         List<GenreEntity> genres = genreService.getUserGenres(Secure.getLoggedUser().getId(), sort,
                 order, page);
         if (genres == null) {
-            return new ResponseEntity<List<GenreEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<GenreInfoEntity>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<GenreEntity>>(genres, HttpStatus.OK);
+
+        List<GenreInfoEntity> genreInfoEntities = new ArrayList<>(genres.size());
+        for (GenreEntity genre : genres) {
+            boolean isLiked = userService.isGenreLiked(genre.getId());
+            genreInfoEntities.add(new GenreInfoEntity(genre, isLiked));
+        }
+        return new ResponseEntity<List<GenreInfoEntity>>(genreInfoEntities, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/all/id_name" + JSON_EXT, method = RequestMethod.GET)
@@ -131,9 +154,7 @@ public class GenreRestController {
     }
 
     @RequestMapping(value = "/user/pages_count" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<Integer> getUserGenresPagesCount(
-            @PathVariable("entity") final String entity,
-            @PathVariable("entityId") final long entityId) {
+    public ResponseEntity<Integer> getUserGenresPagesCount() {
         int pagesCount = genreService.getUserGenresPagesCount(Secure.getLoggedUser().getId());
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);
     }

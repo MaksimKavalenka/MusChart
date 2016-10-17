@@ -2,7 +2,7 @@ package by.gsu.jpa.service.dao;
 
 import java.util.List;
 
-import by.gsu.bean.IdAndNameEntity;
+import by.gsu.bean.entity.IdAndNameEntity;
 import by.gsu.entity.GenreEntity;
 import by.gsu.exception.ValidationException;
 

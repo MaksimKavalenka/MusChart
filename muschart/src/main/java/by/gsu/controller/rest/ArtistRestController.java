@@ -3,6 +3,7 @@ package by.gsu.controller.rest;
 import static by.gsu.constants.UrlConstants.JSON_EXT;
 import static by.gsu.constants.UrlConstants.Rest.ARTISTS_URL;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import by.gsu.bean.IdAndNameEntity;
+import by.gsu.bean.entity.ArtistInfoEntity;
+import by.gsu.bean.entity.IdAndNameEntity;
 import by.gsu.constants.EntityConstants.Structure.Entities;
 import by.gsu.entity.ArtistEntity;
 import by.gsu.jpa.service.dao.ArtistServiceDAO;
+import by.gsu.jpa.service.dao.UserServiceDAO;
 import by.gsu.utility.Parser;
 import by.gsu.utility.Secure;
 
@@ -26,6 +29,8 @@ public class ArtistRestController {
 
     @Autowired
     private ArtistServiceDAO artistService;
+    @Autowired
+    private UserServiceDAO   userService;
 
     @RequestMapping(value = "/create/{name}/{photo}/{genres}"
             + JSON_EXT, method = RequestMethod.POST)
@@ -53,18 +58,24 @@ public class ArtistRestController {
     }
 
     @RequestMapping(value = "/{sort}/{order}/{page}" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<ArtistEntity>> getArtists(@PathVariable("sort") final int sort,
+    public ResponseEntity<List<ArtistInfoEntity>> getArtists(@PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         List<ArtistEntity> artists = artistService.getArtists(sort, order, page);
         if (artists == null) {
-            return new ResponseEntity<List<ArtistEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<ArtistInfoEntity>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<ArtistEntity>>(artists, HttpStatus.OK);
+
+        List<ArtistInfoEntity> artistInfoEntities = new ArrayList<>(artists.size());
+        for (ArtistEntity artist : artists) {
+            boolean isLiked = userService.isArtistLiked(artist.getId());
+            artistInfoEntities.add(new ArtistInfoEntity(artist, isLiked));
+        }
+        return new ResponseEntity<List<ArtistInfoEntity>>(artistInfoEntities, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{entity}/{entityId}/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<ArtistEntity>> getEntityArtists(
+    public ResponseEntity<List<ArtistInfoEntity>> getEntityArtists(
             @PathVariable("entity") final String entity,
             @PathVariable("entityId") final long entityId, @PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
@@ -80,20 +91,33 @@ public class ArtistRestController {
                 break;
         }
         if (artists == null) {
-            return new ResponseEntity<List<ArtistEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<ArtistInfoEntity>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<ArtistEntity>>(artists, HttpStatus.OK);
+
+        List<ArtistInfoEntity> artistInfoEntities = new ArrayList<>(artists.size());
+        for (ArtistEntity artist : artists) {
+            boolean isLiked = userService.isArtistLiked(artist.getId());
+            artistInfoEntities.add(new ArtistInfoEntity(artist, isLiked));
+        }
+        return new ResponseEntity<List<ArtistInfoEntity>>(artistInfoEntities, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/user/{sort}/{order}/{page}" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<ArtistEntity>> getUserArtists(@PathVariable("sort") final int sort,
-            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
+    public ResponseEntity<List<ArtistInfoEntity>> getUserArtists(
+            @PathVariable("sort") final int sort, @PathVariable("order") final boolean order,
+            @PathVariable("page") final int page) {
         List<ArtistEntity> artists = artistService.getUserArtists(Secure.getLoggedUser().getId(),
                 sort, order, page);
         if (artists == null) {
-            return new ResponseEntity<List<ArtistEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<ArtistInfoEntity>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<ArtistEntity>>(artists, HttpStatus.OK);
+
+        List<ArtistInfoEntity> artistInfoEntities = new ArrayList<>(artists.size());
+        for (ArtistEntity artist : artists) {
+            boolean isLiked = userService.isArtistLiked(artist.getId());
+            artistInfoEntities.add(new ArtistInfoEntity(artist, isLiked));
+        }
+        return new ResponseEntity<List<ArtistInfoEntity>>(artistInfoEntities, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/all/id_name" + JSON_EXT, method = RequestMethod.GET)
@@ -131,9 +155,7 @@ public class ArtistRestController {
     }
 
     @RequestMapping(value = "/user/pages_count" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<Integer> getUserArtistsPagesCount(
-            @PathVariable("entity") final String entity,
-            @PathVariable("entityId") final long entityId) {
+    public ResponseEntity<Integer> getUserArtistsPagesCount() {
         int pagesCount = artistService.getUserArtistsPagesCount(Secure.getLoggedUser().getId());
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);
     }

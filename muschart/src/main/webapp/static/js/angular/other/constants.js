@@ -46,7 +46,8 @@ app.constant('MESSAGE', (function() {
 		CREATING_TRACK_SUCCESS: 'Track ' + creatingSuccess,
 		DELETING_ARTIST_SUCCESS: 'Artist ' + deletingSuccess,
 		DELETING_GENRE_SUCCESS: 'Genre ' + deletingSuccess,
-		DELETING_TRACK_SUCCESS: 'Track ' + deletingSuccess
+		DELETING_TRACK_SUCCESS: 'Track ' + deletingSuccess,
+		VALIDATION_ERROR: 'All required attributes must be filled'
 	}
 })());
 

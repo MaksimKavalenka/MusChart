@@ -62,7 +62,7 @@ public class UnitEntity extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Unit [id=" + super.getId() + ", name=" + name + "]";
+        return getClass().getName() + "[id:" + super.getId() + ",name:" + name + "]";
     }
 
 }

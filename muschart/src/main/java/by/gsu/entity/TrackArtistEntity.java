@@ -51,8 +51,8 @@ public class TrackArtistEntity extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "TrackArtist [id=" + super.getId() + "trackId=" + track.getId() + ", artistId="
-                + artist.getId() + "]";
+        return getClass().getName() + "[id:" + super.getId() + ",trackId:" + track.getId()
+                + ",artistId:" + artist.getId() + "]";
     }
 
 }

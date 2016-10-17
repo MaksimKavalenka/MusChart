@@ -72,7 +72,7 @@ public class RoleEntity extends AbstractEntity implements GrantedAuthority {
 
     @Override
     public String toString() {
-        return "Role [id=" + super.getId() + ", name=" + name + "]";
+        return getClass().getName() + "[id:" + super.getId() + ",name:" + name + "]";
     }
 
 }

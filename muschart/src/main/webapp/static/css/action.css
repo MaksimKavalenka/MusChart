@@ -6,8 +6,18 @@
 	background-image: url('../img/action/like.svg');
 	background-repeat: no-repeat;
 }
-.action-like-active {
+.action-like:hover,
+.action-like:active {
 	background-image: url('../img/action/like-active.svg');
+	background-repeat: no-repeat;
+}
+.action-liked {
+	background-image: url('../img/action/liked.svg');
+	background-repeat: no-repeat;
+}
+.action-liked:hover,
+.action-liked:active {
+	background-image: url('../img/action/liked-active.svg');
 	background-repeat: no-repeat;
 }
 .action-next {
@@ -44,5 +54,10 @@
 }
 .action-youtube {
 	background-image: url('../img/action/youtube.svg');
+	background-repeat: no-repeat;
+}
+.action-youtube:hover,
+.action-youtube:active {
+	background-image: url('../img/action/youtube-active.svg');
 	background-repeat: no-repeat;
 }

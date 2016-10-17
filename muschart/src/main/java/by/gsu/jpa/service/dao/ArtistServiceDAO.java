@@ -2,7 +2,7 @@ package by.gsu.jpa.service.dao;
 
 import java.util.List;
 
-import by.gsu.bean.IdAndNameEntity;
+import by.gsu.bean.entity.IdAndNameEntity;
 import by.gsu.entity.ArtistEntity;
 
 public interface ArtistServiceDAO {

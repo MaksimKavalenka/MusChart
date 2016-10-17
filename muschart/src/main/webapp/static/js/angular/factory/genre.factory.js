@@ -1,7 +1,10 @@
 'use strict';
-app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE, REST) {
+app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', function($http, MESSAGE, REST, ValidatorService) {
 
 	function createGenre(name, callback) {
+		if (!ValidatorService.allNotEmpty(callback, name)) {
+			return;
+		}
 		$http.post(REST.GENRES + '/create/' + name + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response, message: MESSAGE.CREATING_GENRE_SUCCESS};
@@ -14,6 +17,9 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 	}
 
 	function deleteGenre(id, callback) {
+		if (!ValidatorService.allNotEmpty(callback, id)) {
+			return;
+		}
 		$http.delete(REST.GENRES + '/delete/' + id + REST.JSON_EXT)
 		.success(function(response) {
 			response = {success: true, message: MESSAGE.DELETING_GENRE_SUCCESS};
@@ -26,6 +32,9 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 	}
 
 	function getGenreById(id, callback) {
+		if (!ValidatorService.allNotEmpty(callback, id)) {
+			return;
+		}
 		$http.get(REST.GENRES + '/' + id + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
@@ -38,6 +47,9 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 	}
 
 	function getGenres(sort, order, page, callback) {
+		if (!ValidatorService.allNotEmpty(callback, sort, order, page)) {
+			return;
+		}
 		$http.get(REST.GENRES + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
@@ -50,6 +62,9 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 	}
 
 	function getEntityGenres(entity, entityId, sort, order, page, callback) {
+		if (!ValidatorService.allNotEmpty(callback, entity, entityId, sort, order, page)) {
+			return;
+		}
 		$http.get(REST.GENRES + '/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
@@ -62,6 +77,9 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 	}
 
 	function getUserGenres(sort, order, page, callback) {
+		if (!ValidatorService.allNotEmpty(callback, sort, order, page)) {
+			return;
+		}
 		$http.get(REST.GENRES + '/user/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
@@ -98,6 +116,9 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE
 	}
 
 	function getEntityPagesCount(entity, entityId, callback) {
+		if (!ValidatorService.allNotEmpty(callback, entity, entityId)) {
+			return;
+		}
 		$http.get(REST.GENRES + '/' + entity + '/' + entityId + '/pages_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};

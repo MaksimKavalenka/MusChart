@@ -7,7 +7,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import by.gsu.bean.IdAndNameEntity;
+import by.gsu.bean.entity.IdAndNameEntity;
 import by.gsu.constants.EntityConstants.Structure.AbstractFields;
 
 public abstract class Parser {

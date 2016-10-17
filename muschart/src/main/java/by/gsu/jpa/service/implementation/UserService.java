@@ -63,6 +63,21 @@ public class UserService implements UserServiceDAO {
     }
 
     @Override
+    public boolean isArtistLiked(final long artistId) {
+        return repository.isArtistLiked(artistId);
+    }
+
+    @Override
+    public boolean isGenreLiked(final long genreId) {
+        return repository.isGenreLiked(genreId);
+    }
+
+    @Override
+    public boolean isTrackLiked(final long trackId) {
+        return repository.isTrackLiked(trackId);
+    }
+
+    @Override
     public boolean checkLogin(final String login) {
         return repository.checkLogin(login);
     }

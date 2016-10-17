@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import by.gsu.bean.IdAndNameEntity;
-import by.gsu.bean.TrackInfo;
+import by.gsu.bean.entity.IdAndNameEntity;
+import by.gsu.bean.entity.TrackInfoEntity;
 import by.gsu.constants.EntityConstants.Structure.Entities;
 import by.gsu.entity.TrackEntity;
 import by.gsu.jpa.service.dao.ArtistServiceDAO;
 import by.gsu.jpa.service.dao.TrackServiceDAO;
 import by.gsu.jpa.service.dao.UnitServiceDAO;
+import by.gsu.jpa.service.dao.UserServiceDAO;
 import by.gsu.utility.Parser;
 import by.gsu.utility.Secure;
 
@@ -35,6 +36,8 @@ public class TrackRestController {
     private TrackServiceDAO  trackService;
     @Autowired
     private UnitServiceDAO   unitService;
+    @Autowired
+    private UserServiceDAO   userService;
 
     @RequestMapping(value = "/create/{name}/{song}/{cover}/{video}/{release}/{artists}/{units}/{genres}"
             + JSON_EXT, method = RequestMethod.POST)
@@ -66,25 +69,26 @@ public class TrackRestController {
     }
 
     @RequestMapping(value = "/{sort}/{order}/{page}" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<TrackInfo>> getTracks(@PathVariable("sort") final int sort,
+    public ResponseEntity<List<TrackInfoEntity>> getTracks(@PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         List<TrackEntity> tracks = trackService.getTracks(sort, order, page);
         if (tracks == null) {
-            return new ResponseEntity<List<TrackInfo>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<TrackInfoEntity>>(HttpStatus.NO_CONTENT);
         }
 
-        List<TrackInfo> trackInfos = new ArrayList<>(tracks.size());
+        List<TrackInfoEntity> trackInfoEntities = new ArrayList<>(tracks.size());
         for (TrackEntity track : tracks) {
+            boolean isLiked = userService.isTrackLiked(track.getId());
             List<IdAndNameEntity> artists = artistService.getTrackArtistsIdAndName(track.getId());
             List<IdAndNameEntity> units = unitService.getTrackUnitsIdAndName(track.getId());
-            trackInfos.add(new TrackInfo(track, artists, units));
+            trackInfoEntities.add(new TrackInfoEntity(track, isLiked, artists, units));
         }
-        return new ResponseEntity<List<TrackInfo>>(trackInfos, HttpStatus.OK);
+        return new ResponseEntity<List<TrackInfoEntity>>(trackInfoEntities, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{entity}/{entityId}/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<TrackInfo>> getEntityTracks(
+    public ResponseEntity<List<TrackInfoEntity>> getEntityTracks(
             @PathVariable("entity") final String entity,
             @PathVariable("entityId") final long entityId, @PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
@@ -100,34 +104,36 @@ public class TrackRestController {
                 break;
         }
         if (tracks == null) {
-            return new ResponseEntity<List<TrackInfo>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<TrackInfoEntity>>(HttpStatus.NO_CONTENT);
         }
 
-        List<TrackInfo> trackInfos = new ArrayList<>(tracks.size());
+        List<TrackInfoEntity> trackInfoEntities = new ArrayList<>(tracks.size());
         for (TrackEntity track : tracks) {
+            boolean isLiked = userService.isTrackLiked(track.getId());
             List<IdAndNameEntity> artists = artistService.getTrackArtistsIdAndName(track.getId());
             List<IdAndNameEntity> units = unitService.getTrackUnitsIdAndName(track.getId());
-            trackInfos.add(new TrackInfo(track, artists, units));
+            trackInfoEntities.add(new TrackInfoEntity(track, isLiked, artists, units));
         }
-        return new ResponseEntity<List<TrackInfo>>(trackInfos, HttpStatus.OK);
+        return new ResponseEntity<List<TrackInfoEntity>>(trackInfoEntities, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/user/{sort}/{order}/{page}" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<TrackInfo>> getUserTracks(@PathVariable("sort") final int sort,
+    public ResponseEntity<List<TrackInfoEntity>> getUserTracks(@PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         List<TrackEntity> tracks = trackService.getUserTracks(Secure.getLoggedUser().getId(), sort,
                 order, page);
         if (tracks == null) {
-            return new ResponseEntity<List<TrackInfo>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<TrackInfoEntity>>(HttpStatus.NO_CONTENT);
         }
 
-        List<TrackInfo> trackInfos = new ArrayList<>(tracks.size());
+        List<TrackInfoEntity> trackInfoEntities = new ArrayList<>(tracks.size());
         for (TrackEntity track : tracks) {
+            boolean isLiked = userService.isTrackLiked(track.getId());
             List<IdAndNameEntity> artists = artistService.getTrackArtistsIdAndName(track.getId());
             List<IdAndNameEntity> units = unitService.getTrackUnitsIdAndName(track.getId());
-            trackInfos.add(new TrackInfo(track, artists, units));
+            trackInfoEntities.add(new TrackInfoEntity(track, isLiked, artists, units));
         }
-        return new ResponseEntity<List<TrackInfo>>(trackInfos, HttpStatus.OK);
+        return new ResponseEntity<List<TrackInfoEntity>>(trackInfoEntities, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/all/id_name" + JSON_EXT, method = RequestMethod.GET)
@@ -165,9 +171,7 @@ public class TrackRestController {
     }
 
     @RequestMapping(value = "/user/pages_count" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<Integer> getUserTracksPagesCount(
-            @PathVariable("entity") final String entity,
-            @PathVariable("entityId") final long entityId) {
+    public ResponseEntity<Integer> getUserTracksPagesCount() {
         int pagesCount = trackService.getUserTracksPagesCount(Secure.getLoggedUser().getId());
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);
     }

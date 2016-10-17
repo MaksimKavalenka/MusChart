@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import by.gsu.bean.IdAndNameEntity;
+import by.gsu.bean.entity.IdAndNameEntity;
 import by.gsu.entity.UnitEntity;
 import by.gsu.jpa.repository.UnitRepository;
 import by.gsu.jpa.service.dao.UnitServiceDAO;

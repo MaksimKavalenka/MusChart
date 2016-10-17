@@ -11,12 +11,13 @@
 			<img ng-src="/muschart/image/track/{{track.cover}}">
 			<div class="body-link">
 				<div class="link link-action action-play" ng-click="ctrl.playSong(track)"></div>
-				<div class="link link-action link-empty" ng-show="!track.video"></div>
-				<div class="link link-action action-youtube" ng-show="track.video" ng-click="showModal(track.video)"></div>
+				<div class="link link-action link-empty" ng-if="!track.video"></div>
+				<div class="link link-action action-youtube" ng-if="track.video" ng-click="showModal(track.video)"></div>
 				<div class="link link-action link-empty"></div>
 				<div class="link link-action link-empty"></div>
-				<div class="link link-action action-like" ui-sref="login" ng-show="!user"></div>
-				<div class="link link-action action-like" ng-controller="UserEditController as ctrl" ng-click="ctrl.like('track', track.id)" ng-show="user"></div>
+				<div class="link link-action action-like" ui-sref="login" ng-if="!user"></div>
+				<div class="link link-action action-like" ng-controller="UserEditController as ctrl" ng-click="ctrl.like('track', track.id)" ng-if="user && !track.liked"></div>
+				<div class="link link-action action-liked" ng-controller="UserEditController as ctrl" ng-click="ctrl.like('track', track.id)" ng-if="user && track.liked"></div>
 			</div>
 		</div>
 </ul>

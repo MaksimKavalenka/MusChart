@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import by.gsu.bean.IdAndNameEntity;
+import by.gsu.bean.entity.IdAndNameEntity;
 import by.gsu.entity.GenreEntity;
 import by.gsu.exception.ValidationException;
 import by.gsu.jpa.repository.GenreRepository;

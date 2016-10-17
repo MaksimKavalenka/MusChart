@@ -91,8 +91,13 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "/like/{entity}/{entityId}" + JSON_EXT, method = RequestMethod.POST)
-    public ResponseEntity<Void> setUserLike(@PathVariable("entity") final String entity,
+    public ResponseEntity<Object> setUserLike(@PathVariable("entity") final String entity,
             @PathVariable("entityId") final long entityId) {
+        if (!Validator.allNotNull(entity, entityId)) {
+            return new ResponseEntity<Object>(new ErrorMessage(VALIDATION_ERROR),
+                    HttpStatus.CONFLICT);
+        }
+
         switch (entity) {
             case Entities.ARTIST:
                 userService.updateUserArtists(Secure.getLoggedUser().getId(), entityId);
@@ -106,13 +111,18 @@ public class UserRestController {
             default:
                 break;
         }
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        return new ResponseEntity<Object>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/check_login/{login}" + JSON_EXT, method = RequestMethod.POST)
-    public ResponseEntity<Boolean> checkLogin(@PathVariable("login") final String login) {
+    public ResponseEntity<Object> checkLogin(@PathVariable("login") final String login) {
+        if (!Validator.allNotNull(login)) {
+            return new ResponseEntity<Object>(new ErrorMessage(VALIDATION_ERROR),
+                    HttpStatus.CONFLICT);
+        }
+
         boolean exists = userService.checkLogin(login);
-        return new ResponseEntity<Boolean>(exists, HttpStatus.OK);
+        return new ResponseEntity<Object>(exists, HttpStatus.OK);
     }
 
 }

@@ -14,7 +14,7 @@ public interface TrackRepository extends CrudRepository<TrackEntity, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO track_artist(id_track, id_artist) VALUES (?1, ?2)", nativeQuery = true)
+    @Query(value = "INSERT INTO track_artist(track_id, artist_id) VALUES (?1, ?2)", nativeQuery = true)
     void addArtistToTrack(long trackId, long artistId);
 
     @Modifying
@@ -24,7 +24,7 @@ public interface TrackRepository extends CrudRepository<TrackEntity, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO track_unit(id_track, id_unit) VALUES (?1, ?2)", nativeQuery = true)
+    @Query(value = "INSERT INTO track_unit(track_id, unit_id) VALUES (?1, ?2)", nativeQuery = true)
     void addUnitToTrack(long trackId, long unitId);
 
     @Query("FROM TrackEntity")
