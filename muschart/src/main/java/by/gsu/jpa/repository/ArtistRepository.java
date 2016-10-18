@@ -24,7 +24,7 @@ public interface ArtistRepository extends CrudRepository<ArtistEntity, Long> {
 
     List<ArtistEntity> findByUsersId(long userId, Pageable pageable);
 
-    @Query("SELECT artist.id, artist.name FROM ArtistEntity artist")
+    @Query("SELECT artist.id, artist.name FROM ArtistEntity artist ORDER BY artist.name ASC")
     List<Object[]> getAllArtistsIdAndName();
 
     @Query("SELECT artist.id, artist.name FROM TrackArtistEntity trackArtist JOIN trackArtist.track track JOIN trackArtist.artist artist WHERE track.id = ?1 ORDER BY trackArtist.id")

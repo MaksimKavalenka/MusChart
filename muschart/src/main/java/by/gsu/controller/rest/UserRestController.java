@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.gsu.bean.ErrorMessage;
+import by.gsu.bean.entity.UserInfoEntity;
 import by.gsu.constants.EntityConstants.Structure.Entities;
 import by.gsu.entity.UserEntity;
 import by.gsu.constants.RoleConstants;
@@ -46,15 +47,20 @@ public class UserRestController {
 
     @RequestMapping(value = "/auth"
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserEntity> authentication(final Principal principal) {
+    public ResponseEntity<UserInfoEntity> authentication(final Principal principal) {
         if (principal != null) {
             if (principal instanceof AbstractAuthenticationToken) {
                 UserEntity user = (UserEntity) ((AbstractAuthenticationToken) principal)
                         .getPrincipal();
-                return new ResponseEntity<UserEntity>(user, HttpStatus.OK);
+
+                UserInfoEntity userInfo = null;
+                if (user != null) {
+                    userInfo = new UserInfoEntity(user);
+                }
+                return new ResponseEntity<UserInfoEntity>(userInfo, HttpStatus.OK);
             }
         }
-        return new ResponseEntity<UserEntity>(HttpStatus.FORBIDDEN);
+        return new ResponseEntity<UserInfoEntity>(HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(value = "/logout" + JSON_EXT, method = RequestMethod.POST)
@@ -116,11 +122,6 @@ public class UserRestController {
 
     @RequestMapping(value = "/check_login/{login}" + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<Object> checkLogin(@PathVariable("login") final String login) {
-        if (!Validator.allNotNull(login)) {
-            return new ResponseEntity<Object>(new ErrorMessage(VALIDATION_ERROR),
-                    HttpStatus.CONFLICT);
-        }
-
         boolean exists = userService.checkLogin(login);
         return new ResponseEntity<Object>(exists, HttpStatus.OK);
     }

@@ -25,7 +25,10 @@ app.run(['$cookies', '$rootScope', '$state', 'STATE', 'UserFactory', 'CookieServ
 	UserFactory.getUser(function(response) {
 		if (response.success) {
 			if (response.data !== null) {
-				$rootScope.user = {id: response.data.id};
+				$rootScope.user = {
+					name: response.data.login,
+					admin: response.data.admin
+				};
 			} else {
 				$state.go(STATE.LOGIN);
 			}

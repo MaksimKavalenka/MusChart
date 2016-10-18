@@ -23,7 +23,9 @@ public class ArtistService implements ArtistServiceDAO {
     public ArtistEntity createArtist(final String name, final String photo,
             final List<Long> genresIds) {
         ArtistEntity artist = new ArtistEntity(name, photo);
-        artist = repository.save(artist);
+        synchronized (ArtistEntity.class) {
+            repository.save(artist);
+        }
         for (long genreId : genresIds) {
             addGenreToArtist(artist.getId(), genreId);
         }

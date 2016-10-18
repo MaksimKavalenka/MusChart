@@ -35,7 +35,7 @@ public class ArtistInfoEntity extends ArtistEntity {
     @Override
     public String toString() {
         return getClass().getName() + "[id:" + super.getId() + ",name:" + super.getName()
-                + ",photo:" + super.getPhoto() + ",rating:" + super.getRating() + ",isLiked:"
+                + ",photo:" + super.getPhoto() + ",rating:" + super.getRating() + ",liked:"
                 + isLiked + "]";
     }
 

@@ -63,7 +63,7 @@ public class TrackInfoEntity extends TrackEntity {
     public String toString() {
         return getClass().getName() + "[id:" + super.getId() + ",name:" + super.getName() + ",song:"
                 + super.getSong() + ",cover:" + super.getCover() + ",video:" + super.getVideo()
-                + ",release:" + super.getRelease() + ",rating:" + super.getRating() + ",isLiked:"
+                + ",release:" + super.getRelease() + ",rating:" + super.getRating() + ",liked:"
                 + isLiked + "]";
     }
 

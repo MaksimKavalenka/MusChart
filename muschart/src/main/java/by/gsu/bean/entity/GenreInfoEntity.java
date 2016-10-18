@@ -34,7 +34,7 @@ public class GenreInfoEntity extends GenreEntity {
     @Override
     public String toString() {
         return getClass().getName() + "[id:" + super.getId() + ",name:" + super.getName()
-                + ",rating:" + super.getRating() + ",isLiked:" + isLiked + "]";
+                + ",rating:" + super.getRating() + ",liked:" + isLiked + "]";
     }
 
 }

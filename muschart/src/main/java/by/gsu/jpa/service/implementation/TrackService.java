@@ -25,6 +25,9 @@ public class TrackService implements TrackServiceDAO {
             final String video, final Date release, final List<Long> artistsIds,
             final List<Long> unitsIds, final List<Long> genresIds) {
         TrackEntity track = new TrackEntity(name, song, cover, video, release);
+        synchronized (TrackEntity.class) {
+            repository.save(track);
+        }
         for (long artistId : artistsIds) {
             addArtistToTrack(track.getId(), artistId);
         }

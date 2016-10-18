@@ -19,7 +19,7 @@ public interface GenreRepository extends CrudRepository<GenreEntity, Long> {
 
     List<GenreEntity> findByUsersId(long userId, Pageable pageable);
 
-    @Query("SELECT genre.id, genre.name FROM GenreEntity genre")
+    @Query("SELECT genre.id, genre.name FROM GenreEntity genre ORDER BY genre.name ASC")
     List<Object[]> getAllGenresIdAndName();
 
     long countByArtistsId(long artistId);

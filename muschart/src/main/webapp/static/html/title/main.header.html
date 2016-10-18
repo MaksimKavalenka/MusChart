@@ -12,12 +12,12 @@
 		</div>
 	</form>
 	<ul class="navigation">
-		<li ng-show="user.role === 'Admin'"><a ui-sref="track_add">Edit</a>
-		<li ng-show="!user"><a ui-sref="login">Sign in</a>
+		<li ng-if="user.admin"><a ui-sref="track_add">Edit</a>
+		<li ng-if="!user"><a ui-sref="login">Sign in</a>
 		<li><a ui-sref="settings">Settings</a>
 	</ul>
 </div>
-<div class="navbar navbar-primary justify" ng-show="user">
+<div class="navbar navbar-primary justify" ng-if="user">
 	<ul class="navigation">
 		<li><a ui-sref="user_tracks">My tracks</a>
 		<li><a ui-sref="user_artists">My artists</a>

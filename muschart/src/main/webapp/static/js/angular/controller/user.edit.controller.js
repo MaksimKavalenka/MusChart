@@ -7,7 +7,10 @@ app.controller('UserEditController', ['$rootScope', '$scope', '$state', 'STATE',
 		self.dataLoading = true;
 		UserFactory.authentication(self.user.login, self.user.password, function(response) {
 			if (response.success) {
-				$rootScope.user = {id: response.data.id};
+				$rootScope.user = {
+					name: response.data.login,
+					admin: response.data.admin
+				};
 				$state.go(STATE.TRACKS, {page: 1});
 			} else {
 				FlashService.error(response.message);

@@ -8,7 +8,7 @@ app.controller('TrackEditController', ['$scope', 'TYPE', 'ArtistFactory', 'Genre
 
 	self.init = function() {
 		ChoiceService.reset();
-		ArtistFactory.getAllArtists(function(response) {
+		ArtistFactory.getAllArtistsIdAndName(function(response) {
 			if (response.success) {
 				self.artists = response.data;
 			} else {
