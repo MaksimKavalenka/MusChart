@@ -1,7 +1,11 @@
 package by.gsu.controller;
 
 import static by.gsu.constants.DefaultConstants.*;
-import static by.gsu.constants.UrlConstants.Page.*;
+import static by.gsu.constants.UrlConstants.Page.Common.*;
+import static by.gsu.constants.UrlConstants.Page.Artist.*;
+import static by.gsu.constants.UrlConstants.Page.Genre.*;
+import static by.gsu.constants.UrlConstants.Page.Track.*;
+import static by.gsu.constants.UrlConstants.Page.User.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

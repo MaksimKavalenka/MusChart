@@ -37,6 +37,16 @@ public interface TrackRepository extends CrudRepository<TrackEntity, Long> {
     @Query("SELECT track.id, track.name FROM TrackEntity track")
     List<Object[]> getAllTracksIdAndName();
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE track SET track.rating = track.rating + 1 WHERE track.id = ?1", nativeQuery = true)
+    void setTrackLike(long trackId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE track SET track.rating = track.rating - 1 WHERE track.id = ?1", nativeQuery = true)
+    void setTrackDislike(long trackId);
+
     long countByGenresId(long genreId);
 
     long countByUsersId(long userId);

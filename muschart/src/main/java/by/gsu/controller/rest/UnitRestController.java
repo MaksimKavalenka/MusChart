@@ -1,7 +1,8 @@
 package by.gsu.controller.rest;
 
-import static by.gsu.constants.UrlConstants.JSON_EXT;
-import static by.gsu.constants.UrlConstants.Rest.UNITS_URL;
+import static by.gsu.constants.UrlConstants.Rest.JSON_EXT;
+import static by.gsu.constants.UrlConstants.Rest.UNIT_URL;
+import static by.gsu.constants.UrlConstants.Rest.Operation.GET_OPERATION;
 
 import java.util.List;
 
@@ -16,13 +17,13 @@ import by.gsu.bean.entity.IdAndNameEntity;
 import by.gsu.jpa.service.dao.UnitServiceDAO;
 
 @RestController
-@RequestMapping(UNITS_URL)
+@RequestMapping(UNIT_URL)
 public class UnitRestController {
 
     @Autowired
     private UnitServiceDAO unitService;
 
-    @RequestMapping(value = "/all/id_name" + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION + "/all/id_name" + JSON_EXT, method = RequestMethod.GET)
     public ResponseEntity<List<IdAndNameEntity>> getAllUnitsIdAndName() {
         List<IdAndNameEntity> unitsIdAndName = unitService.getAllUnitsIdAndName();
         if (unitsIdAndName == null) {

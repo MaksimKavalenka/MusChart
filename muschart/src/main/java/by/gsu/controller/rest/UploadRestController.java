@@ -3,7 +3,7 @@ package by.gsu.controller.rest;
 import static by.gsu.constants.MessageConstants.UPLOAD_FILE_ERROR;
 import static by.gsu.constants.UploadConstants.Path.*;
 import static by.gsu.constants.UploadConstants.Type.*;
-import static by.gsu.constants.UrlConstants.JSON_EXT;
+import static by.gsu.constants.UrlConstants.Rest.JSON_EXT;
 import static by.gsu.constants.UrlConstants.Rest.UPLOAD_URL;
 
 import java.io.File;

@@ -2,8 +2,13 @@ package by.gsu.controller.rest;
 
 import static by.gsu.constants.MessageConstants.PASSWORDS_ERROR;
 import static by.gsu.constants.MessageConstants.VALIDATION_ERROR;
-import static by.gsu.constants.UrlConstants.JSON_EXT;
-import static by.gsu.constants.UrlConstants.Rest.USERS_URL;
+import static by.gsu.constants.UrlConstants.Rest.JSON_EXT;
+import static by.gsu.constants.UrlConstants.Rest.USER_URL;
+import static by.gsu.constants.UrlConstants.Rest.Operation.AUTH_OPERATION;
+import static by.gsu.constants.UrlConstants.Rest.Operation.CHECK_OPERATION;
+import static by.gsu.constants.UrlConstants.Rest.Operation.CREATE_OPERATION;
+import static by.gsu.constants.UrlConstants.Rest.Operation.LIKE_OPERATION;
+import static by.gsu.constants.UrlConstants.Rest.Operation.LOGOUT_OPERATION;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
@@ -37,7 +42,7 @@ import by.gsu.utility.Secure;
 import by.gsu.utility.Validator;
 
 @RestController
-@RequestMapping(USERS_URL)
+@RequestMapping(USER_URL)
 public class UserRestController {
 
     @Autowired
@@ -45,7 +50,7 @@ public class UserRestController {
     @Autowired
     private UserServiceDAO userService;
 
-    @RequestMapping(value = "/auth"
+    @RequestMapping(value = AUTH_OPERATION
             + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserInfoEntity> authentication(final Principal principal) {
         if (principal != null) {
@@ -63,13 +68,13 @@ public class UserRestController {
         return new ResponseEntity<UserInfoEntity>(HttpStatus.FORBIDDEN);
     }
 
-    @RequestMapping(value = "/logout" + JSON_EXT, method = RequestMethod.POST)
+    @RequestMapping(value = LOGOUT_OPERATION + JSON_EXT, method = RequestMethod.POST)
     public void logout(final HttpServletRequest rq, final HttpServletResponse rs) {
         SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();
         securityContextLogoutHandler.logout(rq, rs, null);
     }
 
-    @RequestMapping(value = "/create/{login}/{password}/{confirmPassword}"
+    @RequestMapping(value = CREATE_OPERATION + "/{login}/{password}/{confirmPassword}"
             + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<Object> createUser(@PathVariable("login") final String login,
             @PathVariable("password") final String password,
@@ -96,7 +101,8 @@ public class UserRestController {
         }
     }
 
-    @RequestMapping(value = "/like/{entity}/{entityId}" + JSON_EXT, method = RequestMethod.POST)
+    @RequestMapping(value = LIKE_OPERATION + "/{entity}/{entityId}"
+            + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<Object> setUserLike(@PathVariable("entity") final String entity,
             @PathVariable("entityId") final long entityId) {
         if (!Validator.allNotNull(entity, entityId)) {
@@ -120,7 +126,8 @@ public class UserRestController {
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/check_login/{login}" + JSON_EXT, method = RequestMethod.POST)
+    @RequestMapping(value = CHECK_OPERATION + "/login/{login}"
+            + JSON_EXT, method = RequestMethod.POST)
     public ResponseEntity<Object> checkLogin(@PathVariable("login") final String login) {
         boolean exists = userService.checkLogin(login);
         return new ResponseEntity<Object>(exists, HttpStatus.OK);

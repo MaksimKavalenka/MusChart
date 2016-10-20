@@ -30,6 +30,16 @@ public interface ArtistRepository extends CrudRepository<ArtistEntity, Long> {
     @Query("SELECT artist.id, artist.name FROM TrackArtistEntity trackArtist JOIN trackArtist.track track JOIN trackArtist.artist artist WHERE track.id = ?1 ORDER BY trackArtist.id")
     List<Object[]> getTrackArtistsIdAndName(long trackId);
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE artist SET artist.rating = artist.rating + 1 WHERE artist.id = ?1", nativeQuery = true)
+    void setArtistLike(long artistId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE artist SET artist.rating = artist.rating - 1 WHERE artist.id = ?1", nativeQuery = true)
+    void setArtistDislike(long artistId);
+
     long countByGenresId(long genreId);
 
     long countByUsersId(long userId);

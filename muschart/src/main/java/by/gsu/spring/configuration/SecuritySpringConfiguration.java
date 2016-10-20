@@ -1,6 +1,10 @@
 package by.gsu.spring.configuration;
 
 import static by.gsu.constants.RoleConstants.*;
+import static by.gsu.constants.UrlConstants.ANY;
+import static by.gsu.constants.UrlConstants.*;
+import static by.gsu.constants.UrlConstants.Page.Operation.*;
+import static by.gsu.constants.UrlConstants.Rest.Operation.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,19 +26,15 @@ import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
-import by.gsu.constants.UrlConstants.Page;
-import by.gsu.constants.UrlConstants.Rest;
 import by.gsu.spring.component.CsrfHeaderFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
 
-    private static final String ANY = "/**";
-
     @Autowired
     @Qualifier("userDetailsServiceSecurity")
-    private UserDetailsService  userDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Autowired
     public void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
@@ -85,29 +85,39 @@ public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry urlRegistry = http
                 .authorizeRequests();
 
-        urlRegistry.antMatchers(Page.REGISTRATION_URL).permitAll();
+        urlRegistry.antMatchers(Page.Common.REGISTRATION_URL).permitAll();
+        urlRegistry.antMatchers(Page.Common.SETTINGS_URL).permitAll();
+        urlRegistry.antMatchers(Page.Common.PLAYLIST_URL).permitAll();
 
-        urlRegistry.antMatchers(Page.ARTIST_URL + ANY).permitAll();
-        urlRegistry.antMatchers(Page.ARTISTS_URL).permitAll();
-        urlRegistry.antMatchers(Page.GENRE_URL + ANY).permitAll();
-        urlRegistry.antMatchers(Page.GENRES_URL).permitAll();
-        urlRegistry.antMatchers(Page.TRACK_URL + ANY).permitAll();
-        urlRegistry.antMatchers(Page.TRACKS_URL).permitAll();
-        urlRegistry.antMatchers(Page.USER_URL + ANY).hasRole(ROLE_USER.toString());
+        urlRegistry.antMatchers(Page.Artist.ARTISTS_URL).permitAll();
+        urlRegistry.antMatchers(Page.Artist.ARTIST_FULL_URL).permitAll();
+        urlRegistry.antMatchers(Page.Artist.ARTIST_GENRES_URL).permitAll();
+        urlRegistry.antMatchers(Page.Artist.ARTIST_TRACKS_URL).permitAll();
 
-        urlRegistry.antMatchers(Page.ARTIST_ADD_URL).hasRole(ROLE_ADMIN.toString());
-        urlRegistry.antMatchers(Page.GENRE_ADD_URL).hasRole(ROLE_ADMIN.toString());
-        urlRegistry.antMatchers(Page.TRACK_ADD_URL).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(Page.Genre.GENRES_URL).permitAll();
+        urlRegistry.antMatchers(Page.Genre.GENRE_FULL_URL).permitAll();
+        urlRegistry.antMatchers(Page.Genre.GENRE_ARTISTS_URL).permitAll();
+        urlRegistry.antMatchers(Page.Genre.GENRE_TRACKS_URL).permitAll();
 
-        urlRegistry.antMatchers(Rest.ARTISTS_URL + ANY).permitAll();
-        urlRegistry.antMatchers(Rest.GENRES_URL + ANY).permitAll();
-        urlRegistry.antMatchers(Rest.TRACKS_URL + ANY).permitAll();
-        urlRegistry.antMatchers(Rest.UNITS_URL + ANY).permitAll();
-        urlRegistry.antMatchers(Rest.UPLOAD_URL + ANY).permitAll();
-        urlRegistry.antMatchers(Rest.USERS_URL + ANY).permitAll();
+        urlRegistry.antMatchers(Page.Track.TRACKS_URL).permitAll();
+        urlRegistry.antMatchers(Page.Track.TRACK_FULL_URL).permitAll();
+        urlRegistry.antMatchers(Page.Track.TRACK_ARTISTS_URL).permitAll();
+        urlRegistry.antMatchers(Page.Track.TRACK_GENRES_URL).permitAll();
+
+        urlRegistry.antMatchers(ANY + ADD_OPERATION).hasRole(ROLE_ADMIN.toString());
+
+        urlRegistry.antMatchers(ANY + AUTH_OPERATION + ANY).permitAll();
+        urlRegistry.antMatchers(ANY + CHECK_OPERATION + ANY).permitAll();
+        urlRegistry.antMatchers(ANY + CREATE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(ANY + DELETE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(ANY + GET_OPERATION + ANY).permitAll();
+        urlRegistry.antMatchers(ANY + LIKE_OPERATION + ANY).hasRole(ROLE_USER.toString());
+        urlRegistry.antMatchers(ANY + LOGOUT_OPERATION + ANY).permitAll();
+        urlRegistry.antMatchers(ANY + UPDATE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(ANY + USER_OPERATION + ANY).hasRole(ROLE_USER.toString());
 
         urlRegistry.anyRequest().authenticated();
-        urlRegistry.and().formLogin().loginPage(Page.LOGIN_URL).permitAll();
+        urlRegistry.and().formLogin().loginPage(Page.Common.LOGIN_URL).permitAll();
 
         urlRegistry.and().httpBasic().authenticationEntryPoint(http403ForbiddenEntryPoint());
         urlRegistry.and().csrf().csrfTokenRepository(csrfTokenRepository());

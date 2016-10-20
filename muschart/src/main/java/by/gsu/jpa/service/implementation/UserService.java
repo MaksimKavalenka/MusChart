@@ -9,13 +9,22 @@ import org.springframework.security.core.GrantedAuthority;
 
 import by.gsu.entity.UserEntity;
 import by.gsu.exception.ValidationException;
+import by.gsu.jpa.repository.ArtistRepository;
+import by.gsu.jpa.repository.GenreRepository;
+import by.gsu.jpa.repository.TrackRepository;
 import by.gsu.jpa.repository.UserRepository;
 import by.gsu.jpa.service.dao.UserServiceDAO;
 
 public class UserService implements UserServiceDAO {
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository   repository;
+    @Autowired
+    private ArtistRepository artistRepository;
+    @Autowired
+    private GenreRepository  genreRepository;
+    @Autowired
+    private TrackRepository  trackRepository;
 
     @Override
     public UserEntity createUser(final String login, final String password,
@@ -37,44 +46,50 @@ public class UserService implements UserServiceDAO {
 
     @Override
     public void updateUserArtists(final long userId, final long artistId) {
-        if (!repository.isArtistLiked(artistId)) {
-            repository.setArtistLike(userId, artistId);
+        if (!repository.isArtistLiked(userId, artistId)) {
+            repository.addArtistToUser(userId, artistId);
+            artistRepository.setArtistLike(artistId);
         } else {
-            repository.setArtistDislike(userId, artistId);
+            repository.deleteArtistFromUser(userId, artistId);
+            artistRepository.setArtistDislike(artistId);
         }
     }
 
     @Override
     public void updateUserGenres(final long userId, final long genreId) {
-        if (!repository.isGenreLiked(genreId)) {
-            repository.setGenreLike(userId, genreId);
+        if (!repository.isGenreLiked(userId, genreId)) {
+            repository.addGenreToUser(userId, genreId);
+            genreRepository.setGenreLike(genreId);
         } else {
-            repository.setGenreDislike(userId, genreId);
+            repository.deleteGenreFromUser(userId, genreId);
+            genreRepository.setGenreDislike(genreId);
         }
     }
 
     @Override
     public void updateUserTracks(final long userId, final long trackId) {
-        if (!repository.isTrackLiked(trackId)) {
-            repository.setTrackLike(userId, trackId);
+        if (!repository.isTrackLiked(userId, trackId)) {
+            repository.addTrackToUser(userId, trackId);
+            trackRepository.setTrackLike(trackId);
         } else {
-            repository.setTrackDislike(userId, trackId);
+            repository.deleteTrackFromUser(userId, trackId);
+            trackRepository.setTrackDislike(trackId);
         }
     }
 
     @Override
-    public boolean isArtistLiked(final long artistId) {
-        return repository.isArtistLiked(artistId);
+    public boolean isArtistLiked(final long userId, final long artistId) {
+        return repository.isArtistLiked(userId, artistId);
     }
 
     @Override
-    public boolean isGenreLiked(final long genreId) {
-        return repository.isGenreLiked(genreId);
+    public boolean isGenreLiked(final long userId, final long genreId) {
+        return repository.isGenreLiked(userId, genreId);
     }
 
     @Override
-    public boolean isTrackLiked(final long trackId) {
-        return repository.isTrackLiked(trackId);
+    public boolean isTrackLiked(final long userId, final long trackId) {
+        return repository.isTrackLiked(userId, trackId);
     }
 
     @Override

@@ -30,7 +30,7 @@
 }
 .form-submit .field  label {
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: bold;
 	margin: 7px 0;
 }
 .form-submit .field input,

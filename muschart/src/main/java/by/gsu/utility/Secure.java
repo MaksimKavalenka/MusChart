@@ -20,7 +20,11 @@ public abstract class Secure {
     public static UserEntity getLoggedUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object user = auth.getPrincipal();
-        return (UserEntity) user;
+        try {
+            return (UserEntity) user;
+        } catch (ClassCastException e) {
+            return null;
+        }
     }
 
 }

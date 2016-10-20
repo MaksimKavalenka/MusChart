@@ -11,7 +11,8 @@
 .content li > .title {
 	background: #575757;
 	color: #ffffff;
-	font-weight: 600;
+	font: 13px Arial;
+	font-weight: bold;
 	margin: 7px 0;
 	padding: 10px;
 	text-align: center;
@@ -64,7 +65,7 @@
 }
 .link {
 	border: 2.5px solid #6699cc;
-	font-weight: 600;
+	font-weight: bold;
 	margin: 10px 0;
 	padding: 5px 0;
 	text-align: center;

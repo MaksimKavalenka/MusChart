@@ -3,8 +3,10 @@ package by.gsu.jpa.repository;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import by.gsu.entity.GenreEntity;
 
@@ -21,6 +23,16 @@ public interface GenreRepository extends CrudRepository<GenreEntity, Long> {
 
     @Query("SELECT genre.id, genre.name FROM GenreEntity genre ORDER BY genre.name ASC")
     List<Object[]> getAllGenresIdAndName();
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE genre SET genre.rating = genre.rating + 1 WHERE genre.id = ?1", nativeQuery = true)
+    void setGenreLike(long genreId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE genre SET genre.rating = genre.rating - 1 WHERE genre.id = ?1", nativeQuery = true)
+    void setGenreDislike(long genreId);
 
     long countByArtistsId(long artistId);
 
