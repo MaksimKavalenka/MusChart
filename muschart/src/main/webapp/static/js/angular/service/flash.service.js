@@ -1,5 +1,5 @@
 'use strict';
-app.service('FlashService', ['$rootScope', function($rootScope) {
+app.service('FlashService', function($rootScope) {
 
 	function clearFlashMessage(delay) {
 		var flash = $rootScope.flash;
@@ -40,4 +40,4 @@ app.service('FlashService', ['$rootScope', function($rootScope) {
 		error: error
 	};
 
-}]);
+});

@@ -1,5 +1,5 @@
 'use strict';
-app.controller('GenreEditController', ['$scope', 'GenreFactory', 'FlashService', function($scope, GenreFactory, FlashService) {
+app.controller('GenreEditController', function($scope, GenreFactory, FlashService) {
 
 	var self = this;
 
@@ -30,4 +30,4 @@ app.controller('GenreEditController', ['$scope', 'GenreFactory', 'FlashService',
 		$scope.form.$setPristine();
 	};
 
-}]);
+});

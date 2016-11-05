@@ -1,2 +1,2 @@
 'use strict';
-var app = angular.module('app.muschart', ['ngCookies', 'ngSanitize', 'MassAutoComplete', 'ui.router']);
+var app = angular.module('muschart', ['ngCookies', 'ngSanitize', 'MassAutoComplete', 'pascalprecht.translate', 'ui.router']);

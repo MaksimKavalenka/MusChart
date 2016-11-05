@@ -1,5 +1,5 @@
 'use strict';
-app.service('FileService', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE, REST) {
+app.service('FileService', function($http, MESSAGE, REST) {
 
 	function uploadFile(file, type, callback) {
 		var formData = new FormData();
@@ -22,4 +22,4 @@ app.service('FileService', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE,
 		uploadFile: uploadFile
 	};
 
-}]);
+});

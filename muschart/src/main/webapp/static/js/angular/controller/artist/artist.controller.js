@@ -1,5 +1,5 @@
 'use strict';
-app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'ArtistFactory', 'FlashService', function($scope, $state, STATE, UPLOAD, ArtistFactory, FlashService) {
+app.controller('ArtistController', function($scope, $state, STATE, UPLOAD, ArtistFactory, FlashService) {
 
 	var self = this;
 	self.url = '#';
@@ -59,7 +59,7 @@ app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Arti
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	function getEntityArtists(entity, entityId, sort, order, page) {
 		ArtistFactory.getEntityArtists(entity, entityId, sort, order, page, function(response) {
@@ -69,7 +69,7 @@ app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Arti
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	function getUserArtists(sort, order, page) {
 		ArtistFactory.getUserArtists(sort, order, page, function(response) {
@@ -79,8 +79,8 @@ app.controller('ArtistController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Arti
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	self.init($state.current.name, $scope.settings.sort.artists, $scope.settings.order.artists, $state.params.page);
 
-}]);
+});

@@ -1,5 +1,5 @@
 'use strict';
-app.controller('ArtistEditController', ['$scope', 'TYPE', 'ArtistFactory', 'GenreFactory', 'ChoiceService', 'FileService', 'FlashService', function($scope, TYPE, ArtistFactory, GenreFactory, ChoiceService, FileService, FlashService) {
+app.controller('ArtistEditController', function($scope, TYPE, ArtistFactory, GenreFactory, ChoiceService, FileService, FlashService) {
 
 	var self = this;
 	self.genres = [];
@@ -54,4 +54,4 @@ app.controller('ArtistEditController', ['$scope', 'TYPE', 'ArtistFactory', 'Genr
 
 	self.init();
 
-}]);
+});

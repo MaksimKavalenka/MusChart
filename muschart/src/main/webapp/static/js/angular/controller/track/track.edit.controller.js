@@ -1,5 +1,5 @@
 'use strict';
-app.controller('TrackEditController', ['$scope', 'TYPE', 'ArtistFactory', 'GenreFactory', 'TrackFactory', 'UnitFactory', 'ChoiceService', 'FileService', 'FlashService', function($scope, TYPE, ArtistFactory, GenreFactory, TrackFactory, UnitFactory, ChoiceService, FileService, FlashService) {
+app.controller('TrackEditController', function($scope, TYPE, ArtistFactory, GenreFactory, TrackFactory, UnitFactory, ChoiceService, FileService, FlashService) {
 
 	var self = this;
 	self.artists = [];
@@ -80,4 +80,4 @@ app.controller('TrackEditController', ['$scope', 'TYPE', 'ArtistFactory', 'Genre
 
 	self.init();
 
-}]);
+});

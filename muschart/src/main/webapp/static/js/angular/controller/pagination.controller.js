@@ -1,5 +1,5 @@
 'use strict';
-app.controller('PaginationController', ['$rootScope', '$state', 'STATE', 'ArtistFactory', 'GenreFactory', 'TrackFactory', 'FlashService', function($rootScope, $state, STATE, ArtistFactory, GenreFactory, TrackFactory, FlashService) {
+app.controller('PaginationController', function($rootScope, $state, STATE, ArtistFactory, GenreFactory, TrackFactory, FlashService) {
 
 	function init(state, page) {
 		var callback = function(response) {
@@ -51,15 +51,15 @@ app.controller('PaginationController', ['$rootScope', '$state', 'STATE', 'Artist
 
 	function setPagesCount(factory, callback) {
 		factory.getPagesCount(callback);
-	};
+	}
 
 	function setEntityPagesCount(factory, entity, entityId, callback) {
 		factory.getEntityPagesCount(entity, entityId, callback);
-	};
+	}
 
 	function setUserPagesCount(factory, callback) {
 		factory.getUserPagesCount(callback);
-	};
+	}
 
 	function setPages(state, page, count) {
 		$rootScope.pages = [];
@@ -83,8 +83,8 @@ app.controller('PaginationController', ['$rootScope', '$state', 'STATE', 'Artist
 		if (count === 1) {
 			$rootScope.pages = [];
 		}
-	};
+	}
 
 	init($state.current.name, $state.params.page);
 
-}]);
+});

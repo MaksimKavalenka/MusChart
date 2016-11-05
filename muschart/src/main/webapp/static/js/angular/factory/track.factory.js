@@ -1,5 +1,5 @@
 'use strict';
-app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', function($http, MESSAGE, REST, ValidatorService) {
+app.factory('TrackFactory', function($http, MESSAGE, REST, ValidatorService) {
 
 	function createTrack(name, song, cover, video, release, artists, units, genres, callback) {
 		if (!ValidatorService.allNotEmpty(callback, name, song, cover, video, release, artists, units, genres)) {
@@ -155,4 +155,4 @@ app.factory('TrackFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', fun
 		getUserPagesCount: getUserPagesCount
 	};
 
-}]);
+});

@@ -1,5 +1,5 @@
 'use strict';
-app.service('ValidatorService', ['MESSAGE', function(MESSAGE) {
+app.service('ValidatorService', function(MESSAGE) {
 
 	function allNotEmpty() {
 		for (var i = 1; i < arguments.length; i++) {
@@ -16,4 +16,4 @@ app.service('ValidatorService', ['MESSAGE', function(MESSAGE) {
 		allNotEmpty: allNotEmpty
 	};
 
-}]);
+});

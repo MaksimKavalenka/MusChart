@@ -1,5 +1,5 @@
 'use strict';
-app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'TrackFactory', 'AmplitudeService', 'FlashService', function($scope, $state, STATE, UPLOAD, TrackFactory, AmplitudeService, FlashService) {
+app.controller('TrackController', function($scope, $state, STATE, UPLOAD, TrackFactory, AmplitudeService, FlashService) {
 
 	var self = this;
 	self.url = '#';
@@ -53,7 +53,7 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Track
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	function getTracks(sort, order, page) {
 		TrackFactory.getTracks(sort, order, page, function(response) {
@@ -64,7 +64,7 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Track
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	function getEntityTracks(entity, entityId, sort, order, page) {
 		TrackFactory.getEntityTracks(entity, entityId, sort, order, page, function(response) {
@@ -75,7 +75,7 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Track
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	function getUserTracks(sort, order, page) {
 		TrackFactory.getUserTracks(sort, order, page, function(response) {
@@ -85,7 +85,7 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Track
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	self.playSong = function(track) {
 		Amplitude.playNow(AmplitudeService.parseSong(track));
@@ -98,4 +98,4 @@ app.controller('TrackController', ['$scope', '$state', 'STATE', 'UPLOAD', 'Track
 
 	self.init($state.current.name, $scope.settings.sort.tracks, $scope.settings.order.tracks, $state.params.page);
 
-}]);
+});

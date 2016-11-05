@@ -6,7 +6,7 @@ var ngModel = 'ngModel';
 var ngGenreExist = 'ngGenreExist';
 var ngLoginExist = 'ngLoginExist';
 
-app.directive(ngGenreExist, ['$timeout', '$q', 'GenreFactory', function($timeout, $q, GenreFactory) {
+app.directive(ngGenreExist, function($timeout, $q, GenreFactory) {
 	var timer;
 	return {
 		require: ngModel,
@@ -27,9 +27,9 @@ app.directive(ngGenreExist, ['$timeout', '$q', 'GenreFactory', function($timeout
 			};
 		}
 	};
-}]);
+});
 
-app.directive(ngLoginExist, ['$timeout', '$q', 'UserFactory', function($timeout, $q, UserFactory) {
+app.directive(ngLoginExist, function($timeout, $q, UserFactory) {
 	var timer;
 	return {
 		require: ngModel,
@@ -50,7 +50,7 @@ app.directive(ngLoginExist, ['$timeout', '$q', 'UserFactory', function($timeout,
 			};
 		}
 	};
-}]);
+});
 
 app.directive(ngMatch, function() {
 	return {
@@ -83,7 +83,7 @@ app.directive(fileRequired, function() {
 	}
 });
 
-app.directive(fileModel, ['$parse', function($parse) {
+app.directive(fileModel, function($parse) {
 	return {
 		restrict: 'A',
 		link: function(scope, element, attributes) {
@@ -96,7 +96,7 @@ app.directive(fileModel, ['$parse', function($parse) {
 			});
 		}
 	};
-}]);
+});
 
 app.directive('modal', function() {
 	return {

@@ -1,5 +1,5 @@
 'use strict';
-app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', function($http, MESSAGE, REST, ValidatorService) {
+app.factory('GenreFactory', function($http, MESSAGE, REST, ValidatorService) {
 
 	function createGenre(name, callback) {
 		if (!ValidatorService.allNotEmpty(callback, name)) {
@@ -172,4 +172,4 @@ app.factory('GenreFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', fun
 		checkGenreName: checkGenreName
 	};
 
-}]);
+});

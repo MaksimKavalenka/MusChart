@@ -1,5 +1,5 @@
 'use strict';
-app.factory('UserFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', function($http, MESSAGE, REST, ValidatorService) {
+app.factory('UserFactory', function($http, MESSAGE, REST, ValidatorService) {
 
 	function authentication(login, password, callback) {
 		if (!ValidatorService.allNotEmpty(callback, login, password)) {
@@ -96,4 +96,4 @@ app.factory('UserFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', func
 		checkLogin: checkLogin
 	};
 
-}]);
+});

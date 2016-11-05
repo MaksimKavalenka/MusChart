@@ -1,5 +1,5 @@
 'use strict';
-app.service('CookieService', ['$cookies', '$rootScope', function($cookies, $rootScope) {
+app.service('CookieService', function($cookies, $rootScope) {
 
 	function setCredentials(user) {
 		$rootScope.user = {
@@ -10,9 +10,9 @@ app.service('CookieService', ['$cookies', '$rootScope', function($cookies, $root
 		$cookies.putObject('user', $rootScope.user);
 	}
 
-	function setSettings() {
+	$rootScope.saveSettings = function() {
 		$cookies.putObject('settings', $rootScope.settings);
-	}
+	};
 
 	function setTracks(tracks) {
 		$rootScope.tracks = tracks;
@@ -26,9 +26,8 @@ app.service('CookieService', ['$cookies', '$rootScope', function($cookies, $root
 
 	return {
 		setCredentials: setCredentials,
-		setSettings: setSettings,
 		setTracks: setTracks,
 		clearCredentials: clearCredentials
 	};
 
-}]);
+});

@@ -1,5 +1,5 @@
 'use strict';
-app.controller('AutocompleteController', ['$scope', 'ArtistFactory', 'GenreFactory', 'TrackFactory', 'FlashService', function ($scope, ArtistFactory, GenreFactory, TrackFactory, FlashService) {
+app.controller('AutocompleteController', function ($scope, ArtistFactory, GenreFactory, TrackFactory, FlashService) {
 
 	var artists = [];
 	var genres = [];
@@ -34,7 +34,7 @@ app.controller('AutocompleteController', ['$scope', 'ArtistFactory', 'GenreFacto
 	function highlight(str, term) {
 		var highlightRegex = new RegExp('(' + term + ')', 'gi');
 		return str.replace(highlightRegex, '<div class="ac-highlight">$1</div>');
-	};
+	}
 
 	function suggestNames(term) {
 		var q = term.toLowerCase().trim();
@@ -68,4 +68,4 @@ app.controller('AutocompleteController', ['$scope', 'ArtistFactory', 'GenreFacto
 		suggest: suggestNames
 	};
 
-}]);
+});

@@ -1,5 +1,5 @@
 'use strict';
-app.service('AmplitudeService', ['UPLOAD', function(UPLOAD) {
+app.service('AmplitudeService', function(UPLOAD) {
 
 	var playlist = [];
 
@@ -46,4 +46,4 @@ app.service('AmplitudeService', ['UPLOAD', function(UPLOAD) {
 		playlist: playlist
 	};
 
-}]);
+});

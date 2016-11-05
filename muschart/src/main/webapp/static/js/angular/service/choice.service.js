@@ -1,5 +1,5 @@
 'use strict';
-app.service('ChoiceService', ['$rootScope', function($rootScope) {
+app.service('ChoiceService', function($rootScope) {
 
 	$rootScope.artistsChoice = [{index: 0}];
 	$rootScope.genresChoice = [{index: 0}];
@@ -46,4 +46,4 @@ app.service('ChoiceService', ['$rootScope', function($rootScope) {
 		reset: reset
 	};
 
-}]);
+});

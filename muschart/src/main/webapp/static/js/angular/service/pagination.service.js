@@ -1,5 +1,5 @@
 'use strict';
-app.service('PaginationService', ['$rootScope', 'STATE', 'ArtistFactory', 'GenreFactory', 'TrackFactory', 'FlashService', function($rootScope, STATE, ArtistFactory, GenreFactory, TrackFactory, FlashService) {
+app.service('PaginationService', function($rootScope, STATE, ArtistFactory, GenreFactory, TrackFactory, FlashService) {
 
 	function setPagination(page, state) {
 		switch (state) {
@@ -13,7 +13,7 @@ app.service('PaginationService', ['$rootScope', 'STATE', 'ArtistFactory', 'Genre
 				setPageCount(TrackFactory, page, state);
 				break;
 		}
-	};
+	}
 
 	function setPaginationExt(relation, id, page, state) {
 		switch (state) {
@@ -33,7 +33,7 @@ app.service('PaginationService', ['$rootScope', 'STATE', 'ArtistFactory', 'Genre
 				setPageCountExt(TrackFactory, relation, id, page, state);
 				break;
 		}
-	};
+	}
 
 	function getPages(page, state, amount) {
 		$rootScope.pages = [];
@@ -64,7 +64,7 @@ app.service('PaginationService', ['$rootScope', 'STATE', 'ArtistFactory', 'Genre
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	function setPageCountExt(factory, id, relation, page, state) {
 		factory.getPageCountExt(id, relation, function(response) {
@@ -74,11 +74,11 @@ app.service('PaginationService', ['$rootScope', 'STATE', 'ArtistFactory', 'Genre
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	return {
 		setPagination: setPagination,
 		setPaginationExt: setPaginationExt
 	};
 
-}]);
+});

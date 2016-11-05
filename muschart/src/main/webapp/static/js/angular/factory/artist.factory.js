@@ -1,5 +1,5 @@
 'use strict';
-app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', function($http, MESSAGE, REST, ValidatorService) {
+app.factory('ArtistFactory', function($http, MESSAGE, REST, ValidatorService) {
 
 	function createArtist(name, photo, genres, callback) {
 		if (!ValidatorService.allNotEmpty(callback, name, photo, genres)) {
@@ -155,4 +155,4 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', fu
 		getUserPagesCount: getUserPagesCount
 	};
 
-}]);
+});

@@ -30,22 +30,22 @@ public enum JpaHelper {
             if (order) {
                 switch (sort) {
                     case 0:
-                        return Sort.Asc.Artist.ID;
-                    case 1:
-                        return Sort.Asc.Artist.RATING;
-                    case 2:
                         return Sort.Asc.Artist.NAME;
+                    case 1:
+                        return Sort.Asc.Artist.ID;
+                    case 2:
+                        return Sort.Asc.Artist.RATING;
                     default:
                         return Sort.Asc.Artist.ID;
                 }
             } else {
                 switch (sort) {
                     case 0:
-                        return Sort.Desc.Artist.ID;
-                    case 1:
-                        return Sort.Desc.Artist.RATING;
-                    case 2:
                         return Sort.Desc.Artist.NAME;
+                    case 1:
+                        return Sort.Desc.Artist.ID;
+                    case 2:
+                        return Sort.Desc.Artist.RATING;
                     default:
                         return Sort.Desc.Artist.ID;
                 }
@@ -76,22 +76,22 @@ public enum JpaHelper {
             if (order) {
                 switch (sort) {
                     case 0:
-                        return Sort.Asc.Genre.ID;
-                    case 1:
-                        return Sort.Asc.Genre.RATING;
-                    case 2:
                         return Sort.Asc.Genre.NAME;
+                    case 1:
+                        return Sort.Asc.Genre.ID;
+                    case 2:
+                        return Sort.Asc.Genre.RATING;
                     default:
                         return Sort.Asc.Genre.ID;
                 }
             } else {
                 switch (sort) {
                     case 0:
-                        return Sort.Desc.Genre.ID;
-                    case 1:
-                        return Sort.Desc.Genre.RATING;
-                    case 2:
                         return Sort.Desc.Genre.NAME;
+                    case 1:
+                        return Sort.Desc.Genre.ID;
+                    case 2:
+                        return Sort.Desc.Genre.RATING;
                     default:
                         return Sort.Desc.Genre.ID;
                 }
@@ -122,11 +122,11 @@ public enum JpaHelper {
             if (order) {
                 switch (sort) {
                     case 0:
-                        return Sort.Asc.Track.ID;
-                    case 1:
-                        return Sort.Asc.Track.RATING;
-                    case 2:
                         return Sort.Asc.Track.NAME;
+                    case 1:
+                        return Sort.Asc.Track.ID;
+                    case 2:
+                        return Sort.Asc.Track.RATING;
                     case 3:
                         return Sort.Asc.Track.RELEASE;
                     default:
@@ -135,11 +135,11 @@ public enum JpaHelper {
             } else {
                 switch (sort) {
                     case 0:
-                        return Sort.Desc.Track.ID;
-                    case 1:
-                        return Sort.Desc.Track.RATING;
-                    case 2:
                         return Sort.Desc.Track.NAME;
+                    case 1:
+                        return Sort.Desc.Track.ID;
+                    case 2:
+                        return Sort.Desc.Track.RATING;
                     case 3:
                         return Sort.Desc.Track.RELEASE;
                     default:
@@ -172,22 +172,22 @@ public enum JpaHelper {
             if (order) {
                 switch (sort) {
                     case 0:
-                        return Sort.Asc.TrackArtist.Artist.ID;
-                    case 1:
-                        return Sort.Asc.TrackArtist.Artist.RATING;
-                    case 2:
                         return Sort.Asc.TrackArtist.Artist.NAME;
+                    case 1:
+                        return Sort.Asc.TrackArtist.Artist.ID;
+                    case 2:
+                        return Sort.Asc.TrackArtist.Artist.RATING;
                     default:
                         return Sort.Asc.TrackArtist.Artist.ID;
                 }
             } else {
                 switch (sort) {
                     case 0:
-                        return Sort.Desc.TrackArtist.Artist.ID;
-                    case 1:
-                        return Sort.Desc.TrackArtist.Artist.RATING;
-                    case 2:
                         return Sort.Desc.TrackArtist.Artist.NAME;
+                    case 1:
+                        return Sort.Desc.TrackArtist.Artist.ID;
+                    case 2:
+                        return Sort.Desc.TrackArtist.Artist.RATING;
                     default:
                         return Sort.Desc.TrackArtist.Artist.ID;
                 }
@@ -218,11 +218,11 @@ public enum JpaHelper {
             if (order) {
                 switch (sort) {
                     case 0:
-                        return Sort.Asc.TrackArtist.Track.ID;
-                    case 1:
-                        return Sort.Asc.TrackArtist.Track.RATING;
-                    case 2:
                         return Sort.Asc.TrackArtist.Track.NAME;
+                    case 1:
+                        return Sort.Asc.TrackArtist.Track.ID;
+                    case 2:
+                        return Sort.Asc.TrackArtist.Track.RATING;
                     case 3:
                         return Sort.Asc.TrackArtist.Track.RELEASE;
                     default:
@@ -231,11 +231,11 @@ public enum JpaHelper {
             } else {
                 switch (sort) {
                     case 0:
-                        return Sort.Desc.TrackArtist.Track.ID;
-                    case 1:
-                        return Sort.Desc.TrackArtist.Track.RATING;
-                    case 2:
                         return Sort.Desc.TrackArtist.Track.NAME;
+                    case 1:
+                        return Sort.Desc.TrackArtist.Track.ID;
+                    case 2:
+                        return Sort.Desc.TrackArtist.Track.RATING;
                     case 3:
                         return Sort.Desc.TrackArtist.Track.RELEASE;
                     default:

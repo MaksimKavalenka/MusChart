@@ -1,5 +1,5 @@
 'use strict';
-app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 'FlashService', function($scope, $state, STATE, GenreFactory, FlashService) {
+app.controller('GenreController', function($scope, $state, STATE, GenreFactory, FlashService) {
 
 	var self = this;
 	self.url = '#';
@@ -48,7 +48,7 @@ app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	function getGenres(sort, order, page) {
 		GenreFactory.getGenres(sort, order, page, function(response) {
@@ -58,7 +58,7 @@ app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	function getEntityGenres(entity, entityId, sort, order, page) {
 		GenreFactory.getEntityGenres(entity, entityId, sort, order, page, function(response) {
@@ -68,7 +68,7 @@ app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	function getUserGenres(sort, order, page) {
 		GenreFactory.getUserGenres(sort, order, page, function(response) {
@@ -78,8 +78,8 @@ app.controller('GenreController', ['$scope', '$state', 'STATE', 'GenreFactory', 
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	self.init($state.current.name, $scope.settings.sort.genres, $scope.settings.order.genres, $state.params.page);
 
-}]);
+});

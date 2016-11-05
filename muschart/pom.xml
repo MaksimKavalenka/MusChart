@@ -5,7 +5,7 @@
 	<groupId>com.muschart</groupId>
 	<artifactId>muschart</artifactId>
 	<packaging>war</packaging>
-	<version>0.32.2</version>
+	<version>0.33</version>
 
 	<name>MusChart</name>
 
@@ -71,6 +71,12 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
 			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-translate</artifactId>
+			<version>2.12.1</version>
 		</dependency>
 
 		<dependency>
