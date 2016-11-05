@@ -81,12 +81,12 @@ app.constant('REST', (function() {
 	var url = '/muschart';
 	return {
 		JSON_EXT: '.json',
-		ARTIST: url + '/artist',
-		GENRE: url + '/genre',
-		TRACK: url + '/track',
-		UNIT: url + '/unit',
+		ARTISTS: url + '/artists',
+		GENRES: url + '/genres',
+		TRACKS: url + '/tracks',
+		UNITS: url + '/units',
 		UPLOAD: url + '/upload',
-		USER: url + '/user'
+		USERS: url + '/users'
 	}
 })());
 

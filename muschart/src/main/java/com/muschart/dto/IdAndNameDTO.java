@@ -1,18 +1,18 @@
-package com.muschart.bean.entity;
+package com.muschart.dto;
 
 import com.muschart.entity.AbstractEntity;
 
-public class IdAndNameEntity extends AbstractEntity {
+public class IdAndNameDTO extends AbstractEntity {
 
     private static final long serialVersionUID = 7794693790810942212L;
 
     private String            name;
 
-    public IdAndNameEntity() {
+    public IdAndNameDTO() {
         super();
     }
 
-    public IdAndNameEntity(final long id, final String name) {
+    public IdAndNameDTO(final long id, final String name) {
         super(id);
         this.name = name;
     }

@@ -80,14 +80,14 @@ public abstract class UrlConstants {
 
     public static abstract class Rest {
 
-        public static final String JSON_EXT   = ".json";
+        public static final String JSON_EXT    = ".json";
 
-        public static final String ARTIST_URL = "/artist";
-        public static final String GENRE_URL  = "/genre";
-        public static final String TRACK_URL  = "/track";
-        public static final String UNIT_URL   = "/unit";
-        public static final String UPLOAD_URL = "/upload";
-        public static final String USER_URL   = "/user";
+        public static final String ARTISTS_URL = "/artists";
+        public static final String GENRES_URL  = "/genres";
+        public static final String TRACKS_URL  = "/tracks";
+        public static final String UNITS_URL   = "/units";
+        public static final String UPLOAD_URL  = "/upload";
+        public static final String USERS_URL   = "/users";
 
         public static abstract class Operation {
 

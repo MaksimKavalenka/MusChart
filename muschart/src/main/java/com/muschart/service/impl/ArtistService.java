@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.muschart.bean.entity.IdAndNameEntity;
+import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.ArtistEntity;
 import com.muschart.jpa.repository.ArtistRepository;
 import com.muschart.jpa.repository.TrackArtistRepository;
@@ -73,12 +73,12 @@ public class ArtistService implements ArtistServiceDAO {
     }
 
     @Override
-    public List<IdAndNameEntity> getAllArtistsIdAndName() {
+    public List<IdAndNameDTO> getAllArtistsIdAndName() {
         return Parser.parseObjectsToIdAndNameEntities(repository.getAllArtistsIdAndName());
     }
 
     @Override
-    public List<IdAndNameEntity> getTrackArtistsIdAndName(final long trackId) {
+    public List<IdAndNameDTO> getTrackArtistsIdAndName(final long trackId) {
         return Parser.parseObjectsToIdAndNameEntities(repository.getTrackArtistsIdAndName(trackId));
     }
 

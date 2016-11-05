@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="/muschart/css/autocomplete.css"/>
 		<link rel="stylesheet" type="text/css" href="/muschart/css/button.css"/>
 		<link rel="stylesheet" type="text/css" href="/muschart/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="/muschart/css/container.css"/>
 		<link rel="stylesheet" type="text/css" href="/muschart/css/content.css"/>
 		<link rel="stylesheet" type="text/css" href="/muschart/css/flash.css"/>
 		<link rel="stylesheet" type="text/css" href="/muschart/css/form.css"/>
@@ -56,8 +57,9 @@
 		<div class="container" ng-class="{'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}" ng-bind="flash.message"></div>
 		<div class="container" ui-view="tool"></div>
 		<div class="container" ui-view="info"></div>
-		<div class="container" ui-view="main_content"></div>
-		<div class="container" ui-view="additional_content"></div>
+		<div class="container-main" ui-view="main_content"></div>
+		<div class="container" ui-view="additional_content_1"></div>
+		<div class="container" ui-view="additional_content_2"></div>
 		<div class="flex"></div>
 		<div class="container" ui-view="footer"></div>
 		<div class="amplitude">

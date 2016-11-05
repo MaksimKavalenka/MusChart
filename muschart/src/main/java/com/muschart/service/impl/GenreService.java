@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.muschart.bean.entity.IdAndNameEntity;
+import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.GenreEntity;
 import com.muschart.exception.ValidationException;
 import com.muschart.jpa.repository.GenreRepository;
@@ -67,7 +67,7 @@ public class GenreService implements GenreServiceDAO {
     }
 
     @Override
-    public List<IdAndNameEntity> getAllGenresIdAndName() {
+    public List<IdAndNameDTO> getAllGenresIdAndName() {
         return Parser.parseObjectsToIdAndNameEntities(repository.getAllGenresIdAndName());
     }
 

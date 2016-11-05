@@ -3,7 +3,7 @@ package com.muschart.service.dao;
 import java.util.Date;
 import java.util.List;
 
-import com.muschart.bean.entity.IdAndNameEntity;
+import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.TrackEntity;
 
 public interface TrackServiceDAO {
@@ -29,7 +29,7 @@ public interface TrackServiceDAO {
 
     List<TrackEntity> getUserTracks(long userId, int sort, boolean order, int page);
 
-    List<IdAndNameEntity> getAllTracksIdAndName();
+    List<IdAndNameDTO> getAllTracksIdAndName();
 
     int getTracksPagesCount();
 

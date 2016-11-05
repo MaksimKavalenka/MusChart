@@ -1,7 +1,7 @@
 package com.muschart.controller.rest;
 
 import static com.muschart.constants.UrlConstants.Rest.JSON_EXT;
-import static com.muschart.constants.UrlConstants.Rest.TRACK_URL;
+import static com.muschart.constants.UrlConstants.Rest.TRACKS_URL;
 import static com.muschart.constants.UrlConstants.Rest.Operation.CREATE_OPERATION;
 import static com.muschart.constants.UrlConstants.Rest.Operation.DELETE_OPERATION;
 import static com.muschart.constants.UrlConstants.Rest.Operation.GET_OPERATION;
@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.muschart.bean.entity.IdAndNameEntity;
-import com.muschart.bean.entity.TrackInfoEntity;
 import com.muschart.constants.EntityConstants.Structure.Entities;
+import com.muschart.dto.IdAndNameDTO;
+import com.muschart.dto.TrackDTO;
 import com.muschart.entity.TrackEntity;
 import com.muschart.entity.UserEntity;
 import com.muschart.service.dao.ArtistServiceDAO;
@@ -32,7 +32,7 @@ import com.muschart.utility.Parser;
 import com.muschart.utility.Secure;
 
 @RestController
-@RequestMapping(TRACK_URL)
+@RequestMapping(TRACKS_URL)
 public class TrackRestController {
 
     @Autowired
@@ -45,8 +45,7 @@ public class TrackRestController {
     private UserServiceDAO   userService;
 
     @RequestMapping(value = CREATE_OPERATION
-            + "/{name}/{song}/{cover}/{video}/{release}/{artists}/{units}/{genres}"
-            + JSON_EXT, method = RequestMethod.POST)
+            + "/{name}/{song}/{cover}/{video}/{release}/{artists}/{units}/{genres}", method = RequestMethod.POST)
     public ResponseEntity<TrackEntity> createTrack(@PathVariable("name") final String name,
             @PathVariable("song") final String song, @PathVariable("cover") final String cover,
             @PathVariable("video") final String video, @PathVariable("release") final Date release,
@@ -59,10 +58,10 @@ public class TrackRestController {
         return new ResponseEntity<TrackEntity>(track, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = DELETE_OPERATION + "/{id}" + JSON_EXT, method = RequestMethod.DELETE)
+    @RequestMapping(value = DELETE_OPERATION + "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<TrackEntity> deleteTrackById(@PathVariable("id") final long id) {
         trackService.deleteTrackById(id);
-        return new ResponseEntity<TrackEntity>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<TrackEntity>(HttpStatus.OK);
     }
 
     @RequestMapping(value = GET_OPERATION + "/{id}" + JSON_EXT, method = RequestMethod.GET)
@@ -76,28 +75,28 @@ public class TrackRestController {
 
     @RequestMapping(value = GET_OPERATION + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<TrackInfoEntity>> getTracks(@PathVariable("sort") final int sort,
+    public ResponseEntity<List<TrackDTO>> getTracks(@PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         List<TrackEntity> tracks = trackService.getTracks(sort, order, page);
         if (tracks == null) {
-            return new ResponseEntity<List<TrackInfoEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<TrackDTO>>(HttpStatus.NO_CONTENT);
         }
 
-        List<TrackInfoEntity> trackInfoEntities = new ArrayList<>(tracks.size());
+        List<TrackDTO> tracksDto = new ArrayList<>(tracks.size());
         for (TrackEntity track : tracks) {
             UserEntity user = Secure.getLoggedUser();
             boolean isLiked = (user == null) ? false
                     : userService.isTrackLiked(user.getId(), track.getId());
-            List<IdAndNameEntity> artists = artistService.getTrackArtistsIdAndName(track.getId());
-            List<IdAndNameEntity> units = unitService.getTrackUnitsIdAndName(track.getId());
-            trackInfoEntities.add(new TrackInfoEntity(track, isLiked, artists, units));
+            List<IdAndNameDTO> artists = artistService.getTrackArtistsIdAndName(track.getId());
+            List<IdAndNameDTO> units = unitService.getTrackUnitsIdAndName(track.getId());
+            tracksDto.add(new TrackDTO(track, isLiked, artists, units));
         }
-        return new ResponseEntity<List<TrackInfoEntity>>(trackInfoEntities, HttpStatus.OK);
+        return new ResponseEntity<List<TrackDTO>>(tracksDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<TrackInfoEntity>> getEntityTracks(
+    public ResponseEntity<List<TrackDTO>> getEntityTracks(
             @PathVariable("entity") final String entity,
             @PathVariable("entityId") final long entityId, @PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
@@ -113,50 +112,50 @@ public class TrackRestController {
                 break;
         }
         if (tracks == null) {
-            return new ResponseEntity<List<TrackInfoEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<TrackDTO>>(HttpStatus.NO_CONTENT);
         }
 
-        List<TrackInfoEntity> trackInfoEntities = new ArrayList<>(tracks.size());
+        List<TrackDTO> tracksDto = new ArrayList<>(tracks.size());
         for (TrackEntity track : tracks) {
             UserEntity user = Secure.getLoggedUser();
             boolean isLiked = (user == null) ? false
                     : userService.isTrackLiked(user.getId(), track.getId());
-            List<IdAndNameEntity> artists = artistService.getTrackArtistsIdAndName(track.getId());
-            List<IdAndNameEntity> units = unitService.getTrackUnitsIdAndName(track.getId());
-            trackInfoEntities.add(new TrackInfoEntity(track, isLiked, artists, units));
+            List<IdAndNameDTO> artists = artistService.getTrackArtistsIdAndName(track.getId());
+            List<IdAndNameDTO> units = unitService.getTrackUnitsIdAndName(track.getId());
+            tracksDto.add(new TrackDTO(track, isLiked, artists, units));
         }
-        return new ResponseEntity<List<TrackInfoEntity>>(trackInfoEntities, HttpStatus.OK);
+        return new ResponseEntity<List<TrackDTO>>(tracksDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = USER_OPERATION + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<TrackInfoEntity>> getUserTracks(@PathVariable("sort") final int sort,
+    public ResponseEntity<List<TrackDTO>> getUserTracks(@PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         List<TrackEntity> tracks = trackService.getUserTracks(Secure.getLoggedUser().getId(), sort,
                 order, page);
         if (tracks == null) {
-            return new ResponseEntity<List<TrackInfoEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<TrackDTO>>(HttpStatus.NO_CONTENT);
         }
 
-        List<TrackInfoEntity> trackInfoEntities = new ArrayList<>(tracks.size());
+        List<TrackDTO> tracksDto = new ArrayList<>(tracks.size());
         for (TrackEntity track : tracks) {
             UserEntity user = Secure.getLoggedUser();
             boolean isLiked = (user == null) ? false
                     : userService.isTrackLiked(user.getId(), track.getId());
-            List<IdAndNameEntity> artists = artistService.getTrackArtistsIdAndName(track.getId());
-            List<IdAndNameEntity> units = unitService.getTrackUnitsIdAndName(track.getId());
-            trackInfoEntities.add(new TrackInfoEntity(track, isLiked, artists, units));
+            List<IdAndNameDTO> artists = artistService.getTrackArtistsIdAndName(track.getId());
+            List<IdAndNameDTO> units = unitService.getTrackUnitsIdAndName(track.getId());
+            tracksDto.add(new TrackDTO(track, isLiked, artists, units));
         }
-        return new ResponseEntity<List<TrackInfoEntity>>(trackInfoEntities, HttpStatus.OK);
+        return new ResponseEntity<List<TrackDTO>>(tracksDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = GET_OPERATION + "/all/id_name" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<IdAndNameEntity>> getAllGenresIdAndName() {
-        List<IdAndNameEntity> tracksIdAndName = trackService.getAllTracksIdAndName();
+    public ResponseEntity<List<IdAndNameDTO>> getAllGenresIdAndName() {
+        List<IdAndNameDTO> tracksIdAndName = trackService.getAllTracksIdAndName();
         if (tracksIdAndName == null) {
-            return new ResponseEntity<List<IdAndNameEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<IdAndNameDTO>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<IdAndNameEntity>>(tracksIdAndName, HttpStatus.OK);
+        return new ResponseEntity<List<IdAndNameDTO>>(tracksIdAndName, HttpStatus.OK);
     }
 
     @RequestMapping(value = GET_OPERATION + "/pages_count" + JSON_EXT, method = RequestMethod.GET)

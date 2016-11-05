@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.muschart.bean.entity.IdAndNameEntity;
+import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.UnitEntity;
 import com.muschart.jpa.repository.UnitRepository;
 import com.muschart.service.dao.UnitServiceDAO;
@@ -27,12 +27,12 @@ public class UnitService implements UnitServiceDAO {
     }
 
     @Override
-    public List<IdAndNameEntity> getAllUnitsIdAndName() {
+    public List<IdAndNameDTO> getAllUnitsIdAndName() {
         return Parser.parseObjectsToIdAndNameEntities(repository.getAllUnitsIdAndName());
     }
 
     @Override
-    public List<IdAndNameEntity> getTrackUnitsIdAndName(final long trackId) {
+    public List<IdAndNameDTO> getTrackUnitsIdAndName(final long trackId) {
         return Parser.parseObjectsToIdAndNameEntities(repository.getTrackUnitsIdAndName(trackId));
     }
 

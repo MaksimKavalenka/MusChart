@@ -7,8 +7,8 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.muschart.bean.entity.IdAndNameEntity;
 import com.muschart.constants.EntityConstants.Structure.AbstractFields;
+import com.muschart.dto.IdAndNameDTO;
 
 public abstract class Parser {
 
@@ -23,15 +23,13 @@ public abstract class Parser {
         return ids;
     }
 
-    public static List<IdAndNameEntity> parseObjectsToIdAndNameEntities(
-            final List<Object[]> objects) {
-        List<IdAndNameEntity> idAndNameEntities = new ArrayList<>(objects.size());
+    public static List<IdAndNameDTO> parseObjectsToIdAndNameEntities(final List<Object[]> objects) {
+        List<IdAndNameDTO> idsAndNamesDto = new ArrayList<>(objects.size());
         for (Object[] object : objects) {
-            IdAndNameEntity artistIdAndName = new IdAndNameEntity((Long) object[0],
-                    (String) object[1]);
-            idAndNameEntities.add(artistIdAndName);
+            IdAndNameDTO idAndNameDto = new IdAndNameDTO((Long) object[0], (String) object[1]);
+            idsAndNamesDto.add(idAndNameDto);
         }
-        return idAndNameEntities;
+        return idsAndNamesDto;
     }
 
 }

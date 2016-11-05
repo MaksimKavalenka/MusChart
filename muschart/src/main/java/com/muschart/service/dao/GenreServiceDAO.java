@@ -2,7 +2,7 @@ package com.muschart.service.dao;
 
 import java.util.List;
 
-import com.muschart.bean.entity.IdAndNameEntity;
+import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.GenreEntity;
 import com.muschart.exception.ValidationException;
 
@@ -22,7 +22,7 @@ public interface GenreServiceDAO {
 
     List<GenreEntity> getUserGenres(long userId, int sort, boolean order, int page);
 
-    List<IdAndNameEntity> getAllGenresIdAndName();
+    List<IdAndNameDTO> getAllGenresIdAndName();
 
     int getGenresPagesCount();
 

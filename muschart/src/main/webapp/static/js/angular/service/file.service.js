@@ -4,7 +4,7 @@ app.service('FileService', ['$http', 'MESSAGE', 'REST', function($http, MESSAGE,
 	function uploadFile(file, type, callback) {
 		var formData = new FormData();
 		formData.append('file', file);
-		$http.post(REST.UPLOAD + '/' + type + REST.JSON_EXT, formData, {
+		$http.post(REST.UPLOAD + '/' + type, formData, {
 			transformRequest: angular.identity,
 			headers: {'Content-Type': undefined}
 		})

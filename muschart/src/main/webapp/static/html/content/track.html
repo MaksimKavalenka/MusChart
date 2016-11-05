@@ -18,6 +18,7 @@
 				<div class="link link-action action-like" ui-sref="login" ng-if="!user"></div>
 				<div class="link link-action action-like" ng-controller="UserEditController as ctrl" ng-click="ctrl.like('track', track.id)" ng-if="user && !track.liked"></div>
 				<div class="link link-action action-liked" ng-controller="UserEditController as ctrl" ng-click="ctrl.like('track', track.id)" ng-if="user && track.liked"></div>
+				<div class="link link-action link-empty">{{track.rating}}</div>
 			</div>
 		</div>
 </ul>

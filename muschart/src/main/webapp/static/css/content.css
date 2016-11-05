@@ -55,10 +55,13 @@
 	border: 2.5px solid transparent;
 	cursor: pointer;
 	display: table-cell;
-	height: 61px;
+	font-family: sans-serif;
+	font-size: 20px;
+	height: 47px;
 	opacity: 0.8;
 	text-align: center;
-	width: 61px;
+	vertical-align: middle;
+	width: 47px;
 }
 .content li > .body > .body-link .link-empty {
 	cursor: auto;
@@ -81,7 +84,7 @@
 .info > * {
 	display: inline-block;
 	font-family: cursive;
-	font-size: 50px;
+	font-size: 30px;
 }
 .info img {
 	border: 2.5px solid #575757;

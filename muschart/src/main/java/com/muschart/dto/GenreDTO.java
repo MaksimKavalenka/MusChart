@@ -1,24 +1,23 @@
-package com.muschart.bean.entity;
+package com.muschart.dto;
 
 import com.muschart.entity.GenreEntity;
 
-public class GenreInfoEntity extends GenreEntity {
+public class GenreDTO extends GenreEntity {
 
     private static final long serialVersionUID = 8660168994660325966L;
 
     private boolean           isLiked;
 
-    public GenreInfoEntity() {
+    public GenreDTO() {
         super();
     }
 
-    public GenreInfoEntity(final long id, final String name, final long rating,
-            final boolean isLiked) {
+    public GenreDTO(final long id, final String name, final long rating, final boolean isLiked) {
         super(id, name, rating, null, null, null);
         this.isLiked = isLiked;
     }
 
-    public GenreInfoEntity(final GenreEntity genre, final boolean isLiked) {
+    public GenreDTO(final GenreEntity genre, final boolean isLiked) {
         super(genre.getId(), genre.getName(), genre.getRating(), null, null, null);
         this.isLiked = isLiked;
     }

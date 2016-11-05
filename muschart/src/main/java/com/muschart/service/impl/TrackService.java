@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.muschart.bean.entity.IdAndNameEntity;
+import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.TrackEntity;
 import com.muschart.jpa.repository.TrackArtistRepository;
 import com.muschart.jpa.repository.TrackRepository;
@@ -91,7 +91,7 @@ public class TrackService implements TrackServiceDAO {
     }
 
     @Override
-    public List<IdAndNameEntity> getAllTracksIdAndName() {
+    public List<IdAndNameDTO> getAllTracksIdAndName() {
         return Parser.parseObjectsToIdAndNameEntities(repository.getAllTracksIdAndName());
     }
 

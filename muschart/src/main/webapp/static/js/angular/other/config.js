@@ -179,12 +179,12 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.INFO_CONTENT
 			},
-			main_content: {
+			additional_content_1: {
 				controller: CONTROLLER.GENRE_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.GENRE_CONTENT
 			},
-			additional_content: {
+			additional_content_2: {
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.TRACK_CONTENT
@@ -201,12 +201,12 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.INFO_CONTENT
 			},
-			main_content: {
+			additional_content_1: {
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.TRACK_CONTENT
 			},
-			additional_content: {
+			additional_content_2: {
 				controller: CONTROLLER.ARTIST_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.ARTIST_CONTENT
@@ -223,12 +223,12 @@ app.config(['$stateProvider', '$urlRouterProvider', 'CONTROLLER', 'PATH', 'STATE
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.INFO_CONTENT
 			},
-			main_content: {
+			additional_content_1: {
 				controller: CONTROLLER.GENRE_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.GENRE_CONTENT
 			},
-			additional_content: {
+			additional_content_2: {
 				controller: CONTROLLER.ARTIST_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.ARTIST_CONTENT

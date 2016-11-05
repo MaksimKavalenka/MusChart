@@ -2,8 +2,7 @@ package com.muschart.controller.rest;
 
 import static com.muschart.constants.MessageConstants.PASSWORDS_ERROR;
 import static com.muschart.constants.MessageConstants.VALIDATION_ERROR;
-import static com.muschart.constants.UrlConstants.Rest.JSON_EXT;
-import static com.muschart.constants.UrlConstants.Rest.USER_URL;
+import static com.muschart.constants.UrlConstants.Rest.USERS_URL;
 import static com.muschart.constants.UrlConstants.Rest.Operation.AUTH_OPERATION;
 import static com.muschart.constants.UrlConstants.Rest.Operation.CHECK_OPERATION;
 import static com.muschart.constants.UrlConstants.Rest.Operation.CREATE_OPERATION;
@@ -20,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,9 +29,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.muschart.bean.ErrorMessage;
-import com.muschart.bean.entity.UserInfoEntity;
 import com.muschart.constants.RoleConstants;
 import com.muschart.constants.EntityConstants.Structure.Entities;
+import com.muschart.dto.UserDTO;
 import com.muschart.entity.UserEntity;
 import com.muschart.exception.ValidationException;
 import com.muschart.service.dao.RoleServiceDAO;
@@ -42,7 +40,7 @@ import com.muschart.utility.Secure;
 import com.muschart.utility.Validator;
 
 @RestController
-@RequestMapping(USER_URL)
+@RequestMapping(USERS_URL)
 public class UserRestController {
 
     @Autowired
@@ -50,32 +48,31 @@ public class UserRestController {
     @Autowired
     private UserServiceDAO userService;
 
-    @RequestMapping(value = AUTH_OPERATION
-            + JSON_EXT, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserInfoEntity> authentication(final Principal principal) {
+    @RequestMapping(value = AUTH_OPERATION, method = RequestMethod.GET)
+    public ResponseEntity<UserDTO> authentication(final Principal principal) {
         if (principal != null) {
             if (principal instanceof AbstractAuthenticationToken) {
                 UserEntity user = (UserEntity) ((AbstractAuthenticationToken) principal)
                         .getPrincipal();
 
-                UserInfoEntity userInfo = null;
+                UserDTO userDto = null;
                 if (user != null) {
-                    userInfo = new UserInfoEntity(user);
+                    userDto = new UserDTO(user);
                 }
-                return new ResponseEntity<UserInfoEntity>(userInfo, HttpStatus.OK);
+                return new ResponseEntity<UserDTO>(userDto, HttpStatus.OK);
             }
         }
-        return new ResponseEntity<UserInfoEntity>(HttpStatus.FORBIDDEN);
+        return new ResponseEntity<UserDTO>(HttpStatus.FORBIDDEN);
     }
 
-    @RequestMapping(value = LOGOUT_OPERATION + JSON_EXT, method = RequestMethod.POST)
+    @RequestMapping(value = LOGOUT_OPERATION, method = RequestMethod.POST)
     public void logout(final HttpServletRequest rq, final HttpServletResponse rs) {
         SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();
         securityContextLogoutHandler.logout(rq, rs, null);
     }
 
-    @RequestMapping(value = CREATE_OPERATION + "/{login}/{password}/{confirmPassword}"
-            + JSON_EXT, method = RequestMethod.POST)
+    @RequestMapping(value = CREATE_OPERATION
+            + "/{login}/{password}/{confirmPassword}", method = RequestMethod.POST)
     public ResponseEntity<Object> createUser(@PathVariable("login") final String login,
             @PathVariable("password") final String password,
             @PathVariable("confirmPassword") final String confirmPassword) {
@@ -101,8 +98,7 @@ public class UserRestController {
         }
     }
 
-    @RequestMapping(value = LIKE_OPERATION + "/{entity}/{entityId}"
-            + JSON_EXT, method = RequestMethod.POST)
+    @RequestMapping(value = LIKE_OPERATION + "/{entity}/{entityId}", method = RequestMethod.POST)
     public ResponseEntity<Object> setUserLike(@PathVariable("entity") final String entity,
             @PathVariable("entityId") final long entityId) {
         if (!Validator.allNotNull(entity, entityId)) {
@@ -126,8 +122,7 @@ public class UserRestController {
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = CHECK_OPERATION + "/login/{login}"
-            + JSON_EXT, method = RequestMethod.POST)
+    @RequestMapping(value = CHECK_OPERATION + "/login/{login}", method = RequestMethod.POST)
     public ResponseEntity<Object> checkLogin(@PathVariable("login") final String login) {
         boolean exists = userService.checkLogin(login);
         return new ResponseEntity<Object>(exists, HttpStatus.OK);

@@ -3,7 +3,6 @@ package com.muschart.controller.rest;
 import static com.muschart.constants.MessageConstants.UPLOAD_FILE_ERROR;
 import static com.muschart.constants.UploadConstants.Path.*;
 import static com.muschart.constants.UploadConstants.Type.*;
-import static com.muschart.constants.UrlConstants.Rest.JSON_EXT;
 import static com.muschart.constants.UrlConstants.Rest.UPLOAD_URL;
 
 import java.io.File;
@@ -32,7 +31,7 @@ import com.muschart.exception.ValidationException;
 @RequestMapping(UPLOAD_URL)
 public class UploadRestController {
 
-    @RequestMapping(value = "/{type}" + JSON_EXT, method = RequestMethod.POST)
+    @RequestMapping(value = "/{type}", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Void> uploadFile(@PathVariable("type") final String type,
             @RequestParam(value = "file") final MultipartFile file) {
         try {

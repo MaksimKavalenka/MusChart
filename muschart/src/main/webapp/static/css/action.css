@@ -32,6 +32,11 @@
 	background-image: url('../img/action/play.svg');
 	background-repeat: no-repeat;
 }
+.action-play:hover,
+.action-play:active {
+	background-image: url('../img/action/play-active.svg');
+	background-repeat: no-repeat;
+}
 .action-playlist {
 	background-image: url('../img/action/playlist.svg');
 	background-repeat: no-repeat;

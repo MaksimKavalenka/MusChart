@@ -5,7 +5,7 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', fu
 		if (!ValidatorService.allNotEmpty(callback, name, photo, genres)) {
 			return;
 		}
-		$http.post(REST.ARTIST + '/create/' + name + '/' + photo + '/' + genres + REST.JSON_EXT)
+		$http.post(REST.ARTISTSS + '/create/' + name + '/' + photo + '/' + genres)
 		.success(function(response) {
 			var data = {success: true, data: response, message: MESSAGE.CREATING_ARTIST_SUCCESS};
 			callback(data);
@@ -20,7 +20,7 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', fu
 		if (!ValidatorService.allNotEmpty(callback, id)) {
 			return;
 		}
-		$http.delete(REST.ARTIST + '/delete/' + id + REST.JSON_EXT)
+		$http.delete(REST.ARTISTSS + '/delete/' + id)
 		.success(function(response) {
 			response = {success: true, message: MESSAGE.GELETING_ARTIST_SUCCESS};
 			callback(data);
@@ -35,7 +35,7 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', fu
 		if (!ValidatorService.allNotEmpty(callback, id)) {
 			return;
 		}
-		$http.get(REST.ARTIST + '/get/' + id + REST.JSON_EXT)
+		$http.get(REST.ARTISTS + '/get/' + id + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -50,7 +50,7 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', fu
 		if (!ValidatorService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
-		$http.get(REST.ARTIST + '/get/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
+		$http.get(REST.ARTISTS + '/get/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -65,7 +65,7 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', fu
 		if (!ValidatorService.allNotEmpty(callback, entity, entityId, sort, order, page)) {
 			return;
 		}
-		$http.get(REST.ARTIST + '/get/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
+		$http.get(REST.ARTISTS + '/get/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -80,7 +80,7 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', fu
 		if (!ValidatorService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
-		$http.get(REST.ARTIST + '/user/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
+		$http.get(REST.ARTISTS + '/user/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -92,7 +92,7 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', fu
 	}
 
 	function getAllArtistsIdAndName(callback) {
-		$http.get(REST.ARTIST + '/get/all/id_name' + REST.JSON_EXT)
+		$http.get(REST.ARTISTS + '/get/all/id_name' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -104,7 +104,7 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', fu
 	}
 
 	function getPagesCount(callback) {
-		$http.get(REST.ARTIST + '/get/pages_count' + REST.JSON_EXT)
+		$http.get(REST.ARTISTS + '/get/pages_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -119,7 +119,7 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', fu
 		if (!ValidatorService.allNotEmpty(callback, entity, entityId)) {
 			return;
 		}
-		$http.get(REST.ARTIST + '/get/' + entity + '/' + entityId + '/pages_count' + REST.JSON_EXT)
+		$http.get(REST.ARTISTS + '/get/' + entity + '/' + entityId + '/pages_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -131,7 +131,7 @@ app.factory('ArtistFactory', ['$http', 'MESSAGE', 'REST', 'ValidatorService', fu
 	}
 
 	function getUserPagesCount(callback) {
-		$http.get(REST.ARTIST + '/user/pages_count' + REST.JSON_EXT)
+		$http.get(REST.ARTISTS + '/user/pages_count' + REST.JSON_EXT)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);

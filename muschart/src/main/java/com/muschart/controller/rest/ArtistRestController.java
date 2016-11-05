@@ -1,6 +1,6 @@
 package com.muschart.controller.rest;
 
-import static com.muschart.constants.UrlConstants.Rest.ARTIST_URL;
+import static com.muschart.constants.UrlConstants.Rest.ARTISTS_URL;
 import static com.muschart.constants.UrlConstants.Rest.JSON_EXT;
 import static com.muschart.constants.UrlConstants.Rest.Operation.CREATE_OPERATION;
 import static com.muschart.constants.UrlConstants.Rest.Operation.DELETE_OPERATION;
@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.muschart.bean.entity.ArtistInfoEntity;
-import com.muschart.bean.entity.IdAndNameEntity;
 import com.muschart.constants.EntityConstants.Structure.Entities;
+import com.muschart.dto.ArtistDTO;
+import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.ArtistEntity;
 import com.muschart.entity.UserEntity;
 import com.muschart.service.dao.ArtistServiceDAO;
@@ -29,7 +29,7 @@ import com.muschart.utility.Parser;
 import com.muschart.utility.Secure;
 
 @RestController
-@RequestMapping(ARTIST_URL)
+@RequestMapping(ARTISTS_URL)
 public class ArtistRestController {
 
     @Autowired
@@ -37,8 +37,8 @@ public class ArtistRestController {
     @Autowired
     private UserServiceDAO   userService;
 
-    @RequestMapping(value = CREATE_OPERATION + "/{name}/{photo}/{genres}"
-            + JSON_EXT, method = RequestMethod.POST)
+    @RequestMapping(value = CREATE_OPERATION
+            + "/{name}/{photo}/{genres}", method = RequestMethod.POST)
     public ResponseEntity<ArtistEntity> createArtist(@PathVariable("name") final String name,
             @PathVariable("photo") final String photo,
             @PathVariable("genres") final String genres) {
@@ -47,10 +47,10 @@ public class ArtistRestController {
         return new ResponseEntity<ArtistEntity>(artist, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = DELETE_OPERATION + "/{id}" + JSON_EXT, method = RequestMethod.DELETE)
+    @RequestMapping(value = DELETE_OPERATION + "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<ArtistEntity> deleteArtistById(@PathVariable("id") final long id) {
         artistService.deleteArtistById(id);
-        return new ResponseEntity<ArtistEntity>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<ArtistEntity>(HttpStatus.OK);
     }
 
     @RequestMapping(value = GET_OPERATION + "/{id}" + JSON_EXT, method = RequestMethod.GET)
@@ -64,26 +64,26 @@ public class ArtistRestController {
 
     @RequestMapping(value = GET_OPERATION + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<ArtistInfoEntity>> getArtists(@PathVariable("sort") final int sort,
+    public ResponseEntity<List<ArtistDTO>> getArtists(@PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         List<ArtistEntity> artists = artistService.getArtists(sort, order, page);
         if (artists == null) {
-            return new ResponseEntity<List<ArtistInfoEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<ArtistDTO>>(HttpStatus.NO_CONTENT);
         }
 
-        List<ArtistInfoEntity> artistInfoEntities = new ArrayList<>(artists.size());
+        List<ArtistDTO> artistsDto = new ArrayList<>(artists.size());
         for (ArtistEntity artist : artists) {
             UserEntity user = Secure.getLoggedUser();
             boolean isLiked = (user == null) ? false
                     : userService.isArtistLiked(user.getId(), artist.getId());
-            artistInfoEntities.add(new ArtistInfoEntity(artist, isLiked));
+            artistsDto.add(new ArtistDTO(artist, isLiked));
         }
-        return new ResponseEntity<List<ArtistInfoEntity>>(artistInfoEntities, HttpStatus.OK);
+        return new ResponseEntity<List<ArtistDTO>>(artistsDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<ArtistInfoEntity>> getEntityArtists(
+    public ResponseEntity<List<ArtistDTO>> getEntityArtists(
             @PathVariable("entity") final String entity,
             @PathVariable("entityId") final long entityId, @PathVariable("sort") final int sort,
             @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
@@ -99,47 +99,46 @@ public class ArtistRestController {
                 break;
         }
         if (artists == null) {
-            return new ResponseEntity<List<ArtistInfoEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<ArtistDTO>>(HttpStatus.NO_CONTENT);
         }
 
-        List<ArtistInfoEntity> artistInfoEntities = new ArrayList<>(artists.size());
+        List<ArtistDTO> artistsDto = new ArrayList<>(artists.size());
         for (ArtistEntity artist : artists) {
             UserEntity user = Secure.getLoggedUser();
             boolean isLiked = (user == null) ? false
                     : userService.isArtistLiked(user.getId(), artist.getId());
-            artistInfoEntities.add(new ArtistInfoEntity(artist, isLiked));
+            artistsDto.add(new ArtistDTO(artist, isLiked));
         }
-        return new ResponseEntity<List<ArtistInfoEntity>>(artistInfoEntities, HttpStatus.OK);
+        return new ResponseEntity<List<ArtistDTO>>(artistsDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = USER_OPERATION + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<ArtistInfoEntity>> getUserArtists(
-            @PathVariable("sort") final int sort, @PathVariable("order") final boolean order,
-            @PathVariable("page") final int page) {
+    public ResponseEntity<List<ArtistDTO>> getUserArtists(@PathVariable("sort") final int sort,
+            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
         List<ArtistEntity> artists = artistService.getUserArtists(Secure.getLoggedUser().getId(),
                 sort, order, page);
         if (artists == null) {
-            return new ResponseEntity<List<ArtistInfoEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<ArtistDTO>>(HttpStatus.NO_CONTENT);
         }
 
-        List<ArtistInfoEntity> artistInfoEntities = new ArrayList<>(artists.size());
+        List<ArtistDTO> artistsDto = new ArrayList<>(artists.size());
         for (ArtistEntity artist : artists) {
             UserEntity user = Secure.getLoggedUser();
             boolean isLiked = (user == null) ? false
                     : userService.isArtistLiked(user.getId(), artist.getId());
-            artistInfoEntities.add(new ArtistInfoEntity(artist, isLiked));
+            artistsDto.add(new ArtistDTO(artist, isLiked));
         }
-        return new ResponseEntity<List<ArtistInfoEntity>>(artistInfoEntities, HttpStatus.OK);
+        return new ResponseEntity<List<ArtistDTO>>(artistsDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = GET_OPERATION + "/all/id_name" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<IdAndNameEntity>> getAllGenresIdAndName() {
-        List<IdAndNameEntity> artistsIdAndName = artistService.getAllArtistsIdAndName();
+    public ResponseEntity<List<IdAndNameDTO>> getAllGenresIdAndName() {
+        List<IdAndNameDTO> artistsIdAndName = artistService.getAllArtistsIdAndName();
         if (artistsIdAndName == null) {
-            return new ResponseEntity<List<IdAndNameEntity>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<IdAndNameDTO>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<IdAndNameEntity>>(artistsIdAndName, HttpStatus.OK);
+        return new ResponseEntity<List<IdAndNameDTO>>(artistsIdAndName, HttpStatus.OK);
     }
 
     @RequestMapping(value = GET_OPERATION + "/pages_count" + JSON_EXT, method = RequestMethod.GET)

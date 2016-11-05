@@ -2,7 +2,7 @@ package com.muschart.service.dao;
 
 import java.util.List;
 
-import com.muschart.bean.entity.IdAndNameEntity;
+import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.UnitEntity;
 
 public interface UnitServiceDAO {
@@ -11,9 +11,9 @@ public interface UnitServiceDAO {
 
     UnitEntity getUnitById(long id);
 
-    List<IdAndNameEntity> getAllUnitsIdAndName();
+    List<IdAndNameDTO> getAllUnitsIdAndName();
 
-    List<IdAndNameEntity> getTrackUnitsIdAndName(long trackId);
+    List<IdAndNameDTO> getTrackUnitsIdAndName(long trackId);
 
     boolean checkUnitName(String name);
 

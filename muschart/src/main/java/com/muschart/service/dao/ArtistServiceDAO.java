@@ -2,7 +2,7 @@ package com.muschart.service.dao;
 
 import java.util.List;
 
-import com.muschart.bean.entity.IdAndNameEntity;
+import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.ArtistEntity;
 
 public interface ArtistServiceDAO {
@@ -23,9 +23,9 @@ public interface ArtistServiceDAO {
 
     List<ArtistEntity> getUserArtists(long userId, int sort, boolean order, int page);
 
-    List<IdAndNameEntity> getAllArtistsIdAndName();
+    List<IdAndNameDTO> getAllArtistsIdAndName();
 
-    List<IdAndNameEntity> getTrackArtistsIdAndName(long trackId);
+    List<IdAndNameDTO> getTrackArtistsIdAndName(long trackId);
 
     int getArtistsPagesCount();
 
