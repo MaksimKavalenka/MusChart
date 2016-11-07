@@ -1,12 +1,12 @@
 'use strict';
-app.controller('ArtistController', function($scope, $state, STATE, UPLOAD, ArtistFactory, FlashService) {
+app.controller('ArtistController', function($cookies, $state, STATE, UPLOAD, ArtistFactory, FlashService) {
 
 	var self = this;
 	self.url = '#';
 	self.info = {};
 	self.artists = [];
 
-	self.init = function(state, sort, order, page) {
+	function init(state, sort, order, page) {
 		switch (state) {
 			case STATE.ARTISTS:
 				self.url = '#';
@@ -38,7 +38,7 @@ app.controller('ArtistController', function($scope, $state, STATE, UPLOAD, Artis
 				getUserArtists(sort, order, page);
 				break;
 		}
-	};
+	}
 
 	function getArtistById(id) {
 		ArtistFactory.getArtistById(id, function(response) {
@@ -49,7 +49,7 @@ app.controller('ArtistController', function($scope, $state, STATE, UPLOAD, Artis
 				FlashService.error(response.message);
 			}
 		});
-	};
+	}
 
 	function getArtists(sort, order, page) {
 		ArtistFactory.getArtists(sort, order, page, function(response) {
@@ -81,6 +81,6 @@ app.controller('ArtistController', function($scope, $state, STATE, UPLOAD, Artis
 		});
 	}
 
-	self.init($state.current.name, $scope.settings.sort.artists, $scope.settings.order.artists, $state.params.page);
+	init($state.current.name, $cookies.getObject('settings').sort.artists, $cookies.getObject('settings').order.artists, $state.params.page);
 
 });

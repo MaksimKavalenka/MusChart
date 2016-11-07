@@ -6,31 +6,6 @@ app.controller('TrackEditController', function($scope, TYPE, ArtistFactory, Genr
 	self.genres = [];
 	self.units = [];
 
-	self.init = function() {
-		ChoiceService.reset();
-		ArtistFactory.getAllArtistsIdAndName(function(response) {
-			if (response.success) {
-				self.artists = response.data;
-			} else {
-				FlashService.error(response.message);
-			}
-		});
-		GenreFactory.getAllGenresIdAndName(function(response) {
-			if (response.success) {
-				self.genres = response.data;
-			} else {
-				FlashService.error(response.message);
-			}
-		});
-		UnitFactory.getAllUnitsIdAndName(function(response) {
-			if (response.success) {
-				self.units = response.data;
-			} else {
-				FlashService.error(response.message);
-			}
-		});
-	};
-
 	self.createTrack = function() {
 		self.dataLoading = true;
 		var songFlag = true;
@@ -78,6 +53,31 @@ app.controller('TrackEditController', function($scope, TYPE, ArtistFactory, Genr
 		$scope.form.$setPristine();
 	};
 
-	self.init();
+	function init() {
+		ChoiceService.reset();
+		ArtistFactory.getAllArtistsIdAndName(function(response) {
+			if (response.success) {
+				self.artists = response.data;
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+		GenreFactory.getAllGenresIdAndName(function(response) {
+			if (response.success) {
+				self.genres = response.data;
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+		UnitFactory.getAllUnitsIdAndName(function(response) {
+			if (response.success) {
+				self.units = response.data;
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+	}
+
+	init();
 
 });

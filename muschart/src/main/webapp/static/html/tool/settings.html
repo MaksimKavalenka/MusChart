@@ -1,16 +1,16 @@
 <div class="settings">
-	<div class="title">Settings</div>
+	<div class="title" translate="SETTINGS"></div>
 	<div class="setting">
-		<div class="name">Language</div>
+		<div class="name" translate="LANGUAGE"></div>
 		<select ng-model="settings.language" ng-change="changeLanguage(settings.language)" required>
 			<option ng-repeat="lang in languages" value="{{lang.iso}}">{{lang.name}}</option>
 		</select>
 	</div>
 	<div class="setting">
-		<div class="name">Sorting</div>
+		<div class="name" translate="SORTING"></div>
 		<ul>
 			<li>
-				<div class="name">Tracks</div>
+				<div class="name" translate="TRACKS"></div>
 			<li>
 				<select ng-model="settings.sort.tracks" required>
 					<option ng-repeat="sort in sorts.tracks" value="{{sort.value}}">{{sort.name}}</option>
@@ -23,7 +23,7 @@
 		</ul>
 		<ul>
 			<li>
-				<div class="name">Artists</div>
+				<div class="name" translate="ARTISTS"></div>
 			<li>
 				<select ng-model="settings.sort.artists" required>
 					<option ng-repeat="sort in sorts.artists" value="{{sort.value}}">{{sort.name}}</option>
@@ -36,7 +36,7 @@
 		</ul>
 		<ul>
 			<li>
-				<div class="name">Genres</div>
+				<div class="name" translate="GENRES"></div>
 			<li>
 				<select ng-model="settings.sort.genres" required>
 					<option ng-repeat="sort in sorts.genres" value="{{sort.value}}">{{sort.name}}</option>
@@ -48,5 +48,5 @@
 				</div>
 		</ul>
 	</div>
-	<button class="btn btn-primary" ng-click="saveSettings()">Save</button>
+	<button class="btn btn-primary" ng-click="saveSettings()" translate="SAVE"></button>
 </div>

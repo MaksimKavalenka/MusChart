@@ -1,12 +1,12 @@
 'use strict';
-app.controller('GenreController', function($scope, $state, STATE, GenreFactory, FlashService) {
+app.controller('GenreController', function($cookies, $state, STATE, GenreFactory, FlashService) {
 
 	var self = this;
 	self.url = '#';
 	self.info = {};
 	self.genres = [];
 
-	self.init = function(state, sort, order, page) {
+	function init(state, sort, order, page) {
 		switch (state) {
 			case STATE.GENRES:
 				self.url = '#';
@@ -38,7 +38,7 @@ app.controller('GenreController', function($scope, $state, STATE, GenreFactory, 
 				getUserGenres(sort, order, page);
 				break;
 		}
-	};
+	}
 
 	function getGenreById(id) {
 		GenreFactory.getGenreById(id, function(response) {
@@ -80,6 +80,6 @@ app.controller('GenreController', function($scope, $state, STATE, GenreFactory, 
 		});
 	}
 
-	self.init($state.current.name, $scope.settings.sort.genres, $scope.settings.order.genres, $state.params.page);
+	init($state.current.name, $cookies.getObject('settings').sort.genres, $cookies.getObject('settings').order.genres, $state.params.page);
 
 });

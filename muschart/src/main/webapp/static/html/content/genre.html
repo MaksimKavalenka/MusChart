@@ -4,6 +4,6 @@
 			<a ui-sref="genre({id: genre.id})">{{genre.name}}</a>
 		</div>
 </ul>
-<div class="link" ng-if="(ctrl.url !== '#') && (ctrl.genres.length >= amount.genres)">
-	<a ui-sref="{{ctrl.url}}">More genres</a>
+<div class="link" ng-if="(ctrl.url !== '#') && (ctrl.genres.length >= count.genres)">
+	<a ui-sref="{{ctrl.url}}" translate="MORE_GENRES"></a>
 </div>

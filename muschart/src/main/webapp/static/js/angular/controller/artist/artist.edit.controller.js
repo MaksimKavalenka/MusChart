@@ -4,17 +4,6 @@ app.controller('ArtistEditController', function($scope, TYPE, ArtistFactory, Gen
 	var self = this;
 	self.genres = [];
 
-	self.init = function() {
-		ChoiceService.reset();
-		GenreFactory.getAllGenresIdAndName(function(response) {
-			if (response.success) {
-				self.genres = response.data;
-			} else {
-				FlashService.error(response.message);
-			}
-		});
-	};
-
 	self.createArtist = function() {
 		self.dataLoading = true;
 		var photoFlag = true;
@@ -52,6 +41,17 @@ app.controller('ArtistEditController', function($scope, TYPE, ArtistFactory, Gen
 		$scope.form.$setPristine();
 	};
 
-	self.init();
+	function init() {
+		ChoiceService.reset();
+		GenreFactory.getAllGenresIdAndName(function(response) {
+			if (response.success) {
+				self.genres = response.data;
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+	}
+
+	init();
 
 });

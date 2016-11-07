@@ -10,10 +10,6 @@ app.service('CookieService', function($cookies, $rootScope) {
 		$cookies.putObject('user', $rootScope.user);
 	}
 
-	$rootScope.saveSettings = function() {
-		$cookies.putObject('settings', $rootScope.settings);
-	};
-
 	function setTracks(tracks) {
 		$rootScope.tracks = tracks;
 		$cookies.putObject('tracks', $rootScope.tracks);

@@ -1,25 +1,25 @@
 <form method="POST" class="form-submit form-validation" name="form">
 	<fieldset>
-		<legend>Register</legend>
+		<legend translate="REGISTER"></legend>
 		<div class="field">
-			<label class="required" for="login">Login</label>
+			<label class="required" for="login" translate="LOGIN"></label>
 			<input type="text" id="login" name="login" maxlength="255" ng-model="ctrl.user.login" ng-login-exist required/>
-			<span ng-show="form.login.$pending.ngLoginExist">Checking if this login is available...</span>
-			<span ng-show="form.login.$error.ngLoginExist">This login is already taken</span>
+			<span ng-show="form.login.$pending.ngCheckLogin" translate="CHECK_LOGIN_MESSAGE"></span>
+			<span ng-show="form.login.$error.ngCheckLogin" translate="EXISTS_LOGIN_MESSAGE"></span>
 		</div>
 		<div class="field">
-			<label class="required" for="password">Password</label>
+			<label class="required" for="password" translate="PASSWORD"></label>
 			<input type="password" id="password" name="password" maxlength="255" ng-model="ctrl.user.password" ng-minlength="3" required/>
-			<span ng-show="form.password.$error.required || form.password.$error.minlength">Minimal count of symbols is 3</span>
+			<span ng-show="form.password.$error.required || form.password.$error.minlength" translate="MINIMAL_COUNT_MESSAGE"></span>
 		</div>
 		<div class="field">
-			<label class="required" for="confirmPassword">Confirm password</label>
+			<label class="required" for="confirmPassword" translate="CONFIRM_PASSWORD"></label>
 			<input type="password" id="confirmPassword" name="confirmPassword" maxlength="255" ng-model="ctrl.user.confirmPassword" ng-match="ctrl.user.password" ng-minlength="3" required/>
-			<span ng-show="form.confirmPassword.$error.required || form.confirmPassword.$error.minlength">Minimal count of symbols is 3</span>
-			<span ng-show="form.confirmPassword.$error.ngMatch && !form.confirmPassword.$error.required && !form.confirmPassword.$error.minlength">Passwords do not match</span>
+			<span ng-show="form.confirmPassword.$error.required || form.confirmPassword.$error.minlength" translate="MINIMAL_COUNT_MESSAGE"></span>
+			<span ng-show="form.confirmPassword.$error.ngMatch && !form.confirmPassword.$error.required && !form.confirmPassword.$error.minlength" translate="PASSWORDS_DO_NOT_MATCH_MESSAGE"></span>
 		</div>
 		<div>
-			<button class="btn btn-primary" ng-click="ctrl.register()" ng-disabled="form.$invalid || ctrl.dataLoading">Register</button>
+			<button class="btn btn-primary" ng-click="ctrl.register()" ng-disabled="form.$invalid || ctrl.dataLoading" translate="REGISTER"></button>
 			<img ng-if="ctrl.dataLoading" src="/muschart/img/load.gif"/>
 		</div>
 	</fieldset>

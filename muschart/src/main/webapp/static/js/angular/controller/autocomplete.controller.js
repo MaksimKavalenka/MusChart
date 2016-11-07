@@ -6,30 +6,38 @@ app.controller('AutocompleteController', function ($scope, ArtistFactory, GenreF
 	var tracks = [];
 	var models = [];
 
-	ArtistFactory.getAllArtistsIdAndName(function(response) {
-		if (response.success) {
-			artists = response.data;
-			models = models.concat(response.data);
-		} else {
-			FlashService.error(response.message);
-		}
-	});
-	GenreFactory.getAllGenresIdAndName(function(response) {
-		if (response.success) {
-			genres = response.data;
-			models = models.concat(response.data);
-		} else {
-			FlashService.error(response.message);
-		}
-	});
-	TrackFactory.getAllTracksIdAndName(function(response) {
-		if (response.success) {
-			tracks = response.data;
-			models = models.concat(response.data);
-		} else {
-			FlashService.error(response.message);
-		}
-	});
+	$scope.options = {
+		suggest: suggestNames
+	};
+
+	function init() {
+		ArtistFactory.getAllArtistsIdAndName(function(response) {
+			if (response.success) {
+				artists = response.data;
+				models = models.concat(response.data);
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+
+		GenreFactory.getAllGenresIdAndName(function(response) {
+			if (response.success) {
+				genres = response.data;
+				models = models.concat(response.data);
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+
+		TrackFactory.getAllTracksIdAndName(function(response) {
+			if (response.success) {
+				tracks = response.data;
+				models = models.concat(response.data);
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+	}
 
 	function highlight(str, term) {
 		var highlightRegex = new RegExp('(' + term + ')', 'gi');
@@ -64,8 +72,6 @@ app.controller('AutocompleteController', function ($scope, ArtistFactory, GenreF
 		return results;
 	}
 
-	$scope.options = {
-		suggest: suggestNames
-	};
+	init();
 
 });

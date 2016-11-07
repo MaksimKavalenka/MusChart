@@ -1,15 +1,18 @@
 'use strict';
-app.run(['$cookies', '$rootScope', '$state', 'STATE', 'UserFactory', 'FlashService', function($cookies, $rootScope, $state, STATE, UserFactory, FlashService) {
+app.run(function($cookies, $rootScope, $state, $translate, STATE, UserFactory, FlashService) {
 
 	$rootScope.$state = $state;
+	$rootScope.count = {artists: 6, genres: 18, tracks: 6};
 
-	$rootScope.settings = $cookies.getObject('settings');
-	if ($rootScope.settings == null) {
-		$rootScope.settings = {};
-		$rootScope.settings.language = 'en';
-		$rootScope.settings.sort = {tracks: 0, artists: 0, genres: 0, my_tracks: 0, my_artists: 0, my_genres: 0};
-		$rootScope.settings.order = {tracks: 'false', artists: 'false', genres: 'false', my_tracks: 'false', my_artists: 'false', my_genres: 'false'};
-		$rootScope.saveSettings();
+	var settings = $cookies.getObject('settings');
+	if (settings == null) {
+		settings = {};
+		settings.language = 'en';
+		settings.sort = {artists: '0', genres: '0', tracks: '1'};
+		settings.order = {artists: false, genres: true, tracks: false};
+		$cookies.putObject('settings', settings);
+	} else {
+		$translate.use(settings.language);
 	}
 
 	$rootScope.tracks = $cookies.getObject('tracks');
@@ -31,4 +34,4 @@ app.run(['$cookies', '$rootScope', '$state', 'STATE', 'UserFactory', 'FlashServi
 		}
 	});
 
-}]);
+});

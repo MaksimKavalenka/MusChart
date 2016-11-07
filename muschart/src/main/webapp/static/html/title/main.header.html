@@ -7,7 +7,7 @@
 	<form class="form-search" role="search">
 		<div ng-controller="AutocompleteController">
 			<div mass-autocomplete>
-				<input type="text" class="input-search form-control ng-isolate-scope ng-valid ng-dirty" ng-model="dirty.state_simple" placeholder="Track, artist, genre" mass-autocomplete-item="options" autocomplete="off">
+				<input type="text" class="input-search form-control ng-isolate-scope ng-valid ng-dirty" ng-model="dirty.state_simple" placeholder="{{'TRACKS' | translate}}, {{'ARTISTS' | translate}}, {{'GENRES' | translate}}" mass-autocomplete-item="options" autocomplete="off">
 			</div>
 		</div>
 	</form>

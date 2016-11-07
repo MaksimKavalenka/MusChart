@@ -1,12 +1,21 @@
 'use strict';
-app.controller('TrackController', function($scope, $state, STATE, UPLOAD, TrackFactory, AmplitudeService, FlashService) {
+app.controller('TrackController', function($cookies, $scope, $state, STATE, UPLOAD, TrackFactory, AmplitudeService, FlashService) {
 
 	var self = this;
 	self.url = '#';
 	self.info = {};
 	self.tracks = [];
 
-	self.init = function(state, sort, order, page) {
+	self.playSong = function(track) {
+		Amplitude.playNow(AmplitudeService.parseSong(track));
+	};
+
+	$scope.showModal = function(video) {
+		$scope.video = video;
+		$scope.modal = true;
+	};
+
+	function init(state, sort, order, page) {
 		switch (state) {
 			case STATE.PLAYLIST:
 				self.url = '#';
@@ -42,7 +51,7 @@ app.controller('TrackController', function($scope, $state, STATE, UPLOAD, TrackF
 				getUserTracks(sort, order, page);
 				break;
 		}
-	};
+	}
 
 	function getTrackById(id) {
 		TrackFactory.getTrackById(id, function(response) {
@@ -87,15 +96,6 @@ app.controller('TrackController', function($scope, $state, STATE, UPLOAD, TrackF
 		});
 	}
 
-	self.playSong = function(track) {
-		Amplitude.playNow(AmplitudeService.parseSong(track));
-	};
-
-	$scope.showModal = function(video) {
-		$scope.video = video;
-		$scope.modal = true;
-	}
-
-	self.init($state.current.name, $scope.settings.sort.tracks, $scope.settings.order.tracks, $state.params.page);
+	init($state.current.name, $cookies.getObject('settings').sort.tracks, $cookies.getObject('settings').order.tracks, $state.params.page);
 
 });

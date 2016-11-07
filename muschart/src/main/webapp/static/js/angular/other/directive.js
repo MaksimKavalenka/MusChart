@@ -3,15 +3,15 @@ var fileRequired = 'fileRequired';
 var fileModel = 'fileModel';
 var ngMatch = 'ngMatch';
 var ngModel = 'ngModel';
-var ngGenreExist = 'ngGenreExist';
-var ngLoginExist = 'ngLoginExist';
+var ngCheckGenreName = 'ngCheckGenreName';
+var ngCheckLogin = 'ngCheckLogin';
 
-app.directive(ngGenreExist, function($timeout, $q, GenreFactory) {
+app.directive(ngCheckGenreName, function($timeout, $q, GenreFactory) {
 	var timer;
 	return {
 		require: ngModel,
 		link: function(scope, element, attributes, controller) {
-			controller.$asyncValidators.ngGenreExist = function(modelValue, viewValue) {
+			controller.$asyncValidators.ngCheckGenreName = function(modelValue, viewValue) {
 				var def = $q.defer();
 				$timeout.cancel(timer);
 				timer = $timeout(function() {
@@ -29,12 +29,12 @@ app.directive(ngGenreExist, function($timeout, $q, GenreFactory) {
 	};
 });
 
-app.directive(ngLoginExist, function($timeout, $q, UserFactory) {
+app.directive(ngCheckLogin, function($timeout, $q, UserFactory) {
 	var timer;
 	return {
 		require: ngModel,
 		link: function(scope, element, attributes, controller) {
-			controller.$asyncValidators.ngLoginExist = function(modelValue, viewValue) {
+			controller.$asyncValidators.ngCheckLogin = function(modelValue, viewValue) {
 				var def = $q.defer();
 				$timeout.cancel(timer);
 				timer = $timeout(function() {
