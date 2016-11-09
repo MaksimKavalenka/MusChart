@@ -2,6 +2,7 @@
 app.controller('TrackController', function($cookies, $scope, $state, STATE, UPLOAD, TrackFactory, AmplitudeService, FlashService) {
 
 	var self = this;
+	self.design = $cookies.getObject('settings').design;
 	self.url = '#';
 	self.info = {};
 	self.tracks = [];

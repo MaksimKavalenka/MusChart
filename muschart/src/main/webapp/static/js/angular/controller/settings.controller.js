@@ -3,18 +3,16 @@ app.controller('SettingsController', function($cookies, $scope, $translate) {
 
 	$scope.settings = $cookies.getObject('settings');
 	$scope.languages = [{name: 'Беларуская', iso: 'by'}, {name: 'English', iso: 'en'}, {name: 'Français', iso: 'fr'}, {name: 'Русский', iso: 'ru'}];
+	$scope.designs = [{name: 'Classic', value: 0}, {name: 'Standard', value: 1}];
 	$scope.sorts = {};
 	$scope.sorts.artists = [{name: '', value: 0}, {name: '', value: 1}, {name: '', value: 2}];
 	$scope.sorts.genres = [{name: '', value: 0}, {name: '', value: 1}, {name: '', value: 2}];
 	$scope.sorts.tracks = [{name: '', value: 0}, {name: '', value: 1}, {name: '', value: 2}, {name: '', value: 3}];
 
-	$scope.changeLanguage = function(key) {
-		$translate.use(key);
-		init();
-	};
-
 	$scope.saveSettings = function() {
 		$cookies.putObject('settings', $scope.settings);
+		$translate.use($scope.settings.language);
+		init();
 	};
 
 	function init() {

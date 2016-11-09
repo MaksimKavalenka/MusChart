@@ -2,8 +2,14 @@
 	<div class="title" translate="SETTINGS"></div>
 	<div class="setting">
 		<div class="name" translate="LANGUAGE"></div>
-		<select ng-model="settings.language" ng-change="changeLanguage(settings.language)" required>
+		<select ng-model="settings.language" required>
 			<option ng-repeat="lang in languages" value="{{lang.iso}}">{{lang.name}}</option>
+		</select>
+	</div>
+	<div class="setting">
+		<div class="name">Design</div>
+		<select ng-model="settings.design" required>
+			<option ng-repeat="design in designs" value="{{design.value}}">{{design.name}}</option>
 		</select>
 	</div>
 	<div class="setting">

@@ -43,6 +43,9 @@ app.config(function($translateProvider) {
 		RATING: 'Рейтинг',
 		RELEASE_DATE: 'Дата выпуска',
 
+		ASC: 'Возр',
+		DESC: 'Убыв',
+
 		CONFIRM_PASSWORD: 'Подтвердите пароль',
 		COVER: 'Обложка',
 		LOGIN: 'Логин',

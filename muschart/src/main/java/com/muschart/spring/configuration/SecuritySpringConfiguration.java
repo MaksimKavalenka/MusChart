@@ -107,13 +107,13 @@ public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
 
         urlRegistry.antMatchers(ANY + AUTH_OPERATION + ANY).permitAll();
         urlRegistry.antMatchers(ANY + CHECK_OPERATION + ANY).permitAll();
-        urlRegistry.antMatchers(ANY + CREATE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(ANY + CREATE_OPERATION + ANY).permitAll();
         urlRegistry.antMatchers(ANY + DELETE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
         urlRegistry.antMatchers(ANY + GET_OPERATION + ANY).permitAll();
         urlRegistry.antMatchers(ANY + LIKE_OPERATION + ANY).hasRole(ROLE_USER.toString());
         urlRegistry.antMatchers(ANY + LOGOUT_OPERATION + ANY).permitAll();
         urlRegistry.antMatchers(ANY + UPDATE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
-        urlRegistry.antMatchers(ANY + USER_OPERATION + ANY).hasRole(ROLE_USER.toString());
+        urlRegistry.antMatchers(ANY + USER_OPERATION + ANY).permitAll();
 
         urlRegistry.antMatchers("/audio" + ANY).permitAll();
         urlRegistry.antMatchers("/image" + ANY).permitAll();

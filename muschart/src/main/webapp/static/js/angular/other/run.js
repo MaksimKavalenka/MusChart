@@ -8,7 +8,8 @@ app.run(function($cookies, $rootScope, $state, $translate, STATE, UserFactory, F
 	if (settings == null) {
 		settings = {};
 		settings.language = 'en';
-		settings.sort = {artists: '0', genres: '0', tracks: '1'};
+		settings.design = '1';
+		settings.sort = {artists: '1', genres: '0', tracks: '1'};
 		settings.order = {artists: false, genres: true, tracks: false};
 		$cookies.putObject('settings', settings);
 	} else {

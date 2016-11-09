@@ -43,6 +43,9 @@ app.config(function($translateProvider) {
 		RATING: 'Rating',
 		RELEASE_DATE: 'Release date',
 
+		ASC: 'Asc',
+		DESC: 'Desc',
+
 		CONFIRM_PASSWORD: 'Confirm the password',
 		COVER: 'Cover',
 		LOGIN: 'Login',

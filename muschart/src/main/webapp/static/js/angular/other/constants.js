@@ -61,9 +61,9 @@ app.constant('PATH', (function() {
 	var htmlExt = '.html';
 	return {
 		INFO_CONTENT: contentPath + '/info' + htmlExt,
-		ARTIST_CONTENT: contentPath + '/artist' + htmlExt,
-		GENRE_CONTENT: contentPath + '/genre' + htmlExt,
-		TRACK_CONTENT: contentPath + '/track' + htmlExt,
+		ARTISTS_CONTENT: contentPath + '/artists' + htmlExt,
+		GENRES_CONTENT: contentPath + '/genres' + htmlExt,
+		TRACKS_CONTENT: contentPath + '/tracks' + htmlExt,
 		LOGIN_FORM: formPath + '/login' + htmlExt,
 		REGISTER_FORM: formPath + '/register' + htmlExt,
 		ARTIST_EDIT_FORM: formPath + '/artist.edit' + htmlExt,

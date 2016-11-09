@@ -130,7 +130,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			main_content: {
 				controller: CONTROLLER.ARTIST_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.ARTIST_CONTENT
+				templateUrl: PATH.ARTISTS_CONTENT
 			},
 			footer: footer
 		}
@@ -152,7 +152,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			main_content: {
 				controller: CONTROLLER.GENRE_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.GENRE_CONTENT
+				templateUrl: PATH.GENRES_CONTENT
 			},
 			footer: footer
 		}
@@ -174,7 +174,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			main_content: {
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.TRACK_CONTENT
+				templateUrl: PATH.TRACKS_CONTENT
 			},
 			footer: footer
 		}
@@ -192,12 +192,12 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			additional_content_1: {
 				controller: CONTROLLER.GENRE_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.GENRE_CONTENT
+				templateUrl: PATH.GENRES_CONTENT
 			},
 			additional_content_2: {
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.TRACK_CONTENT
+				templateUrl: PATH.TRACKS_CONTENT
 			},
 			footer: footer
 		}
@@ -215,12 +215,12 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			additional_content_1: {
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.TRACK_CONTENT
+				templateUrl: PATH.TRACKS_CONTENT
 			},
 			additional_content_2: {
 				controller: CONTROLLER.ARTIST_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.ARTIST_CONTENT
+				templateUrl: PATH.ARTISTS_CONTENT
 			},
 			footer: footer
 		}
@@ -238,12 +238,12 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			additional_content_1: {
 				controller: CONTROLLER.GENRE_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.GENRE_CONTENT
+				templateUrl: PATH.GENRES_CONTENT
 			},
 			additional_content_2: {
 				controller: CONTROLLER.ARTIST_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.ARTIST_CONTENT
+				templateUrl: PATH.ARTISTS_CONTENT
 			},
 			footer: footer
 		}
@@ -269,7 +269,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			main_content: {
 				controller: CONTROLLER.ARTIST_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.ARTIST_CONTENT
+				templateUrl: PATH.ARTISTS_CONTENT
 			},
 			footer: footer
 		}
@@ -295,7 +295,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			main_content: {
 				controller: CONTROLLER.ARTIST_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.ARTIST_CONTENT
+				templateUrl: PATH.ARTISTS_CONTENT
 			},
 			footer: footer
 		}
@@ -317,7 +317,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			main_content: {
 				controller: CONTROLLER.ARTIST_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.ARTIST_CONTENT
+				templateUrl: PATH.ARTISTS_CONTENT
 			},
 			footer: footer
 		}
@@ -343,7 +343,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			main_content: {
 				controller: CONTROLLER.GENRE_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.GENRE_CONTENT
+				templateUrl: PATH.GENRES_CONTENT
 			},
 			footer: footer
 		}
@@ -369,7 +369,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			main_content: {
 				controller: CONTROLLER.GENRE_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.GENRE_CONTENT
+				templateUrl: PATH.GENRES_CONTENT
 			},
 			footer: footer
 		}
@@ -391,7 +391,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			main_content: {
 				controller: CONTROLLER.GENRE_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.GENRE_CONTENT
+				templateUrl: PATH.GENRES_CONTENT
 			},
 			footer: footer
 		}
@@ -417,7 +417,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			main_content: {
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.TRACK_CONTENT
+				templateUrl: PATH.TRACKS_CONTENT
 			},
 			footer: footer
 		}
@@ -443,7 +443,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			main_content: {
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.TRACK_CONTENT
+				templateUrl: PATH.TRACKS_CONTENT
 			},
 			footer: footer
 		}
@@ -465,7 +465,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 			main_content: {
 				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
-				templateUrl: PATH.TRACK_CONTENT
+				templateUrl: PATH.TRACKS_CONTENT
 			},
 			footer: footer
 		}
