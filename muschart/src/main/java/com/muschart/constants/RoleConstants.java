@@ -6,7 +6,7 @@ public enum RoleConstants {
 
     private String role;
 
-    private RoleConstants(final String role) {
+    private RoleConstants(String role) {
         this.role = role;
     }
 

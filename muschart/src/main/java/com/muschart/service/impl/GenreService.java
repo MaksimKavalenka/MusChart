@@ -1,6 +1,6 @@
 package com.muschart.service.impl;
 
-import static com.muschart.constants.MessageConstants.TAKEN_GENRE_ERROR;
+import static com.muschart.constants.MessageConstants.TAKEN_GENRE_MESSAGE;
 
 import java.util.List;
 
@@ -20,49 +20,46 @@ public class GenreService implements GenreServiceDAO {
     private GenreRepository repository;
 
     @Override
-    public GenreEntity createGenre(final String name) throws ValidationException {
+    public GenreEntity createGenre(String name) throws ValidationException {
         GenreEntity genre = new GenreEntity(name);
         synchronized (GenreEntity.class) {
             if (!checkGenreName(name)) {
                 return repository.save(genre);
             } else {
-                throw new ValidationException(TAKEN_GENRE_ERROR);
+                throw new ValidationException(TAKEN_GENRE_MESSAGE);
             }
         }
     }
 
     @Override
-    public void deleteGenreById(final long id) {
+    public void deleteGenreById(long id) {
         repository.delete(id);
     }
 
     @Override
-    public GenreEntity getGenreById(final long id) {
+    public GenreEntity getGenreById(long id) {
         return repository.findOne(id);
     }
 
     @Override
-    public List<GenreEntity> getGenres(final int sort, final boolean order, final int page) {
+    public List<GenreEntity> getGenres(int sort, boolean order, int page) {
         return repository.findAll(JpaHelper.GENRE.getPageRequest(sort, order, page));
     }
 
     @Override
-    public List<GenreEntity> getArtistGenres(final long artistId, final int sort,
-            final boolean order, final int page) {
+    public List<GenreEntity> getArtistGenres(long artistId, int sort, boolean order, int page) {
         return repository.findByArtistsId(artistId,
                 JpaHelper.GENRE.getPageRequest(sort, order, page));
     }
 
     @Override
-    public List<GenreEntity> getTrackGenres(final long trackId, final int sort, final boolean order,
-            final int page) {
+    public List<GenreEntity> getTrackGenres(long trackId, int sort, boolean order, int page) {
         return repository.findByTracksId(trackId,
                 JpaHelper.GENRE.getPageRequest(sort, order, page));
     }
 
     @Override
-    public List<GenreEntity> getUserGenres(final long userId, final int sort, final boolean order,
-            final int page) {
+    public List<GenreEntity> getUserGenres(long userId, int sort, boolean order, int page) {
         return repository.findByUsersId(userId, JpaHelper.GENRE.getPageRequest(sort, order, page));
     }
 
@@ -77,22 +74,22 @@ public class GenreService implements GenreServiceDAO {
     }
 
     @Override
-    public int getArtistGenresPagesCount(final long artistId) {
+    public int getArtistGenresPagesCount(long artistId) {
         return JpaHelper.GENRE.getPagesCount(repository.countByArtistsId(artistId));
     }
 
     @Override
-    public int getTrackGenresPagesCount(final long trackId) {
+    public int getTrackGenresPagesCount(long trackId) {
         return JpaHelper.GENRE.getPagesCount(repository.countByTracksId(trackId));
     }
 
     @Override
-    public int getUserGenresPagesCount(final long userId) {
+    public int getUserGenresPagesCount(long userId) {
         return JpaHelper.GENRE.getPagesCount(repository.countByUsersId(userId));
     }
 
     @Override
-    public boolean checkGenreName(final String name) {
+    public boolean checkGenreName(String name) {
         return repository.checkGenreName(name);
     }
 

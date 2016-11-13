@@ -4,7 +4,7 @@ import com.muschart.entity.ArtistEntity;
 
 public class ArtistDTO extends ArtistEntity {
 
-    private static final long serialVersionUID = -4564323966609562265L;
+    private static final long serialVersionUID = 8626742763677694341L;
 
     private boolean           isLiked;
 
@@ -12,13 +12,12 @@ public class ArtistDTO extends ArtistEntity {
         super();
     }
 
-    public ArtistDTO(final long id, final String name, final String photo, final long rating,
-            final boolean isLiked) {
+    public ArtistDTO(long id, String name, String photo, long rating, boolean isLiked) {
         super(id, name, photo, rating, null, null, null);
         this.isLiked = isLiked;
     }
 
-    public ArtistDTO(final ArtistEntity artist, final boolean isLiked) {
+    public ArtistDTO(ArtistEntity artist, boolean isLiked) {
         super(artist.getId(), artist.getName(), artist.getPhoto(), artist.getRating(), null, null,
                 null);
         this.isLiked = isLiked;
@@ -28,7 +27,7 @@ public class ArtistDTO extends ArtistEntity {
         return isLiked;
     }
 
-    public void setLiked(final boolean isLiked) {
+    public void setLiked(boolean isLiked) {
         this.isLiked = isLiked;
     }
 

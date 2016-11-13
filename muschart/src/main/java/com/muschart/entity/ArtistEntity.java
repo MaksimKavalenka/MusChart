@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "artist")
 public class ArtistEntity extends AbstractEntity {
 
-    private static final long       serialVersionUID = 4082508064669884035L;
+    private static final long       serialVersionUID = -5604176143411300832L;
 
     @Column(name = "name", nullable = false, length = 255)
     private String                  name;
@@ -46,15 +46,14 @@ public class ArtistEntity extends AbstractEntity {
         super();
     }
 
-    public ArtistEntity(final String name, final String photo) {
+    public ArtistEntity(String name, String photo) {
         super();
         this.name = name;
         this.photo = photo;
     }
 
-    public ArtistEntity(final String name, final String photo, final long rating,
-            final List<TrackArtistEntity> tracksOrder, final List<GenreEntity> genres,
-            final List<UserEntity> users) {
+    public ArtistEntity(String name, String photo, long rating, List<TrackArtistEntity> tracksOrder,
+            List<GenreEntity> genres, List<UserEntity> users) {
         super();
         this.name = name;
         this.photo = photo;
@@ -64,9 +63,8 @@ public class ArtistEntity extends AbstractEntity {
         this.users = users;
     }
 
-    public ArtistEntity(final long id, final String name, final String photo, final long rating,
-            final List<TrackArtistEntity> tracksOrder, final List<GenreEntity> genres,
-            final List<UserEntity> users) {
+    public ArtistEntity(long id, String name, String photo, long rating,
+            List<TrackArtistEntity> tracksOrder, List<GenreEntity> genres, List<UserEntity> users) {
         super(id);
         this.name = name;
         this.photo = photo;
@@ -80,7 +78,7 @@ public class ArtistEntity extends AbstractEntity {
         return name;
     }
 
-    public void setName(final String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -88,7 +86,7 @@ public class ArtistEntity extends AbstractEntity {
         return photo;
     }
 
-    public void setPhoto(final String photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
@@ -96,7 +94,7 @@ public class ArtistEntity extends AbstractEntity {
         return rating;
     }
 
-    public void setRating(final long rating) {
+    public void setRating(long rating) {
         this.rating = rating;
     }
 
@@ -104,7 +102,7 @@ public class ArtistEntity extends AbstractEntity {
         return tracksOrder;
     }
 
-    public void setTracksOrder(final List<TrackArtistEntity> tracksOrder) {
+    public void setTracksOrder(List<TrackArtistEntity> tracksOrder) {
         this.tracksOrder = tracksOrder;
     }
 
@@ -112,7 +110,7 @@ public class ArtistEntity extends AbstractEntity {
         return genres;
     }
 
-    public void setGenres(final List<GenreEntity> genres) {
+    public void setGenres(List<GenreEntity> genres) {
         this.genres = genres;
     }
 
@@ -120,7 +118,7 @@ public class ArtistEntity extends AbstractEntity {
         return users;
     }
 
-    public void setUsers(final List<UserEntity> users) {
+    public void setUsers(List<UserEntity> users) {
         this.users = users;
     }
 

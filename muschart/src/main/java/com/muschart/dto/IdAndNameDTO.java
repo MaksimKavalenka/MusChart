@@ -4,7 +4,7 @@ import com.muschart.entity.AbstractEntity;
 
 public class IdAndNameDTO extends AbstractEntity {
 
-    private static final long serialVersionUID = 7794693790810942212L;
+    private static final long serialVersionUID = 1489848142060411977L;
 
     private String            name;
 
@@ -12,7 +12,7 @@ public class IdAndNameDTO extends AbstractEntity {
         super();
     }
 
-    public IdAndNameDTO(final long id, final String name) {
+    public IdAndNameDTO(long id, String name) {
         super(id);
         this.name = name;
     }
@@ -21,7 +21,7 @@ public class IdAndNameDTO extends AbstractEntity {
         return name;
     }
 
-    public void setName(final String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "genre")
 public class GenreEntity extends AbstractEntity {
 
-    private static final long  serialVersionUID = 2354473633918150319L;
+    private static final long  serialVersionUID = -6488200730489485119L;
 
     @Column(name = "name", unique = true, nullable = false, length = 255)
     private String             name;
@@ -43,13 +43,13 @@ public class GenreEntity extends AbstractEntity {
         super();
     }
 
-    public GenreEntity(final String name) {
+    public GenreEntity(String name) {
         super();
         this.name = name;
     }
 
-    public GenreEntity(final String name, final long rating, final List<TrackEntity> tracks,
-            final List<ArtistEntity> artists, final List<UserEntity> users) {
+    public GenreEntity(String name, long rating, List<TrackEntity> tracks,
+            List<ArtistEntity> artists, List<UserEntity> users) {
         super();
         this.name = name;
         this.rating = rating;
@@ -58,9 +58,8 @@ public class GenreEntity extends AbstractEntity {
         this.users = users;
     }
 
-    public GenreEntity(final long id, final String name, final long rating,
-            final List<TrackEntity> tracks, final List<ArtistEntity> artists,
-            final List<UserEntity> users) {
+    public GenreEntity(long id, String name, long rating, List<TrackEntity> tracks,
+            List<ArtistEntity> artists, List<UserEntity> users) {
         super(id);
         this.name = name;
         this.rating = rating;
@@ -73,7 +72,7 @@ public class GenreEntity extends AbstractEntity {
         return name;
     }
 
-    public void setName(final String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -81,7 +80,7 @@ public class GenreEntity extends AbstractEntity {
         return rating;
     }
 
-    public void setRating(final long rating) {
+    public void setRating(long rating) {
         this.rating = rating;
     }
 
@@ -89,7 +88,7 @@ public class GenreEntity extends AbstractEntity {
         return tracks;
     }
 
-    public void setTracks(final List<TrackEntity> tracks) {
+    public void setTracks(List<TrackEntity> tracks) {
         this.tracks = tracks;
     }
 
@@ -97,7 +96,7 @@ public class GenreEntity extends AbstractEntity {
         return artists;
     }
 
-    public void setArtists(final List<ArtistEntity> artists) {
+    public void setArtists(List<ArtistEntity> artists) {
         this.artists = artists;
     }
 
@@ -105,7 +104,7 @@ public class GenreEntity extends AbstractEntity {
         return users;
     }
 
-    public void setUsers(final List<UserEntity> users) {
+    public void setUsers(List<UserEntity> users) {
         this.users = users;
     }
 

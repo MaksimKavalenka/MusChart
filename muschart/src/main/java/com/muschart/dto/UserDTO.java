@@ -9,7 +9,7 @@ import com.muschart.entity.UserEntity;
 
 public class UserDTO implements Serializable {
 
-    private static final long serialVersionUID = -2797819737600363424L;
+    private static final long serialVersionUID = 5788306146372527542L;
 
     private String            login;
     private boolean           isAdmin;
@@ -17,12 +17,12 @@ public class UserDTO implements Serializable {
     public UserDTO() {
     }
 
-    public UserDTO(final String login, final boolean isAdmin) {
+    public UserDTO(String login, boolean isAdmin) {
         this.login = login;
         this.isAdmin = isAdmin;
     }
 
-    public UserDTO(final UserEntity user) {
+    public UserDTO(UserEntity user) {
         login = user.getLogin();
         isAdmin = false;
         for (GrantedAuthority role : user.getRoles()) {
@@ -36,7 +36,7 @@ public class UserDTO implements Serializable {
         return login;
     }
 
-    public void setLogin(final String login) {
+    public void setLogin(String login) {
         this.login = login;
     }
 
@@ -44,20 +44,20 @@ public class UserDTO implements Serializable {
         return isAdmin;
     }
 
-    public void setAdmin(final boolean isAdmin) {
+    public void setAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
+        int prime = 31;
         int result = 1;
-        result = prime * result + ((login == null) ? 0 : login.hashCode());
+        result = (prime * result) + ((login == null) ? 0 : login.hashCode());
         return result;
     }
 
     @Override
-    public boolean equals(final Object obj) {
+    public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }

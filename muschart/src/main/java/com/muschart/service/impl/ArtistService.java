@@ -20,8 +20,7 @@ public class ArtistService implements ArtistServiceDAO {
     private TrackArtistRepository trackArtistRepository;
 
     @Override
-    public ArtistEntity createArtist(final String name, final String photo,
-            final List<Long> genresIds) {
+    public ArtistEntity createArtist(String name, String photo, List<Long> genresIds) {
         ArtistEntity artist = new ArtistEntity(name, photo);
         synchronized (ArtistEntity.class) {
             repository.save(artist);
@@ -33,42 +32,39 @@ public class ArtistService implements ArtistServiceDAO {
     }
 
     @Override
-    public void addGenreToArtist(final long artistId, final long genreId) {
+    public void addGenreToArtist(long artistId, long genreId) {
         repository.addGenreToArtist(artistId, genreId);
     }
 
     @Override
-    public void deleteArtistById(final long id) {
+    public void deleteArtistById(long id) {
         repository.delete(id);
     }
 
     @Override
-    public ArtistEntity getArtistById(final long id) {
+    public ArtistEntity getArtistById(long id) {
         return repository.findOne(id);
     }
 
     @Override
-    public List<ArtistEntity> getArtists(final int sort, final boolean order, final int page) {
+    public List<ArtistEntity> getArtists(int sort, boolean order, int page) {
         return repository.findAll(JpaHelper.ARTIST.getPageRequest(sort, order, page));
     }
 
     @Override
-    public List<ArtistEntity> getGenreArtists(final long genreId, final int sort,
-            final boolean order, final int page) {
+    public List<ArtistEntity> getGenreArtists(long genreId, int sort, boolean order, int page) {
         return repository.findByGenresId(genreId,
                 JpaHelper.ARTIST.getPageRequest(sort, order, page));
     }
 
     @Override
-    public List<ArtistEntity> getTrackArtists(final long trackId, final int sort,
-            final boolean order, final int page) {
+    public List<ArtistEntity> getTrackArtists(long trackId, int sort, boolean order, int page) {
         return trackArtistRepository.getTrackArtists(trackId,
                 JpaHelper.TRACK_ARTIST_ARTIST.getPageRequest(sort, order, page));
     }
 
     @Override
-    public List<ArtistEntity> getUserArtists(final long userId, final int sort, final boolean order,
-            final int page) {
+    public List<ArtistEntity> getUserArtists(long userId, int sort, boolean order, int page) {
         return repository.findByUsersId(userId, JpaHelper.ARTIST.getPageRequest(sort, order, page));
     }
 
@@ -78,7 +74,7 @@ public class ArtistService implements ArtistServiceDAO {
     }
 
     @Override
-    public List<IdAndNameDTO> getTrackArtistsIdAndName(final long trackId) {
+    public List<IdAndNameDTO> getTrackArtistsIdAndName(long trackId) {
         return Parser.parseObjectsToIdAndNameEntities(repository.getTrackArtistsIdAndName(trackId));
     }
 
@@ -88,17 +84,17 @@ public class ArtistService implements ArtistServiceDAO {
     }
 
     @Override
-    public int getGenreArtistsPagesCount(final long genreId) {
+    public int getGenreArtistsPagesCount(long genreId) {
         return JpaHelper.ARTIST.getPagesCount(repository.countByGenresId(genreId));
     }
 
     @Override
-    public int getTrackArtistsPagesCount(final long trackId) {
+    public int getTrackArtistsPagesCount(long trackId) {
         return JpaHelper.ARTIST.getPagesCount(trackArtistRepository.getTrackArtistsCount(trackId));
     }
 
     @Override
-    public int getUserArtistsPagesCount(final long userId) {
+    public int getUserArtistsPagesCount(long userId) {
         return JpaHelper.ARTIST.getPagesCount(repository.countByUsersId(userId));
     }
 

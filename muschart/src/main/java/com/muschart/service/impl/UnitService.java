@@ -16,13 +16,13 @@ public class UnitService implements UnitServiceDAO {
     private UnitRepository repository;
 
     @Override
-    public UnitEntity createUnit(final String name) {
+    public UnitEntity createUnit(String name) {
         UnitEntity unit = new UnitEntity(name);
         return repository.save(unit);
     }
 
     @Override
-    public UnitEntity getUnitById(final long id) {
+    public UnitEntity getUnitById(long id) {
         return repository.findOne(id);
     }
 
@@ -32,12 +32,12 @@ public class UnitService implements UnitServiceDAO {
     }
 
     @Override
-    public List<IdAndNameDTO> getTrackUnitsIdAndName(final long trackId) {
+    public List<IdAndNameDTO> getTrackUnitsIdAndName(long trackId) {
         return Parser.parseObjectsToIdAndNameEntities(repository.getTrackUnitsIdAndName(trackId));
     }
 
     @Override
-    public boolean checkUnitName(final String name) {
+    public boolean checkUnitName(String name) {
         return repository.checkUnitName(name);
     }
 

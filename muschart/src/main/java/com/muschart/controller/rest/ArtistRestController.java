@@ -39,22 +39,21 @@ public class ArtistRestController {
 
     @RequestMapping(value = CREATE_OPERATION
             + "/{name}/{photo}/{genres}", method = RequestMethod.POST)
-    public ResponseEntity<ArtistEntity> createArtist(@PathVariable("name") final String name,
-            @PathVariable("photo") final String photo,
-            @PathVariable("genres") final String genres) {
+    public ResponseEntity<ArtistEntity> createArtist(@PathVariable("name") String name,
+            @PathVariable("photo") String photo, @PathVariable("genres") String genres) {
         ArtistEntity artist = artistService.createArtist(name, photo,
                 Parser.getIdsFromJson(genres));
         return new ResponseEntity<ArtistEntity>(artist, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = DELETE_OPERATION + "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<ArtistEntity> deleteArtistById(@PathVariable("id") final long id) {
+    public ResponseEntity<ArtistEntity> deleteArtistById(@PathVariable("id") long id) {
         artistService.deleteArtistById(id);
         return new ResponseEntity<ArtistEntity>(HttpStatus.OK);
     }
 
     @RequestMapping(value = GET_OPERATION + "/{id}" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<ArtistEntity> getArtistById(@PathVariable("id") final long id) {
+    public ResponseEntity<ArtistEntity> getArtistById(@PathVariable("id") long id) {
         ArtistEntity artist = artistService.getArtistById(id);
         if (artist == null) {
             return new ResponseEntity<ArtistEntity>(HttpStatus.NO_CONTENT);
@@ -64,8 +63,8 @@ public class ArtistRestController {
 
     @RequestMapping(value = GET_OPERATION + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<ArtistDTO>> getArtists(@PathVariable("sort") final int sort,
-            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
+    public ResponseEntity<List<ArtistDTO>> getArtists(@PathVariable("sort") int sort,
+            @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<ArtistEntity> artists = artistService.getArtists(sort, order, page);
         if (artists == null) {
             return new ResponseEntity<List<ArtistDTO>>(HttpStatus.NO_CONTENT);
@@ -83,10 +82,9 @@ public class ArtistRestController {
 
     @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<ArtistDTO>> getEntityArtists(
-            @PathVariable("entity") final String entity,
-            @PathVariable("entityId") final long entityId, @PathVariable("sort") final int sort,
-            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
+    public ResponseEntity<List<ArtistDTO>> getEntityArtists(@PathVariable("entity") String entity,
+            @PathVariable("entityId") long entityId, @PathVariable("sort") int sort,
+            @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<ArtistEntity> artists = null;
         switch (entity) {
             case Entities.GENRE:
@@ -114,8 +112,8 @@ public class ArtistRestController {
 
     @RequestMapping(value = USER_OPERATION + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<ArtistDTO>> getUserArtists(@PathVariable("sort") final int sort,
-            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
+    public ResponseEntity<List<ArtistDTO>> getUserArtists(@PathVariable("sort") int sort,
+            @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<ArtistEntity> artists = artistService.getUserArtists(Secure.getLoggedUser().getId(),
                 sort, order, page);
         if (artists == null) {
@@ -149,9 +147,8 @@ public class ArtistRestController {
 
     @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/pages_count"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<Integer> getEntityArtistsPagesCount(
-            @PathVariable("entity") final String entity,
-            @PathVariable("entityId") final long entityId) {
+    public ResponseEntity<Integer> getEntityArtistsPagesCount(@PathVariable("entity") String entity,
+            @PathVariable("entityId") long entityId) {
         int pagesCount = 0;
         switch (entity) {
             case Entities.GENRE:

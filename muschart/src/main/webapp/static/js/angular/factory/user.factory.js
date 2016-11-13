@@ -5,6 +5,7 @@ app.factory('UserFactory', function($http, MESSAGE, REST, ValidatorService) {
 		if (!ValidatorService.allNotEmpty(callback, login, password)) {
 			return;
 		}
+
 		var headers = {authorization: "Basic " + btoa(login + ":" + password)};
 		$http.get(REST.USERS + '/auth', {'headers' : headers})
 		.success(function(response) {
@@ -30,7 +31,14 @@ app.factory('UserFactory', function($http, MESSAGE, REST, ValidatorService) {
 		if (!ValidatorService.allNotEmpty(callback, login, password, confirmPassword)) {
 			return;
 		}
-		$http.post(REST.USERS + '/create/' + login + '/' + password + '/' + confirmPassword)
+
+		var user = {
+			login: login,
+			password: password,
+			confirmPassword: confirmPassword
+		};
+
+		$http.post(REST.USERS + '/create', user)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -57,6 +65,7 @@ app.factory('UserFactory', function($http, MESSAGE, REST, ValidatorService) {
 		if (!ValidatorService.allNotEmpty(callback, entity, entityId)) {
 			return;
 		}
+
 		$http.post(REST.USERS + '/like/' + entity + '/' + entityId)
 		.success(function(response) {
 			response = {success: true};
@@ -72,6 +81,7 @@ app.factory('UserFactory', function($http, MESSAGE, REST, ValidatorService) {
 		if (!ValidatorService.allNotEmpty(callback, login)) {
 			return;
 		}
+
 		$http.post(REST.USERS + '/check/login/' + login)
 		.success(function(response) {
 			if (response) {

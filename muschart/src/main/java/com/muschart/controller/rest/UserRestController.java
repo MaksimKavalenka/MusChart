@@ -1,7 +1,5 @@
 package com.muschart.controller.rest;
 
-import static com.muschart.constants.MessageConstants.PASSWORDS_ERROR;
-import static com.muschart.constants.MessageConstants.VALIDATION_ERROR;
 import static com.muschart.constants.UrlConstants.Rest.USERS_URL;
 import static com.muschart.constants.UrlConstants.Rest.Operation.AUTH_OPERATION;
 import static com.muschart.constants.UrlConstants.Rest.Operation.CHECK_OPERATION;
@@ -16,6 +14,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,13 +32,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.muschart.bean.ErrorMessage;
 import com.muschart.constants.RoleConstants;
 import com.muschart.constants.EntityConstants.Structure.Entities;
+import com.muschart.dto.RegisterDTO;
 import com.muschart.dto.UserDTO;
 import com.muschart.entity.UserEntity;
 import com.muschart.exception.ValidationException;
 import com.muschart.service.dao.RoleServiceDAO;
 import com.muschart.service.dao.UserServiceDAO;
+import com.muschart.utility.Parser;
 import com.muschart.utility.Secure;
-import com.muschart.utility.Validator;
 
 @RestController
 @RequestMapping(USERS_URL)
@@ -49,7 +51,7 @@ public class UserRestController {
     private UserServiceDAO userService;
 
     @RequestMapping(value = AUTH_OPERATION, method = RequestMethod.GET)
-    public ResponseEntity<UserDTO> authentication(final Principal principal) {
+    public ResponseEntity<UserDTO> authentication(Principal principal) {
         if (principal != null) {
             if (principal instanceof AbstractAuthenticationToken) {
                 UserEntity user = (UserEntity) ((AbstractAuthenticationToken) principal)
@@ -66,30 +68,24 @@ public class UserRestController {
     }
 
     @RequestMapping(value = LOGOUT_OPERATION, method = RequestMethod.POST)
-    public void logout(final HttpServletRequest rq, final HttpServletResponse rs) {
+    public void logout(HttpServletRequest rq, HttpServletResponse rs) {
         SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();
         securityContextLogoutHandler.logout(rq, rs, null);
     }
 
-    @RequestMapping(value = CREATE_OPERATION
-            + "/{login}/{password}/{confirmPassword}", method = RequestMethod.POST)
-    public ResponseEntity<Object> createUser(@PathVariable("login") final String login,
-            @PathVariable("password") final String password,
-            @PathVariable("confirmPassword") final String confirmPassword) {
+    @RequestMapping(value = CREATE_OPERATION, method = RequestMethod.POST)
+    public ResponseEntity<Object> createUser(@RequestBody @Valid RegisterDTO user, Errors errors) {
+        if (errors.hasErrors()) {
+            return new ResponseEntity<Object>(
+                    new ErrorMessage(Parser.getErrorsMessagesFromObjectError(errors)),
+                    HttpStatus.BAD_REQUEST);
+        }
+
         try {
-            if (!Validator.allNotNull(login, password, confirmPassword)) {
-                return new ResponseEntity<Object>(new ErrorMessage(VALIDATION_ERROR),
-                        HttpStatus.CONFLICT);
-            }
-
-            if (!password.equals(confirmPassword)) {
-                return new ResponseEntity<Object>(new ErrorMessage(PASSWORDS_ERROR),
-                        HttpStatus.CONFLICT);
-            }
-
             List<GrantedAuthority> roles = new ArrayList<>(1);
             roles.add(roleService.getRoleByName(RoleConstants.ROLE_USER.name()));
-            userService.createUser(login, Secure.secureBySha(password, login), roles);
+            userService.createUser(user.getLogin(),
+                    Secure.secureBySha(user.getPassword(), user.getLogin()), roles);
             return new ResponseEntity<Object>(HttpStatus.CREATED);
 
         } catch (ValidationException | NoSuchAlgorithmException e) {
@@ -99,13 +95,8 @@ public class UserRestController {
     }
 
     @RequestMapping(value = LIKE_OPERATION + "/{entity}/{entityId}", method = RequestMethod.POST)
-    public ResponseEntity<Object> setUserLike(@PathVariable("entity") final String entity,
-            @PathVariable("entityId") final long entityId) {
-        if (!Validator.allNotNull(entity, entityId)) {
-            return new ResponseEntity<Object>(new ErrorMessage(VALIDATION_ERROR),
-                    HttpStatus.CONFLICT);
-        }
-
+    public ResponseEntity<Object> setUserLike(@PathVariable("entity") String entity,
+            @PathVariable("entityId") long entityId) {
         switch (entity) {
             case Entities.ARTIST:
                 userService.updateUserArtists(Secure.getLoggedUser().getId(), entityId);
@@ -123,7 +114,7 @@ public class UserRestController {
     }
 
     @RequestMapping(value = CHECK_OPERATION + "/login/{login}", method = RequestMethod.POST)
-    public ResponseEntity<Object> checkLogin(@PathVariable("login") final String login) {
+    public ResponseEntity<Object> checkLogin(@PathVariable("login") String login) {
         boolean exists = userService.checkLogin(login);
         return new ResponseEntity<Object>(exists, HttpStatus.OK);
     }

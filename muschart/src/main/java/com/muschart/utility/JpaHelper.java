@@ -11,7 +11,7 @@ public enum JpaHelper {
     ARTIST {
 
         @Override
-        public int getElementsCount(final int page) {
+        public int getElementsCount(int page) {
             if (page > 0) {
                 return ArtistElementsCount.ARTIST_FULL_ELEMENTS_COUNT;
             } else {
@@ -20,13 +20,13 @@ public enum JpaHelper {
         }
 
         @Override
-        public int getPagesCount(final long elementsCount) {
+        public int getPagesCount(long elementsCount) {
             return (int) Math
                     .ceil(elementsCount / (double) ArtistElementsCount.ARTIST_FULL_ELEMENTS_COUNT);
         }
 
         @Override
-        public org.springframework.data.domain.Sort getSort(final int sort, final boolean order) {
+        public org.springframework.data.domain.Sort getSort(int sort, boolean order) {
             if (order) {
                 switch (sort) {
                     case 0:
@@ -57,7 +57,7 @@ public enum JpaHelper {
     GENRE {
 
         @Override
-        public int getElementsCount(final int page) {
+        public int getElementsCount(int page) {
             if (page > 0) {
                 return GenreElementsCount.GENRE_FULL_ELEMENTS_COUNT;
             } else {
@@ -66,13 +66,13 @@ public enum JpaHelper {
         }
 
         @Override
-        public int getPagesCount(final long elementsCount) {
+        public int getPagesCount(long elementsCount) {
             return (int) Math
                     .ceil(elementsCount / (double) GenreElementsCount.GENRE_FULL_ELEMENTS_COUNT);
         }
 
         @Override
-        public org.springframework.data.domain.Sort getSort(final int sort, final boolean order) {
+        public org.springframework.data.domain.Sort getSort(int sort, boolean order) {
             if (order) {
                 switch (sort) {
                     case 0:
@@ -103,7 +103,7 @@ public enum JpaHelper {
     TRACK {
 
         @Override
-        public int getElementsCount(final int page) {
+        public int getElementsCount(int page) {
             if (page > 0) {
                 return TrackElementsCount.TRACK_FULL_ELEMENTS_COUNT;
             } else {
@@ -112,13 +112,13 @@ public enum JpaHelper {
         }
 
         @Override
-        public int getPagesCount(final long elementsCount) {
+        public int getPagesCount(long elementsCount) {
             return (int) Math
                     .ceil(elementsCount / (double) TrackElementsCount.TRACK_FULL_ELEMENTS_COUNT);
         }
 
         @Override
-        public org.springframework.data.domain.Sort getSort(final int sort, final boolean order) {
+        public org.springframework.data.domain.Sort getSort(int sort, boolean order) {
             if (order) {
                 switch (sort) {
                     case 0:
@@ -153,7 +153,7 @@ public enum JpaHelper {
     TRACK_ARTIST_ARTIST {
 
         @Override
-        public int getElementsCount(final int page) {
+        public int getElementsCount(int page) {
             if (page > 0) {
                 return ArtistElementsCount.ARTIST_FULL_ELEMENTS_COUNT;
             } else {
@@ -162,13 +162,13 @@ public enum JpaHelper {
         }
 
         @Override
-        public int getPagesCount(final long elementsCount) {
+        public int getPagesCount(long elementsCount) {
             return (int) Math
                     .ceil(elementsCount / (double) ArtistElementsCount.ARTIST_FULL_ELEMENTS_COUNT);
         }
 
         @Override
-        public org.springframework.data.domain.Sort getSort(final int sort, final boolean order) {
+        public org.springframework.data.domain.Sort getSort(int sort, boolean order) {
             if (order) {
                 switch (sort) {
                     case 0:
@@ -199,7 +199,7 @@ public enum JpaHelper {
     TRACK_ARTIST_TRACK {
 
         @Override
-        public int getElementsCount(final int page) {
+        public int getElementsCount(int page) {
             if (page > 0) {
                 return TrackElementsCount.TRACK_FULL_ELEMENTS_COUNT;
             } else {
@@ -208,13 +208,13 @@ public enum JpaHelper {
         }
 
         @Override
-        public int getPagesCount(final long elementsCount) {
+        public int getPagesCount(long elementsCount) {
             return (int) Math
                     .ceil(elementsCount / (double) TrackElementsCount.TRACK_FULL_ELEMENTS_COUNT);
         }
 
         @Override
-        public org.springframework.data.domain.Sort getSort(final int sort, final boolean order) {
+        public org.springframework.data.domain.Sort getSort(int sort, boolean order) {
             if (order) {
                 switch (sort) {
                     case 0:
@@ -246,14 +246,13 @@ public enum JpaHelper {
 
     };
 
-    public abstract int getElementsCount(final int page);
+    public abstract int getElementsCount(int page);
 
-    public abstract int getPagesCount(final long elementsCount);
+    public abstract int getPagesCount(long elementsCount);
 
-    public abstract org.springframework.data.domain.Sort getSort(final int sort,
-            final boolean order);
+    public abstract org.springframework.data.domain.Sort getSort(int sort, boolean order);
 
-    public Pageable getPageRequest(final int sort, final boolean order, final int page) {
+    public Pageable getPageRequest(int sort, boolean order, int page) {
         int requestPage = (page > 0) ? page - 1 : 0;
         return new PageRequest(requestPage, getElementsCount(page), getSort(sort, order));
     }

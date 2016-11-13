@@ -19,7 +19,7 @@ public class DatabaseInitializer implements ApplicationListener<ContextRefreshed
     private UnitServiceDAO unitService;
 
     @Override
-    public void onApplicationEvent(final ContextRefreshedEvent event) {
+    public void onApplicationEvent(ContextRefreshedEvent event) {
         roleInit();
         unitInit();
     }

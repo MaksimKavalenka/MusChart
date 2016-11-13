@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "user")
 public class UserEntity extends AbstractEntity implements UserDetails {
 
-    private static final long      serialVersionUID = 7372820574885171442L;
+    private static final long      serialVersionUID = -6763263224442973839L;
 
     @JsonIgnore
     private boolean                accountNonExpired;
@@ -67,26 +67,23 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         super();
     }
 
-    public UserEntity(final String login, final String password,
-            final List<GrantedAuthority> roles) {
+    public UserEntity(String login, String password, List<GrantedAuthority> roles) {
         this(true, true, true, true, login, password, roles);
     }
 
-    public UserEntity(final String login, final String password, final List<GrantedAuthority> roles,
-            final List<TrackEntity> tracks, final List<ArtistEntity> artists,
-            final List<GenreEntity> genres) {
+    public UserEntity(String login, String password, List<GrantedAuthority> roles,
+            List<TrackEntity> tracks, List<ArtistEntity> artists, List<GenreEntity> genres) {
         this(true, true, true, true, login, password, roles, tracks, artists, genres);
     }
 
-    public UserEntity(final long id, final String login, final String password,
-            final List<GrantedAuthority> roles, final List<TrackEntity> tracks,
-            final List<ArtistEntity> artists, final List<GenreEntity> genres) {
+    public UserEntity(long id, String login, String password, List<GrantedAuthority> roles,
+            List<TrackEntity> tracks, List<ArtistEntity> artists, List<GenreEntity> genres) {
         this(id, true, true, true, true, login, password, roles, tracks, artists, genres);
     }
 
-    public UserEntity(final boolean accountNonExpired, final boolean accountNonLocked,
-            final boolean credentialsNonExpired, final boolean enabled, final String login,
-            final String password, final List<GrantedAuthority> roles) {
+    public UserEntity(boolean accountNonExpired, boolean accountNonLocked,
+            boolean credentialsNonExpired, boolean enabled, String login, String password,
+            List<GrantedAuthority> roles) {
         super();
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
@@ -97,11 +94,10 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         this.roles = roles;
     }
 
-    public UserEntity(final boolean accountNonExpired, final boolean accountNonLocked,
-            final boolean credentialsNonExpired, final boolean enabled, final String login,
-            final String password, final List<GrantedAuthority> roles,
-            final List<TrackEntity> tracks, final List<ArtistEntity> artists,
-            final List<GenreEntity> genres) {
+    public UserEntity(boolean accountNonExpired, boolean accountNonLocked,
+            boolean credentialsNonExpired, boolean enabled, String login, String password,
+            List<GrantedAuthority> roles, List<TrackEntity> tracks, List<ArtistEntity> artists,
+            List<GenreEntity> genres) {
         super();
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
@@ -115,11 +111,10 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         this.genres = genres;
     }
 
-    public UserEntity(final long id, final boolean accountNonExpired,
-            final boolean accountNonLocked, final boolean credentialsNonExpired,
-            final boolean enabled, final String login, final String password,
-            final List<GrantedAuthority> roles, final List<TrackEntity> tracks,
-            final List<ArtistEntity> artists, final List<GenreEntity> genres) {
+    public UserEntity(long id, boolean accountNonExpired, boolean accountNonLocked,
+            boolean credentialsNonExpired, boolean enabled, String login, String password,
+            List<GrantedAuthority> roles, List<TrackEntity> tracks, List<ArtistEntity> artists,
+            List<GenreEntity> genres) {
         super(id);
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
@@ -169,7 +164,7 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         return login;
     }
 
-    public void setLogin(final String login) {
+    public void setLogin(String login) {
         this.login = login;
     }
 
@@ -178,7 +173,7 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         return password;
     }
 
-    public void setPassword(final String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -186,7 +181,7 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         return roles;
     }
 
-    public void setRoles(final List<GrantedAuthority> roles) {
+    public void setRoles(List<GrantedAuthority> roles) {
         this.roles = roles;
     }
 
@@ -194,7 +189,7 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         return tracks;
     }
 
-    public void setTracks(final List<TrackEntity> tracks) {
+    public void setTracks(List<TrackEntity> tracks) {
         this.tracks = tracks;
     }
 
@@ -202,7 +197,7 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         return artists;
     }
 
-    public void setArtists(final List<ArtistEntity> artists) {
+    public void setArtists(List<ArtistEntity> artists) {
         this.artists = artists;
     }
 
@@ -210,7 +205,7 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         return genres;
     }
 
-    public void setGenres(final List<GenreEntity> genres) {
+    public void setGenres(List<GenreEntity> genres) {
         this.genres = genres;
     }
 

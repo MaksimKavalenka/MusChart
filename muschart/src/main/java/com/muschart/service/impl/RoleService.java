@@ -12,18 +12,18 @@ public class RoleService implements RoleServiceDAO {
     private RoleRepository repository;
 
     @Override
-    public RoleEntity createRole(final String name) {
+    public RoleEntity createRole(String name) {
         RoleEntity role = new RoleEntity(name);
         return repository.save(role);
     }
 
     @Override
-    public RoleEntity getRoleByName(final String name) {
+    public RoleEntity getRoleByName(String name) {
         return repository.findByName(name);
     }
 
     @Override
-    public boolean checkRoleName(final String name) {
+    public boolean checkRoleName(String name) {
         return repository.checkRoleName(name);
     }
 

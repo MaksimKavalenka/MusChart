@@ -39,7 +39,7 @@ public class GenreRestController {
     private UserServiceDAO  userService;
 
     @RequestMapping(value = CREATE_OPERATION + "/{name}", method = RequestMethod.POST)
-    public ResponseEntity<GenreEntity> createArtist(@PathVariable("name") final String name) {
+    public ResponseEntity<GenreEntity> createArtist(@PathVariable("name") String name) {
         try {
             GenreEntity genre = genreService.createGenre(name);
             return new ResponseEntity<GenreEntity>(genre, HttpStatus.CREATED);
@@ -49,13 +49,13 @@ public class GenreRestController {
     }
 
     @RequestMapping(value = DELETE_OPERATION + "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<GenreEntity> deleteGenreById(@PathVariable("id") final long id) {
+    public ResponseEntity<GenreEntity> deleteGenreById(@PathVariable("id") long id) {
         genreService.deleteGenreById(id);
         return new ResponseEntity<GenreEntity>(HttpStatus.OK);
     }
 
     @RequestMapping(value = GET_OPERATION + "/{id}" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<GenreEntity> getGenreById(@PathVariable("id") final long id) {
+    public ResponseEntity<GenreEntity> getGenreById(@PathVariable("id") long id) {
         GenreEntity genre = genreService.getGenreById(id);
         if (genre == null) {
             return new ResponseEntity<GenreEntity>(HttpStatus.NO_CONTENT);
@@ -65,8 +65,8 @@ public class GenreRestController {
 
     @RequestMapping(value = GET_OPERATION + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<GenreDTO>> getGenres(@PathVariable("sort") final int sort,
-            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
+    public ResponseEntity<List<GenreDTO>> getGenres(@PathVariable("sort") int sort,
+            @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<GenreEntity> genres = genreService.getGenres(sort, order, page);
         if (genres == null) {
             return new ResponseEntity<List<GenreDTO>>(HttpStatus.NO_CONTENT);
@@ -84,10 +84,9 @@ public class GenreRestController {
 
     @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<GenreDTO>> getEntityGenres(
-            @PathVariable("entity") final String entity,
-            @PathVariable("entityId") final long entityId, @PathVariable("sort") final int sort,
-            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
+    public ResponseEntity<List<GenreDTO>> getEntityGenres(@PathVariable("entity") String entity,
+            @PathVariable("entityId") long entityId, @PathVariable("sort") int sort,
+            @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<GenreEntity> genres = null;
         switch (entity) {
             case Entities.ARTIST:
@@ -115,8 +114,8 @@ public class GenreRestController {
 
     @RequestMapping(value = USER_OPERATION + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<GenreDTO>> getUserGenres(@PathVariable("sort") final int sort,
-            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
+    public ResponseEntity<List<GenreDTO>> getUserGenres(@PathVariable("sort") int sort,
+            @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<GenreEntity> genres = genreService.getUserGenres(Secure.getLoggedUser().getId(), sort,
                 order, page);
         if (genres == null) {
@@ -150,9 +149,8 @@ public class GenreRestController {
 
     @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/pages_count"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<Integer> getEntityGenresPagesCount(
-            @PathVariable("entity") final String entity,
-            @PathVariable("entityId") final long entityId) {
+    public ResponseEntity<Integer> getEntityGenresPagesCount(@PathVariable("entity") String entity,
+            @PathVariable("entityId") long entityId) {
         int pagesCount = 0;
         switch (entity) {
             case Entities.ARTIST:
@@ -174,7 +172,7 @@ public class GenreRestController {
     }
 
     @RequestMapping(value = CHECK_OPERATION + "/genre_name/{name}", method = RequestMethod.POST)
-    public ResponseEntity<Boolean> checkGenreName(@PathVariable("name") final String name) {
+    public ResponseEntity<Boolean> checkGenreName(@PathVariable("name") String name) {
         boolean exists = genreService.checkGenreName(name);
         return new ResponseEntity<Boolean>(exists, HttpStatus.OK);
     }

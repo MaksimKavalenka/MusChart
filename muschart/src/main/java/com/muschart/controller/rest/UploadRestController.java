@@ -1,6 +1,6 @@
 package com.muschart.controller.rest;
 
-import static com.muschart.constants.MessageConstants.UPLOAD_FILE_ERROR;
+import static com.muschart.constants.MessageConstants.UPLOAD_FILE_MESSAGE;
 import static com.muschart.constants.UploadConstants.Path.*;
 import static com.muschart.constants.UploadConstants.Type.*;
 import static com.muschart.constants.UrlConstants.Rest.UPLOAD_URL;
@@ -32,8 +32,8 @@ import com.muschart.exception.ValidationException;
 public class UploadRestController {
 
     @RequestMapping(value = "/{type}", method = RequestMethod.POST)
-    public @ResponseBody ResponseEntity<Void> uploadFile(@PathVariable("type") final String type,
-            @RequestParam(value = "file") final MultipartFile file) {
+    public @ResponseBody ResponseEntity<Void> uploadFile(@PathVariable("type") String type,
+            @RequestParam(value = "file") MultipartFile file) {
         try {
             String path = "";
             switch (type) {
@@ -54,18 +54,18 @@ public class UploadRestController {
         }
     }
 
-    private void upload(final MultipartFile file, final String path) throws ValidationException {
+    private void upload(MultipartFile file, String path) throws ValidationException {
         try (OutputStream out = new FileOutputStream(new File(path));
                 InputStream filecontent = file.getInputStream()) {
             int read = 0;
-            final byte[] bytes = new byte[1024];
+            byte[] bytes = new byte[1024];
 
             while ((read = filecontent.read(bytes)) != -1) {
                 out.write(bytes, 0, read);
             }
 
         } catch (FileNotFoundException e) {
-            throw new ValidationException(UPLOAD_FILE_ERROR);
+            throw new ValidationException(UPLOAD_FILE_MESSAGE);
         } catch (IOException e) {
             throw new ValidationException(e.getMessage());
         }

@@ -101,7 +101,7 @@ public class MvcSpringConfiguration extends WebMvcConfigurationSupport {
     }
 
     @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
         registry.addResourceHandler("/**").addResourceLocations("/static/");
@@ -114,7 +114,7 @@ public class MvcSpringConfiguration extends WebMvcConfigurationSupport {
     }
 
     @Override
-    public void configureViewResolvers(final ViewResolverRegistry registry) {
+    public void configureViewResolvers(ViewResolverRegistry registry) {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/html/");
         viewResolver.setSuffix(".html");
@@ -124,7 +124,7 @@ public class MvcSpringConfiguration extends WebMvcConfigurationSupport {
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        properties.put("hibernate.show_sql", "true");
+        properties.put("hibernate.show_sql", "false");
         properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.id.new_generator_mappings", "false");
         return properties;

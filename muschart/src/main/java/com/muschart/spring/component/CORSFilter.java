@@ -16,12 +16,12 @@ import org.springframework.stereotype.Component;
 public class CORSFilter implements Filter {
 
     @Override
-    public void init(final FilterConfig filterConfig) {
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override
-    public void doFilter(final ServletRequest request, final ServletResponse response,
-            final FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
         httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
         httpServletResponse.setHeader("Access-Control-Allow-Methods",

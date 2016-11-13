@@ -11,8 +11,7 @@ import com.muschart.entity.UserEntity;
 
 public abstract class Secure {
 
-    public static String secureBySha(final String rawPass, final String salt)
-            throws NoSuchAlgorithmException {
+    public static String secureBySha(String rawPass, String salt) throws NoSuchAlgorithmException {
         MessageDigestPasswordEncoder encoder = new ShaPasswordEncoder();
         return encoder.encodePassword(rawPass, salt);
     }

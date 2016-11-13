@@ -15,7 +15,7 @@ public class UserDetailsServiceSecurity implements UserDetailsService {
     private UserServiceDAO userService;
 
     @Override
-    public UserEntity loadUserByUsername(final String username) throws UsernameNotFoundException {
+    public UserEntity loadUserByUsername(String username) throws UsernameNotFoundException {
         return userService.getUserByLogin(username);
     }
 

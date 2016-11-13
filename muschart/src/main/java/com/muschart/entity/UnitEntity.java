@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "unit")
 public class UnitEntity extends AbstractEntity {
 
-    private static final long     serialVersionUID = -6324472595495881439L;
+    private static final long     serialVersionUID = -568108371094521785L;
 
     @Column(name = "name", nullable = false, length = 255)
     private String                name;
@@ -27,18 +27,18 @@ public class UnitEntity extends AbstractEntity {
         super();
     }
 
-    public UnitEntity(final String name) {
+    public UnitEntity(String name) {
         super();
         this.name = name;
     }
 
-    public UnitEntity(final String name, final List<TrackUnitEntity> tracksOrder) {
+    public UnitEntity(String name, List<TrackUnitEntity> tracksOrder) {
         super();
         this.name = name;
         this.tracksOrder = tracksOrder;
     }
 
-    public UnitEntity(final long id, final String name, final List<TrackUnitEntity> tracksOrder) {
+    public UnitEntity(long id, String name, List<TrackUnitEntity> tracksOrder) {
         super(id);
         this.name = name;
         this.tracksOrder = tracksOrder;
@@ -48,7 +48,7 @@ public class UnitEntity extends AbstractEntity {
         return name;
     }
 
-    public void setName(final String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -56,7 +56,7 @@ public class UnitEntity extends AbstractEntity {
         return tracksOrder;
     }
 
-    public void setTracksOrder(final List<TrackUnitEntity> tracksOrder) {
+    public void setTracksOrder(List<TrackUnitEntity> tracksOrder) {
         this.tracksOrder = tracksOrder;
     }
 

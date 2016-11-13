@@ -6,7 +6,7 @@ public enum UnitConstants {
 
     private String unit;
 
-    private UnitConstants(final String unit) {
+    private UnitConstants(String unit) {
         this.unit = unit;
     }
 

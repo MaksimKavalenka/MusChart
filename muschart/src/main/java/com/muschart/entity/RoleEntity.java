@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "role")
 public class RoleEntity extends AbstractEntity implements GrantedAuthority {
 
-    private static final long serialVersionUID = -2838272686668080339L;
+    private static final long serialVersionUID = 4459211641303162940L;
 
     @Column(name = "name", unique = true, nullable = false, length = 255)
     private String            name;
@@ -32,18 +32,18 @@ public class RoleEntity extends AbstractEntity implements GrantedAuthority {
         super();
     }
 
-    public RoleEntity(final String name) {
+    public RoleEntity(String name) {
         super();
         this.name = name;
     }
 
-    public RoleEntity(final String name, final List<UserEntity> users) {
+    public RoleEntity(String name, List<UserEntity> users) {
         super();
         this.name = name;
         this.users = users;
     }
 
-    public RoleEntity(final long id, final String name, final List<UserEntity> users) {
+    public RoleEntity(long id, String name, List<UserEntity> users) {
         super(id);
         this.name = name;
         this.users = users;
@@ -53,7 +53,7 @@ public class RoleEntity extends AbstractEntity implements GrantedAuthority {
         return name;
     }
 
-    public void setName(final String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -61,7 +61,7 @@ public class RoleEntity extends AbstractEntity implements GrantedAuthority {
         return users;
     }
 
-    public void setUsers(final List<UserEntity> users) {
+    public void setUsers(List<UserEntity> users) {
         this.users = users;
     }
 

@@ -1,6 +1,6 @@
 package com.muschart.service.impl;
 
-import static com.muschart.constants.MessageConstants.TAKEN_LOGIN_ERROR;
+import static com.muschart.constants.MessageConstants.TAKEN_LOGIN_MESSAGE;
 
 import java.util.List;
 
@@ -27,25 +27,25 @@ public class UserService implements UserServiceDAO {
     private TrackRepository  trackRepository;
 
     @Override
-    public UserEntity createUser(final String login, final String password,
-            final List<GrantedAuthority> roles) throws ValidationException {
+    public UserEntity createUser(String login, String password, List<GrantedAuthority> roles)
+            throws ValidationException {
         UserEntity user = new UserEntity(login, password, roles);
         synchronized (UserService.class) {
             if (!checkLogin(login)) {
                 return repository.save(user);
             } else {
-                throw new ValidationException(TAKEN_LOGIN_ERROR);
+                throw new ValidationException(TAKEN_LOGIN_MESSAGE);
             }
         }
     }
 
     @Override
-    public UserEntity getUserByLogin(final String login) {
+    public UserEntity getUserByLogin(String login) {
         return repository.findByLogin(login);
     }
 
     @Override
-    public void updateUserArtists(final long userId, final long artistId) {
+    public void updateUserArtists(long userId, long artistId) {
         if (!repository.isArtistLiked(userId, artistId)) {
             repository.addArtistToUser(userId, artistId);
             artistRepository.setArtistLike(artistId);
@@ -56,7 +56,7 @@ public class UserService implements UserServiceDAO {
     }
 
     @Override
-    public void updateUserGenres(final long userId, final long genreId) {
+    public void updateUserGenres(long userId, long genreId) {
         if (!repository.isGenreLiked(userId, genreId)) {
             repository.addGenreToUser(userId, genreId);
             genreRepository.setGenreLike(genreId);
@@ -67,7 +67,7 @@ public class UserService implements UserServiceDAO {
     }
 
     @Override
-    public void updateUserTracks(final long userId, final long trackId) {
+    public void updateUserTracks(long userId, long trackId) {
         if (!repository.isTrackLiked(userId, trackId)) {
             repository.addTrackToUser(userId, trackId);
             trackRepository.setTrackLike(trackId);
@@ -78,22 +78,22 @@ public class UserService implements UserServiceDAO {
     }
 
     @Override
-    public boolean isArtistLiked(final long userId, final long artistId) {
+    public boolean isArtistLiked(long userId, long artistId) {
         return repository.isArtistLiked(userId, artistId);
     }
 
     @Override
-    public boolean isGenreLiked(final long userId, final long genreId) {
+    public boolean isGenreLiked(long userId, long genreId) {
         return repository.isGenreLiked(userId, genreId);
     }
 
     @Override
-    public boolean isTrackLiked(final long userId, final long trackId) {
+    public boolean isTrackLiked(long userId, long trackId) {
         return repository.isTrackLiked(userId, trackId);
     }
 
     @Override
-    public boolean checkLogin(final String login) {
+    public boolean checkLogin(String login) {
         return repository.checkLogin(login);
     }
 

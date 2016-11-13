@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class ErrorMessage implements Serializable {
 
-    private static final long serialVersionUID = -6190469086479193049L;
+    private static final long serialVersionUID = -5447368222920789091L;
 
     private String            message;
 
     public ErrorMessage() {
     }
 
-    public ErrorMessage(final String message) {
+    public ErrorMessage(String message) {
         this.message = message;
     }
 
@@ -19,20 +19,20 @@ public class ErrorMessage implements Serializable {
         return message;
     }
 
-    public void setMessage(final String message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
+        int prime = 31;
         int result = 1;
-        result = prime * result + ((message == null) ? 0 : message.hashCode());
+        result = (prime * result) + ((message == null) ? 0 : message.hashCode());
         return result;
     }
 
     @Override
-    public boolean equals(final Object obj) {
+    public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }

@@ -4,7 +4,7 @@ import com.muschart.entity.GenreEntity;
 
 public class GenreDTO extends GenreEntity {
 
-    private static final long serialVersionUID = 8660168994660325966L;
+    private static final long serialVersionUID = -8290252196532407134L;
 
     private boolean           isLiked;
 
@@ -12,12 +12,12 @@ public class GenreDTO extends GenreEntity {
         super();
     }
 
-    public GenreDTO(final long id, final String name, final long rating, final boolean isLiked) {
+    public GenreDTO(long id, String name, long rating, boolean isLiked) {
         super(id, name, rating, null, null, null);
         this.isLiked = isLiked;
     }
 
-    public GenreDTO(final GenreEntity genre, final boolean isLiked) {
+    public GenreDTO(GenreEntity genre, boolean isLiked) {
         super(genre.getId(), genre.getName(), genre.getRating(), null, null, null);
         this.isLiked = isLiked;
     }
@@ -26,7 +26,7 @@ public class GenreDTO extends GenreEntity {
         return isLiked;
     }
 
-    public void setLiked(final boolean isLiked) {
+    public void setLiked(boolean isLiked) {
         this.isLiked = isLiked;
     }
 

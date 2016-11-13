@@ -46,12 +46,11 @@ public class TrackRestController {
 
     @RequestMapping(value = CREATE_OPERATION
             + "/{name}/{song}/{cover}/{video}/{release}/{artists}/{units}/{genres}", method = RequestMethod.POST)
-    public ResponseEntity<TrackEntity> createTrack(@PathVariable("name") final String name,
-            @PathVariable("song") final String song, @PathVariable("cover") final String cover,
-            @PathVariable("video") final String video, @PathVariable("release") final Date release,
-            @PathVariable("units") final String units,
-            @PathVariable("artists") final String artists,
-            @PathVariable("genres") final String genres) {
+    public ResponseEntity<TrackEntity> createTrack(@PathVariable("name") String name,
+            @PathVariable("song") String song, @PathVariable("cover") String cover,
+            @PathVariable("video") String video, @PathVariable("release") Date release,
+            @PathVariable("units") String units, @PathVariable("artists") String artists,
+            @PathVariable("genres") String genres) {
         TrackEntity track = trackService.createTrack(name, song, cover, video, release,
                 Parser.getIdsFromJson(artists), Parser.getIdsFromJson(units),
                 Parser.getIdsFromJson(genres));
@@ -59,13 +58,13 @@ public class TrackRestController {
     }
 
     @RequestMapping(value = DELETE_OPERATION + "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<TrackEntity> deleteTrackById(@PathVariable("id") final long id) {
+    public ResponseEntity<TrackEntity> deleteTrackById(@PathVariable("id") long id) {
         trackService.deleteTrackById(id);
         return new ResponseEntity<TrackEntity>(HttpStatus.OK);
     }
 
     @RequestMapping(value = GET_OPERATION + "/{id}" + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<TrackEntity> getTrackById(@PathVariable("id") final long id) {
+    public ResponseEntity<TrackEntity> getTrackById(@PathVariable("id") long id) {
         TrackEntity track = trackService.getTrackById(id);
         if (track == null) {
             return new ResponseEntity<TrackEntity>(HttpStatus.NO_CONTENT);
@@ -75,8 +74,8 @@ public class TrackRestController {
 
     @RequestMapping(value = GET_OPERATION + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<TrackDTO>> getTracks(@PathVariable("sort") final int sort,
-            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
+    public ResponseEntity<List<TrackDTO>> getTracks(@PathVariable("sort") int sort,
+            @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<TrackEntity> tracks = trackService.getTracks(sort, order, page);
         if (tracks == null) {
             return new ResponseEntity<List<TrackDTO>>(HttpStatus.NO_CONTENT);
@@ -96,10 +95,9 @@ public class TrackRestController {
 
     @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<TrackDTO>> getEntityTracks(
-            @PathVariable("entity") final String entity,
-            @PathVariable("entityId") final long entityId, @PathVariable("sort") final int sort,
-            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
+    public ResponseEntity<List<TrackDTO>> getEntityTracks(@PathVariable("entity") String entity,
+            @PathVariable("entityId") long entityId, @PathVariable("sort") int sort,
+            @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<TrackEntity> tracks = null;
         switch (entity) {
             case Entities.ARTIST:
@@ -129,8 +127,8 @@ public class TrackRestController {
 
     @RequestMapping(value = USER_OPERATION + "/{sort}/{order}/{page}"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<List<TrackDTO>> getUserTracks(@PathVariable("sort") final int sort,
-            @PathVariable("order") final boolean order, @PathVariable("page") final int page) {
+    public ResponseEntity<List<TrackDTO>> getUserTracks(@PathVariable("sort") int sort,
+            @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<TrackEntity> tracks = trackService.getUserTracks(Secure.getLoggedUser().getId(), sort,
                 order, page);
         if (tracks == null) {
@@ -166,9 +164,8 @@ public class TrackRestController {
 
     @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/pages_count"
             + JSON_EXT, method = RequestMethod.GET)
-    public ResponseEntity<Integer> getEntityTracksPagesCount(
-            @PathVariable("entity") final String entity,
-            @PathVariable("entityId") final long entityId) {
+    public ResponseEntity<Integer> getEntityTracksPagesCount(@PathVariable("entity") String entity,
+            @PathVariable("entityId") long entityId) {
         int pagesCount = 0;
         switch (entity) {
             case Entities.ARTIST:

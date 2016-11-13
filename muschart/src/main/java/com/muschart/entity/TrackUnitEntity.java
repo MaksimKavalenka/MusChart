@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Table(name = "track_unit")
 public class TrackUnitEntity extends AbstractEntity {
 
-    private static final long serialVersionUID = 2344490782217598796L;
+    private static final long serialVersionUID = -5953132758596954890L;
 
     @ManyToOne(targetEntity = TrackEntity.class, cascade = {CascadeType.DETACH}, optional = false)
     private TrackEntity       track;
@@ -21,13 +21,13 @@ public class TrackUnitEntity extends AbstractEntity {
         super();
     }
 
-    public TrackUnitEntity(final TrackEntity track, final UnitEntity unit) {
+    public TrackUnitEntity(TrackEntity track, UnitEntity unit) {
         super();
         this.track = track;
         this.unit = unit;
     }
 
-    public TrackUnitEntity(final long id, final TrackEntity track, final UnitEntity unit) {
+    public TrackUnitEntity(long id, TrackEntity track, UnitEntity unit) {
         super(id);
         this.track = track;
         this.unit = unit;
@@ -37,7 +37,7 @@ public class TrackUnitEntity extends AbstractEntity {
         return track;
     }
 
-    public void setTrack(final TrackEntity track) {
+    public void setTrack(TrackEntity track) {
         this.track = track;
     }
 
@@ -45,7 +45,7 @@ public class TrackUnitEntity extends AbstractEntity {
         return unit;
     }
 
-    public void setUnit(final UnitEntity unit) {
+    public void setUnit(UnitEntity unit) {
         this.unit = unit;
     }
 

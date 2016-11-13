@@ -7,7 +7,7 @@ import com.muschart.entity.TrackEntity;
 
 public class TrackDTO extends TrackEntity {
 
-    private static final long  serialVersionUID = 4478545688994580431L;
+    private static final long  serialVersionUID = 4257174055910464860L;
 
     private boolean            isLiked;
     private List<IdAndNameDTO> artists;
@@ -17,17 +17,16 @@ public class TrackDTO extends TrackEntity {
         super();
     }
 
-    public TrackDTO(final long id, final String name, final String song, final String cover,
-            final String video, final Date release, final long rating, final boolean isLiked,
-            final List<IdAndNameDTO> artists, final List<IdAndNameDTO> units) {
+    public TrackDTO(long id, String name, String song, String cover, String video, Date release,
+            long rating, boolean isLiked, List<IdAndNameDTO> artists, List<IdAndNameDTO> units) {
         super(id, name, song, cover, video, release, rating, null, null, null, null);
         this.isLiked = isLiked;
         this.artists = artists;
         this.units = units;
     }
 
-    public TrackDTO(final TrackEntity track, final boolean isLiked,
-            final List<IdAndNameDTO> artists, final List<IdAndNameDTO> units) {
+    public TrackDTO(TrackEntity track, boolean isLiked, List<IdAndNameDTO> artists,
+            List<IdAndNameDTO> units) {
         super(track.getId(), track.getName(), track.getSong(), track.getCover(), track.getVideo(),
                 track.getRelease(), track.getRating(), null, null, null, null);
         this.isLiked = isLiked;
@@ -39,7 +38,7 @@ public class TrackDTO extends TrackEntity {
         return isLiked;
     }
 
-    public void setLiked(final boolean isLiked) {
+    public void setLiked(boolean isLiked) {
         this.isLiked = isLiked;
     }
 
@@ -47,7 +46,7 @@ public class TrackDTO extends TrackEntity {
         return artists;
     }
 
-    public void setArtists(final List<IdAndNameDTO> artists) {
+    public void setArtists(List<IdAndNameDTO> artists) {
         this.artists = artists;
     }
 
@@ -55,7 +54,7 @@ public class TrackDTO extends TrackEntity {
         return units;
     }
 
-    public void setUnits(final List<IdAndNameDTO> units) {
+    public void setUnits(List<IdAndNameDTO> units) {
         this.units = units;
     }
 

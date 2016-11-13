@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "track")
 public class TrackEntity extends AbstractEntity {
 
-    private static final long       serialVersionUID = 1952582684617860747L;
+    private static final long       serialVersionUID = 2675671837006119990L;
 
     @Column(name = "name", nullable = false, length = 255)
     private String                  name;
@@ -63,8 +63,7 @@ public class TrackEntity extends AbstractEntity {
         super();
     }
 
-    public TrackEntity(final String name, final String song, final String cover, final String video,
-            final Date release) {
+    public TrackEntity(String name, String song, String cover, String video, Date release) {
         super();
         this.name = name;
         this.song = song;
@@ -73,10 +72,9 @@ public class TrackEntity extends AbstractEntity {
         this.release = release;
     }
 
-    public TrackEntity(final String name, final String song, final String cover, final String video,
-            final Date release, final long rating, final List<TrackArtistEntity> artistsOrder,
-            final List<TrackUnitEntity> unitsOrder, final List<GenreEntity> genres,
-            final List<UserEntity> users) {
+    public TrackEntity(String name, String song, String cover, String video, Date release,
+            long rating, List<TrackArtistEntity> artistsOrder, List<TrackUnitEntity> unitsOrder,
+            List<GenreEntity> genres, List<UserEntity> users) {
         super();
         this.name = name;
         this.song = song;
@@ -90,10 +88,9 @@ public class TrackEntity extends AbstractEntity {
         this.users = users;
     }
 
-    public TrackEntity(final long id, final String name, final String song, final String cover,
-            final String video, final Date release, final long rating,
-            final List<TrackArtistEntity> artistsOrder, final List<TrackUnitEntity> unitsOrder,
-            final List<GenreEntity> genres, final List<UserEntity> users) {
+    public TrackEntity(long id, String name, String song, String cover, String video, Date release,
+            long rating, List<TrackArtistEntity> artistsOrder, List<TrackUnitEntity> unitsOrder,
+            List<GenreEntity> genres, List<UserEntity> users) {
         super(id);
         this.name = name;
         this.song = song;
@@ -111,7 +108,7 @@ public class TrackEntity extends AbstractEntity {
         return name;
     }
 
-    public void setName(final String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -119,7 +116,7 @@ public class TrackEntity extends AbstractEntity {
         return song;
     }
 
-    public void setSong(final String song) {
+    public void setSong(String song) {
         this.song = song;
     }
 
@@ -127,7 +124,7 @@ public class TrackEntity extends AbstractEntity {
         return cover;
     }
 
-    public void setCover(final String cover) {
+    public void setCover(String cover) {
         this.cover = cover;
     }
 
@@ -135,7 +132,7 @@ public class TrackEntity extends AbstractEntity {
         return video;
     }
 
-    public void setVideo(final String video) {
+    public void setVideo(String video) {
         this.video = video;
     }
 
@@ -143,7 +140,7 @@ public class TrackEntity extends AbstractEntity {
         return release;
     }
 
-    public void setRelease(final Date release) {
+    public void setRelease(Date release) {
         this.release = release;
     }
 
@@ -151,7 +148,7 @@ public class TrackEntity extends AbstractEntity {
         return rating;
     }
 
-    public void setRating(final long rating) {
+    public void setRating(long rating) {
         this.rating = rating;
     }
 
@@ -159,7 +156,7 @@ public class TrackEntity extends AbstractEntity {
         return artistsOrder;
     }
 
-    public void setArtistsOrder(final List<TrackArtistEntity> artistsOrder) {
+    public void setArtistsOrder(List<TrackArtistEntity> artistsOrder) {
         this.artistsOrder = artistsOrder;
     }
 
@@ -167,7 +164,7 @@ public class TrackEntity extends AbstractEntity {
         return unitsOrder;
     }
 
-    public void setUnitsOrder(final List<TrackUnitEntity> unitsOrder) {
+    public void setUnitsOrder(List<TrackUnitEntity> unitsOrder) {
         this.unitsOrder = unitsOrder;
     }
 
@@ -175,7 +172,7 @@ public class TrackEntity extends AbstractEntity {
         return genres;
     }
 
-    public void setGenres(final List<GenreEntity> genres) {
+    public void setGenres(List<GenreEntity> genres) {
         this.genres = genres;
     }
 
@@ -183,7 +180,7 @@ public class TrackEntity extends AbstractEntity {
         return users;
     }
 
-    public void setUsers(final List<UserEntity> users) {
+    public void setUsers(List<UserEntity> users) {
         this.users = users;
     }
 
