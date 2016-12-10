@@ -1,4 +1,4 @@
-package com.muschart.controller.rest;
+package com.muschart.controller;
 
 import static com.muschart.constants.MessageConstants.UPLOAD_FILE_MESSAGE;
 import static com.muschart.constants.UploadConstants.Path.*;
@@ -29,7 +29,7 @@ import com.muschart.exception.ValidationException;
 @Controller
 @MultipartConfig
 @RequestMapping(UPLOAD_URL)
-public class UploadRestController {
+public class UploadController {
 
     @RequestMapping(value = "/{type}", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Void> uploadFile(@PathVariable("type") String type,

@@ -1,11 +1,10 @@
 'use strict';
 app.controller('ArtistEditController', function($scope, TYPE, ArtistFactory, GenreFactory, ChoiceService, FileService, FlashService) {
 
-	var self = this;
-	self.genres = [];
+	$scope.genres = [];
 
-	self.createArtist = function() {
-		self.dataLoading = true;
+	$scope.createArtist = function() {
+		$scope.dataLoading = true;
 		var photoFlag = true;
 		FileService.uploadFile($scope.photoFile, TYPE.PHOTO, function(response) {
 			if (!response.success) {
@@ -14,9 +13,9 @@ app.controller('ArtistEditController', function($scope, TYPE, ArtistFactory, Gen
 			}
 		});
 		if (photoFlag) {
-			ArtistFactory.createArtist(self.artist.name, self.artist.photo.replace(/^C:\\fakepath\\/i, ''), angular.toJson($scope.genresChoice), function(response) {
+			ArtistFactory.createArtist($scope.artist.name, $scope.artist.photo.replace(/^C:\\fakepath\\/i, ''), angular.toJson($scope.genresChoice), function(response) {
 				if (response.success) {
-					self.reset();
+					$scope.reset();
 					ChoiceService.reset();
 					FlashService.success(response.message);
 				} else {
@@ -24,10 +23,10 @@ app.controller('ArtistEditController', function($scope, TYPE, ArtistFactory, Gen
 				}
 			});
 		}
-		self.dataLoading = false;
+		$scope.dataLoading = false;
 	};
 
-	self.deleteArtist = function(id) {
+	$scope.deleteArtist = function(id) {
 		ArtistFactory.deleteArtist(id, function(response) {
 			if (response.success) {
 				FlashService.success(response.message);
@@ -37,7 +36,7 @@ app.controller('ArtistEditController', function($scope, TYPE, ArtistFactory, Gen
 		});
 	};
 
-	self.reset = function() {
+	$scope.reset = function() {
 		$scope.form.$setPristine();
 	};
 
@@ -45,7 +44,7 @@ app.controller('ArtistEditController', function($scope, TYPE, ArtistFactory, Gen
 		ChoiceService.reset();
 		GenreFactory.getAllGenresIdAndName(function(response) {
 			if (response.success) {
-				self.genres = response.data;
+				$scope.genres = response.data;
 			} else {
 				FlashService.error(response.message);
 			}

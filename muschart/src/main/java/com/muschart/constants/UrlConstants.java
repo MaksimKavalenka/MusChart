@@ -63,6 +63,21 @@ public abstract class UrlConstants {
 
         }
 
+        public static abstract class Resources {
+
+            private static final String IMAGE_URL        = "/image";
+
+            public static final String  ARTIST_IMAGE_URL = IMAGE_URL + "/artist";
+            public static final String  TRACK_IMAGE_URL  = IMAGE_URL + "/track";
+
+            public static final String  AUDIO_URL        = "/audio";
+            public static final String  CSS_URL          = "/css";
+            public static final String  HTML_URL         = "/html";
+            public static final String  IMG_URL          = "/img";
+            public static final String  JS_URL           = "/js";
+            public static final String  WEBJARS_URL      = "/webjars";
+        }
+
         public static abstract class Key {
 
             public static final String ID_KEY   = "/{id:[0-9]{1,}}";
@@ -73,6 +88,20 @@ public abstract class UrlConstants {
         public static abstract class Operation {
 
             public static final String ADD_OPERATION = "/add";
+
+        }
+
+    }
+
+    public static abstract class Resources {
+
+        public static final String STATIC_URL  = "/static";
+        public static final String WEBJARS_URL = "/META-INF/resources/webjars";
+
+        public static abstract class Type {
+
+            public static final String CLASSPATH = "classpath:";
+            public static final String FILE      = "file:///";
 
         }
 

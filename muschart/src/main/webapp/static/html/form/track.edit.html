@@ -5,10 +5,10 @@
 			<label class="required" translate="ARTIST"></label>
 			<div ng-repeat="artistChoice in artistsChoice">
 				<select ng-model="unitsChoice[$index - 1].id" ng-if="!$first" required>
-					<option ng-repeat="unit in ctrl.units" value="{{unit.id}}">{{unit.name}}</option>
+					<option ng-repeat="unit in units" value="{{unit.id}}">{{unit.name}}</option>
 				</select>
 				<select ng-model="artistChoice.id" required>
-					<option ng-repeat="artist in ctrl.artists" value="{{artist.id}}">{{artist.name}}</option>
+					<option ng-repeat="artist in artists" value="{{artist.id}}">{{artist.name}}</option>
 				</select>
 				<button class="btn btn-danger btn-input" ng-click="removeArtistChoice(artistChoice.index)" translate="REMOVE_ARTIST"></button>
 			</div>
@@ -16,25 +16,25 @@
 		</div>
 		<div class="field">
 			<label class="required" for="name" translate="SONG_NAME"></label>
-			<input type="text" id="name" name="name" maxlength="255" ng-model="ctrl.track.name" required/>
+			<input type="text" id="name" name="name" maxlength="255" ng-model="track.name" required/>
 		</div>
 		<div class="field">
 			<label class="required" for="song" translate="TRACK"></label>
-			<input type="file" id="song" name="song" ng-model="ctrl.track.song" file-model="songFile" required file-required/>
+			<input type="file" id="song" name="song" ng-model="track.song" file-model="songFile" required file-required/>
 		</div>
 		<div class="field">
 			<label class="required" for="cover" translate="COVER"></label>
-			<input type="file" id="cover" name="cover" ng-model="ctrl.track.cover" file-model="coverFile" required file-required/>
+			<input type="file" id="cover" name="cover" ng-model="track.cover" file-model="coverFile" required file-required/>
 		</div>
 		<div class="field">
 			<label for="video" translate="YOUTUBE_VIDEO_ID"></label>
-			<input type="text" id="video" name="video" maxlength="255" ng-model="ctrl.track.video"/>
+			<input type="text" id="video" name="video" maxlength="255" ng-model="track.video"/>
 		</div>
 		<div class="field">
 			<label class="required" translate="GENRE"></label>
 			<div ng-repeat="genreChoice in genresChoice">
 				<select ng-model="genreChoice.id" required>
-					<option ng-repeat="genre in ctrl.genres" value="{{genre.id}}">{{genre.name}}</option>
+					<option ng-repeat="genre in genres" value="{{genre.id}}">{{genre.name}}</option>
 				</select>
 				<button class="btn btn-danger btn-input" ng-click="removeGenreChoice(genreChoice.index)" translate="REMOVE_GENRE"></button>
 			</div>
@@ -42,11 +42,11 @@
 		</div>
 		<div class="field">
 			<label class="required" for="release" translate="RELEASE_DATE"></label>
-			<input type="date" id="release" name="release" ng-model="ctrl.track.release" required/>
+			<input type="date" id="release" name="release" ng-model="track.release" required/>
 		</div>
 		<div>
-			<button type="submit" class="btn btn-success" ng-click="ctrl.createTrack()" ng-disabled="form.$invalid || ctrl.dataLoading" translate="SUBMIT"></button>
-			<img ng-if="ctrl.dataLoading" src="/muschart/img/load.gif"/>
+			<button type="submit" class="btn btn-success" ng-click="createTrack()" ng-disabled="form.$invalid || dataLoading" translate="SUBMIT"></button>
+			<img ng-if="dataLoading" src="/img/load.gif"/>
 		</div>
 	</fieldset>
 </form>

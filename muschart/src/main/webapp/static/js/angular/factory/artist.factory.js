@@ -5,7 +5,7 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, ValidatorService) {
 		if (!ValidatorService.allNotEmpty(callback, name, photo, genres)) {
 			return;
 		}
-		$http.post(REST.ARTISTSS + '/create/' + name + '/' + photo + '/' + genres)
+		$http.post(REST.ARTISTS + '/create/' + name + '/' + photo + '/' + genres)
 		.success(function(response) {
 			var data = {success: true, data: response, message: MESSAGE.CREATING_ARTIST_SUCCESS};
 			callback(data);
@@ -20,7 +20,7 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, ValidatorService) {
 		if (!ValidatorService.allNotEmpty(callback, id)) {
 			return;
 		}
-		$http.delete(REST.ARTISTSS + '/delete/' + id)
+		$http.delete(REST.ARTISTS + '/delete/' + id)
 		.success(function(response) {
 			response = {success: true, message: MESSAGE.GELETING_ARTIST_SUCCESS};
 			callback(data);

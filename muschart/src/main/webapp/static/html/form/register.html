@@ -3,24 +3,24 @@
 		<legend translate="REGISTER"></legend>
 		<div class="field">
 			<label class="required" for="login" translate="LOGIN"></label>
-			<input type="text" id="login" name="login" maxlength="255" ng-model="ctrl.user.login" ng-check-login required/>
+			<input type="text" id="login" name="login" maxlength="255" ng-model="user.login" ng-check-login required/>
 			<span ng-show="form.login.$pending.ngCheckLogin" translate="CHECK_LOGIN_MESSAGE"></span>
 			<span ng-show="form.login.$error.ngCheckLogin" translate="EXISTS_LOGIN_MESSAGE"></span>
 		</div>
 		<div class="field">
 			<label class="required" for="password" translate="PASSWORD"></label>
-			<input type="password" id="password" name="password" maxlength="255" ng-model="ctrl.user.password" ng-minlength="3" required/>
+			<input type="password" id="password" name="password" maxlength="255" ng-model="user.password" ng-minlength="3" required/>
 			<span ng-show="form.password.$error.required || form.password.$error.minlength" translate="MINIMAL_COUNT_MESSAGE"></span>
 		</div>
 		<div class="field">
 			<label class="required" for="confirmPassword" translate="CONFIRM_PASSWORD"></label>
-			<input type="password" id="confirmPassword" name="confirmPassword" maxlength="255" ng-model="ctrl.user.confirmPassword" ng-match="ctrl.user.password" ng-minlength="3" required/>
+			<input type="password" id="confirmPassword" name="confirmPassword" maxlength="255" ng-model="user.confirmPassword" ng-match="user.password" ng-minlength="3" required/>
 			<span ng-show="form.confirmPassword.$error.required || form.confirmPassword.$error.minlength" translate="MINIMAL_COUNT_MESSAGE"></span>
 			<span ng-show="form.confirmPassword.$error.ngMatch && !form.confirmPassword.$error.required && !form.confirmPassword.$error.minlength" translate="PASSWORDS_DO_NOT_MATCH_MESSAGE"></span>
 		</div>
 		<div>
-			<button class="btn btn-primary" ng-click="ctrl.register()" ng-disabled="form.$invalid || ctrl.dataLoading" translate="REGISTER"></button>
-			<img ng-if="ctrl.dataLoading" src="/muschart/img/load.gif"/>
+			<button class="btn btn-primary" ng-click="register()" ng-disabled="form.$invalid || dataLoading" translate="REGISTER"></button>
+			<img ng-if="dataLoading" src="/img/load.gif"/>
 		</div>
 	</fieldset>
 </form>

@@ -6,10 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.muschart.entity.TrackEntity;
 
+@Service("trackRepository")
 public interface TrackRepository extends CrudRepository<TrackEntity, Long> {
 
     @Modifying

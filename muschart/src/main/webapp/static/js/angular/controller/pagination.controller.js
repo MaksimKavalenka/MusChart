@@ -1,5 +1,7 @@
 'use strict';
-app.controller('PaginationController', function($rootScope, $state, STATE, ArtistFactory, GenreFactory, TrackFactory, FlashService) {
+app.controller('PaginationController', function($scope, $state, STATE, ArtistFactory, GenreFactory, TrackFactory, FlashService) {
+
+	$scope.pages = [];
 
 	function init(state, page) {
 		var callback = function(response) {
@@ -8,7 +10,8 @@ app.controller('PaginationController', function($rootScope, $state, STATE, Artis
 			} else {
 				FlashService.error(response.message);
 			}
-		}
+		};
+
 		switch (state) {
 			case STATE.ARTISTS:
 				setPagesCount(ArtistFactory, callback);
@@ -62,26 +65,26 @@ app.controller('PaginationController', function($rootScope, $state, STATE, Artis
 	}
 
 	function setPages(state, page, count) {
-		$rootScope.pages = [];
 		if (count === 0) {
-			count = 1;
+			return;
 		}
-		var from = ((page <= 3) || (count < 5)) ? 1 : (page - 2);
-		var to = ((from + 5) > count) ? (count + 1) : (from + 5);
-		to = (page <= count) ? to : (from + 5);
-		for (var i = from; i < to; i++) {
+
+		var currentPage = parseInt(page);
+		var from = (currentPage <= 3) ? 1 : (currentPage - 2);
+		var to = (currentPage <= 3) ? 5 : (currentPage + 2);
+		from = (count <= 5) ? 1 : from;
+		to = (to <= count) ? to : count;
+
+		for (var i = from; i <= to; i++) {
 			var type = 'default';
-			if (page == i) {
+			if (currentPage == i) {
 				type = 'active';
 			}
-			$rootScope.pages.push({
+			$scope.pages.push({
 				number: i,
 				link: state + '({page:' + i + '})',
 				type: type
 			});
-		}
-		if (count === 1) {
-			$rootScope.pages = [];
 		}
 	}
 

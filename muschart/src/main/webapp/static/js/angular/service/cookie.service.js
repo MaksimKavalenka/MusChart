@@ -1,29 +1,37 @@
 'use strict';
-app.service('CookieService', function($cookies, $rootScope) {
+app.service('CookieService', function($cookies, COOKIE) {
 
-	function setCredentials(user) {
-		$rootScope.user = {
-			id: user.id,
-			login: user.login,
-			role: user.role.name
-		};
-		$cookies.putObject('user', $rootScope.user);
+	function getUser() {
+		return $cookies.getObject(COOKIE.USER);
 	}
 
-	function setTracks(tracks) {
-		$rootScope.tracks = tracks;
-		$cookies.putObject('tracks', $rootScope.tracks);
+	function setUser(user) {
+		$cookies.putObject(COOKIE.USER, user);
 	}
 
-	function clearCredentials() {
-		$rootScope.user = null;
-		$cookies.remove('user');
+	function clearUser() {
+		$cookies.remove(COOKIE.USER);
+	}
+
+	function getSettings() {
+		return $cookies.getObject(COOKIE.SETTINGS);
+	}
+
+	function setSettings(settings) {
+		$cookies.putObject(COOKIE.SETTINGS, settings);
+	}
+
+	function clearSettings() {
+		$cookies.remove(COOKIE.SETTINGS);
 	}
 
 	return {
-		setCredentials: setCredentials,
-		setTracks: setTracks,
-		clearCredentials: clearCredentials
+		getUser: getUser,
+		setUser: setUser,
+		clearUser: clearUser,
+		getSettings: getSettings,
+		setSettings: setSettings,
+		clearSettings: clearSettings
 	};
 
 });

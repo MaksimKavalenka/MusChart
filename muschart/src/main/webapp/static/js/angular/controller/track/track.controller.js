@@ -1,13 +1,12 @@
 'use strict';
-app.controller('TrackController', function($cookies, $scope, $state, STATE, UPLOAD, TrackFactory, AmplitudeService, FlashService) {
+app.controller('TrackController', function($scope, $state, STATE, UPLOAD, TrackFactory, AmplitudeService, CookieService, FlashService) {
 
-	var self = this;
-	self.design = $cookies.getObject('settings').design;
-	self.url = '#';
-	self.info = {};
-	self.tracks = [];
+	$scope.design = CookieService.getSettings().design;
+	$scope.url = '#';
+	$scope.info = {};
+	$scope.tracks = [];
 
-	self.playSong = function(track) {
+	$scope.playSong = function(track) {
 		Amplitude.playNow(AmplitudeService.parseSong(track));
 	};
 
@@ -19,11 +18,11 @@ app.controller('TrackController', function($cookies, $scope, $state, STATE, UPLO
 	function init(state, sort, order, page) {
 		switch (state) {
 			case STATE.PLAYLIST:
-				self.url = '#';
-				self.tracks = AmplitudeService.playlist;
+				$scope.url = '#';
+				$scope.tracks = AmplitudeService.playlist;
 				break;
 			case STATE.TRACKS:
-				self.url = '#';
+				$scope.url = '#';
 				getTracks(sort, order, page);
 				break;
 			case STATE.TRACK:
@@ -32,23 +31,23 @@ app.controller('TrackController', function($cookies, $scope, $state, STATE, UPLO
 				getTrackById($state.params.id);
 				break;
 			case STATE.ARTIST:
-				self.url = 'artist_tracks({id: ' + $state.params.id + ', page: 1})';
+				$scope.url = 'artist_tracks({id: ' + $state.params.id + ', page: 1})';
 				getEntityTracks('artist', $state.params.id, sort, order, 0);
 				break;
 			case STATE.GENRE:
-				self.url = 'genre_tracks({id: ' + $state.params.id + ', page: 1})';
+				$scope.url = 'genre_tracks({id: ' + $state.params.id + ', page: 1})';
 				getEntityTracks('genre', $state.params.id, sort, order, 0);
 				break;
 			case STATE.ARTIST_TRACKS:
-				self.url = '#';
+				$scope.url = '#';
 				getEntityTracks('artist', $state.params.id, sort, order, page);
 				break;
 			case STATE.GENRE_TRACKS:
-				self.url = '#';
+				$scope.url = '#';
 				getEntityTracks('genre', $state.params.id, sort, order, page);
 				break;
 			case STATE.USER_TRACKS:
-				self.url = '#';
+				$scope.url = '#';
 				getUserTracks(sort, order, page);
 				break;
 		}
@@ -57,8 +56,8 @@ app.controller('TrackController', function($cookies, $scope, $state, STATE, UPLO
 	function getTrackById(id) {
 		TrackFactory.getTrackById(id, function(response) {
 			if (response.success) {
-				self.info.image = UPLOAD.TRACK_COVER + '/' + response.data.cover;
-				self.info.data = response.data.name;
+				$scope.info.image = UPLOAD.TRACK_COVER + '/' + response.data.cover;
+				$scope.info.data = response.data.name;
 			} else {
 				FlashService.error(response.message);
 			}
@@ -68,8 +67,8 @@ app.controller('TrackController', function($cookies, $scope, $state, STATE, UPLO
 	function getTracks(sort, order, page) {
 		TrackFactory.getTracks(sort, order, page, function(response) {
 			if (response.success) {
-				self.tracks = response.data;
-				Amplitude.init(AmplitudeService.parseSongs(self.tracks));
+				$scope.tracks = response.data;
+				Amplitude.init(AmplitudeService.parseSongs($scope.tracks));
 			} else {
 				FlashService.error(response.message);
 			}
@@ -79,8 +78,8 @@ app.controller('TrackController', function($cookies, $scope, $state, STATE, UPLO
 	function getEntityTracks(entity, entityId, sort, order, page) {
 		TrackFactory.getEntityTracks(entity, entityId, sort, order, page, function(response) {
 			if (response.success) {
-				self.tracks = response.data;
-				Amplitude.init(AmplitudeService.parseSongs(self.tracks));
+				$scope.tracks = response.data;
+				Amplitude.init(AmplitudeService.parseSongs($scope.tracks));
 			} else {
 				FlashService.error(response.message);
 			}
@@ -90,13 +89,13 @@ app.controller('TrackController', function($cookies, $scope, $state, STATE, UPLO
 	function getUserTracks(sort, order, page) {
 		TrackFactory.getUserTracks(sort, order, page, function(response) {
 			if (response.success) {
-				self.tracks = response.data;
+				$scope.tracks = response.data;
 			} else {
 				FlashService.error(response.message);
 			}
 		});
 	}
 
-	init($state.current.name, $cookies.getObject('settings').sort.tracks, $cookies.getObject('settings').order.tracks, $state.params.page);
+	init($state.current.name, CookieService.getSettings().sort.tracks, CookieService.getSettings().order.tracks, $state.params.page);
 
 });

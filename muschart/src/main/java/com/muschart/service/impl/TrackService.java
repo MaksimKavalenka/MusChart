@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.TrackEntity;
@@ -13,10 +14,11 @@ import com.muschart.service.dao.TrackServiceDAO;
 import com.muschart.utility.JpaHelper;
 import com.muschart.utility.Parser;
 
+@Service("trackService")
 public class TrackService implements TrackServiceDAO {
 
     @Autowired
-    private TrackRepository       repository;
+    private TrackRepository       trackRepository;
     @Autowired
     private TrackArtistRepository trackArtistRepository;
 
@@ -25,7 +27,7 @@ public class TrackService implements TrackServiceDAO {
             Date release, List<Long> artistsIds, List<Long> unitsIds, List<Long> genresIds) {
         TrackEntity track = new TrackEntity(name, song, cover, video, release);
         synchronized (TrackEntity.class) {
-            repository.save(track);
+            trackRepository.save(track);
         }
         for (long artistId : artistsIds) {
             addArtistToTrack(track.getId(), artistId);
@@ -41,32 +43,32 @@ public class TrackService implements TrackServiceDAO {
 
     @Override
     public void addArtistToTrack(long trackId, long artistId) {
-        repository.addArtistToTrack(trackId, artistId);
+        trackRepository.addArtistToTrack(trackId, artistId);
     }
 
     @Override
     public void addGenreToTrack(long trackId, long genreId) {
-        repository.addGenreToTrack(trackId, genreId);
+        trackRepository.addGenreToTrack(trackId, genreId);
     }
 
     @Override
     public void addUnitToTrack(long trackId, long unitId) {
-        repository.addUnitToTrack(trackId, unitId);
+        trackRepository.addUnitToTrack(trackId, unitId);
     }
 
     @Override
     public void deleteTrackById(long id) {
-        repository.delete(id);
+        trackRepository.delete(id);
     }
 
     @Override
     public TrackEntity getTrackById(long id) {
-        return repository.findOne(id);
+        return trackRepository.findOne(id);
     }
 
     @Override
     public List<TrackEntity> getTracks(int sort, boolean order, int page) {
-        return repository.findAll(JpaHelper.TRACK.getPageRequest(sort, order, page));
+        return trackRepository.findAll(JpaHelper.TRACK.getPageRequest(sort, order, page));
     }
 
     @Override
@@ -77,23 +79,24 @@ public class TrackService implements TrackServiceDAO {
 
     @Override
     public List<TrackEntity> getGenreTracks(long genreId, int sort, boolean order, int page) {
-        return repository.findByGenresId(genreId,
+        return trackRepository.findByGenresId(genreId,
                 JpaHelper.TRACK.getPageRequest(sort, order, page));
     }
 
     @Override
     public List<TrackEntity> getUserTracks(long userId, int sort, boolean order, int page) {
-        return repository.findByUsersId(userId, JpaHelper.TRACK.getPageRequest(sort, order, page));
+        return trackRepository.findByUsersId(userId,
+                JpaHelper.TRACK.getPageRequest(sort, order, page));
     }
 
     @Override
     public List<IdAndNameDTO> getAllTracksIdAndName() {
-        return Parser.parseObjectsToIdAndNameEntities(repository.getAllTracksIdAndName());
+        return Parser.parseObjectsToIdAndNameEntities(trackRepository.getAllTracksIdAndName());
     }
 
     @Override
     public int getTracksPagesCount() {
-        return JpaHelper.TRACK.getPagesCount(repository.count());
+        return JpaHelper.TRACK.getPagesCount(trackRepository.count());
     }
 
     @Override
@@ -103,12 +106,12 @@ public class TrackService implements TrackServiceDAO {
 
     @Override
     public int getGenreTracksPagesCount(long genreId) {
-        return JpaHelper.TRACK.getPagesCount(repository.countByGenresId(genreId));
+        return JpaHelper.TRACK.getPagesCount(trackRepository.countByGenresId(genreId));
     }
 
     @Override
     public int getUserTracksPagesCount(long userId) {
-        return JpaHelper.TRACK.getPagesCount(repository.countByUsersId(userId));
+        return JpaHelper.TRACK.getPagesCount(trackRepository.countByUsersId(userId));
     }
 
 }

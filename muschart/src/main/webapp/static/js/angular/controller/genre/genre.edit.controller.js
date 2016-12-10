@@ -1,22 +1,20 @@
 'use strict';
 app.controller('GenreEditController', function($scope, GenreFactory, FlashService) {
 
-	var self = this;
-
-	self.createGenre = function() {
-		self.dataLoading = true;
-		GenreFactory.createGenre(self.genre.name, function(response) {
+	$scope.createGenre = function() {
+		$scope.dataLoading = true;
+		GenreFactory.createGenre($scope.genre.name, function(response) {
 			if (response.success) {
-				self.reset();
+				$scope.reset();
 				FlashService.success(response.message);
 			} else {
 				FlashService.error(response.message);
 			}
-			self.dataLoading = false;
+			$scope.dataLoading = false;
 		});
 	};
 
-	self.deleteGenre = function(id) {
+	$scope.deleteGenre = function(id) {
 		GenreFactory.deleteGenre(id, function(response) {
 			if (response.success) {
 				FlashService.success(response.message);
@@ -26,7 +24,7 @@ app.controller('GenreEditController', function($scope, GenreFactory, FlashServic
 		});
 	};
 
-	self.reset = function() {
+	$scope.reset = function() {
 		$scope.form.$setPristine();
 	};
 

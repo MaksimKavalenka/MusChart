@@ -1,26 +1,26 @@
 'use strict';
 app.controller('UserEditController', function($rootScope, $scope, $state, STATE, UserFactory, CookieService, FlashService) {
 
-	var self = this;
-
-	self.login = function() {
-		self.dataLoading = true;
-		UserFactory.authentication(self.user.login, self.user.password, function(response) {
+	$scope.login = function() {
+		$scope.dataLoading = true;
+		UserFactory.authentication($scope.user.login, $scope.user.password, function(response) {
 			if (response.success) {
 				$rootScope.user = {
 					name: response.data.login,
 					admin: response.data.admin
 				};
+				CookieService.setUser($rootScope.user);
 				$state.go(STATE.TRACKS, {page: 1});
 			} else {
 				FlashService.error(response.message);
 			}
-			self.dataLoading = false;
+			$scope.dataLoading = false;
 		});
 	};
 
-	self.logout = function() {
+	$scope.logout = function() {
 		$rootScope.user = null;
+		CookieService.clearUser();
 		UserFactory.logout();
 		switch ($state.current.name) {
 			case STATE.USER_ARTISTS:
@@ -37,19 +37,19 @@ app.controller('UserEditController', function($rootScope, $scope, $state, STATE,
 		}
 	};
 
-	self.register = function() {
-		self.dataLoading = true;
-		UserFactory.createUser(self.user.login, self.user.password, self.user.confirmPassword, function(response) {
+	$scope.register = function() {
+		$scope.dataLoading = true;
+		UserFactory.createUser($scope.user.login, $scope.user.password, $scope.user.confirmPassword, function(response) {
 			if (response.success) {
-				self.login();
+				$scope.login();
 			} else {
 				FlashService.error(response.message);
 			}
-			self.dataLoading = false;
+			$scope.dataLoading = false;
 		});
 	};
 
-	self.like = function(entity, entityId) {
+	$scope.like = function(entity, entityId) {
 		UserFactory.setUserLike(entity, entityId, function(response) {
 			if (!response.success) {
 				FlashService.error(response.message);

@@ -1,9 +1,10 @@
 <ul class="content">
-	<li ng-repeat="genre in ctrl.genres">
+	<li ng-repeat="genre in genres">
 		<div class="title">
 			<a ui-sref="genre({id: genre.id})">{{genre.name}}</a>
 		</div>
+	</li>
 </ul>
-<div class="link" ng-if="(ctrl.url !== '#') && (ctrl.genres.length >= count.genres)">
-	<a ui-sref="{{ctrl.url}}" translate="MORE_GENRES"></a>
+<div class="link" ng-if="(url !== '#') && (genres.length >= count.genres)">
+	<a ui-sref="{{url}}" translate="MORE_GENRES"></a>
 </div>

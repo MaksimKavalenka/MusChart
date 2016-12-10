@@ -1,5 +1,11 @@
 package com.muschart.spring.configuration;
 
+import static com.muschart.constants.MultipartConstants.*;
+import static com.muschart.constants.UploadConstants.Path.*;
+import static com.muschart.constants.UrlConstants.ANY;
+import static com.muschart.constants.UrlConstants.Resources.*;
+
+import java.io.IOException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -8,29 +14,22 @@ import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import com.muschart.service.dao.ArtistServiceDAO;
-import com.muschart.service.dao.GenreServiceDAO;
-import com.muschart.service.dao.RoleServiceDAO;
-import com.muschart.service.dao.TrackServiceDAO;
-import com.muschart.service.dao.UnitServiceDAO;
-import com.muschart.service.dao.UserServiceDAO;
-import com.muschart.service.impl.ArtistService;
-import com.muschart.service.impl.GenreService;
-import com.muschart.service.impl.RoleService;
-import com.muschart.service.impl.TrackService;
-import com.muschart.service.impl.UnitService;
-import com.muschart.service.impl.UserService;
+import com.muschart.constants.UploadConstants.Path;
+import com.muschart.constants.UrlConstants.Page;
+import com.muschart.constants.UrlConstants.Resources;
 
 @Configuration
 @ComponentScan("com.muschart.spring.component")
@@ -49,11 +48,6 @@ public class MvcSpringConfiguration extends WebMvcConfigurationSupport {
     }
 
     @Bean
-    public StandardServletMultipartResolver multipartResolver() {
-        return new StandardServletMultipartResolver();
-    }
-
-    @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
@@ -64,59 +58,40 @@ public class MvcSpringConfiguration extends WebMvcConfigurationSupport {
     }
 
     @Bean
+    public MultipartResolver multipartResolver() throws IOException {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        FileSystemResource fileSystemResource = new FileSystemResource(TEMP);
+        resolver.setMaxInMemorySize(MAX_IN_MEMORY_SIZE);
+        resolver.setMaxUploadSize(MAX_UPLOAD_SIZE);
+        resolver.setMaxUploadSizePerFile(MAX_UPLOAD_SIZE_PER_FILE);
+        resolver.setUploadTempDir(fileSystemResource);
+        return resolver;
+    }
+
+    @Bean
     public JpaTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
     }
 
-    @Bean
-    public ArtistServiceDAO artistService() {
-        return new ArtistService();
-    }
-
-    @Bean
-    public GenreServiceDAO genreService() {
-        return new GenreService();
-    }
-
-    @Bean
-    public RoleServiceDAO roleService() {
-        return new RoleService();
-    }
-
-    @Bean
-    public TrackServiceDAO trackService() {
-        return new TrackService();
-    }
-
-    @Bean
-    public UnitServiceDAO unitService() {
-        return new UnitService();
-    }
-
-    @Bean
-    public UserServiceDAO userService() {
-        return new UserService();
-    }
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/");
-        registry.addResourceHandler("/**").addResourceLocations("/static/");
-        registry.addResourceHandler("/audio/**")
-                .addResourceLocations("file:///C:/ServerData/muschart/audio/");
-        registry.addResourceHandler("/image/artist/**")
-                .addResourceLocations("file:///C:/ServerData/muschart/image/artist/");
-        registry.addResourceHandler("/image/track/**")
-                .addResourceLocations("file:///C:/ServerData/muschart/image/track/");
+        registry.addResourceHandler(Page.Resources.WEBJARS_URL + ANY)
+                .addResourceLocations(Resources.Type.CLASSPATH + Resources.WEBJARS_URL + "/");
+        registry.addResourceHandler(ANY).addResourceLocations(STATIC_URL + "/");
+        registry.addResourceHandler(Page.Resources.AUDIO_URL + ANY)
+                .addResourceLocations(Resources.Type.FILE + Path.AUDIO_UPLOAD_PATH + "/");
+        registry.addResourceHandler(Page.Resources.ARTIST_IMAGE_URL + ANY)
+                .addResourceLocations(Resources.Type.FILE + Path.ARTIST_PHOTO_UPLOAD_PATH + "/");
+        registry.addResourceHandler(Page.Resources.TRACK_IMAGE_URL + ANY)
+                .addResourceLocations(Resources.Type.FILE + Path.TRACK_COVER_UPLOAD_PATH + "/");
     }
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/html/");
+        viewResolver.setPrefix(Page.Resources.HTML_URL + "/");
         viewResolver.setSuffix(".html");
         registry.viewResolver(viewResolver);
     }

@@ -3,6 +3,7 @@ package com.muschart.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.ArtistEntity;
@@ -12,10 +13,11 @@ import com.muschart.service.dao.ArtistServiceDAO;
 import com.muschart.utility.JpaHelper;
 import com.muschart.utility.Parser;
 
+@Service("artistService")
 public class ArtistService implements ArtistServiceDAO {
 
     @Autowired
-    private ArtistRepository      repository;
+    private ArtistRepository      artistRepository;
     @Autowired
     private TrackArtistRepository trackArtistRepository;
 
@@ -23,7 +25,7 @@ public class ArtistService implements ArtistServiceDAO {
     public ArtistEntity createArtist(String name, String photo, List<Long> genresIds) {
         ArtistEntity artist = new ArtistEntity(name, photo);
         synchronized (ArtistEntity.class) {
-            repository.save(artist);
+            artistRepository.save(artist);
         }
         for (long genreId : genresIds) {
             addGenreToArtist(artist.getId(), genreId);
@@ -33,27 +35,27 @@ public class ArtistService implements ArtistServiceDAO {
 
     @Override
     public void addGenreToArtist(long artistId, long genreId) {
-        repository.addGenreToArtist(artistId, genreId);
+        artistRepository.addGenreToArtist(artistId, genreId);
     }
 
     @Override
     public void deleteArtistById(long id) {
-        repository.delete(id);
+        artistRepository.delete(id);
     }
 
     @Override
     public ArtistEntity getArtistById(long id) {
-        return repository.findOne(id);
+        return artistRepository.findOne(id);
     }
 
     @Override
     public List<ArtistEntity> getArtists(int sort, boolean order, int page) {
-        return repository.findAll(JpaHelper.ARTIST.getPageRequest(sort, order, page));
+        return artistRepository.findAll(JpaHelper.ARTIST.getPageRequest(sort, order, page));
     }
 
     @Override
     public List<ArtistEntity> getGenreArtists(long genreId, int sort, boolean order, int page) {
-        return repository.findByGenresId(genreId,
+        return artistRepository.findByGenresId(genreId,
                 JpaHelper.ARTIST.getPageRequest(sort, order, page));
     }
 
@@ -65,27 +67,29 @@ public class ArtistService implements ArtistServiceDAO {
 
     @Override
     public List<ArtistEntity> getUserArtists(long userId, int sort, boolean order, int page) {
-        return repository.findByUsersId(userId, JpaHelper.ARTIST.getPageRequest(sort, order, page));
+        return artistRepository.findByUsersId(userId,
+                JpaHelper.ARTIST.getPageRequest(sort, order, page));
     }
 
     @Override
     public List<IdAndNameDTO> getAllArtistsIdAndName() {
-        return Parser.parseObjectsToIdAndNameEntities(repository.getAllArtistsIdAndName());
+        return Parser.parseObjectsToIdAndNameEntities(artistRepository.getAllArtistsIdAndName());
     }
 
     @Override
     public List<IdAndNameDTO> getTrackArtistsIdAndName(long trackId) {
-        return Parser.parseObjectsToIdAndNameEntities(repository.getTrackArtistsIdAndName(trackId));
+        return Parser.parseObjectsToIdAndNameEntities(
+                artistRepository.getTrackArtistsIdAndName(trackId));
     }
 
     @Override
     public int getArtistsPagesCount() {
-        return JpaHelper.ARTIST.getPagesCount(repository.count());
+        return JpaHelper.ARTIST.getPagesCount(artistRepository.count());
     }
 
     @Override
     public int getGenreArtistsPagesCount(long genreId) {
-        return JpaHelper.ARTIST.getPagesCount(repository.countByGenresId(genreId));
+        return JpaHelper.ARTIST.getPagesCount(artistRepository.countByGenresId(genreId));
     }
 
     @Override
@@ -95,7 +99,7 @@ public class ArtistService implements ArtistServiceDAO {
 
     @Override
     public int getUserArtistsPagesCount(long userId) {
-        return JpaHelper.ARTIST.getPagesCount(repository.countByUsersId(userId));
+        return JpaHelper.ARTIST.getPagesCount(artistRepository.countByUsersId(userId));
     }
 
 }

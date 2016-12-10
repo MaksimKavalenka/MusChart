@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
 
 import com.muschart.entity.UnitEntity;
 
+@Service("unitRepository")
 public interface UnitRepository extends CrudRepository<UnitEntity, Long> {
 
     @Query("SELECT unit.id, unit.name FROM UnitEntity unit ORDER BY unit.id ASC")

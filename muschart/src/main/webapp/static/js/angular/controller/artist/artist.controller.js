@@ -1,15 +1,14 @@
 'use strict';
-app.controller('ArtistController', function($cookies, $state, STATE, UPLOAD, ArtistFactory, FlashService) {
+app.controller('ArtistController', function($scope, $state, STATE, UPLOAD, ArtistFactory, CookieService, FlashService) {
 
-	var self = this;
-	self.url = '#';
-	self.info = {};
-	self.artists = [];
+	$scope.url = '#';
+	$scope.info = {};
+	$scope.artists = [];
 
 	function init(state, sort, order, page) {
 		switch (state) {
 			case STATE.ARTISTS:
-				self.url = '#';
+				$scope.url = '#';
 				getArtists(sort, order, page);
 				break;
 			case STATE.ARTIST:
@@ -18,23 +17,23 @@ app.controller('ArtistController', function($cookies, $state, STATE, UPLOAD, Art
 				getArtistById($state.params.id);
 				break;
 			case STATE.GENRE:
-				self.url = 'genre_artists({id: ' + $state.params.id + ', page: 1})';
+				$scope.url = 'genre_artists({id: ' + $state.params.id + ', page: 1})';
 				getEntityArtists('genre', $state.params.id, sort, order, 0);
 				break;
 			case STATE.TRACK:
-				self.url = 'track_artists({id: ' + $state.params.id + ', page: 1})';
+				$scope.url = 'track_artists({id: ' + $state.params.id + ', page: 1})';
 				getEntityArtists('track', $state.params.id, sort, order, 0);
 				break;
 			case STATE.GENRE_ARTISTS:
-				self.url = '#';
+				$scope.url = '#';
 				getEntityArtists('genre', $state.params.id, sort, order, page);
 				break;
 			case STATE.TRACK_ARTISTS:
-				self.url = '#';
+				$scope.url = '#';
 				getEntityArtists('track', $state.params.id, sort, order, page);
 				break;
 			case STATE.USER_ARTISTS:
-				self.url = '#';
+				$scope.url = '#';
 				getUserArtists(sort, order, page);
 				break;
 		}
@@ -43,8 +42,8 @@ app.controller('ArtistController', function($cookies, $state, STATE, UPLOAD, Art
 	function getArtistById(id) {
 		ArtistFactory.getArtistById(id, function(response) {
 			if (response.success) {
-				self.info.image = UPLOAD.ARTIST_PHOTO + '/' + response.data.photo;
-				self.info.data = response.data.name;
+				$scope.info.image = UPLOAD.ARTIST_PHOTO + '/' + response.data.photo;
+				$scope.info.data = response.data.name;
 			} else {
 				FlashService.error(response.message);
 			}
@@ -54,7 +53,7 @@ app.controller('ArtistController', function($cookies, $state, STATE, UPLOAD, Art
 	function getArtists(sort, order, page) {
 		ArtistFactory.getArtists(sort, order, page, function(response) {
 			if (response.success) {
-				self.artists = response.data;
+				$scope.artists = response.data;
 			} else {
 				FlashService.error(response.message);
 			}
@@ -64,7 +63,7 @@ app.controller('ArtistController', function($cookies, $state, STATE, UPLOAD, Art
 	function getEntityArtists(entity, entityId, sort, order, page) {
 		ArtistFactory.getEntityArtists(entity, entityId, sort, order, page, function(response) {
 			if (response.success) {
-				self.artists = response.data;
+				$scope.artists = response.data;
 			} else {
 				FlashService.error(response.message);
 			}
@@ -74,13 +73,13 @@ app.controller('ArtistController', function($cookies, $state, STATE, UPLOAD, Art
 	function getUserArtists(sort, order, page) {
 		ArtistFactory.getUserArtists(sort, order, page, function(response) {
 			if (response.success) {
-				self.artists = response.data;
+				$scope.artists = response.data;
 			} else {
 				FlashService.error(response.message);
 			}
 		});
 	}
 
-	init($state.current.name, $cookies.getObject('settings').sort.artists, $cookies.getObject('settings').order.artists, $state.params.page);
+	init($state.current.name, CookieService.getSettings().sort.artists, CookieService.getSettings().order.artists, $state.params.page);
 
 });

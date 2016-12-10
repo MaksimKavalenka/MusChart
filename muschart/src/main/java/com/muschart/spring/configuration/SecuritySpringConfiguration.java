@@ -6,7 +6,6 @@ import static com.muschart.constants.UrlConstants.Page.Operation.*;
 import static com.muschart.constants.UrlConstants.Rest.Operation.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -32,8 +31,7 @@ import com.muschart.spring.component.CsrfHeaderFilter;
 public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    @Qualifier("userDetailsServiceSecurity")
-    private UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsSecurityService;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -43,7 +41,7 @@ public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
+        authenticationProvider.setUserDetailsService(userDetailsSecurityService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
 
         ReflectionSaltSource saltSource = new ReflectionSaltSource();
@@ -72,17 +70,19 @@ public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/webjars/**");
-        web.ignoring().antMatchers("/css/**");
-        web.ignoring().antMatchers("/html/**");
-        web.ignoring().antMatchers("/img/**");
-        web.ignoring().antMatchers("/js/**");
+        web.ignoring().antMatchers(Page.Resources.CSS_URL + ANY);
+        web.ignoring().antMatchers(Page.Resources.HTML_URL + ANY);
+        web.ignoring().antMatchers(Page.Resources.IMG_URL + ANY);
+        web.ignoring().antMatchers(Page.Resources.JS_URL + ANY);
+        web.ignoring().antMatchers(Page.Resources.WEBJARS_URL + ANY);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry urlRegistry = http
                 .authorizeRequests();
+
+        urlRegistry.antMatchers("/").permitAll();
 
         urlRegistry.antMatchers(Page.Common.REGISTRATION_URL).permitAll();
         urlRegistry.antMatchers(Page.Common.SETTINGS_URL).permitAll();
@@ -103,6 +103,10 @@ public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
         urlRegistry.antMatchers(Page.Track.TRACK_ARTISTS_URL).permitAll();
         urlRegistry.antMatchers(Page.Track.TRACK_GENRES_URL).permitAll();
 
+        urlRegistry.antMatchers(Page.Resources.AUDIO_URL + ANY).permitAll();
+        urlRegistry.antMatchers(Page.Resources.ARTIST_IMAGE_URL + ANY).permitAll();
+        urlRegistry.antMatchers(Page.Resources.TRACK_IMAGE_URL + ANY).permitAll();
+
         urlRegistry.antMatchers(ANY + ADD_OPERATION).hasRole(ROLE_ADMIN.toString());
 
         urlRegistry.antMatchers(ANY + AUTH_OPERATION + ANY).permitAll();
@@ -114,9 +118,6 @@ public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
         urlRegistry.antMatchers(ANY + LOGOUT_OPERATION + ANY).permitAll();
         urlRegistry.antMatchers(ANY + UPDATE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
         urlRegistry.antMatchers(ANY + USER_OPERATION + ANY).permitAll();
-
-        urlRegistry.antMatchers("/audio" + ANY).permitAll();
-        urlRegistry.antMatchers("/image" + ANY).permitAll();
 
         urlRegistry.anyRequest().authenticated();
         urlRegistry.and().formLogin().loginPage(Page.Common.LOGIN_URL).permitAll();

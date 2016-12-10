@@ -1,13 +1,12 @@
 'use strict';
 app.controller('TrackEditController', function($scope, TYPE, ArtistFactory, GenreFactory, TrackFactory, UnitFactory, ChoiceService, FileService, FlashService) {
 
-	var self = this;
-	self.artists = [];
-	self.genres = [];
-	self.units = [];
+	$scope.artists = [];
+	$scope.genres = [];
+	$scope.units = [];
 
-	self.createTrack = function() {
-		self.dataLoading = true;
+	$scope.createTrack = function() {
+		$scope.dataLoading = true;
 		var songFlag = true;
 		var coverFlag = true;
 		FileService.uploadFile($scope.songFile, TYPE.SONG, function(response) {
@@ -23,12 +22,12 @@ app.controller('TrackEditController', function($scope, TYPE, ArtistFactory, Genr
 			}
 		});
 		if (songFlag && coverFlag) {
-			if (self.track.video == '') {
-				self.track.video = null;
+			if ($scope.track.video == '') {
+				$scope.track.video = null;
 			}
-			TrackFactory.createTrack(self.track.name, self.track.song.replace(/^C:\\fakepath\\/i, ''), self.track.cover.replace(/^C:\\fakepath\\/i, ''), self.track.video, self.track.release, angular.toJson($scope.artistsChoice), angular.toJson($scope.unitsChoice), angular.toJson($scope.genresChoice), function(response) {
+			TrackFactory.createTrack($scope.track.name, $scope.track.song.replace(/^C:\\fakepath\\/i, ''), $scope.track.cover.replace(/^C:\\fakepath\\/i, ''), $scope.track.video, $scope.track.release, angular.toJson($scope.artistsChoice), angular.toJson($scope.unitsChoice), angular.toJson($scope.genresChoice), function(response) {
 				if (response.success) {
-					self.reset();
+					$scope.reset();
 					ChoiceService.reset();
 					FlashService.success(response.message);
 				} else {
@@ -36,10 +35,10 @@ app.controller('TrackEditController', function($scope, TYPE, ArtistFactory, Genr
 				}
 			});
 		}
-		self.dataLoading = false;
+		$scope.dataLoading = false;
 	};
 
-	self.deleteTrack = function(id) {
+	$scope.deleteTrack = function(id) {
 		TrackFactory.deleteTrack(id, function(response) {
 			if (response.success) {
 				FlashService.success(response.message);
@@ -49,7 +48,7 @@ app.controller('TrackEditController', function($scope, TYPE, ArtistFactory, Genr
 		});
 	};
 
-	self.reset = function() {
+	$scope.reset = function() {
 		$scope.form.$setPristine();
 	};
 
@@ -57,21 +56,21 @@ app.controller('TrackEditController', function($scope, TYPE, ArtistFactory, Genr
 		ChoiceService.reset();
 		ArtistFactory.getAllArtistsIdAndName(function(response) {
 			if (response.success) {
-				self.artists = response.data;
+				$scope.artists = response.data;
 			} else {
 				FlashService.error(response.message);
 			}
 		});
 		GenreFactory.getAllGenresIdAndName(function(response) {
 			if (response.success) {
-				self.genres = response.data;
+				$scope.genres = response.data;
 			} else {
 				FlashService.error(response.message);
 			}
 		});
 		UnitFactory.getAllUnitsIdAndName(function(response) {
 			if (response.success) {
-				self.units = response.data;
+				$scope.units = response.data;
 			} else {
 				FlashService.error(response.message);
 			}
