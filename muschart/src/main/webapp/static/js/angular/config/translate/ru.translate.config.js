@@ -52,6 +52,7 @@ app.config(function($translateProvider) {
 		NAME: 'Имя',
 		PASSWORD: 'Пароль',
 		PHOTO: 'Фото',
+		REMEMBER_ME: 'Запомнить меня',
 		SONG_NAME: 'Имя песни',
 		YOUTUBE_VIDEO_ID: 'Id Youtube видео',
 

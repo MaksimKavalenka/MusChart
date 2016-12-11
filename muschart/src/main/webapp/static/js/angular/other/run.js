@@ -1,8 +1,8 @@
 'use strict';
-app.run(function($rootScope, $state, $translate, STATE, UserFactory, CookieService, FlashService) {
+app.run(function($rootScope, $state, $translate, DEFAULT, STATE, UserFactory, CookieService, FlashService) {
 
 	$rootScope.$state = $state;
-	$rootScope.count = {artists: 6, genres: 18, tracks: 6};
+	$rootScope.count = DEFAULT.COUNT;
 
 	$rootScope.$on('$stateChangeStart', function() {
 		FlashService.clearFlashMessage(0);
@@ -10,12 +10,7 @@ app.run(function($rootScope, $state, $translate, STATE, UserFactory, CookieServi
 
 	var settings = CookieService.getSettings();
 	if (settings === undefined) {
-		settings = {};
-		settings.language = 'en';
-		settings.design = '1';
-		settings.sort = {artists: '1', genres: '0', tracks: '1'};
-		settings.order = {artists: false, genres: true, tracks: false};
-		CookieService.setSettings(settings);
+		CookieService.setSettings(DEFAULT.COUNT);
 	} else {
 		$translate.use(settings.language);
 	}
@@ -25,10 +20,7 @@ app.run(function($rootScope, $state, $translate, STATE, UserFactory, CookieServi
 		UserFactory.getUser(function(response) {
 			if (response.success) {
 				if (response.data !== null) {
-					$rootScope.user = {
-						name: response.data.login,
-						admin: response.data.admin
-					};
+					$rootScope.user = response.data;
 					CookieService.setUser($rootScope.user);
 				} else {
 					$state.go(STATE.LOGIN);

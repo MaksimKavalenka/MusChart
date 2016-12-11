@@ -109,14 +109,14 @@ public abstract class UrlConstants {
 
     public static abstract class Rest {
 
-        public static final String JSON_EXT    = ".json";
+        public static final String SERVICE     = "/service";
 
-        public static final String ARTISTS_URL = "/artists";
-        public static final String GENRES_URL  = "/genres";
-        public static final String TRACKS_URL  = "/tracks";
-        public static final String UNITS_URL   = "/units";
-        public static final String UPLOAD_URL  = "/upload";
-        public static final String USERS_URL   = "/users";
+        public static final String ARTISTS_URL = SERVICE + "/artists";
+        public static final String GENRES_URL  = SERVICE + "/genres";
+        public static final String TRACKS_URL  = SERVICE + "/tracks";
+        public static final String UNITS_URL   = SERVICE + "/units";
+        public static final String UPLOAD_URL  = SERVICE + "/upload";
+        public static final String USERS_URL   = SERVICE + "/users";
 
         public static abstract class Operation {
 

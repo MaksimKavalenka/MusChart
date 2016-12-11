@@ -5,11 +5,10 @@ app.controller('UserEditController', function($rootScope, $scope, $state, STATE,
 		$scope.dataLoading = true;
 		UserFactory.authentication($scope.user.login, $scope.user.password, function(response) {
 			if (response.success) {
-				$rootScope.user = {
-					name: response.data.login,
-					admin: response.data.admin
-				};
-				CookieService.setUser($rootScope.user);
+				$rootScope.user = response.data;
+				if ($scope.user.rememberMe) {
+					CookieService.setUser($rootScope.user);
+				}
 				$state.go(STATE.TRACKS, {page: 1});
 			} else {
 				FlashService.error(response.message);
@@ -32,8 +31,6 @@ app.controller('UserEditController', function($rootScope, $scope, $state, STATE,
 			case STATE.USER_TRACKS:
 				$state.go(STATE.TRACKS, {page: 1});
 				break;
-			default:
-				$state.reload();
 		}
 	};
 

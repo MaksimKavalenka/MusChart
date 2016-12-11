@@ -1,6 +1,5 @@
 package com.muschart.controller.rest;
 
-import static com.muschart.constants.UrlConstants.Rest.JSON_EXT;
 import static com.muschart.constants.UrlConstants.Rest.TRACKS_URL;
 import static com.muschart.constants.UrlConstants.Rest.Operation.CREATE_OPERATION;
 import static com.muschart.constants.UrlConstants.Rest.Operation.DELETE_OPERATION;
@@ -63,7 +62,7 @@ public class TrackRestController {
         return new ResponseEntity<TrackEntity>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION + "/{id}" + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION + "/{id}", method = RequestMethod.GET)
     public ResponseEntity<TrackEntity> getTrackById(@PathVariable("id") long id) {
         TrackEntity track = trackService.getTrackById(id);
         if (track == null) {
@@ -72,8 +71,7 @@ public class TrackRestController {
         return new ResponseEntity<TrackEntity>(track, HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION + "/{sort}/{order}/{page}"
-            + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION + "/{sort}/{order}/{page}", method = RequestMethod.GET)
     public ResponseEntity<List<TrackDTO>> getTracks(@PathVariable("sort") int sort,
             @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<TrackEntity> tracks = trackService.getTracks(sort, order, page);
@@ -93,8 +91,8 @@ public class TrackRestController {
         return new ResponseEntity<List<TrackDTO>>(tracksDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/{sort}/{order}/{page}"
-            + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION
+            + "/{entity}/{entityId}/{sort}/{order}/{page}", method = RequestMethod.GET)
     public ResponseEntity<List<TrackDTO>> getEntityTracks(@PathVariable("entity") String entity,
             @PathVariable("entityId") long entityId, @PathVariable("sort") int sort,
             @PathVariable("order") boolean order, @PathVariable("page") int page) {
@@ -125,8 +123,7 @@ public class TrackRestController {
         return new ResponseEntity<List<TrackDTO>>(tracksDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = USER_OPERATION + "/{sort}/{order}/{page}"
-            + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = USER_OPERATION + "/{sort}/{order}/{page}", method = RequestMethod.GET)
     public ResponseEntity<List<TrackDTO>> getUserTracks(@PathVariable("sort") int sort,
             @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<TrackEntity> tracks = trackService.getUserTracks(Secure.getLoggedUser().getId(), sort,
@@ -147,7 +144,7 @@ public class TrackRestController {
         return new ResponseEntity<List<TrackDTO>>(tracksDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION + "/all/id_name" + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION + "/all/id_name", method = RequestMethod.GET)
     public ResponseEntity<List<IdAndNameDTO>> getAllGenresIdAndName() {
         List<IdAndNameDTO> tracksIdAndName = trackService.getAllTracksIdAndName();
         if (tracksIdAndName == null) {
@@ -156,14 +153,14 @@ public class TrackRestController {
         return new ResponseEntity<List<IdAndNameDTO>>(tracksIdAndName, HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION + "/pages_count" + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION + "/pages_count", method = RequestMethod.GET)
     public ResponseEntity<Integer> getTracksPagesCount() {
         int pagesCount = trackService.getTracksPagesCount();
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/pages_count"
-            + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION
+            + "/{entity}/{entityId}/pages_count", method = RequestMethod.GET)
     public ResponseEntity<Integer> getEntityTracksPagesCount(@PathVariable("entity") String entity,
             @PathVariable("entityId") long entityId) {
         int pagesCount = 0;
@@ -180,7 +177,7 @@ public class TrackRestController {
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);
     }
 
-    @RequestMapping(value = USER_OPERATION + "/pages_count" + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = USER_OPERATION + "/pages_count", method = RequestMethod.GET)
     public ResponseEntity<Integer> getUserTracksPagesCount() {
         int pagesCount = trackService.getUserTracksPagesCount(Secure.getLoggedUser().getId());
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);

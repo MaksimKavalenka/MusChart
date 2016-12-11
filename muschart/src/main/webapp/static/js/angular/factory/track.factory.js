@@ -35,7 +35,7 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, ValidatorService) {
 		if (!ValidatorService.allNotEmpty(callback, id)) {
 			return;
 		}
-		$http.get(REST.TRACKS + '/get/' + id + REST.JSON_EXT)
+		$http.get(REST.TRACKS + '/get/' + id)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -50,7 +50,7 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, ValidatorService) {
 		if (!ValidatorService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
-		$http.get(REST.TRACKS + '/get/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
+		$http.get(REST.TRACKS + '/get/' + sort + '/' + order + '/' + page)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -65,7 +65,7 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, ValidatorService) {
 		if (!ValidatorService.allNotEmpty(callback, entity, entityId, sort, order, page)) {
 			return;
 		}
-		$http.get(REST.TRACKS + '/get/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
+		$http.get(REST.TRACKS + '/get/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -80,7 +80,7 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, ValidatorService) {
 		if (!ValidatorService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
-		$http.get(REST.TRACKS + '/user/' + sort + '/' + order + '/' + page + REST.JSON_EXT)
+		$http.get(REST.TRACKS + '/user/' + sort + '/' + order + '/' + page)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -92,7 +92,7 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function getAllTracksIdAndName(callback) {
-		$http.get(REST.TRACKS + '/get/all/id_name' + REST.JSON_EXT)
+		$http.get(REST.TRACKS + '/get/all/id_name')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -104,7 +104,7 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function getPagesCount(callback) {
-		$http.get(REST.TRACKS + '/get/pages_count' + REST.JSON_EXT)
+		$http.get(REST.TRACKS + '/get/pages_count')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -119,7 +119,7 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, ValidatorService) {
 		if (!ValidatorService.allNotEmpty(callback, entity, entityId)) {
 			return;
 		}
-		$http.get(REST.TRACKS + '/get/' + entity + '/' + entityId + '/pages_count' + REST.JSON_EXT)
+		$http.get(REST.TRACKS + '/get/' + entity + '/' + entityId + '/pages_count')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -131,7 +131,7 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function getUserPagesCount(callback) {
-		$http.get(REST.TRACKS + '/user/pages_count' + REST.JSON_EXT)
+		$http.get(REST.TRACKS + '/user/pages_count')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);

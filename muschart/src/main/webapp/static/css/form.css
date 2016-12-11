@@ -44,6 +44,12 @@
 	color: #ff0000;
 	font-size: 13px;
 }
+.form-submit .field-inline > * {
+	display: inline-block;
+}
+.form-submit .field-inline input {
+	width: 50px;
+}
 .form-validation label.required:after {
 	color: #ff0000;
 	content: " *";

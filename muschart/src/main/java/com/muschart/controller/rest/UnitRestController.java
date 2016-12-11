@@ -1,6 +1,5 @@
 package com.muschart.controller.rest;
 
-import static com.muschart.constants.UrlConstants.Rest.JSON_EXT;
 import static com.muschart.constants.UrlConstants.Rest.UNITS_URL;
 import static com.muschart.constants.UrlConstants.Rest.Operation.GET_OPERATION;
 
@@ -23,7 +22,7 @@ public class UnitRestController {
     @Autowired
     private UnitServiceDAO unitService;
 
-    @RequestMapping(value = GET_OPERATION + "/all/id_name" + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION + "/all/id_name", method = RequestMethod.GET)
     public ResponseEntity<List<IdAndNameDTO>> getAllUnitsIdAndName() {
         List<IdAndNameDTO> unitsIdAndName = unitService.getAllUnitsIdAndName();
         if (unitsIdAndName == null) {

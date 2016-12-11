@@ -1,7 +1,6 @@
 package com.muschart.controller.rest;
 
 import static com.muschart.constants.UrlConstants.Rest.ARTISTS_URL;
-import static com.muschart.constants.UrlConstants.Rest.JSON_EXT;
 import static com.muschart.constants.UrlConstants.Rest.Operation.CREATE_OPERATION;
 import static com.muschart.constants.UrlConstants.Rest.Operation.DELETE_OPERATION;
 import static com.muschart.constants.UrlConstants.Rest.Operation.GET_OPERATION;
@@ -52,7 +51,7 @@ public class ArtistRestController {
         return new ResponseEntity<ArtistEntity>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION + "/{id}" + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION + "/{id}", method = RequestMethod.GET)
     public ResponseEntity<ArtistEntity> getArtistById(@PathVariable("id") long id) {
         ArtistEntity artist = artistService.getArtistById(id);
         if (artist == null) {
@@ -61,8 +60,7 @@ public class ArtistRestController {
         return new ResponseEntity<ArtistEntity>(artist, HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION + "/{sort}/{order}/{page}"
-            + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION + "/{sort}/{order}/{page}", method = RequestMethod.GET)
     public ResponseEntity<List<ArtistDTO>> getArtists(@PathVariable("sort") int sort,
             @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<ArtistEntity> artists = artistService.getArtists(sort, order, page);
@@ -80,8 +78,8 @@ public class ArtistRestController {
         return new ResponseEntity<List<ArtistDTO>>(artistsDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/{sort}/{order}/{page}"
-            + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION
+            + "/{entity}/{entityId}/{sort}/{order}/{page}", method = RequestMethod.GET)
     public ResponseEntity<List<ArtistDTO>> getEntityArtists(@PathVariable("entity") String entity,
             @PathVariable("entityId") long entityId, @PathVariable("sort") int sort,
             @PathVariable("order") boolean order, @PathVariable("page") int page) {
@@ -110,8 +108,7 @@ public class ArtistRestController {
         return new ResponseEntity<List<ArtistDTO>>(artistsDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = USER_OPERATION + "/{sort}/{order}/{page}"
-            + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = USER_OPERATION + "/{sort}/{order}/{page}", method = RequestMethod.GET)
     public ResponseEntity<List<ArtistDTO>> getUserArtists(@PathVariable("sort") int sort,
             @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<ArtistEntity> artists = artistService.getUserArtists(Secure.getLoggedUser().getId(),
@@ -130,7 +127,7 @@ public class ArtistRestController {
         return new ResponseEntity<List<ArtistDTO>>(artistsDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION + "/all/id_name" + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION + "/all/id_name", method = RequestMethod.GET)
     public ResponseEntity<List<IdAndNameDTO>> getAllGenresIdAndName() {
         List<IdAndNameDTO> artistsIdAndName = artistService.getAllArtistsIdAndName();
         if (artistsIdAndName == null) {
@@ -139,14 +136,14 @@ public class ArtistRestController {
         return new ResponseEntity<List<IdAndNameDTO>>(artistsIdAndName, HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION + "/pages_count" + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION + "/pages_count", method = RequestMethod.GET)
     public ResponseEntity<Integer> getArtistsPagesCount() {
         int pagesCount = artistService.getArtistsPagesCount();
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/pages_count"
-            + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = GET_OPERATION
+            + "/{entity}/{entityId}/pages_count", method = RequestMethod.GET)
     public ResponseEntity<Integer> getEntityArtistsPagesCount(@PathVariable("entity") String entity,
             @PathVariable("entityId") long entityId) {
         int pagesCount = 0;
@@ -163,7 +160,7 @@ public class ArtistRestController {
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);
     }
 
-    @RequestMapping(value = USER_OPERATION + "/pages_count" + JSON_EXT, method = RequestMethod.GET)
+    @RequestMapping(value = USER_OPERATION + "/pages_count", method = RequestMethod.GET)
     public ResponseEntity<Integer> getUserArtistsPagesCount() {
         int pagesCount = artistService.getUserArtistsPagesCount(Secure.getLoggedUser().getId());
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);

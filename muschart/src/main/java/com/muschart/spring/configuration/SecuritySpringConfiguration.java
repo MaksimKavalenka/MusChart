@@ -109,15 +109,33 @@ public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
 
         urlRegistry.antMatchers(ANY + ADD_OPERATION).hasRole(ROLE_ADMIN.toString());
 
-        urlRegistry.antMatchers(ANY + AUTH_OPERATION + ANY).permitAll();
-        urlRegistry.antMatchers(ANY + CHECK_OPERATION + ANY).permitAll();
-        urlRegistry.antMatchers(ANY + CREATE_OPERATION + ANY).permitAll();
-        urlRegistry.antMatchers(ANY + DELETE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
-        urlRegistry.antMatchers(ANY + GET_OPERATION + ANY).permitAll();
-        urlRegistry.antMatchers(ANY + LIKE_OPERATION + ANY).hasRole(ROLE_USER.toString());
-        urlRegistry.antMatchers(ANY + LOGOUT_OPERATION + ANY).permitAll();
-        urlRegistry.antMatchers(ANY + UPDATE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
-        urlRegistry.antMatchers(ANY + USER_OPERATION + ANY).permitAll();
+        urlRegistry.antMatchers(Rest.ARTISTS_URL + GET_OPERATION + ANY).permitAll();
+        urlRegistry.antMatchers(Rest.ARTISTS_URL + USER_OPERATION + ANY)
+                .hasRole(ROLE_USER.toString());
+        urlRegistry.antMatchers(Rest.ARTISTS_URL + CREATE_OPERATION + ANY)
+                .hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(Rest.ARTISTS_URL + DELETE_OPERATION + ANY)
+                .hasRole(ROLE_ADMIN.toString());
+
+        urlRegistry.antMatchers(Rest.GENRES_URL + GET_OPERATION + ANY).permitAll();
+        urlRegistry.antMatchers(Rest.GENRES_URL + USER_OPERATION + ANY)
+                .hasRole(ROLE_USER.toString());
+        urlRegistry.antMatchers(Rest.GENRES_URL + CREATE_OPERATION + ANY)
+                .hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(Rest.GENRES_URL + DELETE_OPERATION + ANY)
+                .hasRole(ROLE_ADMIN.toString());
+
+        urlRegistry.antMatchers(Rest.TRACKS_URL + GET_OPERATION + ANY).permitAll();
+        urlRegistry.antMatchers(Rest.TRACKS_URL + USER_OPERATION + ANY)
+                .hasRole(ROLE_USER.toString());
+        urlRegistry.antMatchers(Rest.TRACKS_URL + CREATE_OPERATION + ANY)
+                .hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(Rest.TRACKS_URL + DELETE_OPERATION + ANY)
+                .hasRole(ROLE_ADMIN.toString());
+
+        urlRegistry.antMatchers(Rest.UNITS_URL + GET_OPERATION + ANY).permitAll();
+
+        urlRegistry.antMatchers(Rest.USERS_URL + ANY).permitAll();
 
         urlRegistry.anyRequest().authenticated();
         urlRegistry.and().formLogin().loginPage(Page.Common.LOGIN_URL).permitAll();

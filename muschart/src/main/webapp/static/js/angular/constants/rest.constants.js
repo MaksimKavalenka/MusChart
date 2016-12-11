@@ -1,12 +1,12 @@
 'use strict';
 app.constant('REST', (function() {
+	var service = '/service';
 	return {
-		JSON_EXT: '.json',
-		ARTISTS: '/artists',
-		GENRES: '/genres',
-		TRACKS: '/tracks',
-		UNITS: '/units',
-		UPLOAD: '/upload',
-		USERS: '/users'
+		ARTISTS: service + '/artists',
+		GENRES: service + '/genres',
+		TRACKS: service + '/tracks',
+		UNITS: service + '/units',
+		UPLOAD: service + '/upload',
+		USERS: service + '/users'
 	}
 })());
