@@ -1,6 +1,7 @@
 .settings {
 	display: table;
 	margin: auto;
+	text-align: left;
 }
 .settings select {
 	padding: 5px;

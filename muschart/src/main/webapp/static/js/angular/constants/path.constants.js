@@ -1,11 +1,13 @@
 'use strict';
 app.constant('PATH', (function() {
+
 	var path = 'html';
 	var contentPath = path + '/content';
 	var formPath = path + '/form';
 	var titlePath = path + '/title';
 	var toolPath = path + '/tool';
 	var htmlExt = '.html';
+
 	return {
 		INFO_CONTENT: contentPath + '/info' + htmlExt,
 		ARTISTS_CONTENT: contentPath + '/artists' + htmlExt,
@@ -23,4 +25,5 @@ app.constant('PATH', (function() {
 		PAGINATION_TOOL: toolPath + '/pagination' + htmlExt,
 		SETTINGS_TOOL: toolPath + '/settings' + htmlExt
 	}
+
 })());

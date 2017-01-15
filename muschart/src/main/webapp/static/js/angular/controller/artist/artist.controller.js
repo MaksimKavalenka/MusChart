@@ -1,9 +1,23 @@
 'use strict';
-app.controller('ArtistController', function($scope, $state, STATE, UPLOAD, ArtistFactory, CookieService, FlashService) {
+app.controller('ArtistController', function($scope, $state, DEFAULT, STATE, TEMPLATE, UPLOAD, ArtistFactory, UserFactory, CookieService, FlashService, UtilityService) {
 
 	$scope.url = '#';
 	$scope.info = {};
 	$scope.artists = [];
+
+	$scope.like = function(artistId) {
+		UserFactory.setUserLike(DEFAULT.ENTITY.artist, artistId, function(response) {
+			if (response.success) {
+				UtilityService.setLike($scope.artists, artistId);
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+	};
+
+	$scope.getTemplate = function() {
+		return TEMPLATE.ARTISTS[CookieService.getSettings().design];
+	};
 
 	function init(state, sort, order, page) {
 		switch (state) {
@@ -44,6 +58,7 @@ app.controller('ArtistController', function($scope, $state, STATE, UPLOAD, Artis
 			if (response.success) {
 				$scope.info.image = UPLOAD.ARTIST_PHOTO + '/' + response.data.photo;
 				$scope.info.data = response.data.name;
+				$state.current.title = response.data.name;
 			} else {
 				FlashService.error(response.message);
 			}

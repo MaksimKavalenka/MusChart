@@ -1,6 +1,8 @@
 'use strict';
 app.constant('REST', (function() {
+
 	var service = '/service';
+
 	return {
 		ARTISTS: service + '/artists',
 		GENRES: service + '/genres',
@@ -9,4 +11,5 @@ app.constant('REST', (function() {
 		UPLOAD: service + '/upload',
 		USERS: service + '/users'
 	}
+
 })());

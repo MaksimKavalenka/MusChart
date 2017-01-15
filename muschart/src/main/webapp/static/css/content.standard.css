@@ -1,55 +1,66 @@
-.content {
+.content-standard {
 	margin: 0;
 	padding: 0;
+	text-align: left;
 }
-.content li {
+.content-standard li {
 	border: 2.5px solid #575757;
 	display: inline-block;
 	margin: 1px;
 	width: 306px;
 }
-.content li > .title {
+.content-standard li > .title {
 	background: #575757;
 	color: #ffffff;
 	font: 13px Arial;
 	font-weight: bold;
 	margin: 7px 0;
 	padding: 10px;
+	position: relative;
 	text-align: center;
 }
-.content li > .title > * {
+.content-standard li > .title > * {
 	display: block;
 	white-space: nowrap;
 }
-.content li > .title .artist {
+.content-standard li > .title .artist {
 	display: inline;
 }
-.content li > .title a {
+.content-standard li > .title a {
 	color: #ffffff;
 	text-decoration: none;
 }
-.content li > .title a:hover,
-.content li > .title a:active {
+.content-standard li > .title a:hover,
+.content-standard li > .title a:active {
 	text-decoration: underline;
 }
-.content li > .body {
+.content-standard li > .title .menu {
+	cursor: pointer;
+	height: 55%;
+	margin: 8px 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 10%;
+}
+.content-standard li > .body {
 	position: relative;
 }
-.content li > .body > * {
+.content-standard li > .body > * {
 	width: 100%;
 }
-.content li > .body > .body-link {
+.content-standard li > .body > .links {
 	bottom: 0;
 	left: 0;
 	opacity: 0;
 	position: absolute;
 	z-index: 1;
 }
-.content li > .body:hover > .body-link,
-.content li > .body:active > .body-link {
+.content-standard li > .body:hover > .links,
+.content-standard li > .body:active > .links {
 	opacity: 1;
 }
-.content li > .body > .body-link .link {
+.content-standard li > .body > .links .link {
 	background-color: #ffffff;
 	background-size: 100% 100%;
 	border: 2.5px solid transparent;
@@ -63,7 +74,7 @@
 	vertical-align: middle;
 	width: 47px;
 }
-.content li > .body > .body-link .link-empty {
+.content-standard li > .body > .links .link-empty {
 	cursor: auto;
 }
 .link {

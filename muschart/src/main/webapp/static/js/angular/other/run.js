@@ -10,7 +10,7 @@ app.run(function($rootScope, $state, $translate, DEFAULT, STATE, UserFactory, Co
 
 	var settings = CookieService.getSettings();
 	if (settings === undefined) {
-		CookieService.setSettings(DEFAULT.COUNT);
+		CookieService.setSettings(DEFAULT.SETTINGS);
 	} else {
 		$translate.use(settings.language);
 	}

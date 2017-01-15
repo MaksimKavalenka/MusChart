@@ -35,8 +35,7 @@ public class UnitService implements UnitServiceDAO {
 
     @Override
     public List<IdAndNameDTO> getTrackUnitsIdAndName(long trackId) {
-        return Parser
-                .parseObjectsToIdAndNameEntities(unitRepository.getTrackUnitsIdAndName(trackId));
+        return Parser.parseObjectsToIdAndNameEntities(unitRepository.getTrackUnitsIdAndName(trackId));
     }
 
     @Override

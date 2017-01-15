@@ -52,8 +52,7 @@ public class ArtistEntity extends AbstractEntity {
         this.photo = photo;
     }
 
-    public ArtistEntity(String name, String photo, long rating, List<TrackArtistEntity> tracksOrder,
-            List<GenreEntity> genres, List<UserEntity> users) {
+    public ArtistEntity(String name, String photo, long rating, List<TrackArtistEntity> tracksOrder, List<GenreEntity> genres, List<UserEntity> users) {
         super();
         this.name = name;
         this.photo = photo;
@@ -63,8 +62,7 @@ public class ArtistEntity extends AbstractEntity {
         this.users = users;
     }
 
-    public ArtistEntity(long id, String name, String photo, long rating,
-            List<TrackArtistEntity> tracksOrder, List<GenreEntity> genres, List<UserEntity> users) {
+    public ArtistEntity(long id, String name, String photo, long rating, List<TrackArtistEntity> tracksOrder, List<GenreEntity> genres, List<UserEntity> users) {
         super(id);
         this.name = name;
         this.photo = photo;
@@ -124,8 +122,7 @@ public class ArtistEntity extends AbstractEntity {
 
     @Override
     public String toString() {
-        return getClass().getName() + "[id:" + super.getId() + ",name:" + name + ",photo:" + photo
-                + ",rating:" + rating + "]";
+        return getClass().getName() + "[id:" + super.getId() + ",name:" + name + ",photo:" + photo + ",rating:" + rating + "]";
     }
 
 }

@@ -1,5 +1,5 @@
 'use strict';
-app.controller('SettingsController', function($scope, $translate, CookieService) {
+app.controller('SettingsController', function($scope, $translate, CookieService, FlashService) {
 
 	$scope.settings = CookieService.getSettings();
 	$scope.languages = [{name: 'Беларуская', iso: 'by'}, {name: 'English', iso: 'en'}, {name: 'Français', iso: 'fr'}, {name: 'Русский', iso: 'ru'}];
@@ -13,6 +13,7 @@ app.controller('SettingsController', function($scope, $translate, CookieService)
 		CookieService.setSettings($scope.settings);
 		$translate.use($scope.settings.language);
 		init();
+		FlashService.success($translate.instant('SAVING_SETTINGS_SUCCESS'));
 	};
 
 	function init() {

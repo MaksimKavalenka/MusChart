@@ -79,8 +79,7 @@ public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry urlRegistry = http
-                .authorizeRequests();
+        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry urlRegistry = http.authorizeRequests();
 
         urlRegistry.antMatchers("/").permitAll();
 
@@ -110,28 +109,19 @@ public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
         urlRegistry.antMatchers(ANY + ADD_OPERATION).hasRole(ROLE_ADMIN.toString());
 
         urlRegistry.antMatchers(Rest.ARTISTS_URL + GET_OPERATION + ANY).permitAll();
-        urlRegistry.antMatchers(Rest.ARTISTS_URL + USER_OPERATION + ANY)
-                .hasRole(ROLE_USER.toString());
-        urlRegistry.antMatchers(Rest.ARTISTS_URL + CREATE_OPERATION + ANY)
-                .hasRole(ROLE_ADMIN.toString());
-        urlRegistry.antMatchers(Rest.ARTISTS_URL + DELETE_OPERATION + ANY)
-                .hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(Rest.ARTISTS_URL + USER_OPERATION + ANY).hasRole(ROLE_USER.toString());
+        urlRegistry.antMatchers(Rest.ARTISTS_URL + CREATE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(Rest.ARTISTS_URL + DELETE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
 
         urlRegistry.antMatchers(Rest.GENRES_URL + GET_OPERATION + ANY).permitAll();
-        urlRegistry.antMatchers(Rest.GENRES_URL + USER_OPERATION + ANY)
-                .hasRole(ROLE_USER.toString());
-        urlRegistry.antMatchers(Rest.GENRES_URL + CREATE_OPERATION + ANY)
-                .hasRole(ROLE_ADMIN.toString());
-        urlRegistry.antMatchers(Rest.GENRES_URL + DELETE_OPERATION + ANY)
-                .hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(Rest.GENRES_URL + USER_OPERATION + ANY).hasRole(ROLE_USER.toString());
+        urlRegistry.antMatchers(Rest.GENRES_URL + CREATE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(Rest.GENRES_URL + DELETE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
 
         urlRegistry.antMatchers(Rest.TRACKS_URL + GET_OPERATION + ANY).permitAll();
-        urlRegistry.antMatchers(Rest.TRACKS_URL + USER_OPERATION + ANY)
-                .hasRole(ROLE_USER.toString());
-        urlRegistry.antMatchers(Rest.TRACKS_URL + CREATE_OPERATION + ANY)
-                .hasRole(ROLE_ADMIN.toString());
-        urlRegistry.antMatchers(Rest.TRACKS_URL + DELETE_OPERATION + ANY)
-                .hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(Rest.TRACKS_URL + USER_OPERATION + ANY).hasRole(ROLE_USER.toString());
+        urlRegistry.antMatchers(Rest.TRACKS_URL + CREATE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(Rest.TRACKS_URL + DELETE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
 
         urlRegistry.antMatchers(Rest.UNITS_URL + GET_OPERATION + ANY).permitAll();
 

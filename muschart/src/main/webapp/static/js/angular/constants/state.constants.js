@@ -1,5 +1,6 @@
 'use strict';
 app.constant('STATE', (function() {
+
 	var delimiter = '_';
 	var artists = 'artists';
 	var genres = 'genres';
@@ -9,6 +10,7 @@ app.constant('STATE', (function() {
 	var track = 'track';
 	var user = 'user';
 	var addOperation = delimiter + 'add';
+
 	return {
 		LOGIN: 'login',
 		REGISTER: 'register',
@@ -33,4 +35,5 @@ app.constant('STATE', (function() {
 		GENRE_TRACKS: genre + delimiter + tracks,
 		USER_TRACKS: user + delimiter + tracks
 	}
+
 })());

@@ -21,10 +21,8 @@ public abstract class UrlConstants {
             public static final String ARTIST_URL        = "/artist";
             public static final String ARTIST_ADD_URL    = ARTIST_URL + Operation.ADD_OPERATION;
             public static final String ARTIST_FULL_URL   = ARTIST_URL + Key.ID_KEY;
-            public static final String ARTIST_GENRES_URL = ARTIST_URL + Key.ID_KEY
-                    + Genre.GENRES_URL;
-            public static final String ARTIST_TRACKS_URL = ARTIST_URL + Key.ID_KEY
-                    + Track.TRACKS_URL;
+            public static final String ARTIST_GENRES_URL = ARTIST_URL + Key.ID_KEY + Genre.GENRES_URL;
+            public static final String ARTIST_TRACKS_URL = ARTIST_URL + Key.ID_KEY + Track.TRACKS_URL;
 
         }
 
@@ -34,10 +32,8 @@ public abstract class UrlConstants {
             public static final String GENRE_URL         = "/genre";
             public static final String GENRE_ADD_URL     = GENRE_URL + Operation.ADD_OPERATION;
             public static final String GENRE_FULL_URL    = GENRE_URL + Key.ID_KEY;
-            public static final String GENRE_ARTISTS_URL = GENRE_URL + Key.ID_KEY
-                    + Artist.ARTISTS_URL;
-            public static final String GENRE_TRACKS_URL  = GENRE_URL + Key.ID_KEY
-                    + Track.TRACKS_URL;
+            public static final String GENRE_ARTISTS_URL = GENRE_URL + Key.ID_KEY + Artist.ARTISTS_URL;
+            public static final String GENRE_TRACKS_URL  = GENRE_URL + Key.ID_KEY + Track.TRACKS_URL;
 
         }
 
@@ -47,10 +43,8 @@ public abstract class UrlConstants {
             public static final String TRACK_URL         = "/track";
             public static final String TRACK_ADD_URL     = TRACK_URL + Operation.ADD_OPERATION;
             public static final String TRACK_FULL_URL    = TRACK_URL + Key.ID_KEY;
-            public static final String TRACK_ARTISTS_URL = TRACK_URL + Key.ID_KEY
-                    + Artist.ARTISTS_URL;
-            public static final String TRACK_GENRES_URL  = TRACK_URL + Key.ID_KEY
-                    + Genre.GENRES_URL;
+            public static final String TRACK_ARTISTS_URL = TRACK_URL + Key.ID_KEY + Artist.ARTISTS_URL;
+            public static final String TRACK_GENRES_URL  = TRACK_URL + Key.ID_KEY + Genre.GENRES_URL;
 
         }
 

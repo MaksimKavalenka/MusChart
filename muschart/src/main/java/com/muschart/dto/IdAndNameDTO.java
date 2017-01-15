@@ -1,8 +1,6 @@
 package com.muschart.dto;
 
-import com.muschart.entity.AbstractEntity;
-
-public class IdAndNameDTO extends AbstractEntity {
+public class IdAndNameDTO extends AbstractDTO {
 
     private static final long serialVersionUID = 1489848142060411977L;
 

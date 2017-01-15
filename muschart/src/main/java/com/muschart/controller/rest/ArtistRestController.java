@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.muschart.constants.EntityConstants.Structure.Entities;
-import com.muschart.dto.ArtistDTO;
 import com.muschart.dto.IdAndNameDTO;
+import com.muschart.dto.output.ArtistOutputDTO;
 import com.muschart.entity.ArtistEntity;
 import com.muschart.entity.UserEntity;
 import com.muschart.service.dao.ArtistServiceDAO;
@@ -36,19 +36,16 @@ public class ArtistRestController {
     @Autowired
     private UserServiceDAO   userService;
 
-    @RequestMapping(value = CREATE_OPERATION
-            + "/{name}/{photo}/{genres}", method = RequestMethod.POST)
-    public ResponseEntity<ArtistEntity> createArtist(@PathVariable("name") String name,
-            @PathVariable("photo") String photo, @PathVariable("genres") String genres) {
-        ArtistEntity artist = artistService.createArtist(name, photo,
-                Parser.getIdsFromJson(genres));
+    @RequestMapping(value = CREATE_OPERATION + "/{name}/{photo}/{genres}", method = RequestMethod.POST)
+    public ResponseEntity<ArtistEntity> createArtist(@PathVariable("name") String name, @PathVariable("photo") String photo, @PathVariable("genres") String genres) {
+        ArtistEntity artist = artistService.createArtist(name, photo, Parser.getIdsFromJson(genres));
         return new ResponseEntity<ArtistEntity>(artist, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = DELETE_OPERATION + "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<ArtistEntity> deleteArtistById(@PathVariable("id") long id) {
+    public ResponseEntity<Void> deleteArtistById(@PathVariable("id") long id) {
         artistService.deleteArtistById(id);
-        return new ResponseEntity<ArtistEntity>(HttpStatus.OK);
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     @RequestMapping(value = GET_OPERATION + "/{id}", method = RequestMethod.GET)
@@ -61,28 +58,23 @@ public class ArtistRestController {
     }
 
     @RequestMapping(value = GET_OPERATION + "/{sort}/{order}/{page}", method = RequestMethod.GET)
-    public ResponseEntity<List<ArtistDTO>> getArtists(@PathVariable("sort") int sort,
-            @PathVariable("order") boolean order, @PathVariable("page") int page) {
+    public ResponseEntity<List<ArtistOutputDTO>> getArtists(@PathVariable("sort") int sort, @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<ArtistEntity> artists = artistService.getArtists(sort, order, page);
         if (artists == null) {
-            return new ResponseEntity<List<ArtistDTO>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<ArtistOutputDTO>>(HttpStatus.NO_CONTENT);
         }
 
-        List<ArtistDTO> artistsDto = new ArrayList<>(artists.size());
+        List<ArtistOutputDTO> artistsOutput = new ArrayList<>(artists.size());
         for (ArtistEntity artist : artists) {
             UserEntity user = Secure.getLoggedUser();
-            boolean isLiked = (user == null) ? false
-                    : userService.isArtistLiked(user.getId(), artist.getId());
-            artistsDto.add(new ArtistDTO(artist, isLiked));
+            boolean isLiked = (user == null) ? false : userService.isArtistLiked(user.getId(), artist.getId());
+            artistsOutput.add(new ArtistOutputDTO(artist, isLiked));
         }
-        return new ResponseEntity<List<ArtistDTO>>(artistsDto, HttpStatus.OK);
+        return new ResponseEntity<List<ArtistOutputDTO>>(artistsOutput, HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION
-            + "/{entity}/{entityId}/{sort}/{order}/{page}", method = RequestMethod.GET)
-    public ResponseEntity<List<ArtistDTO>> getEntityArtists(@PathVariable("entity") String entity,
-            @PathVariable("entityId") long entityId, @PathVariable("sort") int sort,
-            @PathVariable("order") boolean order, @PathVariable("page") int page) {
+    @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/{sort}/{order}/{page}", method = RequestMethod.GET)
+    public ResponseEntity<List<ArtistOutputDTO>> getEntityArtists(@PathVariable("entity") String entity, @PathVariable("entityId") long entityId, @PathVariable("sort") int sort, @PathVariable("order") boolean order, @PathVariable("page") int page) {
         List<ArtistEntity> artists = null;
         switch (entity) {
             case Entities.GENRE:
@@ -95,36 +87,32 @@ public class ArtistRestController {
                 break;
         }
         if (artists == null) {
-            return new ResponseEntity<List<ArtistDTO>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<ArtistOutputDTO>>(HttpStatus.NO_CONTENT);
         }
 
-        List<ArtistDTO> artistsDto = new ArrayList<>(artists.size());
+        List<ArtistOutputDTO> artistsOutput = new ArrayList<>(artists.size());
         for (ArtistEntity artist : artists) {
             UserEntity user = Secure.getLoggedUser();
-            boolean isLiked = (user == null) ? false
-                    : userService.isArtistLiked(user.getId(), artist.getId());
-            artistsDto.add(new ArtistDTO(artist, isLiked));
+            boolean isLiked = (user == null) ? false : userService.isArtistLiked(user.getId(), artist.getId());
+            artistsOutput.add(new ArtistOutputDTO(artist, isLiked));
         }
-        return new ResponseEntity<List<ArtistDTO>>(artistsDto, HttpStatus.OK);
+        return new ResponseEntity<List<ArtistOutputDTO>>(artistsOutput, HttpStatus.OK);
     }
 
     @RequestMapping(value = USER_OPERATION + "/{sort}/{order}/{page}", method = RequestMethod.GET)
-    public ResponseEntity<List<ArtistDTO>> getUserArtists(@PathVariable("sort") int sort,
-            @PathVariable("order") boolean order, @PathVariable("page") int page) {
-        List<ArtistEntity> artists = artistService.getUserArtists(Secure.getLoggedUser().getId(),
-                sort, order, page);
+    public ResponseEntity<List<ArtistOutputDTO>> getUserArtists(@PathVariable("sort") int sort, @PathVariable("order") boolean order, @PathVariable("page") int page) {
+        List<ArtistEntity> artists = artistService.getUserArtists(Secure.getLoggedUser().getId(), sort, order, page);
         if (artists == null) {
-            return new ResponseEntity<List<ArtistDTO>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<ArtistOutputDTO>>(HttpStatus.NO_CONTENT);
         }
 
-        List<ArtistDTO> artistsDto = new ArrayList<>(artists.size());
+        List<ArtistOutputDTO> artistsOutput = new ArrayList<>(artists.size());
         for (ArtistEntity artist : artists) {
             UserEntity user = Secure.getLoggedUser();
-            boolean isLiked = (user == null) ? false
-                    : userService.isArtistLiked(user.getId(), artist.getId());
-            artistsDto.add(new ArtistDTO(artist, isLiked));
+            boolean isLiked = (user == null) ? false : userService.isArtistLiked(user.getId(), artist.getId());
+            artistsOutput.add(new ArtistOutputDTO(artist, isLiked));
         }
-        return new ResponseEntity<List<ArtistDTO>>(artistsDto, HttpStatus.OK);
+        return new ResponseEntity<List<ArtistOutputDTO>>(artistsOutput, HttpStatus.OK);
     }
 
     @RequestMapping(value = GET_OPERATION + "/all/id_name", method = RequestMethod.GET)
@@ -142,10 +130,8 @@ public class ArtistRestController {
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);
     }
 
-    @RequestMapping(value = GET_OPERATION
-            + "/{entity}/{entityId}/pages_count", method = RequestMethod.GET)
-    public ResponseEntity<Integer> getEntityArtistsPagesCount(@PathVariable("entity") String entity,
-            @PathVariable("entityId") long entityId) {
+    @RequestMapping(value = GET_OPERATION + "/{entity}/{entityId}/pages_count", method = RequestMethod.GET)
+    public ResponseEntity<Integer> getEntityArtistsPagesCount(@PathVariable("entity") String entity, @PathVariable("entityId") long entityId) {
         int pagesCount = 0;
         switch (entity) {
             case Entities.GENRE:

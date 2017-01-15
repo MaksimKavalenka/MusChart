@@ -37,43 +37,26 @@ public abstract class EntityConstants {
 
             public static abstract class Artist {
 
-                public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.ArtistFields.ID);
-
-                public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.ArtistFields.NAME);
-
-                public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.ArtistFields.RATING);
+                public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(DIRECTION, Structure.ArtistFields.ID);
+                public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(DIRECTION, Structure.ArtistFields.NAME);
+                public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(DIRECTION, Structure.ArtistFields.RATING);
 
             }
 
             public static abstract class Genre {
 
-                public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.GenreFields.ID);
-
-                public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.GenreFields.NAME);
-
-                public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.GenreFields.RATING);
+                public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(DIRECTION, Structure.GenreFields.ID);
+                public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(DIRECTION, Structure.GenreFields.NAME);
+                public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(DIRECTION, Structure.GenreFields.RATING);
 
             }
 
             public static abstract class Track {
 
-                public static final org.springframework.data.domain.Sort ID      = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.TrackFields.ID);
-
-                public static final org.springframework.data.domain.Sort NAME    = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.TrackFields.NAME);
-
-                public static final org.springframework.data.domain.Sort RATING  = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.TrackFields.RATING);
-
-                public static final org.springframework.data.domain.Sort RELEASE = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.TrackFields.RELEASE);
+                public static final org.springframework.data.domain.Sort ID      = new org.springframework.data.domain.Sort(DIRECTION, Structure.TrackFields.ID);
+                public static final org.springframework.data.domain.Sort NAME    = new org.springframework.data.domain.Sort(DIRECTION, Structure.TrackFields.NAME);
+                public static final org.springframework.data.domain.Sort RATING  = new org.springframework.data.domain.Sort(DIRECTION, Structure.TrackFields.RATING);
+                public static final org.springframework.data.domain.Sort RELEASE = new org.springframework.data.domain.Sort(DIRECTION, Structure.TrackFields.RELEASE);
 
             }
 
@@ -81,34 +64,18 @@ public abstract class EntityConstants {
 
                 public static abstract class Artist {
 
-                    public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(
-                            DIRECTION, Structure.Entities.ARTIST + "." + Structure.ArtistFields.ID);
-
-                    public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(
-                            DIRECTION,
-                            Structure.Entities.ARTIST + "." + Structure.ArtistFields.NAME);
-
-                    public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(
-                            DIRECTION,
-                            Structure.Entities.ARTIST + "." + Structure.ArtistFields.RATING);
+                    public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.ARTIST + "." + Structure.ArtistFields.ID);
+                    public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.ARTIST + "." + Structure.ArtistFields.NAME);
+                    public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.ARTIST + "." + Structure.ArtistFields.RATING);
 
                 }
 
                 public static abstract class Track {
 
-                    public static final org.springframework.data.domain.Sort ID      = new org.springframework.data.domain.Sort(
-                            DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.ID);
-
-                    public static final org.springframework.data.domain.Sort NAME    = new org.springframework.data.domain.Sort(
-                            DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.NAME);
-
-                    public static final org.springframework.data.domain.Sort RATING  = new org.springframework.data.domain.Sort(
-                            DIRECTION,
-                            Structure.Entities.TRACK + "." + Structure.TrackFields.RATING);
-
-                    public static final org.springframework.data.domain.Sort RELEASE = new org.springframework.data.domain.Sort(
-                            DIRECTION,
-                            Structure.Entities.TRACK + "." + Structure.TrackFields.RELEASE);
+                    public static final org.springframework.data.domain.Sort ID      = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.ID);
+                    public static final org.springframework.data.domain.Sort NAME    = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.NAME);
+                    public static final org.springframework.data.domain.Sort RATING  = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.RATING);
+                    public static final org.springframework.data.domain.Sort RELEASE = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.RELEASE);
 
                 }
 
@@ -122,43 +89,26 @@ public abstract class EntityConstants {
 
             public static abstract class Artist {
 
-                public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.ArtistFields.ID);
-
-                public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.ArtistFields.NAME);
-
-                public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.ArtistFields.RATING);
+                public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(DIRECTION, Structure.ArtistFields.ID);
+                public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(DIRECTION, Structure.ArtistFields.NAME);
+                public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(DIRECTION, Structure.ArtistFields.RATING);
 
             }
 
             public static abstract class Genre {
 
-                public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.GenreFields.ID);
-
-                public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.GenreFields.NAME);
-
-                public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.GenreFields.RATING);
+                public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(DIRECTION, Structure.GenreFields.ID);
+                public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(DIRECTION, Structure.GenreFields.NAME);
+                public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(DIRECTION, Structure.GenreFields.RATING);
 
             }
 
             public static abstract class Track {
 
-                public static final org.springframework.data.domain.Sort ID      = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.TrackFields.ID);
-
-                public static final org.springframework.data.domain.Sort NAME    = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.TrackFields.NAME);
-
-                public static final org.springframework.data.domain.Sort RATING  = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.TrackFields.RATING);
-
-                public static final org.springframework.data.domain.Sort RELEASE = new org.springframework.data.domain.Sort(
-                        DIRECTION, Structure.TrackFields.RELEASE);
+                public static final org.springframework.data.domain.Sort ID      = new org.springframework.data.domain.Sort(DIRECTION, Structure.TrackFields.ID);
+                public static final org.springframework.data.domain.Sort NAME    = new org.springframework.data.domain.Sort(DIRECTION, Structure.TrackFields.NAME);
+                public static final org.springframework.data.domain.Sort RATING  = new org.springframework.data.domain.Sort(DIRECTION, Structure.TrackFields.RATING);
+                public static final org.springframework.data.domain.Sort RELEASE = new org.springframework.data.domain.Sort(DIRECTION, Structure.TrackFields.RELEASE);
 
             }
 
@@ -166,34 +116,18 @@ public abstract class EntityConstants {
 
                 public static abstract class Artist {
 
-                    public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(
-                            DIRECTION, Structure.Entities.ARTIST + "." + Structure.ArtistFields.ID);
-
-                    public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(
-                            DIRECTION,
-                            Structure.Entities.ARTIST + "." + Structure.ArtistFields.NAME);
-
-                    public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(
-                            DIRECTION,
-                            Structure.Entities.ARTIST + "." + Structure.ArtistFields.RATING);
+                    public static final org.springframework.data.domain.Sort ID     = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.ARTIST + "." + Structure.ArtistFields.ID);
+                    public static final org.springframework.data.domain.Sort NAME   = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.ARTIST + "." + Structure.ArtistFields.NAME);
+                    public static final org.springframework.data.domain.Sort RATING = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.ARTIST + "." + Structure.ArtistFields.RATING);
 
                 }
 
                 public static abstract class Track {
 
-                    public static final org.springframework.data.domain.Sort ID      = new org.springframework.data.domain.Sort(
-                            DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.ID);
-
-                    public static final org.springframework.data.domain.Sort NAME    = new org.springframework.data.domain.Sort(
-                            DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.NAME);
-
-                    public static final org.springframework.data.domain.Sort RATING  = new org.springframework.data.domain.Sort(
-                            DIRECTION,
-                            Structure.Entities.TRACK + "." + Structure.TrackFields.RATING);
-
-                    public static final org.springframework.data.domain.Sort RELEASE = new org.springframework.data.domain.Sort(
-                            DIRECTION,
-                            Structure.Entities.TRACK + "." + Structure.TrackFields.RELEASE);
+                    public static final org.springframework.data.domain.Sort ID      = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.ID);
+                    public static final org.springframework.data.domain.Sort NAME    = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.NAME);
+                    public static final org.springframework.data.domain.Sort RATING  = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.RATING);
+                    public static final org.springframework.data.domain.Sort RELEASE = new org.springframework.data.domain.Sort(DIRECTION, Structure.Entities.TRACK + "." + Structure.TrackFields.RELEASE);
 
                 }
 

@@ -72,9 +72,7 @@ public class TrackEntity extends AbstractEntity {
         this.release = release;
     }
 
-    public TrackEntity(String name, String song, String cover, String video, Date release,
-            long rating, List<TrackArtistEntity> artistsOrder, List<TrackUnitEntity> unitsOrder,
-            List<GenreEntity> genres, List<UserEntity> users) {
+    public TrackEntity(String name, String song, String cover, String video, Date release, long rating, List<TrackArtistEntity> artistsOrder, List<TrackUnitEntity> unitsOrder, List<GenreEntity> genres, List<UserEntity> users) {
         super();
         this.name = name;
         this.song = song;
@@ -88,9 +86,7 @@ public class TrackEntity extends AbstractEntity {
         this.users = users;
     }
 
-    public TrackEntity(long id, String name, String song, String cover, String video, Date release,
-            long rating, List<TrackArtistEntity> artistsOrder, List<TrackUnitEntity> unitsOrder,
-            List<GenreEntity> genres, List<UserEntity> users) {
+    public TrackEntity(long id, String name, String song, String cover, String video, Date release, long rating, List<TrackArtistEntity> artistsOrder, List<TrackUnitEntity> unitsOrder, List<GenreEntity> genres, List<UserEntity> users) {
         super(id);
         this.name = name;
         this.song = song;
@@ -186,9 +182,7 @@ public class TrackEntity extends AbstractEntity {
 
     @Override
     public String toString() {
-        return getClass().getName() + "[id:" + super.getId() + ",name:" + name + ",song:" + song
-                + ",cover:" + cover + ",video:" + video + ",release:" + release + ",rating:"
-                + rating + "]";
+        return getClass().getName() + "[id:" + super.getId() + ",name:" + name + ",song:" + song + ",cover:" + cover + ",video:" + video + ",release:" + release + ",rating:" + rating + "]";
     }
 
 }

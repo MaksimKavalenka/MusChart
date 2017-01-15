@@ -14,8 +14,7 @@ public class PasswordsMatchValidator implements ConstraintValidator<PasswordsMat
 
     @Override
     public boolean isValid(RegisterDTO register, ConstraintValidatorContext content) {
-        return (register.getPassword() == null) || (register.getConfirmPassword() == null)
-                || (register.getPassword().equals(register.getConfirmPassword()));
+        return (register.getPassword() == null) || (register.getConfirmPassword() == null) || (register.getPassword().equals(register.getConfirmPassword()));
     }
 
 }

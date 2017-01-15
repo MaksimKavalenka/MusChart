@@ -1,10 +1,17 @@
 'use strict';
 app.constant('DEFAULT', (function() {
+
 	return {
 		COUNT: {
 			artists: 6,
 			genres: 18,
 			tracks: 6
+		},
+
+		ENTITY: {
+			artist: 'artist',
+			genre: 'genre',
+			track: 'track'
 		},
 
 		SETTINGS: {
@@ -14,4 +21,5 @@ app.constant('DEFAULT', (function() {
 			order: {artists: false, genres: true, tracks: false}
 		}
 	}
+
 })());

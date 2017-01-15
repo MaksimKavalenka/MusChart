@@ -29,8 +29,7 @@ public class UserService implements UserServiceDAO {
     private TrackRepository  trackRepository;
 
     @Override
-    public UserEntity createUser(String login, String password, List<GrantedAuthority> roles)
-            throws ValidationException {
+    public UserEntity createUser(String login, String password, List<GrantedAuthority> roles) throws ValidationException {
         UserEntity user = new UserEntity(login, password, roles);
         synchronized (UserService.class) {
             if (!checkLogin(login)) {

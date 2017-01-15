@@ -1,5 +1,6 @@
 'use strict';
 app.constant('CONTROLLER', (function() {
+
 	return {
 		CTRL: 'ctrl',
 		ARTIST_CONTROLLER: 'ArtistController',
@@ -12,4 +13,5 @@ app.constant('CONTROLLER', (function() {
 		TRACK_EDIT_CONTROLLER: 'TrackEditController',
 		USER_EDIT_CONTROLLER: 'UserEditController'
 	}
+
 })());

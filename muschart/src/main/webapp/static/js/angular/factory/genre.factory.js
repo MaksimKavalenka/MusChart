@@ -1,8 +1,8 @@
 'use strict';
-app.factory('GenreFactory', function($http, MESSAGE, REST, ValidatorService) {
+app.factory('GenreFactory', function($http, MESSAGE, REST, UtilityService) {
 
 	function createGenre(name, callback) {
-		if (!ValidatorService.allNotEmpty(callback, name)) {
+		if (!UtilityService.allNotEmpty(callback, name)) {
 			return;
 		}
 		$http.post(REST.GENRES + '/create/' + name)
@@ -17,7 +17,7 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function deleteGenre(id, callback) {
-		if (!ValidatorService.allNotEmpty(callback, id)) {
+		if (!UtilityService.allNotEmpty(callback, id)) {
 			return;
 		}
 		$http.delete(REST.GENRES + '/delete/' + id)
@@ -32,7 +32,7 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function getGenreById(id, callback) {
-		if (!ValidatorService.allNotEmpty(callback, id)) {
+		if (!UtilityService.allNotEmpty(callback, id)) {
 			return;
 		}
 		$http.get(REST.GENRES + '/get/' + id)
@@ -47,7 +47,7 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function getGenres(sort, order, page, callback) {
-		if (!ValidatorService.allNotEmpty(callback, sort, order, page)) {
+		if (!UtilityService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
 		$http.get(REST.GENRES + '/get/' + sort + '/' + order + '/' + page)
@@ -62,7 +62,7 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function getEntityGenres(entity, entityId, sort, order, page, callback) {
-		if (!ValidatorService.allNotEmpty(callback, entity, entityId, sort, order, page)) {
+		if (!UtilityService.allNotEmpty(callback, entity, entityId, sort, order, page)) {
 			return;
 		}
 		$http.get(REST.GENRES + '/get/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page)
@@ -77,7 +77,7 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function getUserGenres(sort, order, page, callback) {
-		if (!ValidatorService.allNotEmpty(callback, sort, order, page)) {
+		if (!UtilityService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
 		$http.get(REST.GENRES + '/user/' + sort + '/' + order + '/' + page)
@@ -116,7 +116,7 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function getEntityPagesCount(entity, entityId, callback) {
-		if (!ValidatorService.allNotEmpty(callback, entity, entityId)) {
+		if (!UtilityService.allNotEmpty(callback, entity, entityId)) {
 			return;
 		}
 		$http.get(REST.GENRES + '/get/' + entity + '/' + entityId + '/pages_count')

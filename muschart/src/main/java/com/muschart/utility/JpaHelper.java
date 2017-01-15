@@ -21,8 +21,7 @@ public enum JpaHelper {
 
         @Override
         public int getPagesCount(long elementsCount) {
-            return (int) Math
-                    .ceil(elementsCount / (double) ArtistElementsCount.ARTIST_FULL_ELEMENTS_COUNT);
+            return (int) Math.ceil(elementsCount / (double) ArtistElementsCount.ARTIST_FULL_ELEMENTS_COUNT);
         }
 
         @Override
@@ -67,8 +66,7 @@ public enum JpaHelper {
 
         @Override
         public int getPagesCount(long elementsCount) {
-            return (int) Math
-                    .ceil(elementsCount / (double) GenreElementsCount.GENRE_FULL_ELEMENTS_COUNT);
+            return (int) Math.ceil(elementsCount / (double) GenreElementsCount.GENRE_FULL_ELEMENTS_COUNT);
         }
 
         @Override
@@ -113,8 +111,7 @@ public enum JpaHelper {
 
         @Override
         public int getPagesCount(long elementsCount) {
-            return (int) Math
-                    .ceil(elementsCount / (double) TrackElementsCount.TRACK_FULL_ELEMENTS_COUNT);
+            return (int) Math.ceil(elementsCount / (double) TrackElementsCount.TRACK_FULL_ELEMENTS_COUNT);
         }
 
         @Override
@@ -163,8 +160,7 @@ public enum JpaHelper {
 
         @Override
         public int getPagesCount(long elementsCount) {
-            return (int) Math
-                    .ceil(elementsCount / (double) ArtistElementsCount.ARTIST_FULL_ELEMENTS_COUNT);
+            return (int) Math.ceil(elementsCount / (double) ArtistElementsCount.ARTIST_FULL_ELEMENTS_COUNT);
         }
 
         @Override
@@ -209,8 +205,7 @@ public enum JpaHelper {
 
         @Override
         public int getPagesCount(long elementsCount) {
-            return (int) Math
-                    .ceil(elementsCount / (double) TrackElementsCount.TRACK_FULL_ELEMENTS_COUNT);
+            return (int) Math.ceil(elementsCount / (double) TrackElementsCount.TRACK_FULL_ELEMENTS_COUNT);
         }
 
         @Override

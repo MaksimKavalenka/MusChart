@@ -23,8 +23,7 @@ public class TrackService implements TrackServiceDAO {
     private TrackArtistRepository trackArtistRepository;
 
     @Override
-    public TrackEntity createTrack(String name, String song, String cover, String video,
-            Date release, List<Long> artistsIds, List<Long> unitsIds, List<Long> genresIds) {
+    public TrackEntity createTrack(String name, String song, String cover, String video, Date release, List<Long> artistsIds, List<Long> unitsIds, List<Long> genresIds) {
         TrackEntity track = new TrackEntity(name, song, cover, video, release);
         synchronized (TrackEntity.class) {
             trackRepository.save(track);
@@ -73,20 +72,17 @@ public class TrackService implements TrackServiceDAO {
 
     @Override
     public List<TrackEntity> getArtistTracks(long artistId, int sort, boolean order, int page) {
-        return trackArtistRepository.getArtistTracks(artistId,
-                JpaHelper.TRACK_ARTIST_TRACK.getPageRequest(sort, order, page));
+        return trackArtistRepository.getArtistTracks(artistId, JpaHelper.TRACK_ARTIST_TRACK.getPageRequest(sort, order, page));
     }
 
     @Override
     public List<TrackEntity> getGenreTracks(long genreId, int sort, boolean order, int page) {
-        return trackRepository.findByGenresId(genreId,
-                JpaHelper.TRACK.getPageRequest(sort, order, page));
+        return trackRepository.findByGenresId(genreId, JpaHelper.TRACK.getPageRequest(sort, order, page));
     }
 
     @Override
     public List<TrackEntity> getUserTracks(long userId, int sort, boolean order, int page) {
-        return trackRepository.findByUsersId(userId,
-                JpaHelper.TRACK.getPageRequest(sort, order, page));
+        return trackRepository.findByUsersId(userId, JpaHelper.TRACK.getPageRequest(sort, order, page));
     }
 
     @Override

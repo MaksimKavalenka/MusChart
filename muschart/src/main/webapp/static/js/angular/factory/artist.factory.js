@@ -1,8 +1,8 @@
 'use strict';
-app.factory('ArtistFactory', function($http, MESSAGE, REST, ValidatorService) {
+app.factory('ArtistFactory', function($http, MESSAGE, REST, UtilityService) {
 
 	function createArtist(name, photo, genres, callback) {
-		if (!ValidatorService.allNotEmpty(callback, name, photo, genres)) {
+		if (!UtilityService.allNotEmpty(callback, name, photo, genres)) {
 			return;
 		}
 		$http.post(REST.ARTISTS + '/create/' + name + '/' + photo + '/' + genres)
@@ -17,7 +17,7 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function deleteArtist(id, callback) {
-		if (!ValidatorService.allNotEmpty(callback, id)) {
+		if (!UtilityService.allNotEmpty(callback, id)) {
 			return;
 		}
 		$http.delete(REST.ARTISTS + '/delete/' + id)
@@ -32,7 +32,7 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function getArtistById(id, callback) {
-		if (!ValidatorService.allNotEmpty(callback, id)) {
+		if (!UtilityService.allNotEmpty(callback, id)) {
 			return;
 		}
 		$http.get(REST.ARTISTS + '/get/' + id)
@@ -47,7 +47,7 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function getArtists(sort, order, page, callback) {
-		if (!ValidatorService.allNotEmpty(callback, sort, order, page)) {
+		if (!UtilityService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
 		$http.get(REST.ARTISTS + '/get/' + sort + '/' + order + '/' + page)
@@ -62,7 +62,7 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function getEntityArtists(entity, entityId, sort, order, page, callback) {
-		if (!ValidatorService.allNotEmpty(callback, entity, entityId, sort, order, page)) {
+		if (!UtilityService.allNotEmpty(callback, entity, entityId, sort, order, page)) {
 			return;
 		}
 		$http.get(REST.ARTISTS + '/get/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page)
@@ -77,7 +77,7 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function getUserArtists(sort, order, page, callback) {
-		if (!ValidatorService.allNotEmpty(callback, sort, order, page)) {
+		if (!UtilityService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
 		$http.get(REST.ARTISTS + '/user/' + sort + '/' + order + '/' + page)
@@ -116,7 +116,7 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function getEntityPagesCount(entity, entityId, callback) {
-		if (!ValidatorService.allNotEmpty(callback, entity, entityId)) {
+		if (!UtilityService.allNotEmpty(callback, entity, entityId)) {
 			return;
 		}
 		$http.get(REST.ARTISTS + '/get/' + entity + '/' + entityId + '/pages_count')

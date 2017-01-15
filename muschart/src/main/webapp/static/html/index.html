@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="/css/button.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/container.css"/>
-		<link rel="stylesheet" type="text/css" href="/css/content.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/content.standard.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/content.classic.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/flash.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/form.css"/>
@@ -41,6 +41,7 @@
 		<script type="text/javascript" src="/js/angular/constants/path.constants.js"></script>
 		<script type="text/javascript" src="/js/angular/constants/rest.constants.js"></script>
 		<script type="text/javascript" src="/js/angular/constants/state.constants.js"></script>
+		<script type="text/javascript" src="/js/angular/constants/template.constants.js"></script>
 		<script type="text/javascript" src="/js/angular/constants/title.constants.js"></script>
 		<script type="text/javascript" src="/js/angular/constants/type.constants.js"></script>
 		<script type="text/javascript" src="/js/angular/constants/upload.constants.js"></script>
@@ -61,14 +62,13 @@
 		<script type="text/javascript" src="/js/angular/factory/unit.factory.js"></script>
 		<script type="text/javascript" src="/js/angular/factory/user.factory.js"></script>
 		<script type="text/javascript" src="/js/angular/other/directive.js"></script>
-		<script type="text/javascript" src="/js/angular/other/filter.js"></script>
 		<script type="text/javascript" src="/js/angular/other/run.js"></script>
 		<script type="text/javascript" src="/js/angular/service/amplitude.service.js"></script>
 		<script type="text/javascript" src="/js/angular/service/choice.service.js"></script>
 		<script type="text/javascript" src="/js/angular/service/cookie.service.js"></script>
 		<script type="text/javascript" src="/js/angular/service/file.service.js"></script>
 		<script type="text/javascript" src="/js/angular/service/flash.service.js"></script>
-		<script type="text/javascript" src="/js/angular/service/validator.service.js"></script>
+		<script type="text/javascript" src="/js/angular/service/utility.service.js"></script>
 		<base href="/">
 	</head>
 	<body>
@@ -76,7 +76,7 @@
 		<div class="container" ng-class="{'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}" ng-bind="flash.message"></div>
 		<div class="container" ui-view="tool"></div>
 		<div class="container" ui-view="info"></div>
-		<div class="container-main" ui-view="main_content"></div>
+		<div class="container" ui-view="main_content"></div>
 		<div class="container" ui-view="additional_content_1"></div>
 		<div class="container" ui-view="additional_content_2"></div>
 		<div class="flex"></div>
@@ -98,8 +98,8 @@
 				<div class="player-info">
 					<img class="player-cover" amplitude-song-info="cover"/>
 					<div class="player-artist-name">
-						<div amplitude-song-info="artist"></div>
-						<div amplitude-song-info="name"></div>
+						<div class="artist" amplitude-song-info="artist"></div>
+						<div class="name" amplitude-song-info="name"></div>
 					</div>
 				</div>
 			</div>

@@ -1,68 +1,89 @@
 .action-add {
 	background-image: url('../img/action/add.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-like {
 	background-image: url('../img/action/like.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-like:hover,
 .action-like:active {
 	background-image: url('../img/action/like-active.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-liked {
 	background-image: url('../img/action/liked.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-liked:hover,
 .action-liked:active {
 	background-image: url('../img/action/liked-active.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
+}
+.action-menu {
+	background-image: url('../img/action/menu.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-next {
 	background-image: url('../img/action/next.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-pause {
 	background-image: url('../img/action/pause.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-play {
 	background-image: url('../img/action/play.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-play:hover,
 .action-play:active {
 	background-image: url('../img/action/play-active.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-playlist {
 	background-image: url('../img/action/playlist.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-previous {
 	background-image: url('../img/action/previous.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-repeat {
 	background-image: url('../img/action/repeat.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-shuffle {
 	background-image: url('../img/action/shuffle.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-volume {
 	background-image: url('../img/action/volume.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-youtube {
 	background-image: url('../img/action/youtube.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 .action-youtube:hover,
 .action-youtube:active {
 	background-image: url('../img/action/youtube-active.svg');
 	background-repeat: no-repeat;
+	background-size: contain;
 }

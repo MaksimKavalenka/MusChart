@@ -74,17 +74,14 @@ public class PageController {
         return REDIRECT + USER_TRACKS_URL + DEFAULT_PAGE;
     }
 
-    @RequestMapping(value = {LOGIN_URL, REGISTRATION_URL, SETTINGS_URL, PLAYLIST_URL,
-            ARTIST_ADD_URL, GENRE_ADD_URL, TRACK_ADD_URL, ARTIST_FULL_URL, GENRE_FULL_URL,
-            TRACK_FULL_URL}, method = RequestMethod.GET)
+    @RequestMapping(value = {LOGIN_URL, REGISTRATION_URL, SETTINGS_URL, PLAYLIST_URL, ARTIST_ADD_URL, GENRE_ADD_URL,
+            TRACK_ADD_URL, ARTIST_FULL_URL, GENRE_FULL_URL, TRACK_FULL_URL}, method = RequestMethod.GET)
     public String withoutParams() {
         return DEFAULT_PATH;
     }
 
-    @RequestMapping(value = {ARTISTS_URL, GENRES_URL, TRACKS_URL, GENRE_ARTISTS_URL,
-            TRACK_ARTISTS_URL, USER_ARTISTS_URL, ARTIST_GENRES_URL, TRACK_GENRES_URL,
-            USER_GENRES_URL, ARTIST_TRACKS_URL, GENRE_TRACKS_URL,
-            USER_TRACKS_URL}, params = {"page"}, method = RequestMethod.GET)
+    @RequestMapping(value = {ARTISTS_URL, GENRES_URL, TRACKS_URL, GENRE_ARTISTS_URL, TRACK_ARTISTS_URL, USER_ARTISTS_URL,
+            ARTIST_GENRES_URL, TRACK_GENRES_URL, USER_GENRES_URL, ARTIST_TRACKS_URL, GENRE_TRACKS_URL, USER_TRACKS_URL}, params = {"page"}, method = RequestMethod.GET)
     public String withParams() {
         return DEFAULT_PATH;
     }

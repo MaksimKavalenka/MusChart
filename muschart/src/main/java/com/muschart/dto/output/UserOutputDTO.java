@@ -1,4 +1,4 @@
-package com.muschart.dto;
+package com.muschart.dto.output;
 
 import java.io.Serializable;
 
@@ -7,22 +7,22 @@ import org.springframework.security.core.GrantedAuthority;
 import com.muschart.constants.RoleConstants;
 import com.muschart.entity.UserEntity;
 
-public class UserDTO implements Serializable {
+public class UserOutputDTO implements Serializable {
 
     private static final long serialVersionUID = 5788306146372527542L;
 
     private String            login;
     private boolean           isAdmin;
 
-    public UserDTO() {
+    public UserOutputDTO() {
     }
 
-    public UserDTO(String login, boolean isAdmin) {
+    public UserOutputDTO(String login, boolean isAdmin) {
         this.login = login;
         this.isAdmin = isAdmin;
     }
 
-    public UserDTO(UserEntity user) {
+    public UserOutputDTO(UserEntity user) {
         login = user.getLogin();
         isAdmin = false;
         for (GrantedAuthority role : user.getRoles()) {
@@ -67,7 +67,7 @@ public class UserDTO implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        UserDTO other = (UserDTO) obj;
+        UserOutputDTO other = (UserOutputDTO) obj;
         if (login == null) {
             if (other.login != null) {
                 return false;

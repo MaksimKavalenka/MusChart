@@ -1,0 +1,28 @@
+<ul class="content-standard">
+	<li ng-repeat="track in tracks">
+		<div class="title">
+			<div class="artist" ng-repeat="artist in track.artists">
+				<a ui-sref="artist({id: artist.id})">{{artist.name}}</a>
+				{{track.units[$index].name}}
+			</div>
+			<a ui-sref="track({id: track.id})">{{track.name}}</a>
+		</div>
+		<div class="body">
+			<img ng-src="/image/track/{{track.cover}}">
+			<div class="links">
+				<div class="link link-action action-play" ng-click="playSong(track)"></div>
+				<div class="link link-action link-empty" ng-if="!track.video"></div>
+				<div class="link link-action action-youtube" ng-click="openVideo(track.video)" ng-if="track.video"></div>
+				<div class="link link-action link-empty"></div>
+				<div class="link link-action link-empty"></div>
+				<div class="link link-action action-like" ui-sref="login" ng-if="!user"></div>
+				<div class="link link-action action-like" ng-click="like(track.id)" ng-if="user && !track.liked"></div>
+				<div class="link link-action action-liked" ng-click="like(track.id)" ng-if="user && track.liked"></div>
+				<div class="link link-action link-empty">{{track.rating}}</div>
+			</div>
+		</div>
+	</li>
+</ul>
+<div class="link" ng-if="(url !== '#') && (tracks.length >= count.tracks)">
+	<a ui-sref="{{url}}" translate="MORE_TRACKS"></a>
+</div>

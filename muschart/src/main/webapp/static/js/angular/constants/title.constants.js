@@ -1,5 +1,6 @@
 'use strict';
 app.constant('TITLE', (function() {
+
 	return {
 		LOGIN: 'Login',
 		REGISTER: 'Register',
@@ -12,4 +13,5 @@ app.constant('TITLE', (function() {
 		USER_GENRES: 'My genres',
 		USER_TRACKS: 'My tracks'
 	}
+
 })());

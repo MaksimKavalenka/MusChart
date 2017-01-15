@@ -32,8 +32,7 @@ import com.muschart.exception.ValidationException;
 public class UploadController {
 
     @RequestMapping(value = "/{type}", method = RequestMethod.POST)
-    public @ResponseBody ResponseEntity<Void> uploadFile(@PathVariable("type") String type,
-            @RequestParam(value = "file") MultipartFile file) {
+    public @ResponseBody ResponseEntity<Void> uploadFile(@PathVariable("type") String type, @RequestParam(value = "file") MultipartFile file) {
         try {
             String path = "";
             switch (type) {
@@ -55,8 +54,7 @@ public class UploadController {
     }
 
     private void upload(MultipartFile file, String path) throws ValidationException {
-        try (OutputStream out = new FileOutputStream(new File(path));
-                InputStream filecontent = file.getInputStream()) {
+        try (OutputStream out = new FileOutputStream(new File(path)); InputStream filecontent = file.getInputStream()) {
             int read = 0;
             byte[] bytes = new byte[1024];
 

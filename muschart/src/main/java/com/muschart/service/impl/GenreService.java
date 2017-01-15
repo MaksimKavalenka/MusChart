@@ -50,20 +50,17 @@ public class GenreService implements GenreServiceDAO {
 
     @Override
     public List<GenreEntity> getArtistGenres(long artistId, int sort, boolean order, int page) {
-        return genreRepository.findByArtistsId(artistId,
-                JpaHelper.GENRE.getPageRequest(sort, order, page));
+        return genreRepository.findByArtistsId(artistId, JpaHelper.GENRE.getPageRequest(sort, order, page));
     }
 
     @Override
     public List<GenreEntity> getTrackGenres(long trackId, int sort, boolean order, int page) {
-        return genreRepository.findByTracksId(trackId,
-                JpaHelper.GENRE.getPageRequest(sort, order, page));
+        return genreRepository.findByTracksId(trackId, JpaHelper.GENRE.getPageRequest(sort, order, page));
     }
 
     @Override
     public List<GenreEntity> getUserGenres(long userId, int sort, boolean order, int page) {
-        return genreRepository.findByUsersId(userId,
-                JpaHelper.GENRE.getPageRequest(sort, order, page));
+        return genreRepository.findByUsersId(userId, JpaHelper.GENRE.getPageRequest(sort, order, page));
     }
 
     @Override

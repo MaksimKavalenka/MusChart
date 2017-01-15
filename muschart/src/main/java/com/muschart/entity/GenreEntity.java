@@ -48,8 +48,7 @@ public class GenreEntity extends AbstractEntity {
         this.name = name;
     }
 
-    public GenreEntity(String name, long rating, List<TrackEntity> tracks,
-            List<ArtistEntity> artists, List<UserEntity> users) {
+    public GenreEntity(String name, long rating, List<TrackEntity> tracks, List<ArtistEntity> artists, List<UserEntity> users) {
         super();
         this.name = name;
         this.rating = rating;
@@ -58,8 +57,7 @@ public class GenreEntity extends AbstractEntity {
         this.users = users;
     }
 
-    public GenreEntity(long id, String name, long rating, List<TrackEntity> tracks,
-            List<ArtistEntity> artists, List<UserEntity> users) {
+    public GenreEntity(long id, String name, long rating, List<TrackEntity> tracks, List<ArtistEntity> artists, List<UserEntity> users) {
         super(id);
         this.name = name;
         this.rating = rating;
@@ -110,8 +108,7 @@ public class GenreEntity extends AbstractEntity {
 
     @Override
     public String toString() {
-        return getClass().getName() + "[id:" + super.getId() + ",name:" + name + ",rating:" + rating
-                + "]";
+        return getClass().getName() + "[id:" + super.getId() + ",name:" + name + ",rating:" + rating + "]";
     }
 
 }

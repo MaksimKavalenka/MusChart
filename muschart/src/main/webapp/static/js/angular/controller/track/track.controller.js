@@ -1,7 +1,6 @@
 'use strict';
-app.controller('TrackController', function($scope, $state, STATE, UPLOAD, TrackFactory, AmplitudeService, CookieService, FlashService) {
+app.controller('TrackController', function($scope, $state, $window, DEFAULT, STATE, TEMPLATE, UPLOAD, TrackFactory, UserFactory, AmplitudeService, CookieService, FlashService, UtilityService) {
 
-	$scope.design = CookieService.getSettings().design;
 	$scope.url = '#';
 	$scope.info = {};
 	$scope.tracks = [];
@@ -10,9 +9,22 @@ app.controller('TrackController', function($scope, $state, STATE, UPLOAD, TrackF
 		Amplitude.playNow(AmplitudeService.parseSong(track));
 	};
 
-	$scope.showModal = function(video) {
-		$scope.video = video;
-		$scope.modal = true;
+	$scope.openVideo = function(videoId) {
+		$window.open('https://www.youtube.com/watch?v=' + videoId);
+	};
+
+	$scope.like = function(trackId) {
+		UserFactory.setUserLike(DEFAULT.ENTITY.track, trackId, function(response) {
+			if (response.success) {
+				UtilityService.setLike($scope.tracks, trackId);
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+	};
+
+	$scope.getTemplate = function() {
+		return TEMPLATE.TRACKS[CookieService.getSettings().design];
 	};
 
 	function init(state, sort, order, page) {
@@ -58,6 +70,7 @@ app.controller('TrackController', function($scope, $state, STATE, UPLOAD, TrackF
 			if (response.success) {
 				$scope.info.image = UPLOAD.TRACK_COVER + '/' + response.data.cover;
 				$scope.info.data = response.data.name;
+				$state.current.title = response.data.name;
 			} else {
 				FlashService.error(response.message);
 			}

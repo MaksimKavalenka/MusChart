@@ -1,7 +1,20 @@
-<ul class="content">
+<ul class="content-standard">
 	<li ng-repeat="genre in genres">
 		<div class="title">
 			<a ui-sref="genre({id: genre.id})">{{genre.name}}</a>
+			<div class="menu action-menu" ng-click="menu(genre.id)"></div>
+		</div>
+		<div class="body" ng-if="genre.menu" ng-mouseleave="hide()">
+			<div class="links">
+				<div class="link link-empty"></div>
+				<div class="link link-empty"></div>
+				<div class="link link-empty"></div>
+				<div class="link link-empty"></div>
+				<div class="link action-like" ui-sref="login" ng-if="!user"></div>
+				<div class="link action-like" ng-click="like(genre.id)" ng-if="user && !genre.liked"></div>
+				<div class="link action-liked" ng-click="like(genre.id)" ng-if="user && genre.liked"></div>
+				<div class="link link-action link-empty">{{genre.rating}}</div>
+			</div>
 		</div>
 	</li>
 </ul>

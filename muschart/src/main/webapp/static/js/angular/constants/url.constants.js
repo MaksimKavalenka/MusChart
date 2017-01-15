@@ -1,5 +1,6 @@
 'use strict';
 app.constant('URL', (function() {
+
 	var artistsUrl = '/artists';
 	var genresUrl = '/genres';
 	var tracksUrl = '/tracks';
@@ -10,6 +11,7 @@ app.constant('URL', (function() {
 	var addOperation = '/add';
 	var idKey = '{id:[0-9]{1,}}';
 	var pageKey = '{page:[0-9]{1,}}';
+
 	return {
 		HOME: tracksUrl + '?page=1',
 		LOGIN: '/login',
@@ -35,4 +37,5 @@ app.constant('URL', (function() {
 		GENRE_TRACKS: genreUrl + '/' + idKey + tracksUrl + '?' + pageKey,
 		USER_TRACKS: userUrl + tracksUrl + '?' + pageKey
 	}
+
 })());

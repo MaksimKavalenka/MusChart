@@ -62,6 +62,8 @@ app.config(function($translateProvider) {
 		EXISTS_LOGIN_MESSAGE: 'Дадзены лагін ужо заняты',
 		MINIMAL_COUNT_MESSAGE: 'Мінімальная колькасць сімвалаў - 3',
 		PASSWORDS_DO_NOT_MATCH_MESSAGE: 'Паролі не супадаюць',
+
+		SAVING_SETTINGS_SUCCESS: 'Налады былі паспяхова захаваны'
 	});
 
 });

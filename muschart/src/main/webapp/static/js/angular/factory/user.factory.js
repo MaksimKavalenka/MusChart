@@ -1,8 +1,8 @@
 'use strict';
-app.factory('UserFactory', function($http, MESSAGE, REST, ValidatorService) {
+app.factory('UserFactory', function($http, MESSAGE, REST, UtilityService) {
 
 	function authentication(login, password, callback) {
-		if (!ValidatorService.allNotEmpty(callback, login, password)) {
+		if (!UtilityService.allNotEmpty(callback, login, password)) {
 			return;
 		}
 
@@ -28,7 +28,7 @@ app.factory('UserFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function createUser(login, password, confirmPassword, callback) {
-		if (!ValidatorService.allNotEmpty(callback, login, password, confirmPassword)) {
+		if (!UtilityService.allNotEmpty(callback, login, password, confirmPassword)) {
 			return;
 		}
 
@@ -62,11 +62,16 @@ app.factory('UserFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function setUserLike(entity, entityId, callback) {
-		if (!ValidatorService.allNotEmpty(callback, entity, entityId)) {
+		if (!UtilityService.allNotEmpty(callback, entity, entityId)) {
 			return;
 		}
 
-		$http.post(REST.USERS + '/like/' + entity + '/' + entityId)
+		var entity = {
+			entity: entity,
+			entityId: entityId
+		};
+
+		$http.post(REST.USERS + '/like', entity)
 		.success(function(response) {
 			response = {success: true};
 			callback(response);
@@ -78,11 +83,11 @@ app.factory('UserFactory', function($http, MESSAGE, REST, ValidatorService) {
 	}
 
 	function checkLogin(login, callback) {
-		if (!ValidatorService.allNotEmpty(callback, login)) {
+		if (!UtilityService.allNotEmpty(callback, login)) {
 			return;
 		}
 
-		$http.post(REST.USERS + '/check/login/' + login)
+		$http.post(REST.USERS + '/check/login', login)
 		.success(function(response) {
 			if (response) {
 				response = {success: true};

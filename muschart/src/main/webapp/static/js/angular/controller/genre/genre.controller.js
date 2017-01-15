@@ -1,9 +1,34 @@
 'use strict';
-app.controller('GenreController', function($scope, $state, STATE, GenreFactory, CookieService, FlashService) {
+app.controller('GenreController', function($scope, $state, DEFAULT, STATE, GenreFactory, UserFactory, CookieService, FlashService, UtilityService) {
 
 	$scope.url = '#';
 	$scope.info = {};
 	$scope.genres = [];
+
+	$scope.like = function(genreId) {
+		UserFactory.setUserLike(DEFAULT.ENTITY.genre, genreId, function(response) {
+			if (response.success) {
+				UtilityService.setLike($scope.genres, genreId);
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+	};
+
+	$scope.menu = function(genreId) {
+		for (var i = 0; i < $scope.genres.length; i++) {
+			delete($scope.genres[i].menu);
+			if ($scope.genres[i].id === genreId) {
+				$scope.genres[i].menu = true;
+			}
+		}
+	};
+
+	$scope.hide = function() {
+		for (var i = 0; i < $scope.genres.length; i++) {
+			delete($scope.genres[i].menu);
+		}
+	};
 
 	function init(state, sort, order, page) {
 		switch (state) {
@@ -43,6 +68,7 @@ app.controller('GenreController', function($scope, $state, STATE, GenreFactory, 
 		GenreFactory.getGenreById(id, function(response) {
 			if (response.success) {
 				$scope.info.data = response.data.name;
+				$state.current.title = response.data.name;
 			} else {
 				FlashService.error(response.message);
 			}

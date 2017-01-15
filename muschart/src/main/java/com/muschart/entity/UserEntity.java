@@ -43,8 +43,7 @@ public class UserEntity extends AbstractEntity implements UserDetails {
     private String                 password;
 
     @JsonIgnore
-    @ManyToMany(targetEntity = RoleEntity.class, fetch = FetchType.EAGER, cascade = {
-            CascadeType.DETACH})
+    @ManyToMany(targetEntity = RoleEntity.class, fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "role_id", nullable = false, updatable = false))
     private List<GrantedAuthority> roles;
 
@@ -71,19 +70,15 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         this(true, true, true, true, login, password, roles);
     }
 
-    public UserEntity(String login, String password, List<GrantedAuthority> roles,
-            List<TrackEntity> tracks, List<ArtistEntity> artists, List<GenreEntity> genres) {
+    public UserEntity(String login, String password, List<GrantedAuthority> roles, List<TrackEntity> tracks, List<ArtistEntity> artists, List<GenreEntity> genres) {
         this(true, true, true, true, login, password, roles, tracks, artists, genres);
     }
 
-    public UserEntity(long id, String login, String password, List<GrantedAuthority> roles,
-            List<TrackEntity> tracks, List<ArtistEntity> artists, List<GenreEntity> genres) {
+    public UserEntity(long id, String login, String password, List<GrantedAuthority> roles, List<TrackEntity> tracks, List<ArtistEntity> artists, List<GenreEntity> genres) {
         this(id, true, true, true, true, login, password, roles, tracks, artists, genres);
     }
 
-    public UserEntity(boolean accountNonExpired, boolean accountNonLocked,
-            boolean credentialsNonExpired, boolean enabled, String login, String password,
-            List<GrantedAuthority> roles) {
+    public UserEntity(boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled, String login, String password, List<GrantedAuthority> roles) {
         super();
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
@@ -94,10 +89,7 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         this.roles = roles;
     }
 
-    public UserEntity(boolean accountNonExpired, boolean accountNonLocked,
-            boolean credentialsNonExpired, boolean enabled, String login, String password,
-            List<GrantedAuthority> roles, List<TrackEntity> tracks, List<ArtistEntity> artists,
-            List<GenreEntity> genres) {
+    public UserEntity(boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled, String login, String password, List<GrantedAuthority> roles, List<TrackEntity> tracks, List<ArtistEntity> artists, List<GenreEntity> genres) {
         super();
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
@@ -111,10 +103,7 @@ public class UserEntity extends AbstractEntity implements UserDetails {
         this.genres = genres;
     }
 
-    public UserEntity(long id, boolean accountNonExpired, boolean accountNonLocked,
-            boolean credentialsNonExpired, boolean enabled, String login, String password,
-            List<GrantedAuthority> roles, List<TrackEntity> tracks, List<ArtistEntity> artists,
-            List<GenreEntity> genres) {
+    public UserEntity(long id, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled, String login, String password, List<GrantedAuthority> roles, List<TrackEntity> tracks, List<ArtistEntity> artists, List<GenreEntity> genres) {
         super(id);
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;

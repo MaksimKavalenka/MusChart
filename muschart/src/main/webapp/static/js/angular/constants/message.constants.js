@@ -1,11 +1,13 @@
 'use strict';
 app.constant('MESSAGE', (function() {
+
 	var creatingError = 'Error while creating ';
 	var updatingError = 'Error while updating ';
 	var deletingError = 'Error while deleting ';
 	var gettingError = 'Error while getting ';
 	var creatingSuccess = ' has been created successfully';
 	var deletingSuccess = ' has been deleted successfully';
+
 	return {
 		AUTHENTICATION_ERROR: 'Login or password is wrong',
 		EXIST_GENRE_ERROR: 'This genre already exists',
@@ -35,4 +37,5 @@ app.constant('MESSAGE', (function() {
 		DELETING_TRACK_SUCCESS: 'Track ' + deletingSuccess,
 		VALIDATION_ERROR: 'All required attributes must be filled'
 	}
+
 })());

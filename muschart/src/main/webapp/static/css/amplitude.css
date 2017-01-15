@@ -25,6 +25,7 @@
 	z-index: 1;
 }
 .progress * {
+	color: #ffffff;
 	cursor: pointer;
 }
 .progress > *,
@@ -49,10 +50,11 @@
 	width: 100%;
 }
 .amplitude-song-time-visualization {
-	background: #c1c1c1;
+	background: #575757;
+	border-top: 3px solid #ffffff;
 }
 .amplitude-song-time-visualization-status {
-	background: #ffcc00;
+	background: #2780e3;
 }
 .time > * {
 	display: flex;
@@ -94,5 +96,13 @@
 	width: 50px;
 }
 .player-artist-name > * {
+	display: block;
+	font: 13px Arial;
+}
+.player-artist-name > .artist {
+	font-size: 14px;
+    font-weight: bold;
+}
+.player-artist-name > .name {
 	display: block;
 }

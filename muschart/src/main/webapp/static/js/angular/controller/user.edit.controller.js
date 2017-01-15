@@ -46,12 +46,4 @@ app.controller('UserEditController', function($rootScope, $scope, $state, STATE,
 		});
 	};
 
-	$scope.like = function(entity, entityId) {
-		UserFactory.setUserLike(entity, entityId, function(response) {
-			if (!response.success) {
-				FlashService.error(response.message);
-			}
-		});
-	};
-
 });
