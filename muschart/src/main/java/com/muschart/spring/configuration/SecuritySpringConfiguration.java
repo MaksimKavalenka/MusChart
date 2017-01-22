@@ -8,6 +8,7 @@ import static com.muschart.constants.UrlConstants.Rest.Operation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.authentication.dao.ReflectionSaltSource;
 import org.springframework.security.authentication.encoding.MessageDigestPasswordEncoder;
@@ -108,24 +109,30 @@ public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
 
         urlRegistry.antMatchers(ANY + ADD_OPERATION).hasRole(ROLE_ADMIN.toString());
 
-        urlRegistry.antMatchers(Rest.ARTISTS_URL + GET_OPERATION + ANY).permitAll();
-        urlRegistry.antMatchers(Rest.ARTISTS_URL + USER_OPERATION + ANY).hasRole(ROLE_USER.toString());
-        urlRegistry.antMatchers(Rest.ARTISTS_URL + CREATE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
-        urlRegistry.antMatchers(Rest.ARTISTS_URL + DELETE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(HttpMethod.GET, Rest.ARTISTS_URL + ANY).permitAll();
+        urlRegistry.antMatchers(HttpMethod.GET, Rest.ARTISTS_URL + USER_OPERATION + ANY).hasRole(ROLE_USER.toString());
+        urlRegistry.antMatchers(HttpMethod.POST, Rest.ARTISTS_URL + ANY).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(HttpMethod.DELETE, Rest.ARTISTS_URL + ANY).hasRole(ROLE_ADMIN.toString());
 
-        urlRegistry.antMatchers(Rest.GENRES_URL + GET_OPERATION + ANY).permitAll();
-        urlRegistry.antMatchers(Rest.GENRES_URL + USER_OPERATION + ANY).hasRole(ROLE_USER.toString());
-        urlRegistry.antMatchers(Rest.GENRES_URL + CREATE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
-        urlRegistry.antMatchers(Rest.GENRES_URL + DELETE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(HttpMethod.GET, Rest.GENRES_URL + ANY).permitAll();
+        urlRegistry.antMatchers(HttpMethod.GET, Rest.GENRES_URL + USER_OPERATION + ANY).hasRole(ROLE_USER.toString());
+        urlRegistry.antMatchers(HttpMethod.POST, Rest.GENRES_URL + ANY).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(HttpMethod.POST, Rest.GENRES_URL + CHECK_OPERATION + ANY).permitAll();
+        urlRegistry.antMatchers(HttpMethod.DELETE, Rest.GENRES_URL + ANY).hasRole(ROLE_ADMIN.toString());
 
-        urlRegistry.antMatchers(Rest.TRACKS_URL + GET_OPERATION + ANY).permitAll();
-        urlRegistry.antMatchers(Rest.TRACKS_URL + USER_OPERATION + ANY).hasRole(ROLE_USER.toString());
-        urlRegistry.antMatchers(Rest.TRACKS_URL + CREATE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
-        urlRegistry.antMatchers(Rest.TRACKS_URL + DELETE_OPERATION + ANY).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(HttpMethod.GET, Rest.TRACKS_URL + ANY).permitAll();
+        urlRegistry.antMatchers(HttpMethod.GET, Rest.TRACKS_URL + USER_OPERATION + ANY).hasRole(ROLE_USER.toString());
+        urlRegistry.antMatchers(HttpMethod.POST, Rest.TRACKS_URL + ANY).hasRole(ROLE_ADMIN.toString());
+        urlRegistry.antMatchers(HttpMethod.DELETE, Rest.TRACKS_URL + ANY).hasRole(ROLE_ADMIN.toString());
 
-        urlRegistry.antMatchers(Rest.UNITS_URL + GET_OPERATION + ANY).permitAll();
+        urlRegistry.antMatchers(HttpMethod.GET, Rest.UNITS_URL + ANY).permitAll();
 
-        urlRegistry.antMatchers(Rest.USERS_URL + ANY).permitAll();
+        urlRegistry.antMatchers(HttpMethod.GET, Rest.USERS_URL + ANY).permitAll();
+        urlRegistry.antMatchers(HttpMethod.POST, Rest.USERS_URL + ANY).permitAll();
+        urlRegistry.antMatchers(HttpMethod.POST, Rest.USERS_URL + LOGOUT_OPERATION + ANY).hasRole(ROLE_USER.toString());
+        urlRegistry.antMatchers(HttpMethod.POST, Rest.USERS_URL + LIKE_OPERATION + ANY).hasRole(ROLE_USER.toString());
+
+        urlRegistry.antMatchers(HttpMethod.POST, Rest.UPLOAD_URL + ANY).hasRole(ROLE_ADMIN.toString());
 
         urlRegistry.anyRequest().authenticated();
         urlRegistry.and().formLogin().loginPage(Page.Common.LOGIN_URL).permitAll();

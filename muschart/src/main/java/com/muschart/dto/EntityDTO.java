@@ -2,17 +2,26 @@ package com.muschart.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import com.muschart.constants.DefaultConstants;
+
 public class EntityDTO implements Serializable {
 
     private static final long serialVersionUID = 3703656558746480100L;
 
+    @NotNull
     private String            entity;
-    private long              entityId;
+
+    @NotNull
+    @Min(value = DefaultConstants.MIN_ID)
+    private Long              entityId;
 
     public EntityDTO() {
     }
 
-    public EntityDTO(String entity, long entityId) {
+    public EntityDTO(String entity, Long entityId) {
         this.entity = entity;
         this.entityId = entityId;
     }
@@ -25,11 +34,11 @@ public class EntityDTO implements Serializable {
         this.entity = entity;
     }
 
-    public long getEntityId() {
+    public Long getEntityId() {
         return entityId;
     }
 
-    public void setEntityId(long entityId) {
+    public void setEntityId(Long entityId) {
         this.entityId = entityId;
     }
 

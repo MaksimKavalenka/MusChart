@@ -15,9 +15,9 @@
 	text-align: left;
 }
 .form-submit fieldset {
-	border-width: 0px;
 	display: inline-block;
 	font-family: sans-serif;
+	padding: 50px;
 }
 .form-submit fieldset legend {
 	font-size: 30px;

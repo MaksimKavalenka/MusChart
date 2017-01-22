@@ -38,7 +38,7 @@ app.factory('UserFactory', function($http, MESSAGE, REST, UtilityService) {
 			confirmPassword: confirmPassword
 		};
 
-		$http.post(REST.USERS + '/create', user)
+		$http.post(REST.USERS, user)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);

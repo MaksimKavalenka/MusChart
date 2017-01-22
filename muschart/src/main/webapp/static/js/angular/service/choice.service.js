@@ -1,49 +1,33 @@
 'use strict';
-app.service('ChoiceService', function($rootScope) {
+app.service('ChoiceService', function() {
 
-	$rootScope.artistsChoice = [{index: 0}];
-	$rootScope.genresChoice = [{index: 0}];
-	$rootScope.unitsChoice = [];
-
-	$rootScope.addArtistChoice = function() {
-		$rootScope.artistsChoice.push({index: $rootScope.artistsChoice.length});
-		if ($rootScope.artistsChoice.length > 1) {
-			$rootScope.unitsChoice.push({index: $rootScope.unitsChoice.length});
+	function addArtistChoice(artistsChoice, unitsChoice) {
+		artistsChoice.push({});
+		if (artistsChoice.length > 1) {
+			unitsChoice.push({});
 		}
-	};
+	}
 
-	$rootScope.addGenreChoice = function() {
-		$rootScope.genresChoice.push({index: $rootScope.genresChoice.length});
-	};
-
-	$rootScope.removeArtistChoice = function(index) {
-		if ($rootScope.artistsChoice.length > 1) {
-			$rootScope.unitsChoice.splice(index - 1, 1);
+	function removeArtistChoice(artistsChoice, unitsChoice, index) {
+		if (artistsChoice.length > 1) {
+			unitsChoice.splice(index - 1, 1);
 		}
-		$rootScope.artistsChoice.splice(index, 1);
-		for (var i = index; i < $rootScope.artistsChoice.length; i++) {
-			if ($rootScope.artistsChoice.length > 1) {
-				$rootScope.unitsChoice[i].index = $rootScope.unitsChoice[i].index - 1;
-			}
-			$rootScope.artistsChoice[i].index = $rootScope.artistsChoice[i].index - 1;
-		}
-	};
+		artistsChoice.splice(index, 1);
+	}
 
-	$rootScope.removeGenreChoice = function(index) {
-		$rootScope.genresChoice.splice(index, 1);
-		for (var i = index; i < $rootScope.genresChoice.length; i++) {
-			$rootScope.genresChoice[i].index = $rootScope.genresChoice[i].index - 1;
-		}
-	};
+	function addGenreChoice(genresChoice) {
+		genresChoice.push({});
+	}
 
-	function reset() {
-		$rootScope.artistsChoice = [{index: 0}];
-		$rootScope.genresChoice = [{index: 0}];
-		$rootScope.unitsChoice = [];
+	function removeGenreChoice(genresChoice, index) {
+		genresChoice.splice(index, 1);
 	}
 
 	return {
-		reset: reset
+		addArtistChoice: addArtistChoice,
+		removeArtistChoice: removeArtistChoice,
+		addGenreChoice: addGenreChoice,
+		removeGenreChoice: removeGenreChoice
 	};
 
 });

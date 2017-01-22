@@ -3,7 +3,6 @@ package com.muschart.controller.rest;
 import static com.muschart.constants.UrlConstants.Rest.USERS_URL;
 import static com.muschart.constants.UrlConstants.Rest.Operation.AUTH_OPERATION;
 import static com.muschart.constants.UrlConstants.Rest.Operation.CHECK_OPERATION;
-import static com.muschart.constants.UrlConstants.Rest.Operation.CREATE_OPERATION;
 import static com.muschart.constants.UrlConstants.Rest.Operation.LIKE_OPERATION;
 import static com.muschart.constants.UrlConstants.Rest.Operation.LOGOUT_OPERATION;
 
@@ -72,8 +71,8 @@ public class UserRestController {
         securityContextLogoutHandler.logout(rq, rs, null);
     }
 
-    @RequestMapping(value = CREATE_OPERATION, method = RequestMethod.POST)
-    public ResponseEntity<Object> createUser(@RequestBody @Valid RegisterDTO user, Errors errors) {
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public ResponseEntity<Object> createUser(@RequestBody RegisterDTO user, Errors errors) {
         if (errors.hasErrors()) {
             return new ResponseEntity<Object>(new ErrorMessage(Parser.getErrorsMessagesFromObjectError(errors)), HttpStatus.BAD_REQUEST);
         }
@@ -90,7 +89,7 @@ public class UserRestController {
     }
 
     @RequestMapping(value = LIKE_OPERATION, method = RequestMethod.POST)
-    public ResponseEntity<Object> setUserLike(@RequestBody EntityDTO entity) {
+    public ResponseEntity<Object> setUserLike(@RequestBody @Valid EntityDTO entity) {
         switch (entity.getEntity()) {
             case Entities.ARTIST:
                 userService.updateUserArtists(Secure.getLoggedUser().getId(), entity.getEntityId());
@@ -108,7 +107,7 @@ public class UserRestController {
     }
 
     @RequestMapping(value = CHECK_OPERATION + "/login", method = RequestMethod.POST)
-    public ResponseEntity<Object> checkLogin(@RequestBody String login) {
+    public ResponseEntity<Object> checkLogin(@RequestBody @Valid String login) {
         boolean exists = userService.checkLogin(login);
         return new ResponseEntity<Object>(exists, HttpStatus.OK);
     }

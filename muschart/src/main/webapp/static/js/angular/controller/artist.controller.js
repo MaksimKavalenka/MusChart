@@ -1,9 +1,38 @@
 'use strict';
-app.controller('ArtistController', function($scope, $state, DEFAULT, STATE, TEMPLATE, UPLOAD, ArtistFactory, UserFactory, CookieService, FlashService, UtilityService) {
+app.controller('ArtistController', function($scope, $state, DEFAULT, STATE, TEMPLATE, TYPE, UPLOAD, ArtistFactory, GenreFactory, UserFactory, ChoiceService, CookieService, FileService, FlashService, UtilityService) {
 
 	$scope.url = '#';
 	$scope.info = {};
 	$scope.artists = [];
+	$scope.genres = [];
+	$scope.genresChoice = [];
+
+	$scope.createArtist = function() {
+		$scope.dataLoading = true;
+		FileService.uploadFile($scope.photoFile, TYPE.PHOTO, function(response) {
+			if (response.success) {
+				var genresId = [];
+				for (var i = 0; i < $scope.genresChoice.length; i++) {
+					genresId.push($scope.genresChoice[i].id);
+				}
+				createArtist($scope.artist.name, $scope.artist.photo.replace(/^C:\\fakepath\\/i, ''), genresId);
+				$scope.dataLoading = false;
+			} else {
+				$scope.dataLoading = false;
+				FlashService.error(response.message);
+			}
+		});
+	};
+
+	$scope.deleteArtist = function(id) {
+		ArtistFactory.deleteArtist(id, function(response) {
+			if (response.success) {
+				FlashService.success(response.message);
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+	};
 
 	$scope.like = function(artistId) {
 		UserFactory.setUserLike(DEFAULT.ENTITY.artist, artistId, function(response) {
@@ -15,12 +44,24 @@ app.controller('ArtistController', function($scope, $state, DEFAULT, STATE, TEMP
 		});
 	};
 
+	$scope.addGenreChoice = function() {
+		ChoiceService.addGenreChoice($scope.genresChoice);
+	};
+
+	$scope.removeGenreChoice = function(index) {
+		ChoiceService.removeGenreChoice($scope.genresChoice, index);
+	};
+
 	$scope.getTemplate = function() {
 		return TEMPLATE.ARTISTS[CookieService.getSettings().design];
 	};
 
 	function init(state, sort, order, page) {
 		switch (state) {
+			case STATE.ARTIST_ADD:
+				$scope.genresChoice.push({});
+				getAllGenresIdAndName();
+				break;
 			case STATE.ARTISTS:
 				$scope.url = '#';
 				getArtists(sort, order, page);
@@ -51,6 +92,16 @@ app.controller('ArtistController', function($scope, $state, DEFAULT, STATE, TEMP
 				getUserArtists(sort, order, page);
 				break;
 		}
+	}
+
+	function createArtist(name, photo, genresId) {
+		ArtistFactory.createArtist(name, photo, genresId, function(response) {
+			if (response.success) {
+				FlashService.success(response.message);
+			} else {
+				FlashService.error(response.message);
+			}
+		});
 	}
 
 	function getArtistById(id) {
@@ -89,6 +140,16 @@ app.controller('ArtistController', function($scope, $state, DEFAULT, STATE, TEMP
 		ArtistFactory.getUserArtists(sort, order, page, function(response) {
 			if (response.success) {
 				$scope.artists = response.data;
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+	}
+
+	function getAllGenresIdAndName() {
+		GenreFactory.getAllGenresIdAndName(function(response) {
+			if (response.success) {
+				$scope.genres = response.data;
 			} else {
 				FlashService.error(response.message);
 			}

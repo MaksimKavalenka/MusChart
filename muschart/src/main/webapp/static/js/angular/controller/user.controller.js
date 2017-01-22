@@ -1,5 +1,5 @@
 'use strict';
-app.controller('UserEditController', function($rootScope, $scope, $state, STATE, UserFactory, CookieService, FlashService) {
+app.controller('UserController', function($rootScope, $scope, $state, STATE, UserFactory, CookieService, FlashService) {
 
 	$scope.login = function() {
 		$scope.dataLoading = true;

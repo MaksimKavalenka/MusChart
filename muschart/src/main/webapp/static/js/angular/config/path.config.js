@@ -2,7 +2,7 @@
 app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE, TITLE, URL) {
 
 	var mainHeader = {
-		controller: CONTROLLER.USER_EDIT_CONTROLLER,
+		controller: CONTROLLER.USER_CONTROLLER,
 		controllerAs: CONTROLLER.CTRL,
 		templateUrl: PATH.MAIN_HEADER
 	};
@@ -26,7 +26,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 		views: {
 			header: authenticationHeader,
 			main_content: {
-				controller: CONTROLLER.USER_EDIT_CONTROLLER,
+				controller: CONTROLLER.USER_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.LOGIN_FORM
 			},
@@ -40,7 +40,7 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 		views: {
 			header: authenticationHeader,
 			main_content: {
-				controller: CONTROLLER.USER_EDIT_CONTROLLER,
+				controller: CONTROLLER.USER_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.REGISTER_FORM
 			},
@@ -76,11 +76,12 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 	})
 
 	.state(STATE.ARTIST_ADD, {
+		title: TITLE.ARTIST_ADD,
 		url: URL.ARTIST_ADD,
 		views: {
 			header: editHeader,
 			main_content: {
-				controller: CONTROLLER.ARTIST_EDIT_CONTROLLER,
+				controller: CONTROLLER.ARTIST_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.ARTIST_EDIT_FORM
 			},
@@ -89,11 +90,12 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 	})
 
 	.state(STATE.GENRE_ADD, {
+		title: TITLE.GENRE_ADD,
 		url: URL.GENRE_ADD,
 		views: {
 			header: editHeader,
 			main_content: {
-				controller: CONTROLLER.GENRE_EDIT_CONTROLLER,
+				controller: CONTROLLER.GENRE_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.GENRE_EDIT_FORM
 			},
@@ -102,11 +104,12 @@ app.config(function($stateProvider, $urlRouterProvider, CONTROLLER, PATH, STATE,
 	})
 
 	.state(STATE.TRACK_ADD, {
+		title: TITLE.TRACK_ADD,
 		url: URL.TRACK_ADD,
 		views: {
 			header: editHeader,
 			main_content: {
-				controller: CONTROLLER.TRACK_EDIT_CONTROLLER,
+				controller: CONTROLLER.TRACK_CONTROLLER,
 				controllerAs: CONTROLLER.CTRL,
 				templateUrl: PATH.TRACK_EDIT_FORM
 			},

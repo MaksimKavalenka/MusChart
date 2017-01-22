@@ -5,7 +5,12 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, name)) {
 			return;
 		}
-		$http.post(REST.GENRES + '/create/' + name)
+
+		var genre = {
+			name: name
+		};
+
+		$http.post(REST.GENRES, genre)
 		.success(function(response) {
 			var data = {success: true, data: response, message: MESSAGE.CREATING_GENRE_SUCCESS};
 			callback(data);
@@ -20,7 +25,8 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, id)) {
 			return;
 		}
-		$http.delete(REST.GENRES + '/delete/' + id)
+
+		$http.delete(REST.GENRES + '/' + id)
 		.success(function(response) {
 			response = {success: true, message: MESSAGE.DELETING_GENRE_SUCCESS};
 			callback(data);
@@ -35,7 +41,8 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, id)) {
 			return;
 		}
-		$http.get(REST.GENRES + '/get/' + id)
+
+		$http.get(REST.GENRES + '/' + id)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -50,7 +57,8 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
-		$http.get(REST.GENRES + '/get/' + sort + '/' + order + '/' + page)
+
+		$http.get(REST.GENRES + '/' + sort + '/' + order + '/' + page)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -65,7 +73,8 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, entity, entityId, sort, order, page)) {
 			return;
 		}
-		$http.get(REST.GENRES + '/get/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page)
+
+		$http.get(REST.GENRES + '/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -80,6 +89,7 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
+
 		$http.get(REST.GENRES + '/user/' + sort + '/' + order + '/' + page)
 		.success(function(response) {
 			var data = {success: true, data: response};
@@ -92,7 +102,7 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, UtilityService) {
 	}
 
 	function getAllGenresIdAndName(callback) {
-		$http.get(REST.GENRES + '/get/all/id_name')
+		$http.get(REST.GENRES + '/all/id_name')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -104,7 +114,7 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, UtilityService) {
 	}
 
 	function getPagesCount(callback) {
-		$http.get(REST.GENRES + '/get/pages_count')
+		$http.get(REST.GENRES + '/pages_count')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -119,7 +129,8 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, entity, entityId)) {
 			return;
 		}
-		$http.get(REST.GENRES + '/get/' + entity + '/' + entityId + '/pages_count')
+
+		$http.get(REST.GENRES + '/' + entity + '/' + entityId + '/pages_count')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -143,7 +154,7 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, UtilityService) {
 	}
 
 	function checkGenreName(name, callback) {
-		$http.post(REST.GENRES + '/check/genre_name/' + name)
+		$http.post(REST.GENRES + '/check/genre_name', name)
 		.success(function(response) {
 			if (response) {
 				response = {success: true};

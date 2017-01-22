@@ -1,11 +1,18 @@
 'use strict';
 app.factory('ArtistFactory', function($http, MESSAGE, REST, UtilityService) {
 
-	function createArtist(name, photo, genres, callback) {
-		if (!UtilityService.allNotEmpty(callback, name, photo, genres)) {
+	function createArtist(name, photo, genresId, callback) {
+		if (!UtilityService.allNotEmpty(callback, name, photo, genresId)) {
 			return;
 		}
-		$http.post(REST.ARTISTS + '/create/' + name + '/' + photo + '/' + genres)
+
+		var artist = {
+			name: name,
+			photo: photo,
+			genresId: genresId
+		};
+
+		$http.post(REST.ARTISTS, artist)
 		.success(function(response) {
 			var data = {success: true, data: response, message: MESSAGE.CREATING_ARTIST_SUCCESS};
 			callback(data);
@@ -20,7 +27,8 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, id)) {
 			return;
 		}
-		$http.delete(REST.ARTISTS + '/delete/' + id)
+
+		$http.delete(REST.ARTISTS + '/' + id)
 		.success(function(response) {
 			response = {success: true, message: MESSAGE.GELETING_ARTIST_SUCCESS};
 			callback(data);
@@ -35,7 +43,8 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, id)) {
 			return;
 		}
-		$http.get(REST.ARTISTS + '/get/' + id)
+
+		$http.get(REST.ARTISTS + '/' + id)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -50,7 +59,8 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
-		$http.get(REST.ARTISTS + '/get/' + sort + '/' + order + '/' + page)
+
+		$http.get(REST.ARTISTS + '/' + sort + '/' + order + '/' + page)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -65,7 +75,8 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, entity, entityId, sort, order, page)) {
 			return;
 		}
-		$http.get(REST.ARTISTS + '/get/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page)
+
+		$http.get(REST.ARTISTS + '/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -80,6 +91,7 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
+
 		$http.get(REST.ARTISTS + '/user/' + sort + '/' + order + '/' + page)
 		.success(function(response) {
 			var data = {success: true, data: response};
@@ -92,7 +104,7 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, UtilityService) {
 	}
 
 	function getAllArtistsIdAndName(callback) {
-		$http.get(REST.ARTISTS + '/get/all/id_name')
+		$http.get(REST.ARTISTS + '/all/id_name')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -104,7 +116,7 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, UtilityService) {
 	}
 
 	function getPagesCount(callback) {
-		$http.get(REST.ARTISTS + '/get/pages_count')
+		$http.get(REST.ARTISTS + '/pages_count')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -119,7 +131,8 @@ app.factory('ArtistFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, entity, entityId)) {
 			return;
 		}
-		$http.get(REST.ARTISTS + '/get/' + entity + '/' + entityId + '/pages_count')
+
+		$http.get(REST.ARTISTS + '/' + entity + '/' + entityId + '/pages_count')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);

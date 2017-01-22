@@ -2,24 +2,31 @@ package com.muschart.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import com.muschart.constants.DefaultConstants;
+
 public abstract class AbstractDTO implements Serializable {
 
     private static final long serialVersionUID = -3248976059943166282L;
 
-    private long              id;
+    @NotNull
+    @Min(value = DefaultConstants.MIN_ID)
+    private Long              id;
 
     public AbstractDTO() {
     }
 
-    public AbstractDTO(long id) {
+    public AbstractDTO(Long id) {
         this.id = id;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

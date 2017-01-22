@@ -2,7 +2,7 @@
 app.factory('UnitFactory', function($http, MESSAGE, REST) {
 
 	function getAllUnitsIdAndName(callback) {
-		$http.get(REST.UNITS + '/get/all/id_name')
+		$http.get(REST.UNITS + '/all/id_name')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);

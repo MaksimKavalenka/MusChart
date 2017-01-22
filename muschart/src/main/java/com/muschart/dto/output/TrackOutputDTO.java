@@ -3,6 +3,10 @@ package com.muschart.dto.output;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import com.muschart.constants.DefaultConstants;
 import com.muschart.dto.AbstractDTO;
 import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.TrackEntity;
@@ -11,21 +15,36 @@ public class TrackOutputDTO extends AbstractDTO {
 
     private static final long  serialVersionUID = 4257174055910464860L;
 
+    @NotNull
     private String             name;
+
+    @NotNull
     private String             song;
+
+    @NotNull
     private String             cover;
-    private String             video;
+
+    @NotNull
     private Date               release;
-    private long               rating;
-    private boolean            isLiked;
+
+    @NotNull
+    @Min(value = DefaultConstants.MIN_RATING)
+    private Long               rating;
+
+    @NotNull
+    private Boolean            isLiked;
+
+    @NotNull
     private List<IdAndNameDTO> artists;
+
+    private String             video;
     private List<IdAndNameDTO> units;
 
     public TrackOutputDTO() {
         super();
     }
 
-    public TrackOutputDTO(long id, String name, String song, String cover, String video, Date release, long rating, boolean isLiked, List<IdAndNameDTO> artists, List<IdAndNameDTO> units) {
+    public TrackOutputDTO(long id, String name, String song, String cover, String video, Date release, Long rating, Boolean isLiked, List<IdAndNameDTO> artists, List<IdAndNameDTO> units) {
         super(id);
         this.name = name;
         this.song = song;
@@ -38,7 +57,7 @@ public class TrackOutputDTO extends AbstractDTO {
         this.units = units;
     }
 
-    public TrackOutputDTO(TrackEntity track, boolean isLiked, List<IdAndNameDTO> artists, List<IdAndNameDTO> units) {
+    public TrackOutputDTO(TrackEntity track, Boolean isLiked, List<IdAndNameDTO> artists, List<IdAndNameDTO> units) {
         super(track.getId());
         name = track.getName();
         song = track.getSong();
@@ -91,19 +110,19 @@ public class TrackOutputDTO extends AbstractDTO {
         this.release = release;
     }
 
-    public long getRating() {
+    public Long getRating() {
         return rating;
     }
 
-    public void setRating(long rating) {
+    public void setRating(Long rating) {
         this.rating = rating;
     }
 
-    public boolean isLiked() {
+    public Boolean isLiked() {
         return isLiked;
     }
 
-    public void setLiked(boolean isLiked) {
+    public void setLiked(Boolean isLiked) {
         this.isLiked = isLiked;
     }
 

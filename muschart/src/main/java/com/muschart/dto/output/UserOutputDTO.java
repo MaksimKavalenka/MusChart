@@ -2,6 +2,8 @@ package com.muschart.dto.output;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.security.core.GrantedAuthority;
 
 import com.muschart.constants.RoleConstants;
@@ -11,13 +13,16 @@ public class UserOutputDTO implements Serializable {
 
     private static final long serialVersionUID = 5788306146372527542L;
 
+    @NotNull
     private String            login;
-    private boolean           isAdmin;
+
+    @NotNull
+    private Boolean           isAdmin;
 
     public UserOutputDTO() {
     }
 
-    public UserOutputDTO(String login, boolean isAdmin) {
+    public UserOutputDTO(String login, Boolean isAdmin) {
         this.login = login;
         this.isAdmin = isAdmin;
     }
@@ -40,11 +45,11 @@ public class UserOutputDTO implements Serializable {
         this.login = login;
     }
 
-    public boolean isAdmin() {
+    public Boolean isAdmin() {
         return isAdmin;
     }
 
-    public void setAdmin(boolean isAdmin) {
+    public void setAdmin(Boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
 

@@ -1,11 +1,23 @@
 'use strict';
 app.factory('TrackFactory', function($http, MESSAGE, REST, UtilityService) {
 
-	function createTrack(name, song, cover, video, release, artists, units, genres, callback) {
-		if (!UtilityService.allNotEmpty(callback, name, song, cover, video, release, artists, units, genres)) {
+	function createTrack(name, song, cover, video, release, artistsId, unitsId, genresId, callback) {
+		if (!UtilityService.allNotEmpty(callback, name, song, cover, video, release, artistsId, unitsId, genresId)) {
 			return;
 		}
-		$http.post(REST.TRACKS + '/create/' + name + '/' + song + '/' + cover + '/' + video + '/' + release + '/' + artists + '/' + units + '/' + genres)
+
+		var track = {
+			name: name,
+			song: song,
+			cover: cover,
+			video: video,
+			release: release,
+			artistsId: artistsId,
+			unitsId: unitsId,
+			genresId: genresId
+		};
+
+		$http.post(REST.TRACKS, track)
 		.success(function(response) {
 			var data = {success: true, data: response, message: MESSAGE.CREATING_TRACK_SUCCESS};
 			callback(data);
@@ -20,7 +32,8 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, id)) {
 			return;
 		}
-		$http.delete(REST.TRACKS + '/delete/' + id)
+
+		$http.delete(REST.TRACKS + '/' + id)
 		.success(function(response) {
 			response = {success: true, message: MESSAGE.GELETING_TRACK_SUCCESS};
 			callback(data);
@@ -35,7 +48,8 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, id)) {
 			return;
 		}
-		$http.get(REST.TRACKS + '/get/' + id)
+
+		$http.get(REST.TRACKS + '/' + id)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -50,7 +64,8 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
-		$http.get(REST.TRACKS + '/get/' + sort + '/' + order + '/' + page)
+
+		$http.get(REST.TRACKS + '/' + sort + '/' + order + '/' + page)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -65,7 +80,8 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, entity, entityId, sort, order, page)) {
 			return;
 		}
-		$http.get(REST.TRACKS + '/get/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page)
+
+		$http.get(REST.TRACKS + '/' + entity + '/' + entityId + '/' + sort + '/' + order + '/' + page)
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -80,6 +96,7 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, sort, order, page)) {
 			return;
 		}
+
 		$http.get(REST.TRACKS + '/user/' + sort + '/' + order + '/' + page)
 		.success(function(response) {
 			var data = {success: true, data: response};
@@ -92,7 +109,7 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, UtilityService) {
 	}
 
 	function getAllTracksIdAndName(callback) {
-		$http.get(REST.TRACKS + '/get/all/id_name')
+		$http.get(REST.TRACKS + '/all/id_name')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -104,7 +121,7 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, UtilityService) {
 	}
 
 	function getPagesCount(callback) {
-		$http.get(REST.TRACKS + '/get/pages_count')
+		$http.get(REST.TRACKS + '/pages_count')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);
@@ -119,7 +136,8 @@ app.factory('TrackFactory', function($http, MESSAGE, REST, UtilityService) {
 		if (!UtilityService.allNotEmpty(callback, entity, entityId)) {
 			return;
 		}
-		$http.get(REST.TRACKS + '/get/' + entity + '/' + entityId + '/pages_count')
+
+		$http.get(REST.TRACKS + '/' + entity + '/' + entityId + '/pages_count')
 		.success(function(response) {
 			var data = {success: true, data: response};
 			callback(data);

@@ -1,5 +1,9 @@
 package com.muschart.dto.output;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import com.muschart.constants.DefaultConstants;
 import com.muschart.dto.AbstractDTO;
 import com.muschart.entity.GenreEntity;
 
@@ -7,22 +11,28 @@ public class GenreOutputDTO extends AbstractDTO {
 
     private static final long serialVersionUID = -8290252196532407134L;
 
+    @NotNull
     private String            name;
-    private long              rating;
-    private boolean           isLiked;
+
+    @NotNull
+    @Min(value = DefaultConstants.MIN_RATING)
+    private Long              rating;
+
+    @NotNull
+    private Boolean           isLiked;
 
     public GenreOutputDTO() {
         super();
     }
 
-    public GenreOutputDTO(long id, String name, long rating, boolean isLiked) {
+    public GenreOutputDTO(long id, String name, Long rating, boolean isLiked) {
         super(id);
         this.name = name;
         this.rating = rating;
         this.isLiked = isLiked;
     }
 
-    public GenreOutputDTO(GenreEntity genre, boolean isLiked) {
+    public GenreOutputDTO(GenreEntity genre, Boolean isLiked) {
         super(genre.getId());
         name = genre.getName();
         rating = genre.getRating();
@@ -37,19 +47,19 @@ public class GenreOutputDTO extends AbstractDTO {
         this.name = name;
     }
 
-    public long getRating() {
+    public Long getRating() {
         return rating;
     }
 
-    public void setRating(long rating) {
+    public void setRating(Long rating) {
         this.rating = rating;
     }
 
-    public boolean isLiked() {
+    public Boolean isLiked() {
         return isLiked;
     }
 
-    public void setLiked(boolean isLiked) {
+    public void setLiked(Boolean isLiked) {
         this.isLiked = isLiked;
     }
 

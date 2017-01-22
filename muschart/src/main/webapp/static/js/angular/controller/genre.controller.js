@@ -5,6 +5,29 @@ app.controller('GenreController', function($scope, $state, DEFAULT, STATE, Genre
 	$scope.info = {};
 	$scope.genres = [];
 
+	$scope.createGenre = function() {
+		$scope.dataLoading = true;
+		GenreFactory.createGenre($scope.genre.name, function(response) {
+			if (response.success) {
+				$scope.reset();
+				FlashService.success(response.message);
+			} else {
+				FlashService.error(response.message);
+			}
+			$scope.dataLoading = false;
+		});
+	};
+
+	$scope.deleteGenre = function(id) {
+		GenreFactory.deleteGenre(id, function(response) {
+			if (response.success) {
+				FlashService.success(response.message);
+			} else {
+				FlashService.error(response.message);
+			}
+		});
+	};
+
 	$scope.like = function(genreId) {
 		UserFactory.setUserLike(DEFAULT.ENTITY.genre, genreId, function(response) {
 			if (response.success) {
