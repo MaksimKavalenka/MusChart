@@ -9,7 +9,6 @@ app.controller('GenreController', function($scope, $state, DEFAULT, STATE, Genre
 		$scope.dataLoading = true;
 		GenreFactory.createGenre($scope.genre.name, function(response) {
 			if (response.success) {
-				$scope.reset();
 				FlashService.success(response.message);
 			} else {
 				FlashService.error(response.message);

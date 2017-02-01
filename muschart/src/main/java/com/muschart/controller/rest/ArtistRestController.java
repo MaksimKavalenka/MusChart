@@ -23,8 +23,10 @@ import com.muschart.dto.input.ArtistInputDTO;
 import com.muschart.dto.output.ArtistOutputDTO;
 import com.muschart.entity.ArtistEntity;
 import com.muschart.entity.UserEntity;
+import com.muschart.exception.UploadException;
 import com.muschart.service.dao.ArtistServiceDAO;
 import com.muschart.service.dao.UserServiceDAO;
+import com.muschart.solr.service.dao.ArtistSolrServiceDAO;
 import com.muschart.utility.Secure;
 
 @RestController
@@ -32,14 +34,23 @@ import com.muschart.utility.Secure;
 public class ArtistRestController {
 
     @Autowired
-    private ArtistServiceDAO artistService;
+    private ArtistServiceDAO     artistService;
+
     @Autowired
-    private UserServiceDAO   userService;
+    private ArtistSolrServiceDAO artistSolrService;
+
+    @Autowired
+    private UserServiceDAO       userService;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<ArtistEntity> createArtist(@RequestBody @Valid ArtistInputDTO artistInput) {
-        ArtistEntity artist = artistService.createArtist(artistInput.getName(), artistInput.getPhoto(), artistInput.getGenresId());
-        return new ResponseEntity<ArtistEntity>(artist, HttpStatus.CREATED);
+        try {
+            ArtistEntity artist = artistService.createArtist(artistInput.getName(), artistInput.getPhoto(), artistInput.getGenresId());
+            artistSolrService.createArtist(artist.getId(), artist.getName());
+            return new ResponseEntity<ArtistEntity>(artist, HttpStatus.CREATED);
+        } catch (UploadException e) {
+            return new ResponseEntity<ArtistEntity>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

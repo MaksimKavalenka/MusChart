@@ -23,10 +23,12 @@ import com.muschart.dto.input.TrackInputDTO;
 import com.muschart.dto.output.TrackOutputDTO;
 import com.muschart.entity.TrackEntity;
 import com.muschart.entity.UserEntity;
+import com.muschart.exception.UploadException;
 import com.muschart.service.dao.ArtistServiceDAO;
 import com.muschart.service.dao.TrackServiceDAO;
 import com.muschart.service.dao.UnitServiceDAO;
 import com.muschart.service.dao.UserServiceDAO;
+import com.muschart.solr.service.dao.TrackSolrServiceDAO;
 import com.muschart.utility.Secure;
 
 @RestController
@@ -34,18 +36,29 @@ import com.muschart.utility.Secure;
 public class TrackRestController {
 
     @Autowired
-    private ArtistServiceDAO artistService;
+    private ArtistServiceDAO    artistService;
+
     @Autowired
-    private TrackServiceDAO  trackService;
+    private TrackServiceDAO     trackService;
+
     @Autowired
-    private UnitServiceDAO   unitService;
+    private TrackSolrServiceDAO trackSolrService;
+
     @Autowired
-    private UserServiceDAO   userService;
+    private UnitServiceDAO      unitService;
+
+    @Autowired
+    private UserServiceDAO      userService;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<TrackEntity> createTrack(@RequestBody @Valid TrackInputDTO trackInput) {
-        TrackEntity track = trackService.createTrack(trackInput.getName(), trackInput.getSong(), trackInput.getCover(), trackInput.getVideo(), trackInput.getRelease(), trackInput.getArtists(), trackInput.getUnits(), trackInput.getGenres());
-        return new ResponseEntity<TrackEntity>(track, HttpStatus.CREATED);
+        try {
+            TrackEntity track = trackService.createTrack(trackInput.getName(), trackInput.getSong(), trackInput.getCover(), trackInput.getVideo(), trackInput.getRelease(), trackInput.getArtists(), trackInput.getUnits(), trackInput.getGenres());
+            trackSolrService.createTrack(track.getId(), track.getName());
+            return new ResponseEntity<TrackEntity>(track, HttpStatus.CREATED);
+        } catch (UploadException e) {
+            return new ResponseEntity<TrackEntity>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

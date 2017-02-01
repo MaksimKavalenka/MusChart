@@ -24,9 +24,11 @@ import com.muschart.dto.input.GenreInputDTO;
 import com.muschart.dto.output.GenreOutputDTO;
 import com.muschart.entity.GenreEntity;
 import com.muschart.entity.UserEntity;
+import com.muschart.exception.UploadException;
 import com.muschart.exception.ValidationException;
 import com.muschart.service.dao.GenreServiceDAO;
 import com.muschart.service.dao.UserServiceDAO;
+import com.muschart.solr.service.dao.GenreSolrServiceDAO;
 import com.muschart.utility.Secure;
 
 @RestController
@@ -34,17 +36,24 @@ import com.muschart.utility.Secure;
 public class GenreRestController {
 
     @Autowired
-    private GenreServiceDAO genreService;
+    private GenreServiceDAO     genreService;
+
     @Autowired
-    private UserServiceDAO  userService;
+    private GenreSolrServiceDAO genreSolrService;
+
+    @Autowired
+    private UserServiceDAO      userService;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<GenreEntity> createGenre(GenreInputDTO genreInput) {
+    public ResponseEntity<GenreEntity> createGenre(@RequestBody @Valid GenreInputDTO genreInput) {
         try {
             GenreEntity genre = genreService.createGenre(genreInput.getName());
+            genreSolrService.createGenre(genre.getId(), genre.getName());
             return new ResponseEntity<GenreEntity>(genre, HttpStatus.CREATED);
         } catch (ValidationException e) {
             return new ResponseEntity<GenreEntity>(HttpStatus.CONFLICT);
+        } catch (UploadException e) {
+            return new ResponseEntity<GenreEntity>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

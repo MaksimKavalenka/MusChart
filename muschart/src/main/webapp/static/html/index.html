@@ -13,6 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="/css/content.classic.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/flash.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/form.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/input.volume.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/modal.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/navbar.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/pagination.css"/>
@@ -87,17 +88,24 @@
 				</div>
 				<input type="range" class="amplitude-song-slider" amplitude-singular-song-slider="true" value="0"/>
 			</div>
-			<div class="player">
-				<div class="amplitude-prev player-button player-playlist-button action-previous"></div>
-				<div id="amplitude-play-pause" class="amplitude-play-pause player-button player-main-button action-play"></div>
-				<div class="amplitude-next player-button player-playlist-button action-next"></div>
-				<div class="player-button player-playlist-button action-playlist" ui-sref="playlist"></div>
-				<div class="player-info">
-					<img class="player-cover" amplitude-song-info="cover"/>
-					<div class="player-artist-name">
-						<div class="artist" amplitude-song-info="artist"></div>
-						<div class="name" amplitude-song-info="name"></div>
+			<div class="justify">
+				<div class="block">
+					<div class="player">
+						<div class="amplitude-prev player-button player-playlist-button action-previous"></div>
+						<div id="amplitude-play-pause" class="amplitude-play-pause player-button player-main-button action-play"></div>
+						<div class="amplitude-next player-button player-playlist-button action-next"></div>
+						<div class="player-button player-playlist-button action-playlist" ui-sref="playlist"></div>
+						<div class="player-info">
+							<img class="player-cover" amplitude-song-info="cover"/>
+							<div class="player-artist-name">
+								<div class="artist" amplitude-song-info="artist"></div>
+								<div class="name" amplitude-song-info="name"></div>
+							</div>
+						</div>
 					</div>
+				</div>
+				<div class="block">
+					<input type="range" class="amplitude-volume-slider" value="0"/>
 				</div>
 			</div>
 		</div>
