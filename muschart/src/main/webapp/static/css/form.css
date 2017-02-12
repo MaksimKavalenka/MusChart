@@ -1,5 +1,6 @@
 .form-search {
 	margin: 0 16px;
+	position: relative;
 }
 .form-search * {
 	display: inline;
@@ -7,6 +8,38 @@
 .form-search .input-search {
 	padding: 9px;
 	width: 500px;
+}
+.form-search .suggestions {
+	left: 0;
+	position: absolute;
+	right: 0;
+	text-align: left;
+	z-index: 1;
+}
+.form-search .suggestion {
+	background: #ffffff;
+	border: 1px solid #cccccc;
+	cursor: pointer;
+	display: block;
+	margin-top: -1px;
+	padding: 9px 15px;
+	position: relative;
+}
+.form-search .suggestion:hover,
+.form-search .suggestion:active {
+	background: #2780e3;
+	color: #ffffff;
+}
+.form-search .suggestion:hover *,
+.form-search .suggestion:active * {
+	background: #2780e3;
+	color: #ffffff;
+}
+.form-search .suggestion-info {
+	color: #888888;
+	padding-right: 15px;
+	position: absolute;
+	right: 0;
 }
 .form-submit {
 	text-align: center;

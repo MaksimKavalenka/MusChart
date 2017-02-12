@@ -107,6 +107,7 @@ public abstract class UrlConstants {
 
         public static final String ARTISTS_URL = SERVICE + "/artists";
         public static final String GENRES_URL  = SERVICE + "/genres";
+        public static final String SEARCH_URL  = SERVICE + "/search";
         public static final String TRACKS_URL  = SERVICE + "/tracks";
         public static final String UNITS_URL   = SERVICE + "/units";
         public static final String UPLOAD_URL  = SERVICE + "/upload";
@@ -114,15 +115,12 @@ public abstract class UrlConstants {
 
         public static abstract class Operation {
 
-            public static final String AUTH_OPERATION   = "/auth";
-            public static final String CHECK_OPERATION  = "/check";
-            public static final String CREATE_OPERATION = "/create";
-            public static final String DELETE_OPERATION = "/delete";
-            public static final String GET_OPERATION    = "/get";
-            public static final String LIKE_OPERATION   = "/like";
-            public static final String LOGOUT_OPERATION = "/logout";
-            public static final String UPDATE_OPERATION = "/update";
-            public static final String USER_OPERATION   = "/user";
+            public static final String AUTH_OPERATION    = "/auth";
+            public static final String CHECK_OPERATION   = "/check";
+            public static final String LIKE_OPERATION    = "/like";
+            public static final String LOGOUT_OPERATION  = "/logout";
+            public static final String SUGGEST_OPERATION = "/suggest";
+            public static final String USER_OPERATION    = "/user";
 
         }
 

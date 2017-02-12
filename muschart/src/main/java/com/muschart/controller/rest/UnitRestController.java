@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.muschart.dto.IdAndNameDTO;
-import com.muschart.service.dao.UnitServiceDAO;
+import com.muschart.service.database.dao.UnitDatabaseServiceDAO;
 
 @RestController
 @RequestMapping(UNITS_URL)
 public class UnitRestController {
 
     @Autowired
-    private UnitServiceDAO unitService;
+    private UnitDatabaseServiceDAO unitService;
 
     @RequestMapping(value = "/all/id_name", method = RequestMethod.GET)
     public ResponseEntity<List<IdAndNameDTO>> getAllUnitsIdAndName() {

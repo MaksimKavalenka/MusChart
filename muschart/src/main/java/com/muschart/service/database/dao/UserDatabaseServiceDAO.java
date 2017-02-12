@@ -1,4 +1,4 @@
-package com.muschart.service.dao;
+package com.muschart.service.database.dao;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import com.muschart.entity.UserEntity;
 import com.muschart.exception.ValidationException;
 
-public interface UserServiceDAO {
+public interface UserDatabaseServiceDAO {
 
     UserEntity createUser(String login, String password, List<GrantedAuthority> roles)
             throws ValidationException;

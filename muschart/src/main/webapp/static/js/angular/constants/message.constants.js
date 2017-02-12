@@ -26,6 +26,7 @@ app.constant('MESSAGE', (function() {
 		DELETING_TRACK_ERROR: deletingError + 'track',
 		GETTING_ARTIST_ERROR: gettingError + 'artist',
 		GETTING_GENRE_ERROR: gettingError + 'genre',
+		GETTING_RESULTS_ERROR: gettingError + 'results',
 		GETTING_TRACK_ERROR: gettingError + 'track',
 		GETTING_UNIT_ERROR: gettingError + 'unit',
 		GETTING_USER_ERROR: gettingError + 'user',

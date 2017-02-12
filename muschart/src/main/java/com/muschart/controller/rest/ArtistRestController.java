@@ -24,9 +24,9 @@ import com.muschart.dto.output.ArtistOutputDTO;
 import com.muschart.entity.ArtistEntity;
 import com.muschart.entity.UserEntity;
 import com.muschart.exception.UploadException;
-import com.muschart.service.dao.ArtistServiceDAO;
-import com.muschart.service.dao.UserServiceDAO;
-import com.muschart.solr.service.dao.ArtistSolrServiceDAO;
+import com.muschart.service.database.dao.ArtistDatabaseServiceDAO;
+import com.muschart.service.database.dao.UserDatabaseServiceDAO;
+import com.muschart.service.solr.dao.ArtistSolrServiceDAO;
 import com.muschart.utility.Secure;
 
 @RestController
@@ -34,18 +34,17 @@ import com.muschart.utility.Secure;
 public class ArtistRestController {
 
     @Autowired
-    private ArtistServiceDAO     artistService;
+    private ArtistDatabaseServiceDAO artistDatabaseService;
+    @Autowired
+    private ArtistSolrServiceDAO     artistSolrService;
 
     @Autowired
-    private ArtistSolrServiceDAO artistSolrService;
-
-    @Autowired
-    private UserServiceDAO       userService;
+    private UserDatabaseServiceDAO   userDatabaseService;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<ArtistEntity> createArtist(@RequestBody @Valid ArtistInputDTO artistInput) {
         try {
-            ArtistEntity artist = artistService.createArtist(artistInput.getName(), artistInput.getPhoto(), artistInput.getGenresId());
+            ArtistEntity artist = artistDatabaseService.createArtist(artistInput.getName(), artistInput.getPhoto(), artistInput.getGenresId());
             artistSolrService.createArtist(artist.getId(), artist.getName());
             return new ResponseEntity<ArtistEntity>(artist, HttpStatus.CREATED);
         } catch (UploadException e) {
@@ -55,13 +54,13 @@ public class ArtistRestController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteArtistById(@PathVariable("id") long id) {
-        artistService.deleteArtistById(id);
+        artistDatabaseService.deleteArtistById(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<ArtistEntity> getArtistById(@PathVariable("id") long id) {
-        ArtistEntity artist = artistService.getArtistById(id);
+        ArtistEntity artist = artistDatabaseService.getArtistById(id);
         if (artist == null) {
             return new ResponseEntity<ArtistEntity>(HttpStatus.NO_CONTENT);
         }
@@ -70,7 +69,7 @@ public class ArtistRestController {
 
     @RequestMapping(value = "/{sort}/{order}/{page}", method = RequestMethod.GET)
     public ResponseEntity<List<ArtistOutputDTO>> getArtists(@PathVariable("sort") int sort, @PathVariable("order") boolean order, @PathVariable("page") int page) {
-        List<ArtistEntity> artists = artistService.getArtists(sort, order, page);
+        List<ArtistEntity> artists = artistDatabaseService.getArtists(sort, order, page);
         if (artists == null) {
             return new ResponseEntity<List<ArtistOutputDTO>>(HttpStatus.NO_CONTENT);
         }
@@ -84,10 +83,10 @@ public class ArtistRestController {
         List<ArtistEntity> artists = null;
         switch (entity) {
             case Entities.GENRE:
-                artists = artistService.getGenreArtists(entityId, sort, order, page);
+                artists = artistDatabaseService.getGenreArtists(entityId, sort, order, page);
                 break;
             case Entities.TRACK:
-                artists = artistService.getTrackArtists(entityId, sort, order, page);
+                artists = artistDatabaseService.getTrackArtists(entityId, sort, order, page);
                 break;
             default:
                 break;
@@ -102,7 +101,7 @@ public class ArtistRestController {
 
     @RequestMapping(value = USER_OPERATION + "/{sort}/{order}/{page}", method = RequestMethod.GET)
     public ResponseEntity<List<ArtistOutputDTO>> getUserArtists(@PathVariable("sort") int sort, @PathVariable("order") boolean order, @PathVariable("page") int page) {
-        List<ArtistEntity> artists = artistService.getUserArtists(Secure.getLoggedUser().getId(), sort, order, page);
+        List<ArtistEntity> artists = artistDatabaseService.getUserArtists(Secure.getLoggedUser().getId(), sort, order, page);
         if (artists == null) {
             return new ResponseEntity<List<ArtistOutputDTO>>(HttpStatus.NO_CONTENT);
         }
@@ -113,7 +112,7 @@ public class ArtistRestController {
 
     @RequestMapping(value = "/all/id_name", method = RequestMethod.GET)
     public ResponseEntity<List<IdAndNameDTO>> getAllGenresIdAndName() {
-        List<IdAndNameDTO> artistsIdAndName = artistService.getAllArtistsIdAndName();
+        List<IdAndNameDTO> artistsIdAndName = artistDatabaseService.getAllArtistsIdAndName();
         if (artistsIdAndName == null) {
             return new ResponseEntity<List<IdAndNameDTO>>(HttpStatus.NO_CONTENT);
         }
@@ -122,7 +121,7 @@ public class ArtistRestController {
 
     @RequestMapping(value = "/pages_count", method = RequestMethod.GET)
     public ResponseEntity<Integer> getArtistsPagesCount() {
-        int pagesCount = artistService.getArtistsPagesCount();
+        int pagesCount = artistDatabaseService.getArtistsPagesCount();
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);
     }
 
@@ -131,10 +130,10 @@ public class ArtistRestController {
         int pagesCount = 0;
         switch (entity) {
             case Entities.GENRE:
-                pagesCount = artistService.getGenreArtistsPagesCount(entityId);
+                pagesCount = artistDatabaseService.getGenreArtistsPagesCount(entityId);
                 break;
             case Entities.TRACK:
-                pagesCount = artistService.getTrackArtistsPagesCount(entityId);
+                pagesCount = artistDatabaseService.getTrackArtistsPagesCount(entityId);
                 break;
             default:
                 break;
@@ -144,7 +143,7 @@ public class ArtistRestController {
 
     @RequestMapping(value = USER_OPERATION + "/pages_count", method = RequestMethod.GET)
     public ResponseEntity<Integer> getUserArtistsPagesCount() {
-        int pagesCount = artistService.getUserArtistsPagesCount(Secure.getLoggedUser().getId());
+        int pagesCount = artistDatabaseService.getUserArtistsPagesCount(Secure.getLoggedUser().getId());
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);
     }
 
@@ -152,7 +151,7 @@ public class ArtistRestController {
         List<ArtistOutputDTO> artistsOutput = new ArrayList<>(artists.size());
         for (ArtistEntity artist : artists) {
             UserEntity user = Secure.getLoggedUser();
-            boolean isLiked = (user == null) ? false : userService.isArtistLiked(user.getId(), artist.getId());
+            boolean isLiked = (user == null) ? false : userDatabaseService.isArtistLiked(user.getId(), artist.getId());
             artistsOutput.add(new ArtistOutputDTO(artist, isLiked));
         }
         return artistsOutput;

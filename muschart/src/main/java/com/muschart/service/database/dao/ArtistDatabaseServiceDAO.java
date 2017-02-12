@@ -1,11 +1,11 @@
-package com.muschart.service.dao;
+package com.muschart.service.database.dao;
 
 import java.util.List;
 
 import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.ArtistEntity;
 
-public interface ArtistServiceDAO {
+public interface ArtistDatabaseServiceDAO {
 
     ArtistEntity createArtist(String name, String photo, List<Long> genresIds);
 

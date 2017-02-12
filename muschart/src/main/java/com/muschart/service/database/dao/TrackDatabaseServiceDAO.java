@@ -1,4 +1,4 @@
-package com.muschart.service.dao;
+package com.muschart.service.database.dao;
 
 import java.util.Date;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.TrackEntity;
 
-public interface TrackServiceDAO {
+public interface TrackDatabaseServiceDAO {
 
     TrackEntity createTrack(String name, String song, String cover, String video, Date release,
             List<Long> artistsIds, List<Long> unitsIds, List<Long> genresIds);

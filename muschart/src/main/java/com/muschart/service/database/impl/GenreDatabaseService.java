@@ -1,4 +1,4 @@
-package com.muschart.service.impl;
+package com.muschart.service.database.impl;
 
 import static com.muschart.constants.MessageConstants.TAKEN_GENRE_MESSAGE;
 
@@ -11,12 +11,12 @@ import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.GenreEntity;
 import com.muschart.exception.ValidationException;
 import com.muschart.jpa.repository.GenreRepository;
-import com.muschart.service.dao.GenreServiceDAO;
+import com.muschart.service.database.dao.GenreDatabaseServiceDAO;
 import com.muschart.utility.JpaHelper;
 import com.muschart.utility.Parser;
 
-@Service("genreService")
-public class GenreService implements GenreServiceDAO {
+@Service("genreDatabaseService")
+public class GenreDatabaseService implements GenreDatabaseServiceDAO {
 
     @Autowired
     private GenreRepository genreRepository;

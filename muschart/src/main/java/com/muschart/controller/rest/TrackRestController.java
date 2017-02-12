@@ -24,11 +24,11 @@ import com.muschart.dto.output.TrackOutputDTO;
 import com.muschart.entity.TrackEntity;
 import com.muschart.entity.UserEntity;
 import com.muschart.exception.UploadException;
-import com.muschart.service.dao.ArtistServiceDAO;
-import com.muschart.service.dao.TrackServiceDAO;
-import com.muschart.service.dao.UnitServiceDAO;
-import com.muschart.service.dao.UserServiceDAO;
-import com.muschart.solr.service.dao.TrackSolrServiceDAO;
+import com.muschart.service.database.dao.ArtistDatabaseServiceDAO;
+import com.muschart.service.database.dao.TrackDatabaseServiceDAO;
+import com.muschart.service.database.dao.UnitDatabaseServiceDAO;
+import com.muschart.service.database.dao.UserDatabaseServiceDAO;
+import com.muschart.service.solr.dao.TrackSolrServiceDAO;
 import com.muschart.utility.Secure;
 
 @RestController
@@ -36,24 +36,23 @@ import com.muschart.utility.Secure;
 public class TrackRestController {
 
     @Autowired
-    private ArtistServiceDAO    artistService;
+    private ArtistDatabaseServiceDAO artistDatabaseService;
 
     @Autowired
-    private TrackServiceDAO     trackService;
+    private TrackDatabaseServiceDAO  trackDatabaseService;
+    @Autowired
+    private TrackSolrServiceDAO      trackSolrService;
 
     @Autowired
-    private TrackSolrServiceDAO trackSolrService;
+    private UnitDatabaseServiceDAO   unitDatabaseService;
 
     @Autowired
-    private UnitServiceDAO      unitService;
-
-    @Autowired
-    private UserServiceDAO      userService;
+    private UserDatabaseServiceDAO   userDatabaseService;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<TrackEntity> createTrack(@RequestBody @Valid TrackInputDTO trackInput) {
         try {
-            TrackEntity track = trackService.createTrack(trackInput.getName(), trackInput.getSong(), trackInput.getCover(), trackInput.getVideo(), trackInput.getRelease(), trackInput.getArtists(), trackInput.getUnits(), trackInput.getGenres());
+            TrackEntity track = trackDatabaseService.createTrack(trackInput.getName(), trackInput.getSong(), trackInput.getCover(), trackInput.getVideo(), trackInput.getRelease(), trackInput.getArtists(), trackInput.getUnits(), trackInput.getGenres());
             trackSolrService.createTrack(track.getId(), track.getName());
             return new ResponseEntity<TrackEntity>(track, HttpStatus.CREATED);
         } catch (UploadException e) {
@@ -63,13 +62,13 @@ public class TrackRestController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteTrackById(@PathVariable("id") long id) {
-        trackService.deleteTrackById(id);
+        trackDatabaseService.deleteTrackById(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<TrackEntity> getTrackById(@PathVariable("id") long id) {
-        TrackEntity track = trackService.getTrackById(id);
+        TrackEntity track = trackDatabaseService.getTrackById(id);
         if (track == null) {
             return new ResponseEntity<TrackEntity>(HttpStatus.NO_CONTENT);
         }
@@ -78,7 +77,7 @@ public class TrackRestController {
 
     @RequestMapping(value = "/{sort}/{order}/{page}", method = RequestMethod.GET)
     public ResponseEntity<List<TrackOutputDTO>> getTracks(@PathVariable("sort") int sort, @PathVariable("order") boolean order, @PathVariable("page") int page) {
-        List<TrackEntity> tracks = trackService.getTracks(sort, order, page);
+        List<TrackEntity> tracks = trackDatabaseService.getTracks(sort, order, page);
         if (tracks == null) {
             return new ResponseEntity<List<TrackOutputDTO>>(HttpStatus.NO_CONTENT);
         }
@@ -92,10 +91,10 @@ public class TrackRestController {
         List<TrackEntity> tracks = null;
         switch (entity) {
             case Entities.ARTIST:
-                tracks = trackService.getArtistTracks(entityId, sort, order, page);
+                tracks = trackDatabaseService.getArtistTracks(entityId, sort, order, page);
                 break;
             case Entities.GENRE:
-                tracks = trackService.getGenreTracks(entityId, sort, order, page);
+                tracks = trackDatabaseService.getGenreTracks(entityId, sort, order, page);
                 break;
             default:
                 break;
@@ -110,7 +109,7 @@ public class TrackRestController {
 
     @RequestMapping(value = USER_OPERATION + "/{sort}/{order}/{page}", method = RequestMethod.GET)
     public ResponseEntity<List<TrackOutputDTO>> getUserTracks(@PathVariable("sort") int sort, @PathVariable("order") boolean order, @PathVariable("page") int page) {
-        List<TrackEntity> tracks = trackService.getUserTracks(Secure.getLoggedUser().getId(), sort, order, page);
+        List<TrackEntity> tracks = trackDatabaseService.getUserTracks(Secure.getLoggedUser().getId(), sort, order, page);
         if (tracks == null) {
             return new ResponseEntity<List<TrackOutputDTO>>(HttpStatus.NO_CONTENT);
         }
@@ -121,7 +120,7 @@ public class TrackRestController {
 
     @RequestMapping(value = "/all/id_name", method = RequestMethod.GET)
     public ResponseEntity<List<IdAndNameDTO>> getAllGenresIdAndName() {
-        List<IdAndNameDTO> tracksIdAndName = trackService.getAllTracksIdAndName();
+        List<IdAndNameDTO> tracksIdAndName = trackDatabaseService.getAllTracksIdAndName();
         if (tracksIdAndName == null) {
             return new ResponseEntity<List<IdAndNameDTO>>(HttpStatus.NO_CONTENT);
         }
@@ -130,7 +129,7 @@ public class TrackRestController {
 
     @RequestMapping(value = "/pages_count", method = RequestMethod.GET)
     public ResponseEntity<Integer> getTracksPagesCount() {
-        int pagesCount = trackService.getTracksPagesCount();
+        int pagesCount = trackDatabaseService.getTracksPagesCount();
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);
     }
 
@@ -139,10 +138,10 @@ public class TrackRestController {
         int pagesCount = 0;
         switch (entity) {
             case Entities.ARTIST:
-                pagesCount = trackService.getArtistTracksPagesCount(entityId);
+                pagesCount = trackDatabaseService.getArtistTracksPagesCount(entityId);
                 break;
             case Entities.GENRE:
-                pagesCount = trackService.getGenreTracksPagesCount(entityId);
+                pagesCount = trackDatabaseService.getGenreTracksPagesCount(entityId);
                 break;
             default:
                 break;
@@ -152,7 +151,7 @@ public class TrackRestController {
 
     @RequestMapping(value = USER_OPERATION + "/pages_count", method = RequestMethod.GET)
     public ResponseEntity<Integer> getUserTracksPagesCount() {
-        int pagesCount = trackService.getUserTracksPagesCount(Secure.getLoggedUser().getId());
+        int pagesCount = trackDatabaseService.getUserTracksPagesCount(Secure.getLoggedUser().getId());
         return new ResponseEntity<Integer>(pagesCount, HttpStatus.OK);
     }
 
@@ -160,9 +159,9 @@ public class TrackRestController {
         List<TrackOutputDTO> tracksOutput = new ArrayList<>(tracks.size());
         for (TrackEntity track : tracks) {
             UserEntity user = Secure.getLoggedUser();
-            boolean isLiked = (user == null) ? false : userService.isTrackLiked(user.getId(), track.getId());
-            List<IdAndNameDTO> artists = artistService.getTrackArtistsIdAndName(track.getId());
-            List<IdAndNameDTO> units = unitService.getTrackUnitsIdAndName(track.getId());
+            boolean isLiked = (user == null) ? false : userDatabaseService.isTrackLiked(user.getId(), track.getId());
+            List<IdAndNameDTO> artists = artistDatabaseService.getTrackArtistsIdAndName(track.getId());
+            List<IdAndNameDTO> units = unitDatabaseService.getTrackUnitsIdAndName(track.getId());
             tracksOutput.add(new TrackOutputDTO(track, isLiked, artists, units));
         }
         return tracksOutput;

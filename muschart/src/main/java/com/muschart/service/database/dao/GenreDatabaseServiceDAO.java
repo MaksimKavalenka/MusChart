@@ -1,4 +1,4 @@
-package com.muschart.service.dao;
+package com.muschart.service.database.dao;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.GenreEntity;
 import com.muschart.exception.ValidationException;
 
-public interface GenreServiceDAO {
+public interface GenreDatabaseServiceDAO {
 
     GenreEntity createGenre(String name) throws ValidationException;
 

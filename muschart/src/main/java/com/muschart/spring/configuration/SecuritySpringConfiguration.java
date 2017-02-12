@@ -120,6 +120,8 @@ public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
         urlRegistry.antMatchers(HttpMethod.POST, Rest.GENRES_URL + CHECK_OPERATION + ANY).permitAll();
         urlRegistry.antMatchers(HttpMethod.DELETE, Rest.GENRES_URL + ANY).hasRole(ROLE_ADMIN.toString());
 
+        urlRegistry.antMatchers(HttpMethod.POST, Rest.SEARCH_URL + ANY).permitAll();
+
         urlRegistry.antMatchers(HttpMethod.GET, Rest.TRACKS_URL + ANY).permitAll();
         urlRegistry.antMatchers(HttpMethod.GET, Rest.TRACKS_URL + USER_OPERATION + ANY).hasRole(ROLE_USER.toString());
         urlRegistry.antMatchers(HttpMethod.POST, Rest.TRACKS_URL + ANY).hasRole(ROLE_ADMIN.toString());
@@ -127,12 +129,12 @@ public class SecuritySpringConfiguration extends WebSecurityConfigurerAdapter {
 
         urlRegistry.antMatchers(HttpMethod.GET, Rest.UNITS_URL + ANY).permitAll();
 
+        urlRegistry.antMatchers(HttpMethod.POST, Rest.UPLOAD_URL + ANY).hasRole(ROLE_ADMIN.toString());
+
         urlRegistry.antMatchers(HttpMethod.GET, Rest.USERS_URL + ANY).permitAll();
         urlRegistry.antMatchers(HttpMethod.POST, Rest.USERS_URL + ANY).permitAll();
         urlRegistry.antMatchers(HttpMethod.POST, Rest.USERS_URL + LOGOUT_OPERATION + ANY).hasRole(ROLE_USER.toString());
         urlRegistry.antMatchers(HttpMethod.POST, Rest.USERS_URL + LIKE_OPERATION + ANY).hasRole(ROLE_USER.toString());
-
-        urlRegistry.antMatchers(HttpMethod.POST, Rest.UPLOAD_URL + ANY).hasRole(ROLE_ADMIN.toString());
 
         urlRegistry.anyRequest().authenticated();
         urlRegistry.and().formLogin().loginPage(Page.Common.LOGIN_URL).permitAll();

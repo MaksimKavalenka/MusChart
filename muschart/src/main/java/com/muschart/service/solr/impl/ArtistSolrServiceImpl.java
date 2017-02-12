@@ -1,4 +1,4 @@
-package com.muschart.solr.service.impl;
+package com.muschart.service.solr.impl;
 
 import static com.muschart.constants.SolrConstants.Core.ARTISTS_CORE_URI;
 import static com.muschart.constants.SolrConstants.Fields.ArtistsFields.*;
@@ -12,7 +12,7 @@ import org.apache.solr.common.SolrInputDocument;
 import org.springframework.stereotype.Service;
 
 import com.muschart.exception.UploadException;
-import com.muschart.solr.service.dao.ArtistSolrServiceDAO;
+import com.muschart.service.solr.dao.ArtistSolrServiceDAO;
 
 @Service("artistSolrService")
 public class ArtistSolrServiceImpl implements ArtistSolrServiceDAO {

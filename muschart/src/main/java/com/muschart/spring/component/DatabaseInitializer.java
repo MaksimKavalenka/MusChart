@@ -7,16 +7,17 @@ import org.springframework.stereotype.Component;
 
 import com.muschart.constants.RoleConstants;
 import com.muschart.constants.UnitConstants;
-import com.muschart.service.dao.RoleServiceDAO;
-import com.muschart.service.dao.UnitServiceDAO;
+import com.muschart.service.database.dao.RoleDatabaseServiceDAO;
+import com.muschart.service.database.dao.UnitDatabaseServiceDAO;
 
 @Component
 public class DatabaseInitializer implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
-    private RoleServiceDAO roleService;
+    private RoleDatabaseServiceDAO roleService;
+
     @Autowired
-    private UnitServiceDAO unitService;
+    private UnitDatabaseServiceDAO unitService;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {

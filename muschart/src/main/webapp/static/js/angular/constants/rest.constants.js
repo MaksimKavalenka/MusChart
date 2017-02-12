@@ -6,6 +6,7 @@ app.constant('REST', (function() {
 	return {
 		ARTISTS: service + '/artists',
 		GENRES: service + '/genres',
+		SEARCH: service + '/search',
 		TRACKS: service + '/tracks',
 		UNITS: service + '/units',
 		UPLOAD: service + '/upload',

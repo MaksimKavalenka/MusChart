@@ -1,4 +1,4 @@
-package com.muschart.solr.service.dao;
+package com.muschart.service.solr.dao;
 
 import com.muschart.exception.UploadException;
 

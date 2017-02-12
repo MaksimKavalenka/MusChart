@@ -35,8 +35,8 @@ import com.muschart.dto.RegisterDTO;
 import com.muschart.dto.output.UserOutputDTO;
 import com.muschart.entity.UserEntity;
 import com.muschart.exception.ValidationException;
-import com.muschart.service.dao.RoleServiceDAO;
-import com.muschart.service.dao.UserServiceDAO;
+import com.muschart.service.database.dao.RoleDatabaseServiceDAO;
+import com.muschart.service.database.dao.UserDatabaseServiceDAO;
 import com.muschart.utility.Parser;
 import com.muschart.utility.Secure;
 
@@ -45,9 +45,10 @@ import com.muschart.utility.Secure;
 public class UserRestController {
 
     @Autowired
-    private RoleServiceDAO roleService;
+    private RoleDatabaseServiceDAO roleDatabaseService;
+
     @Autowired
-    private UserServiceDAO userService;
+    private UserDatabaseServiceDAO userDatabaseService;
 
     @RequestMapping(value = AUTH_OPERATION, method = RequestMethod.GET)
     public ResponseEntity<UserOutputDTO> authentication(Principal principal) {
@@ -79,8 +80,8 @@ public class UserRestController {
 
         try {
             List<GrantedAuthority> roles = new ArrayList<>(1);
-            roles.add(roleService.getRoleByName(RoleConstants.ROLE_USER.name()));
-            userService.createUser(user.getLogin(), Secure.secureBySha(user.getPassword(), user.getLogin()), roles);
+            roles.add(roleDatabaseService.getRoleByName(RoleConstants.ROLE_USER.name()));
+            userDatabaseService.createUser(user.getLogin(), Secure.secureBySha(user.getPassword(), user.getLogin()), roles);
             return new ResponseEntity<Object>(HttpStatus.CREATED);
 
         } catch (ValidationException | NoSuchAlgorithmException e) {
@@ -92,13 +93,13 @@ public class UserRestController {
     public ResponseEntity<Object> setUserLike(@RequestBody @Valid EntityDTO entity) {
         switch (entity.getEntity()) {
             case Entities.ARTIST:
-                userService.updateUserArtists(Secure.getLoggedUser().getId(), entity.getEntityId());
+                userDatabaseService.updateUserArtists(Secure.getLoggedUser().getId(), entity.getEntityId());
                 break;
             case Entities.GENRE:
-                userService.updateUserGenres(Secure.getLoggedUser().getId(), entity.getEntityId());
+                userDatabaseService.updateUserGenres(Secure.getLoggedUser().getId(), entity.getEntityId());
                 break;
             case Entities.TRACK:
-                userService.updateUserTracks(Secure.getLoggedUser().getId(), entity.getEntityId());
+                userDatabaseService.updateUserTracks(Secure.getLoggedUser().getId(), entity.getEntityId());
                 break;
             default:
                 break;
@@ -108,7 +109,7 @@ public class UserRestController {
 
     @RequestMapping(value = CHECK_OPERATION + "/login", method = RequestMethod.POST)
     public ResponseEntity<Object> checkLogin(@RequestBody @Valid String login) {
-        boolean exists = userService.checkLogin(login);
+        boolean exists = userDatabaseService.checkLogin(login);
         return new ResponseEntity<Object>(exists, HttpStatus.OK);
     }
 

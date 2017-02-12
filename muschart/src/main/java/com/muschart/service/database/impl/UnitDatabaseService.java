@@ -1,4 +1,4 @@
-package com.muschart.service.impl;
+package com.muschart.service.database.impl;
 
 import java.util.List;
 
@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.UnitEntity;
 import com.muschart.jpa.repository.UnitRepository;
-import com.muschart.service.dao.UnitServiceDAO;
+import com.muschart.service.database.dao.UnitDatabaseServiceDAO;
 import com.muschart.utility.Parser;
 
-@Service("unitService")
-public class UnitService implements UnitServiceDAO {
+@Service("unitDatabaseService")
+public class UnitDatabaseService implements UnitDatabaseServiceDAO {
 
     @Autowired
     private UnitRepository unitRepository;

@@ -1,7 +1,7 @@
-package com.muschart.solr.service.impl;
+package com.muschart.service.solr.impl;
 
-import static com.muschart.constants.SolrConstants.Core.TRACKS_CORE_URI;
-import static com.muschart.constants.SolrConstants.Fields.TracksFields.*;
+import static com.muschart.constants.SolrConstants.Core.GENRES_CORE_URI;
+import static com.muschart.constants.SolrConstants.Fields.GenresFields.*;
 
 import java.io.IOException;
 
@@ -12,14 +12,14 @@ import org.apache.solr.common.SolrInputDocument;
 import org.springframework.stereotype.Service;
 
 import com.muschart.exception.UploadException;
-import com.muschart.solr.service.dao.TrackSolrServiceDAO;
+import com.muschart.service.solr.dao.GenreSolrServiceDAO;
 
-@Service("trackSolrService")
-public class TrackSolrServiceImpl implements TrackSolrServiceDAO {
+@Service("genreSolrService")
+public class GenreSolrServiceImpl implements GenreSolrServiceDAO {
 
     @Override
-    public void createTrack(long id, String name) throws UploadException {
-        try (SolrClient solrClient = new HttpSolrClient(TRACKS_CORE_URI)) {
+    public void createGenre(long id, String name) throws UploadException {
+        try (SolrClient solrClient = new HttpSolrClient(GENRES_CORE_URI)) {
             SolrInputDocument inputDocument = new SolrInputDocument();
 
             inputDocument.setField(ID, id);

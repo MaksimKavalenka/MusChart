@@ -1,4 +1,4 @@
-package com.muschart.service.impl;
+package com.muschart.service.database.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -10,15 +10,16 @@ import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.TrackEntity;
 import com.muschart.jpa.repository.TrackArtistRepository;
 import com.muschart.jpa.repository.TrackRepository;
-import com.muschart.service.dao.TrackServiceDAO;
+import com.muschart.service.database.dao.TrackDatabaseServiceDAO;
 import com.muschart.utility.JpaHelper;
 import com.muschart.utility.Parser;
 
-@Service("trackService")
-public class TrackService implements TrackServiceDAO {
+@Service("trackDatabaseService")
+public class TrackDatabaseService implements TrackDatabaseServiceDAO {
 
     @Autowired
     private TrackRepository       trackRepository;
+
     @Autowired
     private TrackArtistRepository trackArtistRepository;
 

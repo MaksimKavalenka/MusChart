@@ -1,4 +1,4 @@
-package com.muschart.service.impl;
+package com.muschart.service.database.impl;
 
 import static com.muschart.constants.MessageConstants.TAKEN_LOGIN_MESSAGE;
 
@@ -14,24 +14,27 @@ import com.muschart.jpa.repository.ArtistRepository;
 import com.muschart.jpa.repository.GenreRepository;
 import com.muschart.jpa.repository.TrackRepository;
 import com.muschart.jpa.repository.UserRepository;
-import com.muschart.service.dao.UserServiceDAO;
+import com.muschart.service.database.dao.UserDatabaseServiceDAO;
 
-@Service("userService")
-public class UserService implements UserServiceDAO {
+@Service("userDatabaseService")
+public class UserDatabaseService implements UserDatabaseServiceDAO {
 
     @Autowired
     private UserRepository   userRepository;
+
     @Autowired
     private ArtistRepository artistRepository;
+
     @Autowired
     private GenreRepository  genreRepository;
+
     @Autowired
     private TrackRepository  trackRepository;
 
     @Override
     public UserEntity createUser(String login, String password, List<GrantedAuthority> roles) throws ValidationException {
         UserEntity user = new UserEntity(login, password, roles);
-        synchronized (UserService.class) {
+        synchronized (UserDatabaseService.class) {
             if (!checkLogin(login)) {
                 return userRepository.save(user);
             } else {

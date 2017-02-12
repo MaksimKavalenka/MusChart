@@ -1,8 +1,8 @@
-package com.muschart.service.dao;
+package com.muschart.service.database.dao;
 
 import com.muschart.entity.RoleEntity;
 
-public interface RoleServiceDAO {
+public interface RoleDatabaseServiceDAO {
 
     RoleEntity createRole(String name);
 
