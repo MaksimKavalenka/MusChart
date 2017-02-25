@@ -4,9 +4,9 @@
 		<li><a ui-sref="artists" translate="ARTISTS"></a>
 		<li><a ui-sref="genres" translate="GENRES"></a>
 	</ul>
-	<form class="form-search" ng-controller="SearchController as searchCtrl" ng-keyup="search($event.keyCode)" ng-blur="show(false)">
-		<input type="text" class="input-search" ng-model="query" ng-click="show(true)" placeholder="{{'TRACKS' | translate}}, {{'ARTISTS' | translate}}, {{'GENRES' | translate}}">
-		<div id="suggestions" class="suggestions">
+	<form class="form-search" ng-controller="SearchController as searchCtrl" ng-keyup="search($event.keyCode)">
+		<input type="text" class="input-search" ng-model="query" ng-click="show(true)" ng-blur="show(false)" placeholder="{{'TRACKS' | translate}}, {{'ARTISTS' | translate}}, {{'GENRES' | translate}}">
+		<div id="suggestions" class="suggestions" ng-mouseover="holdSuggestions(true)" ng-mouseleave="holdSuggestions(false)">
 			<div class="suggestion" ng-repeat="suggestion in suggestions" ui-sref="{{suggestion.url}}">
 				<div>{{suggestion.name}}</div>
 				<div class="suggestion-info">{{suggestion.entity}}</div>

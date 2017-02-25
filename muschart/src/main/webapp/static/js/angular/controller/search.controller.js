@@ -12,6 +12,9 @@ app.controller('SearchController', function($scope, SearchFactory, FlashService)
 	};
 
 	$scope.show = function(show) {
+		if (!show && $scope.hold) {
+			return;
+		}
 		if (show) {
 			if ($scope.suggestions !== undefined) {
 				var divsToShow = document.getElementsByClassName('suggestion');
@@ -27,6 +30,10 @@ app.controller('SearchController', function($scope, SearchFactory, FlashService)
 				divsToHide[i].style.display = 'none';
 			}
 		}
+	};
+
+	$scope.holdSuggestions = function(hold) {
+		$scope.hold = hold;
 	};
 
 	function getSuggestions(query) {
