@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_log_in"
+                android:title="Log in"/>
+            <item
+                android:id="@+id/nav_log_out"
+                android:title="Log out"/>
+            <item
+                android:id="@+id/nav_register"
+                android:title="Register"/>
+        </menu>
+    </item>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_tracks"
+                android:title="Tracks"/>
+            <item
+                android:id="@+id/nav_artists"
+                android:title="Artists"/>
+            <item
+                android:id="@+id/nav_genres"
+                android:title="Genres"/>
+        </menu>
+    </item>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_my_tracks"
+                android:title="My tracks"/>
+            <item
+                android:id="@+id/nav_my_artists"
+                android:title="My artists"/>
+            <item
+                android:id="@+id/nav_my_genres"
+                android:title="My genres"/>
+        </menu>
+    </item>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Settings"/>
+        </menu>
+    </item>
+
+</menu>
