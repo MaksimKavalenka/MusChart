@@ -18,7 +18,7 @@ app.constant('DEFAULT', (function() {
 			language: 'en',
 			design: '1',
 			sort: {artists: '1', genres: '0', tracks: '1'},
-			order: {artists: false, genres: true, tracks: false}
+			order: {artists: 'false', genres: 'true', tracks: 'false'}
 		}
 	}
 

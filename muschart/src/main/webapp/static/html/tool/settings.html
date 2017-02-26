@@ -17,41 +17,50 @@
 		<ul>
 			<li>
 				<div class="name" translate="TRACKS"></div>
+			</li>
 			<li>
 				<select ng-model="settings.sort.tracks" required>
 					<option ng-repeat="sort in sorts.tracks" value="{{sort.value}}">{{sort.name}}</option>
 				</select>
+			</li>
 			<li>
-				<div class="checkbox">
-					<input type="checkbox" id="tracks_sort_type" ng-model="settings.order.tracks">
-					<label for="tracks_sort_type"></label>
-				</div>
+				<select ng-model="settings.order.tracks" required>
+					<option value="true" translate="ASC"></option>
+					<option value="false" translate="DESC"></option>
+				</select>
+			</li>
 		</ul>
 		<ul>
 			<li>
 				<div class="name" translate="ARTISTS"></div>
+			</li>
 			<li>
 				<select ng-model="settings.sort.artists" required>
 					<option ng-repeat="sort in sorts.artists" value="{{sort.value}}">{{sort.name}}</option>
 				</select>
+			</li>
 			<li>
-				<div class="checkbox">
-					<input type="checkbox" id="artists_sort_type" ng-model="settings.order.artists">
-					<label for="artists_sort_type"></label>
-				</div>
+				<select ng-model="settings.order.artists" required>
+					<option value="true" translate="ASC"></option>
+					<option value="false" translate="DESC"></option>
+				</select>
+			</li>
 		</ul>
 		<ul>
 			<li>
 				<div class="name" translate="GENRES"></div>
+			</li>
 			<li>
 				<select ng-model="settings.sort.genres" required>
 					<option ng-repeat="sort in sorts.genres" value="{{sort.value}}">{{sort.name}}</option>
 				</select>
+			</li>
 			<li>
-				<div class="checkbox">
-					<input type="checkbox" id="genres_sort_type" ng-model="settings.order.genres">
-					<label for="genres_sort_type"></label>
-				</div>
+				<select ng-model="settings.order.genres" required>
+					<option value="true" translate="ASC"></option>
+					<option value="false" translate="DESC"></option>
+				</select>
+			</li>
 		</ul>
 	</div>
 	<button class="btn btn-primary" ng-click="saveSettings()" translate="SAVE"></button>

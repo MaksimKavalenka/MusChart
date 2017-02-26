@@ -43,8 +43,8 @@ app.config(function($translateProvider) {
 		RATING: 'Audimat',
 		RELEASE_DATE: 'Date de sortie',
 
-		ASC: 'Asc',
-		DESC: 'Desc',
+		ASC: 'En montant',
+		DESC: 'En descendant',
 
 		CONFIRM_PASSWORD: 'Confirmer le mot de passe',
 		COVER: 'Couverture',
