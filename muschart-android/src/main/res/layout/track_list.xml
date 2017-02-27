@@ -1,0 +1,63 @@
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="100"
+    android:background="#FFFFFF"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="12"
+        android:background="#61A7DE"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:gravity="center"/>
+
+    <ImageView
+        android:id="@+id/cover"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_weight="17"
+        android:layout_margin="3dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="57"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginRight="3dp"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:id="@+id/artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:textColor="#D51007"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+
+    <ImageButton
+        style="@style/button_play"
+        android:id="@+id/play"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_weight="14"
+        android:layout_margin="7dp"
+        android:src="@drawable/play"
+        android:scaleType="fitXY"/>
+
+</LinearLayout>

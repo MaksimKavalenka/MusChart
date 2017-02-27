@@ -13,12 +13,14 @@ import com.muschart.rest.TrackServiceRestClient;
 public class TracksActivity extends Fragment {
 
     private ListView trackList;
+    private TrackServiceRestClient trackServiceRestClient;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.content_tracks, container, false);
         trackList = (ListView) view.findViewById(R.id.trackList);
-        TrackServiceRestClient.getTracks(1, false, 1, view.getContext(), trackList);
+        trackServiceRestClient = new TrackServiceRestClient(view.getContext().getApplicationContext(), trackList);
+        trackServiceRestClient.getTracks(1, false, 1);
         return view;
     }
 

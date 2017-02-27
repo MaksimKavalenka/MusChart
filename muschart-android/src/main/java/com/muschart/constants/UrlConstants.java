@@ -1,0 +1,26 @@
+package com.muschart.constants;
+
+public abstract class UrlConstants {
+
+    private static final String BASE_URL = "http://localhost:8081";
+
+    public abstract class MetadataUrlConstants {
+
+        private static final String IMAGE_METADATA = "/image";
+
+        public static final String AUDIO_METADATA = BASE_URL + "/audio";
+        public static final String ARTIST_IMAGE_METADATA = BASE_URL + IMAGE_METADATA + "/artist";
+        public static final String TRACK_IMAGE_METADATA = BASE_URL + IMAGE_METADATA + "/track";
+
+    }
+
+    public abstract class ServiceUrlConstants {
+
+        private static final String SERVICE_URL = "/service";
+
+        public static final String TRACK_SERVICE = BASE_URL + SERVICE_URL + "/tracks";
+        public static final String USER_SERVICE = BASE_URL + SERVICE_URL + "/users";
+
+    }
+
+}
