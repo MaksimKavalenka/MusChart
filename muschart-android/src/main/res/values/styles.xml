@@ -33,4 +33,8 @@
         <item name="android:background">@drawable/button_stop</item>
     </style>
 
+    <style name="media_screen">
+        <item name="android:background">@drawable/media_screen</item>
+    </style>
+
 </resources>

@@ -40,6 +40,7 @@ public class TrackServiceRestClient {
                         TrackEntity track = new TrackEntity();
                         track.setId(jsonTrack.getLong("id"));
                         track.setName(jsonTrack.getString("name"));
+                        track.setSong(jsonTrack.getString("song"));
                         track.setCover(jsonTrack.getString("cover"));
                         track.setVideo(jsonTrack.getString("video"));
                         track.setRating(jsonTrack.getLong("rating"));

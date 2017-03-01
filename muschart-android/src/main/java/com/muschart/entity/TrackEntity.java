@@ -1,7 +1,5 @@
 package com.muschart.entity;
 
-import com.muschart.constants.UrlConstants;
-
 import java.util.ArrayList;
 import java.util.List;
 

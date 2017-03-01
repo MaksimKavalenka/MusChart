@@ -19,7 +19,7 @@ public class TracksActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.content_tracks, container, false);
         trackList = (ListView) view.findViewById(R.id.trackList);
-        trackServiceRestClient = new TrackServiceRestClient(view.getContext().getApplicationContext(), trackList);
+        trackServiceRestClient = new TrackServiceRestClient(view.getContext(), trackList);
         trackServiceRestClient.getTracks(1, false, 1);
         return view;
     }

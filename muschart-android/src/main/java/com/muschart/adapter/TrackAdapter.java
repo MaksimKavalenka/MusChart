@@ -1,6 +1,7 @@
 package com.muschart.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,19 +10,21 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.common.net.UrlEscapers;
 import com.muschart.R;
+import com.muschart.activity.MediaActivity;
 import com.muschart.constants.UrlConstants;
 import com.muschart.entity.TrackEntity;
+import com.muschart.utility.Connection;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class TrackAdapter extends BaseAdapter {
+public class TrackAdapter extends BaseAdapter implements View.OnClickListener {
 
     private List<TrackEntity> tracks;
     private Context context;
     private LayoutInflater lInflater;
-    private View.OnClickListener click;
 
     public TrackAdapter(Context context, List<TrackEntity> tracks) {
         this.tracks = tracks;
@@ -76,6 +79,8 @@ public class TrackAdapter extends BaseAdapter {
 
         viewHolder.id.setText(String.valueOf(track.getId()));
         viewHolder.name.setText(track.getName());
+        viewHolder.play.setOnClickListener(this);
+        Picasso.with(context).load(UrlEscapers.urlFragmentEscaper().escape(UrlConstants.MetadataUrlConstants.TRACK_IMAGE_METADATA + "/" + track.getCover())).into(viewHolder.cover);
 
         StringBuilder artist = new StringBuilder();
         for (int i = 0; i < track.getArtists().size(); i++) {
@@ -86,27 +91,26 @@ public class TrackAdapter extends BaseAdapter {
         }
         viewHolder.artist.setText(artist);
 
-        Picasso.with(context).load(UrlConstants.MetadataUrlConstants.TRACK_IMAGE_METADATA + "/" + track.getCover()).into(viewHolder.cover);
-
-        createClick();
-
-        viewHolder.play.setOnClickListener(click);
         return view;
     }
 
-    private void createClick() {
-        this.click = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.play:
-
-                        break;
-                    default:
-                        break;
-                }
-            }
-        };
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.play:
+                if (Connection.checkInternetConnection(context)) {
+                    Intent intent = new Intent(context, MediaActivity.class);
+                    intent.putExtra("artist", "");
+                    intent.putExtra("name", tracks.get((Integer) view.getTag()).getName());
+                    intent.putExtra("cover", UrlEscapers.urlFragmentEscaper().escape(UrlConstants.MetadataUrlConstants.TRACK_IMAGE_METADATA + "/" + tracks.get((Integer) view.getTag()).getCover()));
+                    intent.putExtra("song", UrlEscapers.urlFragmentEscaper().escape(UrlConstants.MetadataUrlConstants.AUDIO_METADATA + "/" + tracks.get((Integer) view.getTag()).getSong()));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }//end if
+                break;
+            default:
+                break;
+        }
     }
 
 }
