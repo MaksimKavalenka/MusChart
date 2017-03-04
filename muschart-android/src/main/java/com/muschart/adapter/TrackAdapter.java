@@ -16,19 +16,20 @@ import com.muschart.activity.MediaActivity;
 import com.muschart.constants.UrlConstants;
 import com.muschart.entity.TrackEntity;
 import com.muschart.utility.Connection;
+import com.muschart.utility.Parser;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class TrackAdapter extends BaseAdapter implements View.OnClickListener {
 
-    private List<TrackEntity> tracks;
     private Context context;
+    private List<TrackEntity> tracks;
     private LayoutInflater lInflater;
 
     public TrackAdapter(Context context, List<TrackEntity> tracks) {
-        this.tracks = tracks;
         this.context = context;
+        this.tracks = tracks;
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -79,17 +80,9 @@ public class TrackAdapter extends BaseAdapter implements View.OnClickListener {
 
         viewHolder.id.setText(String.valueOf(track.getId()));
         viewHolder.name.setText(track.getName());
+        viewHolder.artist.setText(Parser.getFullArtistName(track));
         viewHolder.play.setOnClickListener(this);
         Picasso.with(context).load(UrlEscapers.urlFragmentEscaper().escape(UrlConstants.MetadataUrlConstants.TRACK_IMAGE_METADATA + "/" + track.getCover())).into(viewHolder.cover);
-
-        StringBuilder artist = new StringBuilder();
-        for (int i = 0; i < track.getArtists().size(); i++) {
-            if (i > 0) {
-                artist.append(track.getUnits().get(i - 1));
-            }
-            artist.append(track.getArtists().get(i).getName());
-        }
-        viewHolder.artist.setText(artist);
 
         return view;
     }
@@ -100,7 +93,7 @@ public class TrackAdapter extends BaseAdapter implements View.OnClickListener {
             case R.id.play:
                 if (Connection.checkInternetConnection(context)) {
                     Intent intent = new Intent(context, MediaActivity.class);
-                    intent.putExtra("artist", "");
+                    intent.putExtra("artist", Parser.getFullArtistName(tracks.get((Integer) view.getTag())));
                     intent.putExtra("name", tracks.get((Integer) view.getTag()).getName());
                     intent.putExtra("cover", UrlEscapers.urlFragmentEscaper().escape(UrlConstants.MetadataUrlConstants.TRACK_IMAGE_METADATA + "/" + tracks.get((Integer) view.getTag()).getCover()));
                     intent.putExtra("song", UrlEscapers.urlFragmentEscaper().escape(UrlConstants.MetadataUrlConstants.AUDIO_METADATA + "/" + tracks.get((Integer) view.getTag()).getSong()));

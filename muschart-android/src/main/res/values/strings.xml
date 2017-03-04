@@ -6,44 +6,26 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Настройки</string>
-    <string name="action_search">Поиск</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
 
-    <string name="vk_log">E-mail</string>
-    <string name="vk_pass">Пароль</string>
-    <string name="vk_cont">Продолжить</string>
-    <string name="vk_can">Отмена</string>
-    <string name="vk_dis">Разъединить</string>
+    <string name="message_wait">Please, wait</string>
+    <string name="message_connect">Check your connection and try again</string>
+    <string name="message_again">Try again</string>
 
-    <string name="message_wait">Пожалуйста, подождите</string>
-    <string name="message_update">Извините, в данный момент информация отсутствует или обновляется</string>
-    <string name="message_connect">Проверьте подключение и повторите попытку</string>
-    <string name="message_again">Повторить</string>
-    <string name="message_null">Все поля должны быть заполнены</string>
-    <string name="message_search">Выберите тип поиска</string>
-    <string name="message_search_null">Поле поиска пустое</string>
-    <string name="message_enter">Поле ввода</string>
-    <string name="message_track_none">К сожалению, песня не найдена</string>
+    <string name="authTrue">Authorization\'s completed</string>
+    <string name="authFalse">Authorization has not completed</string>
 
-    <string name="authTrue">Авторизация выполнена</string>
-    <string name="authFalse">Авторизация не выполнена</string>
-    <string name="message_auth">Авторизация ВКонтакте необходима для возможности прослушивания и скачивания музыки с сервиса last.fm. Вы можете отказаться от авторизации, нажав \"Отмена\". При этом возможность прослушивания и скачивания музыки будет недоступна.</string>
+    <string name="log_in">Log in</string>
+    <string name="log_out">Log out</string>
+    <string name="register">Register</string>
 
-    <string-array name="options">
-        <item>Лучшие композиции</item>
-        <item>Лучшие исполнители</item>
-        <item>Популярные жанры</item>
-        <item>Авторизация</item>
-        <item>Выход</item>
-    </string-array>
+    <string name="artists">Artists</string>
+    <string name="genres">Genres</string>
+    <string name="tracks">Tracks</string>
 
-    <string-array name="search">
-        <item>Поиск композиции</item>
-        <item>Поиск исполнителя</item>
-        <item>Поиск жанра</item>
-    </string-array>
-    <string name="search_artist">Исполнители</string>
-    <string name="search_music">Песни</string>
-    <string name="search_tag">Жанры</string>
+    <string name="my_artists">My artists</string>
+    <string name="my_genres">My genres</string>
+    <string name="my_tracks">My tracks</string>
 
 </resources>

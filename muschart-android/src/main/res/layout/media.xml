@@ -18,7 +18,7 @@
             android:layout_height="0dp"
             android:layout_weight="3"/>
 
-        <com.muschart.utility.ScrollingTextView
+        <com.muschart.component.ScrollingTextView
             android:id="@+id/artist"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -32,7 +32,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
 
-        <com.muschart.utility.ScrollingTextView
+        <com.muschart.component.ScrollingTextView
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -57,7 +57,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="81"
+        android:layout_weight="89"
         android:orientation="vertical"
         android:background="#4E4E4E"
         android:weightSum="81">
@@ -127,7 +127,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="14"
+            android:layout_weight="10"
+            android:layout_marginTop="3dp"
             android:orientation="horizontal"
             android:weightSum="3">
 
@@ -137,10 +138,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
                 android:src="@drawable/resume"
                 android:scaleType="fitCenter"/>
 
@@ -150,7 +147,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="3dp"
                 android:src="@drawable/pause"
                 android:scaleType="fitCenter"/>
 
@@ -160,19 +156,10 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginRight="6dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
                 android:src="@drawable/stop"
                 android:scaleType="fitCenter"/>
 
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"/>
 
     </LinearLayout>
 

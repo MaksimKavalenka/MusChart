@@ -18,6 +18,8 @@ public abstract class UrlConstants {
 
         private static final String SERVICE_URL = "/service";
 
+        public static final String ARTIST_SERVICE = BASE_URL + SERVICE_URL + "/artists";
+        public static final String GENRE_SERVICE = BASE_URL + SERVICE_URL + "/genres";
         public static final String TRACK_SERVICE = BASE_URL + SERVICE_URL + "/tracks";
         public static final String USER_SERVICE = BASE_URL + SERVICE_URL + "/users";
 

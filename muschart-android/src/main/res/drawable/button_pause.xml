@@ -2,18 +2,16 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape>
-            <gradient android:type="linear" android:endColor="#00E8E8" android:startColor="#00E8E8" android:angle="90" />
-            <stroke android:width="2dp" android:color="#0094D2" />
-            <corners android:radius="10dp" />
-            <padding android:left="15dp" android:right="15dp" android:top="15dp" android:bottom="15dp" />
+            <gradient android:type="linear" android:endColor="#00E8E8" android:startColor="#00E8E8" android:angle="90"/>
+            <stroke android:width="2dp" android:color="#0094D2"/>
+            <padding android:left="15dp" android:right="15dp" android:top="15dp" android:bottom="15dp"/>
         </shape>
     </item>
     <item>
         <shape>
-            <gradient android:type="linear" android:endColor="#0073A4" android:startColor="#1CBBFF" android:angle="90" />
-            <stroke android:width="2dp" android:color="#0094D2" />
-            <corners android:radius="10dp" />
-            <padding android:left="15dp" android:right="15dp" android:top="15dp" android:bottom="15dp" />
+            <gradient android:type="linear" android:endColor="#0073A4" android:startColor="#1CBBFF" android:angle="90"/>
+            <stroke android:width="2dp" android:color="#0094D2"/>
+            <padding android:left="15dp" android:right="15dp" android:top="15dp" android:bottom="15dp"/>
         </shape>
     </item>
 </selector>

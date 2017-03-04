@@ -1,4 +1,4 @@
-package com.muschart.utility;
+package com.muschart.component;
 
 import android.content.Context;
 import android.graphics.Rect;

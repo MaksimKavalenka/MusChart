@@ -78,26 +78,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (viewId) {
             case R.id.nav_log_in:
+                title = getString(R.string.log_in);
                 fragment = new LoginActivity();
                 break;
             case R.id.nav_log_out:
+                title = getString(R.string.log_out);
                 break;
             case R.id.nav_register:
+                title = getString(R.string.register);
                 break;
             case R.id.nav_tracks:
-                fragment = new TracksActivity();
+                title = getString(R.string.tracks);
+                fragment = new TrackActivity();
                 break;
             case R.id.nav_artists:
+                title = getString(R.string.artists);
+                fragment = new ArtistActivity();
                 break;
             case R.id.nav_genres:
+                title = getString(R.string.genres);
+                fragment = new GenreActivity();
                 break;
             case R.id.nav_my_tracks:
+                title = getString(R.string.my_tracks);
                 break;
             case R.id.nav_my_artists:
+                title = getString(R.string.my_artists);
                 break;
             case R.id.nav_my_genres:
+                title = getString(R.string.my_genres);
                 break;
             case R.id.nav_settings:
+                title = getString(R.string.action_settings);
                 break;
         }
 

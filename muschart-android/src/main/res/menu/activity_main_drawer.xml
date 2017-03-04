@@ -5,13 +5,13 @@
         <menu>
             <item
                 android:id="@+id/nav_log_in"
-                android:title="Log in"/>
+                android:title="@string/log_in"/>
             <item
                 android:id="@+id/nav_log_out"
-                android:title="Log out"/>
+                android:title="@string/log_out"/>
             <item
                 android:id="@+id/nav_register"
-                android:title="Register"/>
+                android:title="@string/register"/>
         </menu>
     </item>
 
@@ -19,13 +19,13 @@
         <menu>
             <item
                 android:id="@+id/nav_tracks"
-                android:title="Tracks"/>
+                android:title="@string/tracks"/>
             <item
                 android:id="@+id/nav_artists"
-                android:title="Artists"/>
+                android:title="@string/artists"/>
             <item
                 android:id="@+id/nav_genres"
-                android:title="Genres"/>
+                android:title="@string/genres"/>
         </menu>
     </item>
 
@@ -33,13 +33,13 @@
         <menu>
             <item
                 android:id="@+id/nav_my_tracks"
-                android:title="My tracks"/>
+                android:title="@string/my_tracks"/>
             <item
                 android:id="@+id/nav_my_artists"
-                android:title="My artists"/>
+                android:title="@string/my_artists"/>
             <item
                 android:id="@+id/nav_my_genres"
-                android:title="My genres"/>
+                android:title="@string/my_genres"/>
         </menu>
     </item>
 
@@ -48,7 +48,7 @@
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="Settings"/>
+                android:title="@string/action_settings"/>
         </menu>
     </item>
 
