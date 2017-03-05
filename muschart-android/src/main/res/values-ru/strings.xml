@@ -13,9 +13,6 @@
     <string name="message_connect">Проверьте подключение и повторите попытку</string>
     <string name="message_again">Повторить</string>
 
-    <string name="authTrue">Авторизация выполнена</string>
-    <string name="authFalse">Авторизация не выполнена</string>
-
     <string name="log_in">Войти</string>
     <string name="log_out">Выйти</string>
     <string name="register">Регистрация</string>
@@ -27,5 +24,8 @@
     <string name="my_artists">Мои исполнители</string>
     <string name="my_genres">Мои жанры</string>
     <string name="my_tracks">Мои песни</string>
+    <string name="developer">Maksim Kavalenka</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
 
 </resources>

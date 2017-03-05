@@ -71,14 +71,14 @@ public class TrackAdapter extends BaseAdapter implements View.OnClickListener {
         } else
             viewHolder = (ViewHolder) view.getTag();
 
-        TrackEntity track = tracks.get(position);
         viewHolder.id.setTag(position);
         viewHolder.artist.setTag(position);
         viewHolder.name.setTag(position);
         viewHolder.cover.setTag(position);
         viewHolder.play.setTag(position);
 
-        viewHolder.id.setText(String.valueOf(track.getId()));
+        TrackEntity track = tracks.get(position);
+        viewHolder.id.setText(String.valueOf(position + 1));
         viewHolder.name.setText(track.getName());
         viewHolder.artist.setText(Parser.getFullArtistName(track));
         viewHolder.play.setOnClickListener(this);
@@ -99,7 +99,7 @@ public class TrackAdapter extends BaseAdapter implements View.OnClickListener {
                     intent.putExtra("song", UrlEscapers.urlFragmentEscaper().escape(UrlConstants.MetadataUrlConstants.AUDIO_METADATA + "/" + tracks.get((Integer) view.getTag()).getSong()));
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
-                }//end if
+                }
                 break;
             default:
                 break;

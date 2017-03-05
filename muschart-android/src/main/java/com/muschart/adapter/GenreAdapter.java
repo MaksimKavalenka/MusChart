@@ -55,11 +55,11 @@ public class GenreAdapter extends BaseAdapter {
         } else
             viewHolder = (GenreAdapter.ViewHolder) view.getTag();
 
-        GenreEntity genre = genres.get(position);
         viewHolder.id.setTag(position);
         viewHolder.name.setTag(position);
 
-        viewHolder.id.setText(String.valueOf(genre.getId()));
+        GenreEntity genre = genres.get(position);
+        viewHolder.id.setText(String.valueOf(position + 1));
         viewHolder.name.setText(genre.getName());
 
         return view;

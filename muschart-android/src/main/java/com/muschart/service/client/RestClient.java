@@ -1,4 +1,4 @@
-package com.muschart.rest;
+package com.muschart.service.client;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;

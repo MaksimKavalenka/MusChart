@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">MusChart</string>
+    <string name="developer">Maksim Kavalenka</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -13,8 +14,8 @@
     <string name="message_connect">Check your connection and try again</string>
     <string name="message_again">Try again</string>
 
-    <string name="authTrue">Authorization\'s completed</string>
-    <string name="authFalse">Authorization has not completed</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
 
     <string name="log_in">Log in</string>
     <string name="log_out">Log out</string>

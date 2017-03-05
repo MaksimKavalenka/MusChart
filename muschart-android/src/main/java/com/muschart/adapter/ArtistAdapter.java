@@ -63,12 +63,12 @@ public class ArtistAdapter extends BaseAdapter {
         } else
             viewHolder = (ArtistAdapter.ViewHolder) view.getTag();
 
-        ArtistEntity artist = artists.get(position);
         viewHolder.id.setTag(position);
         viewHolder.name.setTag(position);
         viewHolder.photo.setTag(position);
 
-        viewHolder.id.setText(String.valueOf(artist.getId()));
+        ArtistEntity artist = artists.get(position);
+        viewHolder.id.setText(String.valueOf(position + 1));
         viewHolder.name.setText(artist.getName());
         Picasso.with(context).load(UrlEscapers.urlFragmentEscaper().escape(UrlConstants.MetadataUrlConstants.ARTIST_IMAGE_METADATA + "/" + artist.getPhoto())).into(viewHolder.photo);
 

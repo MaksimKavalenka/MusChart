@@ -12,16 +12,16 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <EditText
-        android:id="@+id/login_login"
-        android:hint="Login"
+        android:id="@+id/text_login"
+        android:hint="@string/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"/>
 
     <EditText
-        android:id="@+id/login_password"
-        android:hint="Password"
+        android:id="@+id/text_password"
+        android:hint="@string/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
@@ -29,7 +29,7 @@
 
     <Button
         android:id="@+id/login"
-        android:text="Log in"
+        android:text="@string/log_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

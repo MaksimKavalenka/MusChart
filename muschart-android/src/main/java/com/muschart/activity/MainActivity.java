@@ -13,8 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.muschart.R;
+import com.muschart.listener.UserListener;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, UserListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    @Override
+    public void onLogin() {
+        displayView(R.id.nav_tracks);
+    };
+
     public void displayView(int viewId) {
         Fragment fragment = null;
         String title = getString(R.string.app_name);
@@ -79,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (viewId) {
             case R.id.nav_log_in:
                 title = getString(R.string.log_in);
-                fragment = new LoginActivity();
+                fragment = new LoginActivity(this);
                 break;
             case R.id.nav_log_out:
                 title = getString(R.string.log_out);
