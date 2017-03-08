@@ -11,6 +11,8 @@ app.controller('TrackController', function($scope, $state, $window, DEFAULT, STA
 	$scope.genresChoice = [];
 	$scope.unitsChoice = [];
 
+	var renew = false;
+
 	$scope.createTrack = function() {
 		$scope.dataLoading = true;
 		FileService.uploadFile($scope.songFile, TYPE.SONG, function(response) {
@@ -83,8 +85,12 @@ app.controller('TrackController', function($scope, $state, $window, DEFAULT, STA
 		return TEMPLATE.TRACKS[CookieService.getSettings().design];
 	};
 
-	$scope.playSong = function(track) {
-		Amplitude.playNow(AmplitudeService.parseSong(track));
+	$scope.playSong = function(trackId) {
+		if (renew) {
+			renew = false;
+			Amplitude.setSongs(AmplitudeService.parseSongs($scope.tracks));
+		}
+		Amplitude.playNowById(trackId);
 	};
 
 	$scope.openVideo = function(videoId) {
@@ -162,7 +168,8 @@ app.controller('TrackController', function($scope, $state, $window, DEFAULT, STA
 		TrackFactory.getTracks(sort, order, page, function(response) {
 			if (response.success) {
 				$scope.tracks = response.data;
-				Amplitude.init(AmplitudeService.parseSongs($scope.tracks));
+				Amplitude.init({songs: AmplitudeService.parseSongs($scope.tracks)});
+				renew = true;
 			} else {
 				FlashService.error(response.message);
 			}
@@ -173,7 +180,8 @@ app.controller('TrackController', function($scope, $state, $window, DEFAULT, STA
 		TrackFactory.getEntityTracks(entity, entityId, sort, order, page, function(response) {
 			if (response.success) {
 				$scope.tracks = response.data;
-				Amplitude.init(AmplitudeService.parseSongs($scope.tracks));
+				Amplitude.init({songs: AmplitudeService.parseSongs($scope.tracks)});
+				renew = true;
 			} else {
 				FlashService.error(response.message);
 			}
@@ -184,6 +192,8 @@ app.controller('TrackController', function($scope, $state, $window, DEFAULT, STA
 		TrackFactory.getUserTracks(sort, order, page, function(response) {
 			if (response.success) {
 				$scope.tracks = response.data;
+				Amplitude.init({songs: AmplitudeService.parseSongs($scope.tracks)});
+				renew = true;
 			} else {
 				FlashService.error(response.message);
 			}

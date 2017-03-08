@@ -1,4 +1,4 @@
-package com.muschart.activity;
+package com.muschart.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -11,18 +11,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.muschart.R;
-import com.muschart.listener.UserListener;
+import com.muschart.listener.EventListener;
 import com.muschart.service.client.dao.UserServiceDAO;
 import com.muschart.service.client.impl.UserServiceImpl;
 
 @SuppressLint("ValidFragment")
-public class LoginActivity extends Fragment {
+public class LoginFragment extends Fragment {
 
-    private UserListener userListener;
+    private EventListener eventListener;
     private UserServiceDAO userService;
 
-    public LoginActivity(UserListener userListener) {
-        this.userListener = userListener;
+    public LoginFragment(EventListener eventListener) {
+        this.eventListener = eventListener;
     }
 
     @Override
@@ -32,12 +32,13 @@ public class LoginActivity extends Fragment {
         TextView userLogin = (TextView) getActivity().findViewById(R.id.user_login);
         TextView userEmail = (TextView) getActivity().findViewById(R.id.user_email);
 
-        userService = new UserServiceImpl(getActivity(), userListener, userLogin, userEmail);
+        userService = new UserServiceImpl(getActivity(), eventListener, userLogin, userEmail);
 
         EditText loginField = (EditText) view.findViewById(R.id.text_login);
         EditText passwordField = (EditText) view.findViewById(R.id.text_password);
         Button login = (Button) view.findViewById(R.id.login);
 
+        eventListener.onLoginFragmentAvailable();
         login.setOnClickListener(viewListener -> userService.authentication(loginField.getText().toString(), passwordField.getText().toString()));
 
         return view;

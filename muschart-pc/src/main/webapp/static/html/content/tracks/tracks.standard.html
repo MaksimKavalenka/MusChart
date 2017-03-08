@@ -10,7 +10,7 @@
 		<div class="body">
 			<img ng-src="/image/track/{{track.cover}}">
 			<div class="links">
-				<div class="link link-action action-play" ng-click="playSong(track)"></div>
+				<div class="link link-action action-play" ng-click="playSong(track.id)"></div>
 				<div class="link link-action link-empty" ng-if="!track.video"></div>
 				<div class="link link-action action-youtube" ng-click="openVideo(track.video)" ng-if="track.video"></div>
 				<div class="link link-action link-empty"></div>

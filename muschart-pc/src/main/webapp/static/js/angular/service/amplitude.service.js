@@ -37,7 +37,7 @@ app.service('AmplitudeService', function(UPLOAD) {
 				url: UPLOAD.AUDIO + '/' + tracks[i].song
 			});
 		};
-		return {songs: songs};
+		return songs;
 	}
 
 	return {

@@ -496,6 +496,10 @@ var Amplitude = (function () {
 		return config.songs[index];
 	}
 
+	function publicSetSongs(songs) {
+		config.songs = songs;
+	}
+
 	/*--------------------------------------------------------------------------
 		Adds a song to the end of the config array.  This will allow Amplitude
 		to play the song in a playlist type setting.
@@ -545,6 +549,18 @@ var Amplitude = (function () {
 		*/
 		privateAfterSongChanges();
 
+	}
+
+	function publicPlayNowById(id) {
+		var index;
+		var song = _.find(config.songs, function(song, ind) {
+			index = ind;
+			return song.id === id;
+		});
+		if (!angular.isUndefined(song)) {
+			config.active_index = index;
+			publicPlayNow(song);
+		}
 	}
 
 	/*--------------------------------------------------------------------------
@@ -3134,7 +3150,9 @@ var Amplitude = (function () {
 		setDebug: publicSetDebug,
 		getActiveSongMetadata: publicGetActiveSongMetadata,
 		getSongByIndex: publicGetSongByIndex,
+		setSongs: publicSetSongs,
 		playNow: publicPlayNow,
+		playNowById: publicPlayNowById,
 		play: publicPlay,
 		pause: publicPause,
 		registerVisualization: publicRegisterVisualization,

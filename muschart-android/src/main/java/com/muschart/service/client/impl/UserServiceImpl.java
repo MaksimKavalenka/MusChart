@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.muschart.constants.UrlConstants;
-import com.muschart.listener.UserListener;
+import com.muschart.listener.EventListener;
 import com.muschart.service.client.RestClient;
 import com.muschart.service.client.dao.UserServiceDAO;
 
@@ -26,13 +26,13 @@ public class UserServiceImpl implements UserServiceDAO {
     private static final String LOG_TAG = "UserServiceImpl";
 
     private FragmentActivity fragmentActivity;
-    private UserListener userListener;
+    private EventListener eventListener;
     private TextView userLogin;
     private TextView userEmail;
 
-    public UserServiceImpl(FragmentActivity fragmentActivity, UserListener userListener, TextView userLogin, TextView userEmail) {
+    public UserServiceImpl(FragmentActivity fragmentActivity, EventListener eventListener, TextView userLogin, TextView userEmail) {
         this.fragmentActivity = fragmentActivity;
-        this.userListener = userListener;
+        this.eventListener = eventListener;
         this.userLogin = userLogin;
         this.userEmail = userEmail;
     }
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserServiceDAO {
                     }
 
                     userLogin.setText(response.getString(LOGIN));
-                    userListener.onLogin();
+                    eventListener.onLogin();
                 } catch (JSONException e) {
                     AsyncHttpClient.log.w(LOG_TAG, "onSuccess(int, Header[], JSONObject)", e);
                 }

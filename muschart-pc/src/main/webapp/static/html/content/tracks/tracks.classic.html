@@ -11,7 +11,7 @@
 			<a ui-sref="track({id: track.id})">{{track.name}}</a>
 		</div>
 		<div class="links">
-			<div class="link link-action action-play" ng-click="playSong(track)"></div>
+			<div class="link link-action action-play" ng-click="playSong(track.id)"></div>
 			<div class="link link-action link-empty" ng-if="!track.video"></div>
 			<div class="link link-action action-youtube" ng-click="openVideo(track.video)" ng-if="track.video"></div>
 			<div class="link link-action action-like" ui-sref="login" ng-if="!user"></div>

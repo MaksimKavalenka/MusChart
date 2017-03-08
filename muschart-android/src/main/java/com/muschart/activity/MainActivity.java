@@ -1,9 +1,8 @@
 package com.muschart.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,9 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.muschart.R;
-import com.muschart.listener.UserListener;
+import com.muschart.utility.FragmentHelper;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, UserListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FragmentHelper fragmentHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +27,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        displayView(R.id.nav_tracks);
+        fragmentHelper = new FragmentHelper(this);
+        fragmentHelper.displayView(fragmentHelper.getCurrentViewId());
     }
 
     @Override
@@ -68,70 +70,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        displayView(item.getItemId());
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        fragmentHelper.setCurrentViewId(item.getItemId());
+        fragmentHelper.displayView(item.getItemId());
         return true;
-    }
-
-    @Override
-    public void onLogin() {
-        displayView(R.id.nav_tracks);
-    };
-
-    public void displayView(int viewId) {
-        Fragment fragment = null;
-        String title = getString(R.string.app_name);
-
-        switch (viewId) {
-            case R.id.nav_log_in:
-                title = getString(R.string.log_in);
-                fragment = new LoginActivity(this);
-                break;
-            case R.id.nav_log_out:
-                title = getString(R.string.log_out);
-                break;
-            case R.id.nav_register:
-                title = getString(R.string.register);
-                break;
-            case R.id.nav_tracks:
-                title = getString(R.string.tracks);
-                fragment = new TrackActivity();
-                break;
-            case R.id.nav_artists:
-                title = getString(R.string.artists);
-                fragment = new ArtistActivity();
-                break;
-            case R.id.nav_genres:
-                title = getString(R.string.genres);
-                fragment = new GenreActivity();
-                break;
-            case R.id.nav_my_tracks:
-                title = getString(R.string.my_tracks);
-                break;
-            case R.id.nav_my_artists:
-                title = getString(R.string.my_artists);
-                break;
-            case R.id.nav_my_genres:
-                title = getString(R.string.my_genres);
-                break;
-            case R.id.nav_settings:
-                title = getString(R.string.action_settings);
-                break;
-        }
-
-        if (fragment != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame, fragment);
-            ft.commit();
-        }
-
-        // set the toolbar title
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(title);
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
     }
 
 }
