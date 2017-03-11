@@ -3,11 +3,15 @@ package com.muschart.utility;
 import static com.muschart.constants.FragmentConstants.*;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.muschart.R;
 import com.muschart.fragment.ContentFragment;
@@ -15,11 +19,14 @@ import com.muschart.fragment.LoginFragment;
 import com.muschart.dto.FragmentDTO;
 import com.muschart.listener.ContentNavigationListener;
 import com.muschart.listener.EventListener;
+import com.muschart.service.client.impl.UserServiceImpl;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class FragmentHelper implements EventListener {
+public class FragmentHelper implements NavigationView.OnNavigationItemSelectedListener, EventListener {
+
+    private Menu navigationMenu;
 
     private AppCompatActivity appCompatActivity;
     private Context context;
@@ -28,21 +35,20 @@ public class FragmentHelper implements EventListener {
     private int currentViewId;
 
     public FragmentHelper(AppCompatActivity appCompatActivity) {
+        NavigationView navigationView = (NavigationView) appCompatActivity.findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationMenu = navigationView.getMenu();
+
         this.appCompatActivity = appCompatActivity;
         context = appCompatActivity.getApplicationContext();
         fragments = new HashMap<>(2);
         currentViewId = R.id.nav_tracks;
+
+        setNavigationMenuVisibility(false, R.id.nav_log_out, R.id.nav_my_artists, R.id.nav_my_genres, R.id.nav_my_tracks, R.id.nav_settings);
+        displayView(R.id.nav_tracks);
     }
 
-    public int getCurrentViewId() {
-        return currentViewId;
-    }
-
-    public void setCurrentViewId(int currentViewId) {
-        this.currentViewId = currentViewId;
-    }
-
-    public void displayView(int viewId) {
+    private void displayView(int viewId) {
         Fragment fragment = null;
         String title = context.getString(R.string.app_name);
 
@@ -162,10 +168,40 @@ public class FragmentHelper implements EventListener {
         }
     }
 
+    private void setNavigationMenuVisibility(boolean visibility, int... itemsId) {
+        for (int itemId : itemsId) {
+            navigationMenu.findItem(itemId).setVisible(visibility);
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() != R.id.nav_log_out) {
+            currentViewId = item.getItemId();
+        } else {
+            new UserServiceImpl(appCompatActivity, this, null, null).logout();
+        }
+        displayView(currentViewId);
+        return true;
+    }
+
     @Override
     public void onLogin() {
+        setNavigationMenuVisibility(false, R.id.nav_log_in, R.id.nav_register);
+        setNavigationMenuVisibility(true, R.id.nav_log_out, R.id.nav_my_artists, R.id.nav_my_genres, R.id.nav_my_tracks);
         currentViewId = R.id.nav_tracks;
         displayView(currentViewId);
+    }
+
+    @Override
+    public void onLogout() {
+        setNavigationMenuVisibility(false, R.id.nav_log_out, R.id.nav_my_artists, R.id.nav_my_genres, R.id.nav_my_tracks);
+        setNavigationMenuVisibility(true, R.id.nav_log_in, R.id.nav_register);
+
+        if ((currentViewId == R.id.nav_my_artists) || (currentViewId == R.id.nav_my_genres) || (currentViewId == R.id.nav_my_tracks)) {
+            currentViewId = R.id.nav_tracks;
+            displayView(currentViewId);
+        }
     }
 
     @Override

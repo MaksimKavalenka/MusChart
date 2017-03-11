@@ -1,8 +1,6 @@
 package com.muschart.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,9 +12,7 @@ import android.view.MenuItem;
 import com.muschart.R;
 import com.muschart.utility.FragmentHelper;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    private FragmentHelper fragmentHelper;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        fragmentHelper = new FragmentHelper(this);
-        fragmentHelper.displayView(fragmentHelper.getCurrentViewId());
+        new FragmentHelper(this);
     }
 
     @Override
@@ -67,13 +59,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        fragmentHelper.setCurrentViewId(item.getItemId());
-        fragmentHelper.displayView(item.getItemId());
-        return true;
     }
 
 }

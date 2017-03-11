@@ -1,16 +1,20 @@
 package com.muschart.service.client.impl;
 
 import static com.muschart.constants.JSONEntityConstants.JSONUserFields.*;
+import static com.muschart.system.Settings.getOrder;
+import static com.muschart.system.Settings.getSort;
 
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.util.Base64;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.TextHttpResponseHandler;
 import com.muschart.constants.UrlConstants;
 import com.muschart.listener.EventListener;
 import com.muschart.service.client.RestClient;
@@ -59,6 +63,23 @@ public class UserServiceImpl implements UserServiceDAO {
                 } catch (JSONException e) {
                     AsyncHttpClient.log.w(LOG_TAG, "onSuccess(int, Header[], JSONObject)", e);
                 }
+            }
+
+        });
+    }
+
+    @Override
+    public void logout() {
+        RestClient.post(UrlConstants.ServiceUrlConstants.USER_SERVICE + "/logout", null, new TextHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                eventListener.onLogout();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                eventListener.onLogout();
             }
 
         });
