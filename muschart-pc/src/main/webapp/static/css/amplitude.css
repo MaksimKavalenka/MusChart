@@ -108,3 +108,15 @@
 .amplitude .player .player-artist-name > .name {
 	display: block;
 }
+.amplitude .volume > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+.amplitude .volume div {
+	height: 35px;
+	width: 35px;
+}
+.amplitude .volume input.amplitude-volume-slider[type=range] {
+	height: 100%;
+	margin: 0 auto;
+}

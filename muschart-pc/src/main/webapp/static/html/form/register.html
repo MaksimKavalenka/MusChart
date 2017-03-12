@@ -18,7 +18,7 @@
 			<span ng-show="form.confirmPassword.$error.required || form.confirmPassword.$error.minlength" translate="MINIMAL_COUNT_MESSAGE"></span>
 			<span ng-show="form.confirmPassword.$error.ngMatch && !form.confirmPassword.$error.required && !form.confirmPassword.$error.minlength" translate="PASSWORDS_DO_NOT_MATCH_MESSAGE"></span>
 		</div>
-		<div class="field field-inline">
+		<div class="field field-inline" ng-if="false">
 			<label for="rememberMe" translate="REMEMBER_ME"></label>
 			<input type="checkbox" id="rememberMe" name="rememberMe" ng-model="user.rememberMe">
 		</div>

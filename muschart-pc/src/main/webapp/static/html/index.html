@@ -95,7 +95,7 @@
 						<div class="amplitude-prev player-button player-playlist-button action-previous"></div>
 						<div id="amplitude-play-pause" class="amplitude-play-pause player-button player-main-button action-play"></div>
 						<div class="amplitude-next player-button player-playlist-button action-next"></div>
-						<div class="player-button player-playlist-button action-playlist" ui-sref="playlist"></div>
+						<div class="player-button player-playlist-button action-playlist" ui-sref="playlist" ng-if="false"></div>
 						<div class="player-info">
 							<img class="player-cover" amplitude-song-info="cover"/>
 							<div class="player-artist-name">
@@ -105,7 +105,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="block">
+				<div class="block volume">
+					<div class="player-playlist-button action-volume"></div>
 					<input type="range" class="amplitude-volume-slider" value="0"/>
 				</div>
 			</div>
