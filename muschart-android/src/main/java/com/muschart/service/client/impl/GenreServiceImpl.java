@@ -15,6 +15,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.muschart.adapter.GenreAdapter;
 import com.muschart.entity.GenreEntity;
+import com.muschart.listener.ContentNavigationListener;
 import com.muschart.service.client.RestClient;
 import com.muschart.service.client.dao.GenreServiceDAO;
 
@@ -33,12 +34,14 @@ public class GenreServiceImpl implements GenreServiceDAO {
     private Context context;
     private ListView genreList;
     private LinearLayout pageList;
+    private ContentNavigationListener contentNavigationListener;
 
-    public GenreServiceImpl(Context context, ListView genreList, LinearLayout pageList) {
+    public GenreServiceImpl(Context context, ListView genreList, LinearLayout pageList, ContentNavigationListener contentNavigationListener) {
         self = this;
         this.context = context;
         this.genreList = genreList;
         this.pageList = pageList;
+        this.contentNavigationListener = contentNavigationListener;
     }
 
     @Override
@@ -143,7 +146,7 @@ public class GenreServiceImpl implements GenreServiceDAO {
 
     private void setGenres(JSONArray response) throws JSONException {
         List<GenreEntity> genres = jsonToGenres(response);
-        GenreAdapter adapter = new GenreAdapter(context, genres);
+        GenreAdapter adapter = new GenreAdapter(context, genres, contentNavigationListener);
         genreList.setAdapter(adapter);
     }
 

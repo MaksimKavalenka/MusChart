@@ -15,6 +15,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.muschart.adapter.ArtistAdapter;
 import com.muschart.entity.ArtistEntity;
+import com.muschart.listener.ContentNavigationListener;
 import com.muschart.service.client.RestClient;
 import com.muschart.service.client.dao.ArtistServiceDAO;
 
@@ -33,12 +34,14 @@ public class ArtistServiceImpl implements ArtistServiceDAO {
     private Context context;
     private ListView artistList;
     private LinearLayout pageList;
+    private ContentNavigationListener contentNavigationListener;
 
-    public ArtistServiceImpl(Context context, ListView artistList, LinearLayout pageList) {
+    public ArtistServiceImpl(Context context, ListView artistList, LinearLayout pageList, ContentNavigationListener contentNavigationListener) {
         self = this;
         this.context = context;
         this.artistList = artistList;
         this.pageList = pageList;
+        this.contentNavigationListener = contentNavigationListener;
     }
 
     @Override
@@ -51,6 +54,22 @@ public class ArtistServiceImpl implements ArtistServiceDAO {
                     setArtists(response);
                 } catch (JSONException e) {
                     AsyncHttpClient.log.w(LOG_TAG, "getArtists.onSuccess(int, Header[], JSONArray)", e);
+                }
+            }
+
+        });
+    }
+
+    @Override
+    public void getGenreArtists(long genreId, int sort, boolean order, int page) {
+        RestClient.get(ARTIST_SERVICE + "/genre/" + genreId + "/" + sort + "/" + order + "/" + page, null, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                try {
+                    setArtists(response);
+                } catch (JSONException e) {
+                    AsyncHttpClient.log.w(LOG_TAG, "getGenreArtists.onSuccess(int, Header[], JSONArray)", e);
                 }
             }
 
@@ -108,6 +127,40 @@ public class ArtistServiceImpl implements ArtistServiceDAO {
     }
 
     @Override
+    public void getGenreArtistsPagesCount(long genreId) {
+        RestClient.get(ARTIST_SERVICE + "/genre/" + genreId + "/pages_count", null, new TextHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                int pagesCount = Integer.valueOf(responseString);
+                int fromPage = 1;
+                int toPage = 5;
+                if (pagesCount <= 5) {
+                    toPage = pagesCount;
+                } else {
+                    fromPage = pagesCount - 4;
+                }
+
+                pageList.removeAllViews();
+                for (int i = fromPage; i <= toPage; i++) {
+                    int page = i;
+                    Button buttonPage = new Button(context);
+                    buttonPage.setId(i);
+                    buttonPage.setText(String.valueOf(i));
+                    buttonPage.setOnClickListener(view -> self.getGenreArtists(genreId, getSort(), getOrder(), page));
+                    pageList.addView(buttonPage);
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                AsyncHttpClient.log.w(LOG_TAG, "getGenreArtistsPagesCount.onFailure(int, Header[], String, Throwable)", throwable);
+            }
+
+        });
+    }
+
+    @Override
     public void getUserPagesCount() {
         RestClient.get(ARTIST_SERVICE + "/user/pages_count", null, new TextHttpResponseHandler() {
 
@@ -143,7 +196,7 @@ public class ArtistServiceImpl implements ArtistServiceDAO {
 
     private void setArtists(JSONArray response) throws JSONException {
         List<ArtistEntity> artists = jsonToArtists(response);
-        ArtistAdapter adapter = new ArtistAdapter(context, artists);
+        ArtistAdapter adapter = new ArtistAdapter(context, artists, contentNavigationListener);
         artistList.setAdapter(adapter);
     }
 

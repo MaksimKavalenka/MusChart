@@ -1,5 +1,9 @@
 package com.muschart.fragment;
 
+import static com.muschart.constants.DefaultConstants.DEFAULT_PAGE;
+import static com.muschart.system.Settings.getOrder;
+import static com.muschart.system.Settings.getSort;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,10 +22,6 @@ import com.muschart.service.client.dao.TrackServiceDAO;
 import com.muschart.service.client.impl.ArtistServiceImpl;
 import com.muschart.service.client.impl.GenreServiceImpl;
 import com.muschart.service.client.impl.TrackServiceImpl;
-
-import static com.muschart.constants.DefaultConstants.DEFAULT_PAGE;
-import static com.muschart.system.Settings.getOrder;
-import static com.muschart.system.Settings.getSort;
 
 @SuppressLint("ValidFragment")
 public class ContentFragment extends Fragment implements ContentNavigationListener {
@@ -42,8 +42,8 @@ public class ContentFragment extends Fragment implements ContentNavigationListen
         ListView trackList = (ListView) view.findViewById(R.id.contentList);
         LinearLayout pageList = (LinearLayout) view.findViewById(R.id.pageList);
 
-        artistService = new ArtistServiceImpl(view.getContext(), trackList, pageList);
-        genreService = new GenreServiceImpl(view.getContext(), trackList, pageList);
+        artistService = new ArtistServiceImpl(view.getContext(), trackList, pageList, this);
+        genreService = new GenreServiceImpl(view.getContext(), trackList, pageList, this);
         trackService = new TrackServiceImpl(view.getContext(), trackList, pageList);
 
         eventListener.onContentFragmentAvailable();
@@ -66,6 +66,18 @@ public class ContentFragment extends Fragment implements ContentNavigationListen
     public void navigateToTracks() {
         trackService.getTracks(getSort(), getOrder(), DEFAULT_PAGE);
         trackService.getPagesCount();
+    }
+
+    @Override
+    public void navigateToArtistTracks(long artistId) {
+        trackService.getArtistTracks(artistId, getSort(), getOrder(), DEFAULT_PAGE);
+        trackService.getArtistTracksPagesCount(artistId);
+    }
+
+    @Override
+    public void navigateToGenreArtists(long genreId) {
+        artistService.getGenreArtists(genreId, getSort(), getOrder(), DEFAULT_PAGE);
+        artistService.getGenreArtistsPagesCount(genreId);
     }
 
     @Override

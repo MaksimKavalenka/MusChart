@@ -16,19 +16,31 @@
         android:textSize="25sp"
         android:gravity="center"/>
 
-    <ImageView
-        android:id="@+id/photo"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:layout_weight="17"
-        android:layout_margin="3dp"/>
-
-    <TextView
-        android:id="@+id/name"
+    <LinearLayout
+        android:id="@+id/artist"
+        android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="71"
-        android:textColor="#000000"
-        android:textSize="15sp"/>
+        android:layout_weight="88"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginRight="3dp"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_margin="3dp"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#D51007"
+            android:textSize="20sp"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
 
 </LinearLayout>

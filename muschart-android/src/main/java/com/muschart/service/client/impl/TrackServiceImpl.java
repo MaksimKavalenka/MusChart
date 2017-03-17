@@ -58,6 +58,22 @@ public class TrackServiceImpl implements TrackServiceDAO {
     }
 
     @Override
+    public void getArtistTracks(long artistId, int sort, boolean order, int page) {
+        RestClient.get(TRACK_SERVICE + "/artist/" + artistId + "/" + sort + "/" + order + "/" + page, null, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                try {
+                    setTracks(response);
+                } catch (JSONException e) {
+                    AsyncHttpClient.log.w(LOG_TAG, "getArtistTracks.onSuccess(int, Header[], JSONArray)", e);
+                }
+            }
+
+        });
+    }
+
+    @Override
     public void getUserTracks(int sort, boolean order, int page) {
         RestClient.get(TRACK_SERVICE + "/user/" + sort + "/" + order + "/" + page, null, new JsonHttpResponseHandler() {
 
@@ -102,6 +118,40 @@ public class TrackServiceImpl implements TrackServiceDAO {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 AsyncHttpClient.log.w(LOG_TAG, "getPagesCount.onFailure(int, Header[], String, Throwable)", throwable);
+            }
+
+        });
+    }
+
+    @Override
+    public void getArtistTracksPagesCount(long artistId) {
+        RestClient.get(TRACK_SERVICE + "/artist/" + artistId + "/pages_count", null, new TextHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                int pagesCount = Integer.valueOf(responseString);
+                int fromPage = 1;
+                int toPage = 5;
+                if (pagesCount <= 5) {
+                    toPage = pagesCount;
+                } else {
+                    fromPage = pagesCount - 4;
+                }
+
+                pageList.removeAllViews();
+                for (int i = fromPage; i <= toPage; i++) {
+                    int page = i;
+                    Button buttonPage = new Button(context);
+                    buttonPage.setId(page);
+                    buttonPage.setText(String.valueOf(page));
+                    buttonPage.setOnClickListener(view -> self.getArtistTracks(artistId, getSort(), getOrder(), page));
+                    pageList.addView(buttonPage);
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                AsyncHttpClient.log.w(LOG_TAG, "getArtistTracksPagesCount.onFailure(int, Header[], String, Throwable)", throwable);
             }
 
         });

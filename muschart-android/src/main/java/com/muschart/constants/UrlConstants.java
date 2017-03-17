@@ -2,7 +2,7 @@ package com.muschart.constants;
 
 public abstract class UrlConstants {
 
-    private static final String BASE_URL = "http://localhost:8081";
+    private static final String BASE_URL = "http://e2c1f6d1.ngrok.io";
 
     public abstract class MetadataUrlConstants {
 

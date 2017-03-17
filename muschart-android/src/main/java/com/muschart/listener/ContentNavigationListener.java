@@ -8,6 +8,10 @@ public interface ContentNavigationListener {
 
     void navigateToTracks();
 
+    void navigateToArtistTracks(long artistId);
+
+    void navigateToGenreArtists(long genreId);
+
     void navigateToUserArtists();
 
     void navigateToUserGenres();
