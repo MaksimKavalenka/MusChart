@@ -62,6 +62,7 @@ app.config(function($translateProvider) {
 		EXISTS_LOGIN_MESSAGE: 'This login is already taken',
 		MINIMAL_COUNT_MESSAGE: 'Minimum count of symbols is 3',
 		PASSWORDS_DO_NOT_MATCH_MESSAGE: 'Passwords do not match',
+		WRONG_DATA: 'Login or password is wrong',
 
 		SAVING_SETTINGS_SUCCESS: 'Settings were successfully saved'
 	});

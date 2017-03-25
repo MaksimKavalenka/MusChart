@@ -3,10 +3,8 @@ package com.muschart.activity;
 import android.app.Activity;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -15,12 +13,7 @@ import android.widget.TextView;
 
 import com.google.common.net.UrlEscapers;
 import com.muschart.R;
-import com.muschart.constants.UrlConstants;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -30,11 +23,15 @@ public class MediaActivity extends Activity implements MediaPlayer.OnPreparedLis
     private TextView run, end;
     private ImageButton resume, pause, stop;
     private SeekBar seekPlaying;
+    private Runnable runnable;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.media);
+
+        handler = new Handler();
 
         ((TextView) findViewById(R.id.artist)).setText(getIntent().getStringExtra("artist"));
         ((TextView) findViewById(R.id.name)).setText(getIntent().getStringExtra("name"));
@@ -50,6 +47,15 @@ public class MediaActivity extends Activity implements MediaPlayer.OnPreparedLis
         pause.setOnClickListener(this);
         stop.setOnClickListener(this);
 
+        seekPlaying = (SeekBar) findViewById(R.id.seekPlaying);
+        seekPlaying.setOnTouchListener((view, event) -> {
+            seekPlaying.setMax(mediaPlayer.getDuration());
+            mediaPlayer.seekTo(seekPlaying.getProgress());
+            if (!mediaPlayer.isPlaying())
+                mediaPlayer.start();
+            return false;
+        });
+
         releaseMP();
         play();
         if (mediaPlayer == null)
@@ -63,6 +69,7 @@ public class MediaActivity extends Activity implements MediaPlayer.OnPreparedLis
         super.onDestroy();
         mediaPlayer.stop();
         releaseMP();
+        handler.removeCallbacks(runnable);
     }
 
     private void releaseMP() {
@@ -83,9 +90,28 @@ public class MediaActivity extends Activity implements MediaPlayer.OnPreparedLis
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mediaPlayer.setOnPreparedListener(this);
             mediaPlayer.prepareAsync();
+            setTime();
         } catch (IOException e) {
-            e.printStackTrace();//To Handle!!!
+            e.printStackTrace();
         }
+    }
+
+    private void setTime() {
+        seekPlaying.setMax(mediaPlayer.getDuration());
+
+        int endSeconds = (mediaPlayer.getDuration() / 1000) % 60;
+        String endString = (endSeconds < 10) ? "0" + endSeconds : String.valueOf(endSeconds);
+        end.setText(String.valueOf(mediaPlayer.getDuration() / 60000) + ':' + endString);
+
+        if (mediaPlayer.isPlaying()) {
+            int runSeconds = (mediaPlayer.getCurrentPosition() / 1000) % 60;
+            String runString = (runSeconds < 10) ? "0" + runSeconds : String.valueOf(runSeconds);
+            run.setText(String.valueOf(mediaPlayer.getCurrentPosition() / 60000) + ':' + runString);
+        }
+
+        seekPlaying.setProgress(mediaPlayer.getCurrentPosition());
+        runnable = () -> setTime();
+        handler.postDelayed(runnable, 1);
     }
 
     @Override
@@ -116,6 +142,12 @@ public class MediaActivity extends Activity implements MediaPlayer.OnPreparedLis
 
     @Override
     public void onCompletion(MediaPlayer mp) {
+    }
+
+    @Override
+    public void onBackPressed() {
+        mediaPlayer.stop();
+        super.onBackPressed();
     }
 
 }

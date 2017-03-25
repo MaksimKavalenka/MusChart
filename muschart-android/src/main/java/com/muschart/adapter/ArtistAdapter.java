@@ -13,7 +13,7 @@ import com.google.common.net.UrlEscapers;
 import com.muschart.R;
 import com.muschart.constants.UrlConstants;
 import com.muschart.entity.ArtistEntity;
-import com.muschart.listener.ContentNavigationListener;
+import com.muschart.listener.ContentListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -22,10 +22,10 @@ public class ArtistAdapter extends BaseAdapter {
 
     private Context context;
     private List<ArtistEntity> artists;
-    private ContentNavigationListener contentNavigationListener;
+    private ContentListener contentNavigationListener;
     private LayoutInflater lInflater;
 
-    public ArtistAdapter(Context context, List<ArtistEntity> artists, ContentNavigationListener contentNavigationListener) {
+    public ArtistAdapter(Context context, List<ArtistEntity> artists, ContentListener contentNavigationListener) {
         this.context = context;
         this.artists = artists;
         this.contentNavigationListener = contentNavigationListener;

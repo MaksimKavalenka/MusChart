@@ -12,13 +12,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.muschart.R;
 import com.muschart.fragment.ContentFragment;
 import com.muschart.fragment.LoginFragment;
 import com.muschart.dto.FragmentDTO;
-import com.muschart.listener.ContentNavigationListener;
+import com.muschart.listener.ContentListener;
 import com.muschart.listener.EventListener;
+import com.muschart.listener.LoginListener;
 import com.muschart.service.client.impl.UserServiceImpl;
 
 import java.util.HashMap;
@@ -44,7 +46,7 @@ public class FragmentHelper implements NavigationView.OnNavigationItemSelectedLi
         fragments = new HashMap<>(2);
         currentViewId = R.id.nav_tracks;
 
-        setNavigationMenuVisibility(false, R.id.nav_log_out, R.id.nav_my_artists, R.id.nav_my_genres, R.id.nav_my_tracks, R.id.nav_settings);
+        setNavigationMenuVisibility(false, R.id.nav_register, R.id.nav_log_out, R.id.nav_my_artists, R.id.nav_my_genres, R.id.nav_my_tracks, R.id.nav_settings);
         displayView(R.id.nav_tracks);
     }
 
@@ -87,7 +89,9 @@ public class FragmentHelper implements NavigationView.OnNavigationItemSelectedLi
 
         switch (viewId) {
             case R.id.nav_log_in:
+            case R.id.nav_register:
                 fragment = getFragment(LOGIN_FRAGMENT).getFragment();
+                changeLogin();
                 break;
             case R.id.nav_artists:
             case R.id.nav_genres:
@@ -114,28 +118,43 @@ public class FragmentHelper implements NavigationView.OnNavigationItemSelectedLi
         drawer.closeDrawer(GravityCompat.START);
     }
 
+    private void changeLogin() {
+        if (getFragment(LOGIN_FRAGMENT).isAvailable()) {
+            Fragment fragment = getFragment(LOGIN_FRAGMENT).getFragment();
+
+            switch (currentViewId) {
+                case R.id.nav_log_in:
+                    ((LoginListener) fragment).navigateToLogin();
+                    break;
+                case R.id.nav_register:
+                    ((LoginListener) fragment).navigateToRegister();
+                    break;
+            }
+        }
+    }
+
     private void changeContent() {
         if (getFragment(CONTENT_FRAGMENT).isAvailable()) {
             Fragment fragment = getFragment(CONTENT_FRAGMENT).getFragment();
 
             switch (currentViewId) {
                 case R.id.nav_artists:
-                    ((ContentNavigationListener) fragment).navigateToArtists();
+                    ((ContentListener) fragment).navigateToArtists();
                     break;
                 case R.id.nav_genres:
-                    ((ContentNavigationListener) fragment).navigateToGenres();
+                    ((ContentListener) fragment).navigateToGenres();
                     break;
                 case R.id.nav_tracks:
-                    ((ContentNavigationListener) fragment).navigateToTracks();
+                    ((ContentListener) fragment).navigateToTracks();
                     break;
                 case R.id.nav_my_artists:
-                    ((ContentNavigationListener) fragment).navigateToUserArtists();
+                    ((ContentListener) fragment).navigateToUserArtists();
                     break;
                 case R.id.nav_my_genres:
-                    ((ContentNavigationListener) fragment).navigateToUserGenres();
+                    ((ContentListener) fragment).navigateToUserGenres();
                     break;
                 case R.id.nav_my_tracks:
-                    ((ContentNavigationListener) fragment).navigateToUserTracks();
+                    ((ContentListener) fragment).navigateToUserTracks();
                     break;
             }
         }
@@ -179,7 +198,7 @@ public class FragmentHelper implements NavigationView.OnNavigationItemSelectedLi
         if (item.getItemId() != R.id.nav_log_out) {
             currentViewId = item.getItemId();
         } else {
-            new UserServiceImpl(appCompatActivity, this, null, null).logout();
+            ((LoginListener) getFragment(LOGIN_FRAGMENT).getFragment()).navigateToLogout();
         }
         displayView(currentViewId);
         return true;
@@ -196,12 +215,15 @@ public class FragmentHelper implements NavigationView.OnNavigationItemSelectedLi
     @Override
     public void onLogout() {
         setNavigationMenuVisibility(false, R.id.nav_log_out, R.id.nav_my_artists, R.id.nav_my_genres, R.id.nav_my_tracks);
-        setNavigationMenuVisibility(true, R.id.nav_log_in, R.id.nav_register);
+        setNavigationMenuVisibility(true, R.id.nav_log_in); //ADD R.id.nav_register
 
         if ((currentViewId == R.id.nav_my_artists) || (currentViewId == R.id.nav_my_genres) || (currentViewId == R.id.nav_my_tracks)) {
             currentViewId = R.id.nav_tracks;
             displayView(currentViewId);
         }
+
+        ((TextView) appCompatActivity.findViewById(R.id.user_login)).clearComposingText();
+        ((TextView) appCompatActivity.findViewById(R.id.user_email)).clearComposingText();
     }
 
     @Override
@@ -213,6 +235,7 @@ public class FragmentHelper implements NavigationView.OnNavigationItemSelectedLi
     @Override
     public void onLoginFragmentAvailable() {
         setFragmentsAvailable(LOGIN_FRAGMENT);
+        changeLogin();
     }
 
 }

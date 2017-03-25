@@ -1,5 +1,5 @@
 'use strict';
-app.factory('UserFactory', function($http, MESSAGE, REST, UtilityService) {
+app.factory('UserFactory', function($http, $translate, MESSAGE, REST, UtilityService) {
 
 	function authentication(login, password, callback) {
 		if (!UtilityService.allNotEmpty(callback, login, password)) {
@@ -18,8 +18,11 @@ app.factory('UserFactory', function($http, MESSAGE, REST, UtilityService) {
 			}
 		})
 		.error(function(response) {
-			response = {success: false, message: MESSAGE.AUTHENTICATION_ERROR};
-			callback(response);
+			$translate(['WRONG_DATA'])
+			.then(function(translations) {
+				response = {success: false, message: translations.WRONG_DATA};
+				callback(response);
+			});
 		});
 	}
 

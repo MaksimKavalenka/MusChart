@@ -62,6 +62,7 @@ app.config(function($translateProvider) {
 		EXISTS_LOGIN_MESSAGE: 'Данный логин уже занят',
 		MINIMAL_COUNT_MESSAGE: 'Минимальное количество символов - 3',
 		PASSWORDS_DO_NOT_MATCH_MESSAGE: 'Пароли не совпадают',
+		WRONG_DATA: 'Неправильный логин или пароль',
 
 		SAVING_SETTINGS_SUCCESS: 'Настройки были успешно сохранены'
 	});

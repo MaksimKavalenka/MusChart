@@ -1,6 +1,6 @@
 package com.muschart.listener;
 
-public interface ContentNavigationListener {
+public interface ContentListener {
 
     void navigateToArtists();
 

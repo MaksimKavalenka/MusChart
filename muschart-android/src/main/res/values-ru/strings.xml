@@ -27,5 +27,8 @@
     <string name="developer">Maksim Kavalenka</string>
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
+    <string name="message_authentication_error">Неправильный логин или пароль</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="passwords_do_not_match">Пароли не совпадают</string>
 
 </resources>

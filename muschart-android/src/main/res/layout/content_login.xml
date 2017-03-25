@@ -27,9 +27,22 @@
         android:inputType="textPassword"
         android:ems="10"/>
 
+    <EditText
+        android:id="@+id/text_confirm_password"
+        android:hint="@string/confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"/>
+
+    <TextView
+        android:id="@+id/text_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
     <Button
-        android:id="@+id/login"
-        android:text="@string/log_in"
+        android:id="@+id/button_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

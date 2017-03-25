@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.muschart.R;
-import com.muschart.listener.ContentNavigationListener;
+import com.muschart.listener.ContentListener;
 import com.muschart.listener.EventListener;
 import com.muschart.service.client.dao.ArtistServiceDAO;
 import com.muschart.service.client.dao.GenreServiceDAO;
@@ -24,7 +24,7 @@ import com.muschart.service.client.impl.GenreServiceImpl;
 import com.muschart.service.client.impl.TrackServiceImpl;
 
 @SuppressLint("ValidFragment")
-public class ContentFragment extends Fragment implements ContentNavigationListener {
+public class ContentFragment extends Fragment implements ContentListener {
 
     private EventListener eventListener;
     private ArtistServiceDAO artistService;

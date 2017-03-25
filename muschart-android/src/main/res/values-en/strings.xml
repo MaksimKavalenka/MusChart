@@ -27,5 +27,8 @@
     <string name="developer">Maksim Kavalenka</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
+    <string name="message_authentication_error">Login or password is wrong</string>
+    <string name="confirm_password">Confirm the password</string>
+    <string name="passwords_do_not_match">Passwords do not match</string>
 
 </resources>

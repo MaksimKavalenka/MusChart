@@ -10,17 +10,17 @@ import android.widget.TextView;
 
 import com.muschart.R;
 import com.muschart.entity.GenreEntity;
-import com.muschart.listener.ContentNavigationListener;
+import com.muschart.listener.ContentListener;
 
 import java.util.List;
 
 public class GenreAdapter extends BaseAdapter {
 
     private List<GenreEntity> genres;
-    private ContentNavigationListener contentNavigationListener;
+    private ContentListener contentNavigationListener;
     private LayoutInflater lInflater;
 
-    public GenreAdapter(Context context, List<GenreEntity> genres, ContentNavigationListener contentNavigationListener) {
+    public GenreAdapter(Context context, List<GenreEntity> genres, ContentListener contentNavigationListener) {
         this.genres = genres;
         this.contentNavigationListener = contentNavigationListener;
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
