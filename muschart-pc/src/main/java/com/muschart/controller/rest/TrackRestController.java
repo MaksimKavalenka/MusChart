@@ -52,7 +52,7 @@ public class TrackRestController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<TrackEntity> createTrack(@RequestBody @Valid TrackInputDTO trackInput) {
         try {
-            TrackEntity track = trackDatabaseService.createTrack(trackInput.getName(), trackInput.getSong(), trackInput.getCover(), trackInput.getVideo(), trackInput.getRelease(), trackInput.getArtists(), trackInput.getUnits(), trackInput.getGenres());
+            TrackEntity track = trackDatabaseService.createTrack(trackInput.getName(), trackInput.getSong(), trackInput.getCover(), trackInput.getVideo(), trackInput.getRelease(), trackInput.getArtistsId(), trackInput.getUnitsId(), trackInput.getGenresId());
             trackSolrService.createTrack(track.getId(), track.getName());
             return new ResponseEntity<TrackEntity>(track, HttpStatus.CREATED);
         } catch (UploadException e) {

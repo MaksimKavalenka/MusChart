@@ -23,26 +23,26 @@ public class TrackInputDTO implements Serializable {
     private Date              release;
 
     @NotNull
-    private List<Long>        artists;
+    private List<Long>        artistsId;
 
     @NotNull
-    private List<Long>        genres;
+    private List<Long>        genresId;
 
     private String            video;
-    private List<Long>        units;
+    private List<Long>        unitsId;
 
     public TrackInputDTO() {
     }
 
-    public TrackInputDTO(String name, String song, String cover, String video, Date release, List<Long> artists, List<Long> units, List<Long> genres) {
+    public TrackInputDTO(String name, String song, String cover, String video, Date release, List<Long> artistsId, List<Long> unitsId, List<Long> genresId) {
         this.name = name;
         this.song = song;
         this.cover = cover;
         this.video = video;
         this.release = release;
-        this.artists = artists;
-        this.units = units;
-        this.genres = genres;
+        this.artistsId = artistsId;
+        this.unitsId = unitsId;
+        this.genresId = genresId;
     }
 
     public String getName() {
@@ -85,28 +85,28 @@ public class TrackInputDTO implements Serializable {
         this.release = release;
     }
 
-    public List<Long> getArtists() {
-        return artists;
+    public List<Long> getArtistsId() {
+        return artistsId;
     }
 
-    public void setArtists(List<Long> artists) {
-        this.artists = artists;
+    public void setArtistsId(List<Long> artistsId) {
+        this.artistsId = artistsId;
     }
 
-    public List<Long> getUnits() {
-        return units;
+    public List<Long> getUnitsId() {
+        return unitsId;
     }
 
-    public void setUnits(List<Long> units) {
-        this.units = units;
+    public void setUnitsId(List<Long> unitsId) {
+        this.unitsId = unitsId;
     }
 
-    public List<Long> getGenres() {
-        return genres;
+    public List<Long> getGenresId() {
+        return genresId;
     }
 
-    public void setGenres(List<Long> genres) {
-        this.genres = genres;
+    public void setGenresId(List<Long> genresId) {
+        this.genresId = genresId;
     }
 
     @Override

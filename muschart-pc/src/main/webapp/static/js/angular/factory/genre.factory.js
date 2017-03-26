@@ -157,9 +157,9 @@ app.factory('GenreFactory', function($http, MESSAGE, REST, UtilityService) {
 		$http.post(REST.GENRES + '/check/genre_name', name)
 		.success(function(response) {
 			if (response) {
-				response = {success: true};
+				response = {success: true, message: MESSAGE.EXIST_GENRE_ERROR};
 			} else {
-				response = {success: false, message: MESSAGE.EXIST_GENRE_ERROR};
+				response = {success: false};
 			}
 			callback(response);
 		})

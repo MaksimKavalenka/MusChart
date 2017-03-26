@@ -1,5 +1,5 @@
 'use strict';
-app.controller('TrackController', function($scope, $state, $window, DEFAULT, STATE, TEMPLATE, UPLOAD, ArtistFactory, GenreFactory, TrackFactory, UnitFactory, UserFactory, AmplitudeService, ChoiceService, CookieService, FileService, FlashService, UtilityService) {
+app.controller('TrackController', function($scope, $state, $window, DEFAULT, STATE, TEMPLATE, TYPE, UPLOAD, ArtistFactory, GenreFactory, TrackFactory, UnitFactory, UserFactory, AmplitudeService, ChoiceService, CookieService, FileService, FlashService, UtilityService) {
 
 	$scope.url = '#';
 	$scope.info = {};
@@ -66,11 +66,11 @@ app.controller('TrackController', function($scope, $state, $window, DEFAULT, STA
 	};
 
 	$scope.addArtistChoice = function() {
-		ChoiceService.addGenreChoice($scope.artistsChoice, $scope.unitsChoice);
+		ChoiceService.addArtistChoice($scope.artistsChoice, $scope.unitsChoice);
 	};
 
 	$scope.removeArtistChoice = function(index) {
-		ChoiceService.removeGenreChoice($scope.artistsChoice, $scope.unitsChoice, index);
+		ChoiceService.removeArtistChoice($scope.artistsChoice, $scope.unitsChoice, index);
 	};
 
 	$scope.addGenreChoice = function() {
