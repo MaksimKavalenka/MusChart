@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,22 +23,11 @@ import com.muschart.dto.output.ArtistOutputDTO;
 import com.muschart.entity.ArtistEntity;
 import com.muschart.entity.UserEntity;
 import com.muschart.exception.UploadException;
-import com.muschart.service.database.dao.ArtistDatabaseServiceDAO;
-import com.muschart.service.database.dao.UserDatabaseServiceDAO;
-import com.muschart.service.solr.dao.ArtistSolrServiceDAO;
 import com.muschart.utility.Secure;
 
 @RestController
 @RequestMapping(ARTISTS_URL)
-public class ArtistRestController {
-
-    @Autowired
-    private ArtistDatabaseServiceDAO artistDatabaseService;
-    @Autowired
-    private ArtistSolrServiceDAO     artistSolrService;
-
-    @Autowired
-    private UserDatabaseServiceDAO   userDatabaseService;
+public class ArtistRestController extends com.muschart.controller.rest.RestController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<ArtistEntity> createArtist(@RequestBody @Valid ArtistInputDTO artistInput) {

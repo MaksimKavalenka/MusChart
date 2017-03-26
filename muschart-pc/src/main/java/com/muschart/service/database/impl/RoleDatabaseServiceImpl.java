@@ -1,17 +1,12 @@
 package com.muschart.service.database.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.muschart.entity.RoleEntity;
-import com.muschart.jpa.repository.RoleRepository;
 import com.muschart.service.database.dao.RoleDatabaseServiceDAO;
 
 @Service("roleDatabaseService")
-public class RoleDatabaseService implements RoleDatabaseServiceDAO {
-
-    @Autowired
-    private RoleRepository roleRepository;
+public class RoleDatabaseServiceImpl extends DatabaseServiceImpl implements RoleDatabaseServiceDAO {
 
     @Override
     public RoleEntity createRole(String name) {

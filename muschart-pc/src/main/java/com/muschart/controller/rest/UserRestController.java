@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -35,20 +34,12 @@ import com.muschart.dto.RegisterDTO;
 import com.muschart.dto.output.UserOutputDTO;
 import com.muschart.entity.UserEntity;
 import com.muschart.exception.ValidationException;
-import com.muschart.service.database.dao.RoleDatabaseServiceDAO;
-import com.muschart.service.database.dao.UserDatabaseServiceDAO;
 import com.muschart.utility.Parser;
 import com.muschart.utility.Secure;
 
 @RestController
 @RequestMapping(USERS_URL)
-public class UserRestController {
-
-    @Autowired
-    private RoleDatabaseServiceDAO roleDatabaseService;
-
-    @Autowired
-    private UserDatabaseServiceDAO userDatabaseService;
+public class UserRestController extends com.muschart.controller.rest.RestController {
 
     @RequestMapping(value = AUTH_OPERATION, method = RequestMethod.GET)
     public ResponseEntity<UserOutputDTO> authentication(Principal principal) {

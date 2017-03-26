@@ -4,22 +4,17 @@ import static com.muschart.constants.MessageConstants.TAKEN_GENRE_MESSAGE;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.GenreEntity;
 import com.muschart.exception.ValidationException;
-import com.muschart.jpa.repository.GenreRepository;
 import com.muschart.service.database.dao.GenreDatabaseServiceDAO;
 import com.muschart.utility.JpaHelper;
 import com.muschart.utility.Parser;
 
 @Service("genreDatabaseService")
-public class GenreDatabaseService implements GenreDatabaseServiceDAO {
-
-    @Autowired
-    private GenreRepository genreRepository;
+public class GenreDatabaseServiceImpl extends DatabaseServiceImpl implements GenreDatabaseServiceDAO {
 
     @Override
     public GenreEntity createGenre(String name) throws ValidationException {

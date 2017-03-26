@@ -4,37 +4,20 @@ import static com.muschart.constants.MessageConstants.TAKEN_LOGIN_MESSAGE;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import com.muschart.entity.UserEntity;
 import com.muschart.exception.ValidationException;
-import com.muschart.jpa.repository.ArtistRepository;
-import com.muschart.jpa.repository.GenreRepository;
-import com.muschart.jpa.repository.TrackRepository;
-import com.muschart.jpa.repository.UserRepository;
 import com.muschart.service.database.dao.UserDatabaseServiceDAO;
 
 @Service("userDatabaseService")
-public class UserDatabaseService implements UserDatabaseServiceDAO {
-
-    @Autowired
-    private UserRepository   userRepository;
-
-    @Autowired
-    private ArtistRepository artistRepository;
-
-    @Autowired
-    private GenreRepository  genreRepository;
-
-    @Autowired
-    private TrackRepository  trackRepository;
+public class UserDatabaseServiceImpl extends DatabaseServiceImpl implements UserDatabaseServiceDAO {
 
     @Override
     public UserEntity createUser(String login, String password, List<GrantedAuthority> roles) throws ValidationException {
         UserEntity user = new UserEntity(login, password, roles);
-        synchronized (UserDatabaseService.class) {
+        synchronized (UserDatabaseServiceImpl.class) {
             if (!checkLogin(login)) {
                 return userRepository.save(user);
             } else {

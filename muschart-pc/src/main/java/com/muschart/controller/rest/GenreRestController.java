@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,22 +25,11 @@ import com.muschart.entity.GenreEntity;
 import com.muschart.entity.UserEntity;
 import com.muschart.exception.UploadException;
 import com.muschart.exception.ValidationException;
-import com.muschart.service.database.dao.GenreDatabaseServiceDAO;
-import com.muschart.service.database.dao.UserDatabaseServiceDAO;
-import com.muschart.service.solr.dao.GenreSolrServiceDAO;
 import com.muschart.utility.Secure;
 
 @RestController
 @RequestMapping(GENRES_URL)
-public class GenreRestController {
-
-    @Autowired
-    private GenreDatabaseServiceDAO genreDatabaseService;
-    @Autowired
-    private GenreSolrServiceDAO     genreSolrService;
-
-    @Autowired
-    private UserDatabaseServiceDAO  userDatabaseService;
+public class GenreRestController extends com.muschart.controller.rest.RestController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<GenreEntity> createGenre(@RequestBody @Valid GenreInputDTO genreInput) {

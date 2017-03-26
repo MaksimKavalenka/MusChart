@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,30 +23,11 @@ import com.muschart.dto.output.TrackOutputDTO;
 import com.muschart.entity.TrackEntity;
 import com.muschart.entity.UserEntity;
 import com.muschart.exception.UploadException;
-import com.muschart.service.database.dao.ArtistDatabaseServiceDAO;
-import com.muschart.service.database.dao.TrackDatabaseServiceDAO;
-import com.muschart.service.database.dao.UnitDatabaseServiceDAO;
-import com.muschart.service.database.dao.UserDatabaseServiceDAO;
-import com.muschart.service.solr.dao.TrackSolrServiceDAO;
 import com.muschart.utility.Secure;
 
 @RestController
 @RequestMapping(TRACKS_URL)
-public class TrackRestController {
-
-    @Autowired
-    private ArtistDatabaseServiceDAO artistDatabaseService;
-
-    @Autowired
-    private TrackDatabaseServiceDAO  trackDatabaseService;
-    @Autowired
-    private TrackSolrServiceDAO      trackSolrService;
-
-    @Autowired
-    private UnitDatabaseServiceDAO   unitDatabaseService;
-
-    @Autowired
-    private UserDatabaseServiceDAO   userDatabaseService;
+public class TrackRestController extends com.muschart.controller.rest.RestController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<TrackEntity> createTrack(@RequestBody @Valid TrackInputDTO trackInput) {

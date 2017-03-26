@@ -2,25 +2,16 @@ package com.muschart.service.database.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.muschart.dto.IdAndNameDTO;
 import com.muschart.entity.ArtistEntity;
-import com.muschart.jpa.repository.ArtistRepository;
-import com.muschart.jpa.repository.TrackArtistRepository;
 import com.muschart.service.database.dao.ArtistDatabaseServiceDAO;
 import com.muschart.utility.JpaHelper;
 import com.muschart.utility.Parser;
 
 @Service("artistDatabaseService")
-public class ArtistDatabaseService implements ArtistDatabaseServiceDAO {
-
-    @Autowired
-    private ArtistRepository      artistRepository;
-
-    @Autowired
-    private TrackArtistRepository trackArtistRepository;
+public class ArtistDatabaseServiceImpl extends DatabaseServiceImpl implements ArtistDatabaseServiceDAO {
 
     @Override
     public ArtistEntity createArtist(String name, String photo, List<Long> genresIds) {
