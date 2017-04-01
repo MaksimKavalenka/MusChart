@@ -36,9 +36,9 @@ app.factory('UserFactory', function($http, $translate, MESSAGE, REST, UtilitySer
 		}
 
 		var user = {
-			login: login,
-			password: password,
-			confirmPassword: confirmPassword
+			login: btoa(login),
+			password: btoa(password),
+			confirmPassword: btoa(confirmPassword)
 		};
 
 		$http.post(REST.USERS, user)

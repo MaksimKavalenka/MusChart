@@ -3,7 +3,7 @@ app.controller('SettingsController', function($scope, $translate, CookieService,
 
 	$scope.settings = CookieService.getSettings();
 	$scope.languages = [{name: 'Беларуская', iso: 'by'}, {name: 'English', iso: 'en'}, {name: 'Français', iso: 'fr'}, {name: 'Русский', iso: 'ru'}];
-	$scope.designs = [{name: 'Classic', value: 0}, {name: 'Standard', value: 1}];
+	$scope.designs = [{name: '', value: 0}, {name: '', value: 1}];
 	$scope.sorts = {
 		artists: [{name: '', value: 0}, {name: '', value: 1}, {name: '', value: 2}],
 		genres: [{name: '', value: 0}, {name: '', value: 1}, {name: '', value: 2}],
@@ -18,8 +18,11 @@ app.controller('SettingsController', function($scope, $translate, CookieService,
 	};
 
 	function init() {
-		$translate(['ALPHABET', 'PUBLISH_DATE', 'RATING', 'RELEASE_DATE'])
+		$translate(['CLASSIC', 'STANDARD', 'ALPHABET', 'PUBLISH_DATE', 'RATING', 'RELEASE_DATE'])
 		.then(function(translations) {
+			$scope.designs[0].name = translations.CLASSIC;
+			$scope.designs[1].name = translations.STANDARD;
+
 			$scope.sorts.artists[0].name = translations.ALPHABET;
 			$scope.sorts.genres[0].name = translations.ALPHABET;
 			$scope.sorts.tracks[0].name = translations.ALPHABET;

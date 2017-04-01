@@ -21,7 +21,6 @@ import com.muschart.dto.FragmentDTO;
 import com.muschart.listener.ContentListener;
 import com.muschart.listener.EventListener;
 import com.muschart.listener.LoginListener;
-import com.muschart.service.client.impl.UserServiceImpl;
 
 import java.util.HashMap;
 import java.util.Map;

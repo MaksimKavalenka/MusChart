@@ -36,7 +36,11 @@ app.config(function($translateProvider) {
 		REMOVE_GENRE: 'Supprimer le genre',
 
 		LANGUAGE: 'Langue',
+		DESIGN: 'Désign',
 		SORTING: 'Tri',
+
+		CLASSIC: 'Classique',
+		STANDARD: 'Standard',
 
 		ALPHABET: 'Alphabet',
 		PUBLISH_DATE: 'Date de publication',

@@ -36,7 +36,11 @@ app.config(function($translateProvider) {
 		REMOVE_GENRE: 'Выдаліць жанр',
 
 		LANGUAGE: 'Мова',
+		DESIGN: 'Дызайн',
 		SORTING: 'Сартаванне',
+
+		CLASSIC: 'Класічны',
+		STANDARD: 'Стандартны',
 
 		ALPHABET: 'Алфавіт',
 		PUBLISH_DATE: 'Дзень публікацыі',

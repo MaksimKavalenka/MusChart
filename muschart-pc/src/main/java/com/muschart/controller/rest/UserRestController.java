@@ -9,6 +9,7 @@ import static com.muschart.constants.UrlConstants.Rest.Operation.LOGOUT_OPERATIO
 import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,12 +58,6 @@ public class UserRestController extends com.muschart.controller.rest.RestControl
         return new ResponseEntity<UserOutputDTO>(HttpStatus.FORBIDDEN);
     }
 
-    @RequestMapping(value = LOGOUT_OPERATION, method = RequestMethod.POST)
-    public void logout(HttpServletRequest rq, HttpServletResponse rs) {
-        SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();
-        securityContextLogoutHandler.logout(rq, rs, null);
-    }
-
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Object> createUser(@RequestBody RegisterDTO user, Errors errors) {
         if (errors.hasErrors()) {
@@ -70,14 +65,24 @@ public class UserRestController extends com.muschart.controller.rest.RestControl
         }
 
         try {
+            String login = new String(Base64.getDecoder().decode(user.getLogin().getBytes()));
+            String password = new String(Base64.getDecoder().decode(user.getPassword().getBytes()));
+
             List<GrantedAuthority> roles = new ArrayList<>(1);
             roles.add(roleDatabaseService.getRoleByName(RoleConstants.ROLE_USER.name()));
-            userDatabaseService.createUser(user.getLogin(), Secure.secureBySha(user.getPassword(), user.getLogin()), roles);
+
+            userDatabaseService.createUser(login, Secure.secureBySha(password, login), roles);
             return new ResponseEntity<Object>(HttpStatus.CREATED);
 
         } catch (ValidationException | NoSuchAlgorithmException e) {
             return new ResponseEntity<Object>(new ErrorMessage(e.getMessage()), HttpStatus.CONFLICT);
         }
+    }
+
+    @RequestMapping(value = LOGOUT_OPERATION, method = RequestMethod.POST)
+    public void logout(HttpServletRequest rq, HttpServletResponse rs) {
+        SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();
+        securityContextLogoutHandler.logout(rq, rs, null);
     }
 
     @RequestMapping(value = LIKE_OPERATION, method = RequestMethod.POST)
