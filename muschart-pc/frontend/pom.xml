@@ -15,7 +15,7 @@
 		<java.version>1.8</java.version>
 	</properties>
 
-<!--
+	<!--
 	<parent>
 		<groupId>com.muschart</groupId>
 		<artifactId>muschart</artifactId>
@@ -52,6 +52,42 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angularjs</artifactId>
+			<version>1.5.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-translate</artifactId>
+			<version>2.12.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-ui-router</artifactId>
+			<version>0.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>underscorejs</artifactId>
+			<version>1.8.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -72,7 +108,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-                    <port>8080</port>
+					<port>8080</port>
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
