@@ -1,0 +1,109 @@
+.content-standard {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+.content-standard li {
+	border: 2.5px solid #575757;
+	display: inline-block;
+	margin: 1px;
+	width: 305px;
+}
+.content-standard li > .title {
+	background: #575757;
+	color: #ffffff;
+	font: 13px Arial;
+	font-weight: bold;
+	margin: 7px 0;
+	padding: 10px;
+	position: relative;
+	text-align: center;
+}
+.content-standard li > .title > * {
+	display: block;
+	white-space: nowrap;
+}
+.content-standard li > .title .artist {
+	display: inline;
+}
+.content-standard li > .title a {
+	color: #ffffff;
+	text-decoration: none;
+}
+.content-standard li > .title a:hover,
+.content-standard li > .title a:active {
+	text-decoration: underline;
+}
+.content-standard li > .title .menu {
+	cursor: pointer;
+	height: 55%;
+	margin: 8px 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 10%;
+}
+.content-standard li > .body {
+	position: relative;
+}
+.content-standard li > .body > * {
+	width: 100%;
+}
+.content-standard li > .body > .links {
+	bottom: 0;
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	z-index: 1;
+}
+.content-standard li > .body:hover > .links,
+.content-standard li > .body:active > .links {
+	opacity: 1;
+}
+.content-standard li > .body > .links .link {
+	background-color: #ffffff;
+	background-size: 100% 100%;
+	border: 2.5px solid transparent;
+	cursor: pointer;
+	display: table-cell;
+	font-family: sans-serif;
+	font-size: 20px;
+	height: 47px;
+	opacity: 0.8;
+	text-align: center;
+	vertical-align: middle;
+	width: 47px;
+}
+.content-standard li > .body > .links .link-empty {
+	cursor: auto;
+}
+.link {
+	border: 2.5px solid #2780e3;
+	font-weight: bold;
+	margin: 10px 0;
+	padding: 5px 0;
+	text-align: center;
+	width: 100%;
+}
+.link a {
+	background: #2780e3;
+	color: #ffffff;
+	display: block;
+	padding: 5px;
+	text-decoration: none;
+}
+.info > * {
+	display: inline-block;
+	font-family: cursive;
+	font-size: 30px;
+}
+.info img {
+	border: 2.5px solid #575757;
+	margin-right: 15px;
+	vertical-align: top;
+	width: 200px;
+}
+iframe {
+	height: 360px;
+	width: 480px;
+}

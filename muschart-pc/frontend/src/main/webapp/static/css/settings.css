@@ -1,0 +1,35 @@
+.settings {
+	display: table;
+	margin: auto;
+	text-align: left;
+}
+.settings select {
+	padding: 5px;
+	width: 200px;
+}
+.settings > .setting {
+	margin: 30px 0;
+}
+.settings > .setting > .name {
+	font-size: 20px;
+	font-weight: bold;
+	margin: 15px;
+}
+.settings .title {
+	font-family: sans-serif;
+	font-size: 40px;
+	font-weight: bold;
+	margin: 15px;
+}
+.settings ul {
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+.settings ul > li {
+	display: inline-block;
+	margin: 10px;
+}
+.settings ul > li > .name {
+	font-weight: bold;
+}

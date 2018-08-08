@@ -1,0 +1,99 @@
+.form-search {
+	margin: 0 16px;
+	position: relative;
+}
+.form-search * {
+	display: inline;
+}
+.form-search .input-search {
+	padding: 9px;
+	width: 500px;
+}
+.form-search .suggestions {
+	left: 0;
+	position: absolute;
+	right: 0;
+	text-align: left;
+	z-index: 1;
+}
+.form-search .suggestion {
+	background: #ffffff;
+	border: 1px solid #cccccc;
+	cursor: pointer;
+	display: block;
+	margin-top: -1px;
+	padding: 9px 15px;
+	position: relative;
+}
+.form-search .suggestion:hover,
+.form-search .suggestion:active {
+	background: #2780e3;
+	color: #ffffff;
+}
+.form-search .suggestion:hover *,
+.form-search .suggestion:active * {
+	background: #2780e3;
+	color: #ffffff;
+}
+.form-search .suggestion-info {
+	color: #888888;
+	padding-right: 15px;
+	position: absolute;
+	right: 0;
+}
+.form-submit {
+	text-align: center;
+}
+.form-submit * {
+	text-align: left;
+}
+.form-submit fieldset {
+	display: inline-block;
+	font-family: sans-serif;
+	padding: 50px;
+}
+.form-submit fieldset legend {
+	font-size: 30px;
+}
+.form-submit .field {
+	margin: 24px 0;
+}
+.form-submit .field > * {
+	display: block;
+}
+.form-submit .field  label {
+	font-size: 14px;
+	font-weight: bold;
+	margin: 7px 0;
+}
+.form-submit .field input,
+.form-submit .field select {
+	border: 1px solid #aaaaaa;
+	margin: 5px 0;
+	padding: 7px;
+	width: 400px;
+}
+.form-submit .field span {
+	color: #ff0000;
+	font-size: 13px;
+}
+.form-submit .field-inline > * {
+	display: inline-block;
+}
+.form-submit .field-inline input {
+	width: 50px;
+}
+.form-validation label.required:after {
+	color: #ff0000;
+	content: " *";
+	font-size: 18px;
+}
+.form-validation input.ng-invalid.ng-touched {
+	border-color: #ff0000;
+}
+.form-validation input.ng-invalid.ng-touched:focus {
+	outline: #ffff00;
+}
+.form-validation input.ng-valid {
+	border-color: none;
+}

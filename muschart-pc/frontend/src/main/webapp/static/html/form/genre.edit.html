@@ -1,0 +1,15 @@
+<form method="POST" class="form-submit form-validation" name="form">
+	<fieldset>
+		<legend translate="GENRE"></legend>
+		<div class="field">
+			<label class="required" for="name" translate="NAME"></label>
+			<input type="text" id="name" name="name" maxlength="255" ng-model="genre.name" ng-check-genre-name required/>
+			<span ng-show="form.name.$pending.ngCheckGenreName" translate="CHECK_GENRE_NAME_MESSAGE"></span>
+			<span ng-show="form.name.$error.ngCheckGenreName" translate="EXISTS_GENRE_NAME_MESSAGE"></span>
+		</div>
+		<div>
+			<button class="btn btn-success" ng-click="createGenre()" ng-disabled="form.$invalid || form.name.$pending || dataLoading" translate="SUBMIT"></button>
+			<img ng-if="dataLoading" src="/img/load.gif"/>
+		</div>
+	</fieldset>
+</form>

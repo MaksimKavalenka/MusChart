@@ -1,0 +1,32 @@
+<div class="navbar navbar-default justify">
+	<ul class="navigation">
+		<li><a ui-sref="tracks" translate="TRACKS"></a>
+		<li><a ui-sref="artists" translate="ARTISTS"></a>
+		<li><a ui-sref="genres" translate="GENRES"></a>
+	</ul>
+	<form class="form-search" ng-controller="SearchController as searchCtrl" ng-keyup="search($event.keyCode)">
+		<input type="text" class="input-search" ng-model="query" ng-click="show(true)" ng-blur="show(false)" placeholder="{{'TRACKS' | translate}}, {{'ARTISTS' | translate}}, {{'GENRES' | translate}}">
+		<div id="suggestions" class="suggestions" ng-mouseover="holdSuggestions(true)" ng-mouseleave="holdSuggestions(false)">
+			<div class="suggestion" ng-repeat="suggestion in suggestions" ui-sref="{{suggestion.url}}">
+				<div>{{suggestion.name}}</div>
+				<div class="suggestion-info">{{suggestion.entity}}</div>
+			</div>
+		</div>
+	</form>
+	<ul class="navigation">
+		<li ng-if="user.admin"><a ui-sref="track_add" translate="EDIT"></a>
+		<li ng-if="!user"><a ui-sref="login" translate="LOG_IN"></a>
+		<li><a ui-sref="settings" translate="SETTINGS"></a>
+	</ul>
+</div>
+<div class="navbar navbar-primary justify" ng-if="user">
+	<ul class="navigation">
+		<li><a ui-sref="user_tracks" translate="MY_TRACKS"></a>
+		<li><a ui-sref="user_artists" translate="MY_ARTISTS"></a>
+		<li><a ui-sref="user_genres" translate="MY_GENRES"></a>
+	</ul>
+	<ul class="navigation">
+		<li ng-if="false"><a ui-sref="account" translate="MY_ACCOUNT"></a>
+		<li><a ng-href="#" ng-click="logout()" translate="LOG_OUT"></a>
+	</ul>
+</div>

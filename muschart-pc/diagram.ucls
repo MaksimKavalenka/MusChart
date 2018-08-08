@@ -1,0 +1,1775 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.0" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.muschart.constants.EntityConstants.Sort.Asc.Genre" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2579" y="2001"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.muschart.constants.EntityConstants.Structure.GenreFields" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="988" y="1718"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.muschart.constants.EntityConstants.Sort.Desc.Genre" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1809" y="2001"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.muschart.constants.UrlConstants.Page.User" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3436" y="1727"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.muschart.constants.UrlConstants.Page.Common" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3636" y="1727"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.muschart.constants.EntityConstants.Structure.UnitFields" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1142" y="1709"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.muschart.constants.EntityConstants" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1644" y="981"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.muschart.constants.EntityConstants.Sort.Desc" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2231" y="1700"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.muschart.constants.UrlConstants.Page.Operation" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3828" y="1700"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.muschart.constants.EntityConstants.ElementsCount" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="740" y="1282"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.muschart.constants.EntityConstants.Structure.Entities" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1296" y="1745"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.muschart.constants.EntityConstants.Sort.Desc.TrackArtist" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1963" y="1974"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.muschart.constants.UrlConstants.Page.Resources" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4021" y="1772"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.muschart.constants.EntityConstants.Sort.Desc.TrackArtist.Track" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1886" y="2203"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.muschart.constants.SolrConstants" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/SolrConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2647" y="981"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="com.muschart.constants.SolrConstants.Key" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/SolrConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2379" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="com.muschart.constants.EntityConstants.Sort.Asc.TrackArtist" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2425" y="1974"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="com.muschart.constants.UrlConstants.Resources" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3689" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="com.muschart.constants.UploadConstants.Path" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UploadConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3151" y="1336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="com.muschart.constants.EntityConstants.Structure.RoleFields" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1450" y="1709"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="com.muschart.constants.UploadConstants" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UploadConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3232" y="981"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="com.muschart.constants.EntityConstants.Structure.ArtistFields" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1604" y="1727"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="com.muschart.constants.EntityConstants.Sort.Asc.TrackArtist.Track" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2348" y="2203"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="com.muschart.constants.UrlConstants.Page" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4105" y="1282"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="com.muschart.constants.SolrConstants.Fields.ArtistsFields" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/SolrConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2636" y="1709"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="com.muschart.constants.UploadConstants.Type" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UploadConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3356" y="1309"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="com.muschart.constants.EntityConstants.Structure.UserFields" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1760" y="1718"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="com.muschart.constants.EntityConstants.Sort" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2225" y="1282"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="com.muschart.constants.UrlConstants.Page.Track" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4226" y="1745"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="com.muschart.constants.SolrConstants.Fields" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/SolrConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2944" y="1282"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="com.muschart.constants.SolrConstants.Fields.TracksFields" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/SolrConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2790" y="1709"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="com.muschart.constants.SolrConstants.Core" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/SolrConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2555" y="1327"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="com.muschart.constants.EntityConstants.Sort.Desc.Artist" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2117" y="2001"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="com.muschart.constants.SolrConstants.Fields.SolrFields" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/SolrConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2944" y="1700"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="com.muschart.constants.SolrConstants.Fields.GenresFields" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/SolrConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3098" y="1709"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="com.muschart.constants.EntityConstants.Structure" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1604" y="1282"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="com.muschart.constants.EntityConstants.ElementsCount.GenreElementsCount" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="293" y="1709"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="com.muschart.constants.UrlConstants.Resources.Type" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3255" y="1709"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="com.muschart.constants.UrlConstants" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4105" y="990"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="com.muschart.constants.EntityConstants.Structure.AbstractFields" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1917" y="1700"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="com.muschart.constants.EntityConstants.Structure.TrackFields" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2071" y="1754"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="com.muschart.constants.EntityConstants.Sort.Asc.Artist" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2733" y="2001"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="com.muschart.constants.EntityConstants.Sort.Desc.TrackArtist.Artist" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2040" y="2194"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="com.muschart.constants.SolrConstants.Query" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/SolrConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2761" y="1426"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="45" language="java" name="com.muschart.constants.UrlConstants.Rest.Operation" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5060" y="1756"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="com.muschart.constants.EntityConstants.Sort.Asc.TrackArtist.Artist" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2502" y="2194"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="com.muschart.constants.EntityConstants.Sort.Desc.Track" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2271" y="2010"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="com.muschart.constants.UrlConstants.Page.Artist" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4436" y="1745"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="com.muschart.constants.UrlConstants.Page.Key" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4618" y="1709"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="com.muschart.constants.UrlConstants.Rest" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4550" y="1354"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="com.muschart.constants.EntityConstants.Sort.Asc" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2476" y="1700"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="52" language="java" name="com.muschart.constants.EntityConstants.Sort.Asc.Track" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2887" y="2010"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="53" language="java" name="com.muschart.constants.UrlConstants.Page.Genre" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/constants/UrlConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4799" y="1745"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="54" language="java" name="com.muschart.constants.EntityConstants.ElementsCount.TrackElementsCount" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="539" y="1709"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="55" language="java" name="com.muschart.constants.EntityConstants.ElementsCount.ArtistElementsCount" 
+    project="muschart-pc" file="/muschart-pc/src/main/java/com/muschart/constants/EntityConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="787" y="1709"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="56" language="java" name="com.muschart.controller.rest.RestController" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/controller/rest/RestController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1491" y="4787"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="57" language="java" name="com.muschart.controller.rest.SearchRestController" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/controller/rest/SearchRestController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="358" y="5106"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="58" language="java" name="com.muschart.controller.rest.UnitRestController" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/controller/rest/UnitRestController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="747" y="5106"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="59" language="java" name="com.muschart.controller.rest.ArtistRestController" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/controller/rest/ArtistRestController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1167" y="5196"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="60" language="java" name="com.muschart.controller.rest.GenreRestController" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/controller/rest/GenreRestController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1636" y="5205"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="com.muschart.controller.rest.TrackRestController" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/controller/rest/TrackRestController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2106" y="5196"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="62" language="java" name="com.muschart.controller.rest.UserRestController" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/controller/rest/UserRestController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2513" y="5142"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="63" language="java" name="com.muschart.dto.AbstractDTO" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/dto/AbstractDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5945" y="2741"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="64" language="java" name="com.muschart.dto.EntityDTO" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/dto/EntityDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6122" y="2750"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="65" language="java" name="com.muschart.dto.IdAndNameDTO" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/dto/IdAndNameDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6024" y="3102"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="66" language="java" name="com.muschart.dto.RegisterDTO" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/dto/RegisterDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6323" y="2795"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="67" language="java" name="com.muschart.dto.output.SuggestionOutputDTO" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/dto/output/SuggestionOutputDTO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5545" y="3493"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="68" language="java" name="com.muschart.dto.output.ArtistOutputDTO" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/dto/output/ArtistOutputDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5831" y="3556"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="69" language="java" name="com.muschart.dto.output.UserOutputDTO" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/dto/output/UserOutputDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6093" y="3520"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="70" language="java" name="com.muschart.dto.output.GenreOutputDTO" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/dto/output/GenreOutputDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6341" y="3529"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="71" language="java" name="com.muschart.dto.output.TrackOutputDTO" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/dto/output/TrackOutputDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6783" y="3673"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="72" language="java" name="com.muschart.entity.GenreEntity" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/entity/GenreEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6292" y="2235"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="73" language="java" name="com.muschart.entity.TrackUnitEntity" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/entity/TrackUnitEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5568" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="74" language="java" name="com.muschart.entity.AbstractEntity" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/entity/AbstractEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6516" y="14"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="75" language="java" name="com.muschart.entity.ArtistEntity" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/entity/ArtistEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5999" y="1781"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="76" language="java" name="com.muschart.entity.TrackArtistEntity" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/entity/TrackArtistEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5885" y="958"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="77" language="java" name="com.muschart.entity.UserEntity" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/entity/UserEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6397" y="1183"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="78" language="java" name="com.muschart.entity.UnitEntity" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/entity/UnitEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5546" y="297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="79" language="java" name="com.muschart.entity.RoleEntity" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/entity/RoleEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6553" y="306"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="80" language="java" name="com.muschart.entity.TrackEntity" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/entity/TrackEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6055" y="486"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="81" language="java" name="com.muschart.jpa.repository.UnitRepository" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/jpa/repository/UnitRepository.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="571" y="2853"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="82" language="java" name="com.muschart.jpa.repository.RoleRepository" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/jpa/repository/RoleRepository.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="823" y="2844"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="83" language="java" name="com.muschart.jpa.repository.GenreRepository" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/jpa/repository/GenreRepository.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1083" y="2925"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="84" language="java" name="com.muschart.jpa.repository.TrackArtistRepository" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/jpa/repository/TrackArtistRepository.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1384" y="2862"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="85" language="java" name="com.muschart.jpa.repository.UserRepository" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/jpa/repository/UserRepository.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1657" y="2925"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="86" language="java" name="com.muschart.jpa.repository.TrackRepository" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/jpa/repository/TrackRepository.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1930" y="2925"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="87" language="java" name="com.muschart.jpa.repository.ArtistRepository" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/jpa/repository/ArtistRepository.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2231" y="2916"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="88" language="java" name="com.muschart.service.UserDetailsSecurityService" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/UserDetailsSecurityService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="409" y="4378"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="89" language="java" name="com.muschart.service.database.dao.UserDatabaseServiceDAO" 
+    project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/database/dao/UserDatabaseServiceDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="722" y="4330"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="90" language="java" name="com.muschart.service.database.dao.TrackDatabaseServiceDAO" 
+    project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/database/dao/TrackDatabaseServiceDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1150" y="4384"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="91" language="java" name="com.muschart.service.database.dao.GenreDatabaseServiceDAO" 
+    project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/database/dao/GenreDatabaseServiceDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1565" y="4366"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="92" language="java" name="com.muschart.service.database.dao.UnitDatabaseServiceDAO" 
+    project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/database/dao/UnitDatabaseServiceDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1891" y="4294"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="93" language="java" name="com.muschart.service.database.dao.RoleDatabaseServiceDAO" 
+    project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/database/dao/RoleDatabaseServiceDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2167" y="4276"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="94" language="java" name="com.muschart.service.database.dao.ArtistDatabaseServiceDAO" 
+    project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/database/dao/ArtistDatabaseServiceDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2446" y="4375"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="95" language="java" name="com.muschart.service.database.impl.GenreDatabaseServiceImpl" 
+    project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/database/impl/GenreDatabaseServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="645" y="3641"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="96" language="java" name="com.muschart.service.database.impl.DatabaseServiceImpl" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/database/impl/DatabaseServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1434" y="3403"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="97" language="java" name="com.muschart.service.database.impl.RoleDatabaseServiceImpl" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/database/impl/RoleDatabaseServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="924" y="3551"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="98" language="java" name="com.muschart.service.database.impl.TrackDatabaseServiceImpl" 
+    project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/database/impl/TrackDatabaseServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1289" y="3659"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="99" language="java" name="com.muschart.service.database.impl.UserDatabaseServiceImpl" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/database/impl/UserDatabaseServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1717" y="3605"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="100" language="java" name="com.muschart.service.database.impl.ArtistDatabaseServiceImpl" 
+    project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/database/impl/ArtistDatabaseServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2059" y="3650"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="101" language="java" name="com.muschart.service.database.impl.UnitDatabaseServiceImpl" 
+    project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/database/impl/UnitDatabaseServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2386" y="3569"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="102" language="java" name="com.muschart.service.solr.dao.SearchSolrServiceDAO" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/solr/dao/SearchSolrServiceDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1156" y="5642"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="103" language="java" name="com.muschart.service.solr.dao.GenreSolrServiceDAO" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/solr/dao/GenreSolrServiceDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1418" y="5642"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="104" language="java" name="com.muschart.service.solr.dao.TrackSolrServiceDAO" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/solr/dao/TrackSolrServiceDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1626" y="5642"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="105" language="java" name="com.muschart.service.solr.dao.ArtistSolrServiceDAO" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/solr/dao/ArtistSolrServiceDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1831" y="5642"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="106" language="java" name="com.muschart.service.solr.impl.SearchSolrServiceImpl" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/solr/impl/SearchSolrServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1151" y="5930"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="107" language="java" name="com.muschart.service.solr.impl.GenreSolrServiceImpl" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/solr/impl/GenreSolrServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1413" y="5930"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="108" language="java" name="com.muschart.service.solr.impl.ArtistSolrServiceImpl" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/solr/impl/ArtistSolrServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1620" y="5930"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="109" language="java" name="com.muschart.service.solr.impl.TrackSolrServiceImpl" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/service/solr/impl/TrackSolrServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1826" y="5930"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="110" language="java" name="com.muschart.solr.common.RequestHeader" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/solr/common/RequestHeader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3338" y="3917"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="111" language="java" name="com.muschart.solr.common.SolrURI" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/solr/common/SolrURI.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3372" y="3193"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="112" language="java" name="com.muschart.spring.component.DatabaseInitializer" project="muschart-pc" 
+    file="/muschart-pc/src/main/java/com/muschart/spring/component/DatabaseInitializer.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2165" y="4738"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="113">    
+    <end type="SOURCE" refId="80" navigable="false">      
+      <attribute id="114" name="users"/>      
+      <multiplicity id="115" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="77" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="116">    
+    <end type="SOURCE" refId="109"/>    
+    <end type="TARGET" refId="104"/>  
+  </realization>  
+  <realization id="117">    
+    <end type="SOURCE" refId="107"/>    
+    <end type="TARGET" refId="103"/>  
+  </realization>  
+  <generalization id="118">    
+    <end type="SOURCE" refId="65"/>    
+    <end type="TARGET" refId="63"/>  
+  </generalization>  
+  <association id="119">    
+    <end type="SOURCE" refId="96" navigable="false">      
+      <attribute id="120" name="unitRepository"/>      
+      <multiplicity id="121" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="81" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="122">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="123" name="roleDatabaseService"/>      
+      <multiplicity id="124" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="93" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="125">    
+    <end type="SOURCE" refId="80"/>    
+    <end type="TARGET" refId="74"/>  
+  </generalization>  
+  <nesting id="126">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="4"/>  
+  </nesting>  
+  <nesting id="127">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="31"/>  
+  </nesting>  
+  <nesting id="128">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="3"/>  
+  </nesting>  
+  <nesting id="129">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="36"/>  
+  </nesting>  
+  <nesting id="130">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="54"/>  
+  </nesting>  
+  <nesting id="131">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="23"/>  
+  </nesting>  
+  <nesting id="132">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="22"/>  
+  </nesting>  
+  <generalization id="133">    
+    <bendpoint x="5693" y="167"/>    
+    <end type="SOURCE" refId="73"/>    
+    <end type="TARGET" refId="74"/>  
+  </generalization>  
+  <nesting id="134">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="49"/>  
+  </nesting>  
+  <association id="135">    
+    <end type="SOURCE" refId="71" navigable="false">      
+      <attribute id="136" name="artists"/>      
+      <multiplicity id="137" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="65" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="138">    
+    <end type="SOURCE" refId="96" navigable="false">      
+      <attribute id="139" name="genreRepository"/>      
+      <multiplicity id="140" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="83" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="141">    
+    <end type="SOURCE" refId="98"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <association id="142">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="143" name="searchSolrService"/>      
+      <multiplicity id="144" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="102" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="145">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="146" name="userDatabaseService"/>      
+      <multiplicity id="147" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="89" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="148">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="149" name="genreDatabaseService"/>      
+      <multiplicity id="150" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="91" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="151">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="26"/>  
+  </nesting>  
+  <nesting id="152">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="43"/>  
+  </nesting>  
+  <generalization id="153">    
+    <end type="SOURCE" refId="101"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <nesting id="154">    
+    <end type="SOURCE" refId="51"/>    
+    <end type="TARGET" refId="42"/>  
+  </nesting>  
+  <association id="155">    
+    <end type="SOURCE" refId="88" navigable="false">      
+      <attribute id="156" name="userService"/>      
+      <multiplicity id="157" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="89" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="158">    
+    <end type="SOURCE" refId="67"/>    
+    <end type="TARGET" refId="63"/>  
+  </generalization>  
+  <association id="159">    
+    <end type="SOURCE" refId="80" navigable="false">      
+      <attribute id="160" name="artistsOrder"/>      
+      <multiplicity id="161" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="76" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="162">    
+    <end type="SOURCE" refId="96" navigable="false">      
+      <attribute id="163" name="artistRepository"/>      
+      <multiplicity id="164" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="87" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="165">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="9"/>  
+  </nesting>  
+  <generalization id="166">    
+    <end type="SOURCE" refId="60"/>    
+    <end type="TARGET" refId="56"/>  
+  </generalization>  
+  <nesting id="167">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="28"/>  
+  </nesting>  
+  <nesting id="168">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="40"/>  
+  </nesting>  
+  <association id="169">    
+    <end type="SOURCE" refId="71" navigable="false">      
+      <attribute id="170" name="units"/>      
+      <multiplicity id="171" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="65" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="172">    
+    <end type="SOURCE" refId="73" navigable="false">      
+      <attribute id="173" name="track"/>      
+      <multiplicity id="174" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="80" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="175">    
+    <end type="SOURCE" refId="59"/>    
+    <end type="TARGET" refId="56"/>  
+  </generalization>  
+  <nesting id="176">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="46"/>  
+  </nesting>  
+  <realization id="177">    
+    <end type="SOURCE" refId="98"/>    
+    <end type="TARGET" refId="90"/>  
+  </realization>  
+  <generalization id="178">    
+    <end type="SOURCE" refId="95"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <realization id="179">    
+    <end type="SOURCE" refId="108"/>    
+    <end type="TARGET" refId="105"/>  
+  </realization>  
+  <nesting id="180">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="32"/>  
+  </nesting>  
+  <association id="181">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="182" name="artistDatabaseService"/>      
+      <multiplicity id="183" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="94" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="184">    
+    <end type="SOURCE" refId="112" navigable="false">      
+      <attribute id="185" name="roleService"/>      
+      <multiplicity id="186" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="93" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="187">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="47"/>  
+  </nesting>  
+  <association id="188">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="189" name="unitDatabaseService"/>      
+      <multiplicity id="190" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="92" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="191">    
+    <bendpoint x="5733" y="1561"/>    
+    <bendpoint x="5733" y="846"/>    
+    <end type="SOURCE" refId="72" navigable="false">      
+      <attribute id="192" name="tracks"/>      
+      <multiplicity id="193" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="80" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="194">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="195" name="trackSolrService"/>      
+      <multiplicity id="196" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="104" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="197">    
+    <end type="SOURCE" refId="68"/>    
+    <end type="TARGET" refId="63"/>  
+  </generalization>  
+  <nesting id="198">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="35"/>  
+  </nesting>  
+  <association id="199">    
+    <end type="SOURCE" refId="96" navigable="false">      
+      <attribute id="200" name="trackRepository"/>      
+      <multiplicity id="201" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="86" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="202">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="13"/>  
+  </nesting>  
+  <association id="203">    
+    <end type="SOURCE" refId="76" navigable="false">      
+      <attribute id="204" name="track"/>      
+      <multiplicity id="205" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="80" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="206">    
+    <end type="SOURCE" refId="101"/>    
+    <end type="TARGET" refId="92"/>  
+  </realization>  
+  <nesting id="207">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="34"/>  
+  </nesting>  
+  <association id="208">    
+    <end type="SOURCE" refId="75" navigable="false">      
+      <attribute id="209" name="users"/>      
+      <multiplicity id="210" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="77" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="211">    
+    <bendpoint x="6690" y="167"/>    
+    <end type="SOURCE" refId="77"/>    
+    <end type="TARGET" refId="74"/>  
+  </generalization>  
+  <realization id="212">    
+    <end type="SOURCE" refId="99"/>    
+    <end type="TARGET" refId="89"/>  
+  </realization>  
+  <generalization id="213">    
+    <bendpoint x="6416" y="167"/>    
+    <end type="SOURCE" refId="76"/>    
+    <end type="TARGET" refId="74"/>  
+  </generalization>  
+  <generalization id="214">    
+    <end type="SOURCE" refId="100"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <generalization id="215">    
+    <end type="SOURCE" refId="99"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <association id="216">    
+    <end type="SOURCE" refId="112" navigable="false">      
+      <attribute id="217" name="unitService"/>      
+      <multiplicity id="218" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="92" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="219">    
+    <end type="SOURCE" refId="73" navigable="false">      
+      <attribute id="220" name="unit"/>      
+      <multiplicity id="221" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="78" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="222">    
+    <end type="SOURCE" refId="106"/>    
+    <end type="TARGET" refId="102"/>  
+  </realization>  
+  <generalization id="223">    
+    <end type="SOURCE" refId="79"/>    
+    <end type="TARGET" refId="74"/>  
+  </generalization>  
+  <nesting id="224">    
+    <end type="SOURCE" refId="50"/>    
+    <end type="TARGET" refId="45"/>  
+  </nesting>  
+  <nesting id="225">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="18"/>  
+  </nesting>  
+  <nesting id="226">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="38"/>  
+  </nesting>  
+  <nesting id="227">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="53"/>  
+  </nesting>  
+  <nesting id="228">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="37"/>  
+  </nesting>  
+  <association id="229">    
+    <end type="SOURCE" refId="77" navigable="false">      
+      <attribute id="230" name="tracks"/>      
+      <multiplicity id="231" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="80" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="232">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="51"/>  
+  </nesting>  
+  <generalization id="233">    
+    <end type="SOURCE" refId="97"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <nesting id="234">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="25"/>  
+  </nesting>  
+  <association id="235">    
+    <end type="SOURCE" refId="77" navigable="false">      
+      <attribute id="236" name="artists"/>      
+      <multiplicity id="237" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="75" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="238">    
+    <end type="SOURCE" refId="61"/>    
+    <end type="TARGET" refId="56"/>  
+  </generalization>  
+  <nesting id="239">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="33"/>  
+  </nesting>  
+  <association id="240">    
+    <end type="SOURCE" refId="96" navigable="false">      
+      <attribute id="241" name="roleRepository"/>      
+      <multiplicity id="242" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="82" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="243">    
+    <end type="SOURCE" refId="78" navigable="false">      
+      <attribute id="244" name="tracksOrder"/>      
+      <multiplicity id="245" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="73" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="246">    
+    <bendpoint x="6265" y="1561"/>    
+    <end type="SOURCE" refId="77" navigable="false">      
+      <attribute id="247" name="genres"/>      
+      <multiplicity id="248" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="249">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="41"/>  
+  </nesting>  
+  <generalization id="250">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="56"/>  
+  </generalization>  
+  <nesting id="251">    
+    <end type="SOURCE" refId="51"/>    
+    <end type="TARGET" refId="52"/>  
+  </nesting>  
+  <association id="252">    
+    <end type="SOURCE" refId="96" navigable="false">      
+      <attribute id="253" name="userRepository"/>      
+      <multiplicity id="254" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="85" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="255">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="6"/>  
+  </nesting>  
+  <nesting id="256">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="24"/>  
+  </nesting>  
+  <association id="257">    
+    <end type="SOURCE" refId="96" navigable="false">      
+      <attribute id="258" name="trackArtistRepository"/>      
+      <multiplicity id="259" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="84" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="260">    
+    <end type="SOURCE" refId="79" navigable="false">      
+      <attribute id="261" name="users"/>      
+      <multiplicity id="262" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="77" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="263">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="12"/>  
+  </nesting>  
+  <association id="264">    
+    <end type="SOURCE" refId="111" navigable="false">      
+      <attribute id="265" name="requestHeader"/>      
+      <multiplicity id="266" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="110" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="267">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="44"/>  
+  </nesting>  
+  <association id="268">    
+    <bendpoint x="6286" y="1561"/>    
+    <end type="SOURCE" refId="72" navigable="false">      
+      <attribute id="269" name="users"/>      
+      <multiplicity id="270" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="77" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="271">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="50"/>  
+  </nesting>  
+  <association id="272">    
+    <bendpoint x="5712" y="846"/>    
+    <bendpoint x="5712" y="1561"/>    
+    <end type="SOURCE" refId="80" navigable="false">      
+      <attribute id="273" name="genres"/>      
+      <multiplicity id="274" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="275">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="29"/>  
+  </nesting>  
+  <nesting id="276">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="5"/>  
+  </nesting>  
+  <association id="277">    
+    <end type="SOURCE" refId="76" navigable="false">      
+      <attribute id="278" name="artist"/>      
+      <multiplicity id="279" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="75" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="280">    
+    <end type="SOURCE" refId="72" navigable="false">      
+      <attribute id="281" name="artists"/>      
+      <multiplicity id="282" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="75" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="283">    
+    <end type="SOURCE" refId="51"/>    
+    <end type="TARGET" refId="17"/>  
+  </nesting>  
+  <generalization id="284">    
+    <end type="SOURCE" refId="62"/>    
+    <end type="TARGET" refId="56"/>  
+  </generalization>  
+  <nesting id="285">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="55"/>  
+  </nesting>  
+  <generalization id="286">    
+    <end type="SOURCE" refId="58"/>    
+    <end type="TARGET" refId="56"/>  
+  </generalization>  
+  <nesting id="287">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="20"/>  
+  </nesting>  
+  <nesting id="288">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="8"/>  
+  </nesting>  
+  <nesting id="289">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="11"/>  
+  </nesting>  
+  <generalization id="290">    
+    <end type="SOURCE" refId="70"/>    
+    <end type="TARGET" refId="63"/>  
+  </generalization>  
+  <association id="291">    
+    <end type="SOURCE" refId="80" navigable="false">      
+      <attribute id="292" name="unitsOrder"/>      
+      <multiplicity id="293" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="73" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="294">    
+    <end type="SOURCE" refId="75" navigable="false">      
+      <attribute id="295" name="tracksOrder"/>      
+      <multiplicity id="296" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="76" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="297">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="19"/>  
+  </nesting>  
+  <nesting id="298">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="14"/>  
+  </nesting>  
+  <nesting id="299">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="16"/>  
+  </nesting>  
+  <generalization id="300">    
+    <end type="SOURCE" refId="71"/>    
+    <end type="TARGET" refId="63"/>  
+  </generalization>  
+  <nesting id="301">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="10"/>  
+  </nesting>  
+  <association id="302">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="303" name="trackDatabaseService"/>      
+      <multiplicity id="304" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="305">    
+    <end type="SOURCE" refId="100"/>    
+    <end type="TARGET" refId="94"/>  
+  </realization>  
+  <nesting id="306">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="27"/>  
+  </nesting>  
+  <nesting id="307">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="2"/>  
+  </nesting>  
+  <realization id="308">    
+    <end type="SOURCE" refId="97"/>    
+    <end type="TARGET" refId="93"/>  
+  </realization>  
+  <generalization id="309">    
+    <bendpoint x="6778" y="846"/>    
+    <bendpoint x="6778" y="167"/>    
+    <end type="SOURCE" refId="75"/>    
+    <end type="TARGET" refId="74"/>  
+  </generalization>  
+  <nesting id="310">    
+    <end type="SOURCE" refId="51"/>    
+    <end type="TARGET" refId="1"/>  
+  </nesting>  
+  <nesting id="311">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="48"/>  
+  </nesting>  
+  <association id="312">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="313" name="genreSolrService"/>      
+      <multiplicity id="314" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="103" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="315">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="316" name="artistSolrService"/>      
+      <multiplicity id="317" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="105" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="318">    
+    <end type="SOURCE" refId="75" navigable="false">      
+      <attribute id="319" name="genres"/>      
+      <multiplicity id="320" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="321">    
+    <bendpoint x="6799" y="1561"/>    
+    <bendpoint x="6799" y="846"/>    
+    <bendpoint x="6799" y="167"/>    
+    <end type="SOURCE" refId="72"/>    
+    <end type="TARGET" refId="74"/>  
+  </generalization>  
+  <generalization id="322">    
+    <end type="SOURCE" refId="78"/>    
+    <end type="TARGET" refId="74"/>  
+  </generalization>  
+  <nesting id="323">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="30"/>  
+  </nesting>  
+  <realization id="324">    
+    <end type="SOURCE" refId="95"/>    
+    <end type="TARGET" refId="91"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

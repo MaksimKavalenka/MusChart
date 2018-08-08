@@ -1,0 +1,67 @@
+<div class="settings">
+	<div class="title" translate="SETTINGS"></div>
+	<div class="setting">
+		<div class="name" translate="LANGUAGE"></div>
+		<select ng-model="settings.language" required>
+			<option ng-repeat="lang in languages" value="{{lang.iso}}">{{lang.name}}</option>
+		</select>
+	</div>
+	<div class="setting">
+		<div class="name" translate="DESIGN"></div>
+		<select ng-model="settings.design" required>
+			<option ng-repeat="design in designs" value="{{design.value}}">{{design.name}}</option>
+		</select>
+	</div>
+	<div class="setting">
+		<div class="name" translate="SORTING"></div>
+		<ul>
+			<li>
+				<div class="name" translate="TRACKS"></div>
+			</li>
+			<li>
+				<select ng-model="settings.sort.tracks" required>
+					<option ng-repeat="sort in sorts.tracks" value="{{sort.value}}">{{sort.name}}</option>
+				</select>
+			</li>
+			<li>
+				<select ng-model="settings.order.tracks" required>
+					<option value="true" translate="ASC"></option>
+					<option value="false" translate="DESC"></option>
+				</select>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<div class="name" translate="ARTISTS"></div>
+			</li>
+			<li>
+				<select ng-model="settings.sort.artists" required>
+					<option ng-repeat="sort in sorts.artists" value="{{sort.value}}">{{sort.name}}</option>
+				</select>
+			</li>
+			<li>
+				<select ng-model="settings.order.artists" required>
+					<option value="true" translate="ASC"></option>
+					<option value="false" translate="DESC"></option>
+				</select>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<div class="name" translate="GENRES"></div>
+			</li>
+			<li>
+				<select ng-model="settings.sort.genres" required>
+					<option ng-repeat="sort in sorts.genres" value="{{sort.value}}">{{sort.name}}</option>
+				</select>
+			</li>
+			<li>
+				<select ng-model="settings.order.genres" required>
+					<option value="true" translate="ASC"></option>
+					<option value="false" translate="DESC"></option>
+				</select>
+			</li>
+		</ul>
+	</div>
+	<button class="btn btn-primary" ng-click="saveSettings()" translate="SAVE"></button>
+</div>
